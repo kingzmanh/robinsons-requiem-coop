@@ -1373,6 +1373,7 @@ void alis_load_state(void)
 
 void alis_loop(void)
 {
+    rrq_coop_slice_begin();
     rrq_trace_slice_begin();
     alis.script->running = 1;
     while (alis.state && alis.script->running)

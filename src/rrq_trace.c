@@ -75,7 +75,10 @@ void rrq_trace_dump_entities(const char *tag)
     {
         sAlisScriptLive *s = alis.live_scripts[i];
         if (!s) continue;
-        printf("[rrq] ent %s slot=%04x id=%d script=%s vram=%06x\n", tag, i * ENT_STRIDE, i, s->name ? s->name : "?", s->vram_org);
+        u32 v = s->vram_org;
+        printf("[rrq] ent %s slot=%04x id=%d script=%s vram=%06x pos=(%d,%d,%d) ang=(%d,%d,%d) wait=%d\n", tag, i * ENT_STRIDE, i,
+               s->name ? s->name : "?", v, (s16)xread16(v), (s16)xread16(v + 8), (s16)xread16(v + 0x10),
+               (s16)xread16(v + 0x18), (s16)xread16(v + 0x20), (s16)xread16(v + 0x28), xread8(v - 4));
         if (tf) fprintf(tf, "#ENT\t%u\t%s\t%04x\t%s\t%06x\n", alis.timeclock, tag, i * ENT_STRIDE, s->name ? s->name : "?", s->vram_org);
         n++;
     }
