@@ -31,6 +31,11 @@
 #include "mem.h"
 #include "platform.h"
 #include "utils.h"
+#include "rrq_harness.h"
+#if !defined(ALIS_USE_NATIVE_ATARI) && ALIS_SDL_VER > 1
+// Harness-held keys are merged into the keyboard state the VM reads.
+# define SDL_GetKeyboardState(n) rrq_get_keyboard_state(n)
+#endif
 
 #include "emu2149.h"
 #include "emu8950.h"

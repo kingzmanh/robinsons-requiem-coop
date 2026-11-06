@@ -43,6 +43,7 @@
 #include "platform.h"
 #include "utils.h"
 #include "video.h"
+#include "rrq_harness.h"
 
 #include "emu2149.h"
 #include "math.h"
@@ -172,7 +173,8 @@ void sys_init(sPlatform *pl, int fullscreen, int mutesound)
     }
     
     printf("  Video initialization...\n");
-    window = SDL_CreateWindow(kProgName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width * scale_x, height * scale_y, SDL_WINDOW_RESIZABLE | fullscreen * SDL_WINDOW_FULLSCREEN_DESKTOP);
+    rrq_harness_init();
+    window = SDL_CreateWindow(kProgName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width * scale_x, height * scale_y, SDL_WINDOW_RESIZABLE | fullscreen * SDL_WINDOW_FULLSCREEN_DESKTOP | (rrq_harness_hidden() ? SDL_WINDOW_HIDDEN : 0));
     if (window == NULL)
     {
         fprintf(stderr, "   Could not create %.0fx%.0f window: %s\n", (width * scale_x), (height * scale_y), SDL_GetError());
@@ -382,6 +384,7 @@ u8 sys_start(void)
 void sys_poll_event(void)
 {
     
+    rrq_harness_tick();
     sys_render(host.pixelbuf);
     
     // update mouse position
@@ -395,6 +398,15 @@ void sys_poll_event(void)
     SDL_RenderGetLogicalSize(renderer, &lw, &lh);
     mouse.x = newx;
     mouse.y = (lh > 0) ? newy * (float)height / (float)lh : newy / aspect_ratio;
+    {
+        int hx, hy, hlb, hrb, hlbc = 0, hrbc = 0;
+        if (rrq_harness_mouse(&hx, &hy, &hlb, &hrb, &hlbc, &hrbc))
+        {
+            mouse.x = hx; mouse.y = hy; mouse.lb = hlb; mouse.rb = hrb;
+            if (hlbc) mouse.lb_clicked = 1;
+            if (hrbc) mouse.rb_clicked = 1;
+        }
+    }
 
     // Drain the event queue; quick clicks latch in mouse.lb_clicked / rb_clicked.
     while (SDL_PollEvent(&event))
@@ -800,6 +812,7 @@ void sys_render(pixelbuf_t buffer)
         }
     }
 
+    rrq_harness_after_render(pixels, width, height);
     SDL_UpdateTexture(texture, NULL, pixels, width * sizeof(*pixels));
     
     // clear & render
