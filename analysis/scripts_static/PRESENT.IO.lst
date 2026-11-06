@@ -1,6 +1,0 @@
-; PRESENT.IO: 5 instructions, 9/66000 bytes, entries ['0x18']
-  000018: cput oimmb[0x03]
-  00001b: cstop 
-  00001c: cpalette oimmb[0x02]
-  00001f: csleep 
-  000020: cexit 

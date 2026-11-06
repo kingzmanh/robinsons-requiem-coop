@@ -1,3 +1,0 @@
-; ANIM3D.IO: 1 instructions, 3/10904 bytes, entries ['0x18']
-; !! 00001b: oper 0xff not in table
-  000018: cscreen 0x0152

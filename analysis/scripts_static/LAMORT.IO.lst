@@ -1,7 +1,0 @@
-; LAMORT.IO: 6 instructions, 20/34760 bytes, entries ['0x18']
-  000018: cscreen 0x0052
-  00001b: cputnat oimmb[0x00] oimmb[0x01] oimmb[0x03] oimmb[0x01] oimmb[0x00]
-  000026: cstop 
-  000027: cpalette oimmb[0x02]
-  00002a: csleep 
-  00002b: cexit 

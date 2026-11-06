@@ -11,3 +11,7 @@ analysis/scripts_unpacked/
 analysis/graph_*/src/
 analysis/graph_merged.json
 *.state
+analysis/ghidra_out/
+analysis/scripts_static/*.lst
+analysis/scripts_dis/
+analysis/manual.txt
