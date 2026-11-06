@@ -1,0 +1,15 @@
+# Phase 2 step: spawn a second hero entity
+500 dument before
+1000 spawn heros.IO
+1500 dument after_spawn
+2000 shot sp0
+2500 click 288 170 l 3000
+6000 shot sp1
+6100 dument after_walk
+6500 click 304 170 l 1200
+8500 shot sp2
+9000 key F1
+10500 shot sp_map
+11000 key Escape
+12000 dument end
+12500 quit

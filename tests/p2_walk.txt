@@ -1,0 +1,10 @@
+# Phase 2 PoC: P2 owns a second hero entity and walks on its own input; P1 stands still
+500 dument before
+1000 spawn heros.IO 1
+1500 dument after_spawn
+2000 drive 5
+6000 drive 0
+6200 dument after_p2_walk
+6500 click 304 170 l 1000
+8000 dument after_p1_turn
+8500 quit

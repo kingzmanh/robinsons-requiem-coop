@@ -1,0 +1,11 @@
+# Phase 2 PoC: what does P2 see?
+1000 spawn heros.IO 1
+2000 drive 6
+3500 drive 5
+7500 drive 0
+8000 dument pos
+8500 shot p1_view
+9000 p2view p2_view
+10500 shot p1_after
+11000 dument after
+11500 quit

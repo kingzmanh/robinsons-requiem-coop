@@ -68,6 +68,14 @@ Co-op is added **inside the interpreter**, not by rewriting the scripts:
 - **Proof of concept, two player records** (`engine/src/rrq_coop.c` + generated `rrq_player_ranges.h`, 42 ranges / 2,755 bytes): switching the active player at a VM safe point swaps the record. The game's own computer screen showed P1 bag 04.8 kg → P2 02.5 kg → P1 04.8 kg again → P2 02.5 kg, while the world clock kept running for both (`tests/coop_poc.txt`, `build/runs/poc/cmp.png`).
 - Entity creation is one engine routine (`clivin`: script id → new entity + its own variable block), so a second hero entity can be spawned from C.
 
+**Phase 2 progress (2026-11-07 night)**
+- Engine `rrq_coop.c`: entity ownership. Before every entity slice the owner's record is swapped in (≈2.8 KB memcpy). The frame is drawn with the local player's record.
+- **A second hero entity for P2** (`spawn heros.IO 1`) inherits P1's position. With P2's movement command (`DRDEP`, normally written by yoda) driven separately, **P2 walked and turned while P1 stood still, and P1 turned while P2 didn't** (`tests/p2_walk.txt`).
+- How movement works: yoda writes `DRDEP` (main `0x1a8f`: 5 = forward, 6 = turn right, …) every tick, and heros consumes it and resets it to 0.
+- **Camera**: screens are structs in MAIN's memory. The 3D view is screen `0x0152`. heros calls `cscfollow` with its own id every tick, which writes the follow target and offsets at `+0x60..+0x91`. Making those fields part of the player record gives each player their own camera.
+- **P2's view captured** (`p2view` = save state → P2 record + camera → `draw()` → BMP → restore). P1 sees the palm trees and P2 sees the hill they walked to (`analysis/poc_p1_p2_views.png`, `tests/p2_view.txt`).
+- Next: spawn P2's yoda/souris/time instances (P2's own HUD, actions and body simulation) and route P2's input devices to the slices P2 owns. Render P2's frame every tick without the savestate round-trip: snapshot only the render state (sprite list, `image`, screen structs), or give P2 its own screen set. Then show split-screen.
+
 **Phase 2 – Two player records, one machine (design from Phase 1 facts)**
 - Per-entity owner: heros/yoda/time/souris/objet/body/map/ordi instances belong to a player; everything else is world. The scheduler swaps in the owner's record before each slice. World entities run in the nearest/target player's context.
 - `time.IO` mixes player needs with world weather and clock. It runs once per player, and only the first run keeps its WORLD writes (the others are rolled back).
