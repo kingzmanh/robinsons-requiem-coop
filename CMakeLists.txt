@@ -135,7 +135,8 @@ else()
   set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 endif()
 
-# Script disassembler (no SDL)
+# Script disassembler (no SDL) -- sources not in upstream repo; optional (rrq-coop local patch)
+if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/main.c)
 add_executable(alisdis
     ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/main.c
     ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/decode.c
@@ -144,6 +145,7 @@ add_executable(alisdis
     ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/ops_v2.c
     ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/tables_v2.c
     ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/unpack.c)
+endif()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
