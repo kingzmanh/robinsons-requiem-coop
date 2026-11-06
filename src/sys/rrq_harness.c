@@ -10,6 +10,7 @@
 #include "rrq_harness.h"
 #include "alis.h"
 #include "rrq_trace.h"
+#include "rrq_coop.h"
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -131,6 +132,13 @@ void rrq_harness_tick(void)
         else if (!strcmp(e->cmd, "loadstate")) alis.state = eAlisStateLoad;
         else if (!strcmp(e->cmd, "mark")) { printf("[rrq] mark t=%u %s\n", t, e->a); fflush(stdout); rrq_trace_mark(e->a); }
         else if (!strcmp(e->cmd, "dument")) rrq_trace_dump_entities(e->a[0] ? e->a : "-");
+        else if (!strcmp(e->cmd, "player")) rrq_coop_request_player(atoi(e->a));
+        else if (!strcmp(e->cmd, "pokew") || !strcmp(e->cmd, "pokeb"))
+        {
+            unsigned off = 0; int val = 0;
+            sscanf(e->a, "%x %d", &off, &val);
+            rrq_coop_request_poke((int)off, val, e->cmd[4] == 'w');
+        }
         else if (!strcmp(e->cmd, "quit")) { printf("[rrq] quit t=%u\n", t); alis.state = eAlisStateStopped; }
     }
     if (quit_ms && t >= quit_ms && alis.state) { printf("[rrq] RRQ_QUIT_MS reached\n"); alis.state = eAlisStateStopped; }

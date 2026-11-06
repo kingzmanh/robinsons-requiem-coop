@@ -23,6 +23,7 @@
 // (see ALIS_VM_REGVARS in alis.h). Must precede any include.
 #define ALIS_VM_CORE
 #include "rrq_trace.h"
+#include "rrq_coop.h"
 #include "alis.h"
 #include "alis_private.h"
 #include "audio.h"
@@ -1522,6 +1523,7 @@ void alis_main_V2(void)
     while (alis.state)
     {
         
+        rrq_coop_service();
         if (alis.state == eAlisStateSave)
         {
             alis_save_state();
@@ -1629,6 +1631,7 @@ void alis_main_V3(void)
     while (alis.state)
     {
 
+        rrq_coop_service();
         if (alis.state == eAlisStateSave)
         {
             alis_save_state();
@@ -1734,6 +1737,7 @@ void alis_main_V6(void)
 
     while (alis.state)
     {
+        rrq_coop_service();
         if (alis.state == eAlisStateSave)
         {
             alis_save_state();
