@@ -14,3 +14,5 @@ void rrq_coop_before_draw(void);
 void rrq_coop_after_draw(void);
 int  rrq_coop_split(void);
 int  rrq_coop_p2_frame(unsigned int *dst, int w, int h);
+void rrq_coop_slice_end(void);
+void rrq_coop_request_dump(const char *t);

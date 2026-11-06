@@ -3,6 +3,7 @@
 // are kept per player; switching the active player swaps those bytes in and out of the
 // main script's memory. Requests come from other threads and are applied on the VM thread
 // at a safe point (top of the scheduler loop) via rrq_coop_service().
+#define SDL_MAIN_HANDLED
 #include "rrq_coop.h"
 #include "rrq_player_ranges.h"
 #include "alis.h"
@@ -80,8 +81,8 @@ void rrq_coop_switch(int p)
 void rrq_coop_request_player(int p) { req_player = p; }
 void rrq_coop_request_poke(int off, int val, int is_word) { poke_off = off; poke_val = val; poke_w = is_word; req_poke = 1; }
 
-static volatile int req_spawn_owner;
-void rrq_coop_request_spawn(const char *name, int owner) { snprintf(req_spawn, sizeof req_spawn, "%s", name); req_spawn_owner = owner; req_spawn_flag = 1; }
+static volatile int req_spawn_owner, req_spawn_rb;
+void rrq_coop_request_spawn(const char *name, int owner) { snprintf(req_spawn, sizeof req_spawn, "%s", name); req_spawn_owner = owner & 0xff; req_spawn_rb = owner >> 8; req_spawn_flag = 1; }
 
 static sAlisScriptLive *find_live(const char *name)
 {
@@ -123,6 +124,7 @@ static u32 owned_vram[RRQ_MAX_OWNED];
 static u8 owned_player[RRQ_MAX_OWNED];
 static int nowned;
 static volatile int drive_val = -1;
+static void rb_begin(void);
 void rrq_coop_switch_quiet(int p);     // test input for P2: movement command (DRDEP) applied each slice
 
 void rrq_coop_set_owner(u32 vram, int p)
@@ -141,6 +143,79 @@ int rrq_coop_owner(u32 vram)
 
 void rrq_coop_request_drive(int v) { drive_val = v; }
 
+// ---- world-write rollback: for P2 instances of scripts that mix player and world updates
+// (time.IO: body needs + clock/weather). P1's instance owns the world part; P2's instance only
+// keeps its writes to the player record.
+static u32 rb_vram[RRQ_MAX_OWNED];
+static int nrb;
+static u8 *rb_snap;
+static u32 rb_size;
+static int rb_armed;
+
+void rrq_coop_set_rollback(u32 vram) { if (nrb < RRQ_MAX_OWNED) rb_vram[nrb++] = vram; }
+
+static int is_rb(u32 vram)
+{
+    for (int i = 0; i < nrb; i++) if (rb_vram[i] == vram) return 1;
+    return 0;
+}
+
+static void rb_begin(void)
+{
+    rb_armed = 0;
+    if (!nrb || !alis.script || !is_rb(alis.script->vram_org)) return;
+    u32 sz = alis.main->data->header.vram_alloc_sz;
+    if (!sz) sz = 0x10000;
+    if (sz != rb_size) { rb_snap = realloc(rb_snap, sz); rb_size = sz; }
+    memcpy(rb_snap, alis.mem + alis.basemain, sz);
+    rb_armed = 1;
+}
+
+void rrq_coop_slice_end(void)
+{
+    if (!rb_armed) return;
+    rb_armed = 0;
+    u8 *m = alis.mem + alis.basemain;
+    u32 pos = 0;
+    for (u32 i = 0; i < RRQ_PLAYER_RANGE_COUNT; i++)
+    {
+        u32 lo = rrq_player_ranges[i][0], hi = rrq_player_ranges[i][1];
+        if (lo > pos && pos < rb_size) memcpy(m + pos, rb_snap + pos, (lo < rb_size ? lo : rb_size) - pos);
+        if (hi > pos) pos = hi;
+    }
+    if (pos < rb_size) memcpy(m + pos, rb_snap + pos, rb_size - pos);
+}
+
+// Print a few body stats of both players (record of the inactive one comes from its store).
+void rrq_coop_dump(const char *tag)
+{
+    static const struct { const char *n; u16 off; } V[] = {
+        {"SANG", 0x1932}, {"EAU", 0x1936}, {"SAC", 0x1938}, {"FAT", 0x193e}, {"ENER", 0x1942},
+        {"PSY", 0x1944}, {"TEMPEX", 0x1946}, {"SOMMEIL", 0x19dc}, {"VFAT", 0x1940}, {"clock1a08", 0x1a08} };
+    ensure();
+    copy_out(store[active]);
+    for (int p = 0; p < RRQ_MAX_PLAYERS; p++)
+    {
+        if (!have[p] && p != active) continue;
+        printf("[coop] rec %s P%d:", tag, p + 1);
+        for (u32 v = 0; v < sizeof V / sizeof V[0]; v++)
+        {
+            // find the value inside the store
+            u32 k = 0; int found = 0;
+            for (u32 i = 0; i < RRQ_PLAYER_RANGE_COUNT && !found; i++)
+            {
+                u32 lo = rrq_player_ranges[i][0], hi = rrq_player_ranges[i][1];
+                if (V[v].off >= lo && V[v].off + 1 < hi) { s16 val = (s16)(store[p][k + V[v].off - lo] | (store[p][k + V[v].off - lo + 1] << 8)); printf(" %s=%d", V[v].n, val); found = 1; }
+                k += hi - lo;
+            }
+            if (!found) printf(" %s=(world)%d", V[v].n, (s16)xread16(alis.basemain + V[v].off));
+        }
+        printf("\n");
+    }
+    printf("[coop] world: day clock 0x3bec=%d main 0x1a08=%d timeclock=%u\n", (s16)xread16(alis.basemain + 0x3bec), (s16)xread16(alis.basemain + 0x1a08), alis.timeclock);
+    fflush(stdout);
+}
+
 // Called right before the frame is composed: the displayed view is the local player's.
 void rrq_coop_before_draw(void)
 {
@@ -155,6 +230,7 @@ void rrq_coop_slice_begin(void)
     int p = rrq_coop_owner(alis.script->vram_org);
     if (p != active) rrq_coop_switch_quiet(p);
     rrq_input_select(p);
+    rb_begin();
     if (p == 1 && drive_val >= 0)
         xwrite8(alis.basemain + 0x1a8f, (u8)drive_val);   // DRDEP: what P2's yoda would write
 }
@@ -290,13 +366,18 @@ void rrq_coop_after_draw(void)
     active = was;
 }
 
+static char req_dump[32]; static volatile int req_dump_flag;
+void rrq_coop_request_dump(const char *t) { snprintf(req_dump, sizeof req_dump, "%s", t); req_dump_flag = 1; }
+
 void rrq_coop_service(void)
 {
+    if (req_dump_flag) { req_dump_flag = 0; rrq_coop_dump(req_dump); }
     if (req_view_flag) { req_view_flag = 0; p2view(req_view); }
     if (req_spawn_flag)
     {
         req_spawn_flag = 0;
         sAlisScriptLive *e = rrq_coop_spawn(req_spawn);
+        if (e && req_spawn_rb) rrq_coop_set_rollback(e->vram_org);
         if (e && req_spawn_owner) { rrq_coop_set_owner(e->vram_org, req_spawn_owner); printf("[coop] %s vram=%06x owned by player %d\n", req_spawn, e->vram_org, req_spawn_owner); }
     }
     if (req_player >= 0) { int p = req_player; req_player = -1; rrq_coop_switch(p); }

@@ -1400,6 +1400,7 @@ void alis_loop(void)
     }
 
     // alis loop was stopped by 'cexit', 'cstop', or user event
+    rrq_coop_slice_end();
     rrq_trace_slice_end();
 }
 
