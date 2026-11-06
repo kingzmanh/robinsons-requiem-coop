@@ -32,6 +32,7 @@
 #include "platform.h"
 #include "utils.h"
 #include "rrq_harness.h"
+#include "rrq_input.h"
 #if !defined(ALIS_USE_NATIVE_ATARI) && ALIS_SDL_VER > 1
 // Harness-held keys are merged into the keyboard state the VM reads.
 # define SDL_GetKeyboardState(n) rrq_get_keyboard_state(n)
@@ -1734,14 +1735,15 @@ u32 sys_free_bytes(const char *path, u32 cap)
 
 mouse_t sys_get_mouse(void)
 {
-    return mouse;
+    return *rrq_input_mouse();      // rrq-coop: the mouse of the player whose entity is running
 }
 
 mouse_t sys_consume_mouse(void)
 {
-    mouse_t snap = mouse;
-    mouse.lb_clicked = 0;
-    mouse.rb_clicked = 0;
+    mouse_t *m = rrq_input_mouse();
+    mouse_t snap = *m;
+    m->lb_clicked = 0;
+    m->rb_clicked = 0;
     return snap;
 }
 

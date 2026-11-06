@@ -11,6 +11,7 @@
 #include "alis.h"
 #include "rrq_trace.h"
 #include "rrq_coop.h"
+#include "rrq_input.h"
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -108,6 +109,7 @@ void rrq_harness_tick(void)
     for (int k = 0; k < SDL_NUM_SCANCODES; k++)
         if (keys[k] && t >= key_release[k]) keys[k] = 0;
     if (mlb && t >= lb_release) mlb = 0;
+    rrq_input_p2_tick(t);
     if (mrb && t >= rb_release) mrb = 0;
     while (iev < nevs && evs[iev].t <= t)
     {
@@ -133,6 +135,18 @@ void rrq_harness_tick(void)
         else if (!strcmp(e->cmd, "mark")) { printf("[rrq] mark t=%u %s\n", t, e->a); fflush(stdout); rrq_trace_mark(e->a); }
         else if (!strcmp(e->cmd, "dument")) rrq_trace_dump_entities(e->a[0] ? e->a : "-");
         else if (!strcmp(e->cmd, "spawn")) { char nm[32] = {0}; int ow = 0; sscanf(e->a, "%31s %d", nm, &ow); rrq_coop_request_spawn(nm, ow); }
+        else if (!strcmp(e->cmd, "p2key"))
+        {
+            char nm[48] = {0}; int hold = 120; sscanf(e->a, "%47s %d", nm, &hold);
+            SDL_Keycode kc = SDL_GetKeyFromName(nm);
+            if (kc != SDLK_UNKNOWN) rrq_input_p2_key(kc, t, hold);
+        }
+        else if (!strcmp(e->cmd, "p2click"))
+        {
+            int x = 0, y = 0, hold = 120; char b[8] = "l"; sscanf(e->a, "%d %d %7s %d", &x, &y, b, &hold);
+            rrq_input_p2_click(x, y, b[0] == 'r', t, hold);
+        }
+        else if (!strcmp(e->cmd, "p2move")) { int x = 0, y = 0; sscanf(e->a, "%d %d", &x, &y); rrq_input_p2_move(x, y); }
         else if (!strcmp(e->cmd, "p2view")) rrq_coop_request_p2view(e->a);
         else if (!strcmp(e->cmd, "drive")) rrq_coop_request_drive(atoi(e->a));
         else if (!strcmp(e->cmd, "player")) rrq_coop_request_player(atoi(e->a));
@@ -153,9 +167,9 @@ const u8 *rrq_get_keyboard_state(int *numkeys)
     int n = 0;
     const u8 *s = SDL_GetKeyboardState(&n);
     if (numkeys) *numkeys = n;
-    if (!active) return s;
+    if (!active) return rrq_input_keys(s);
     for (int k = 0; k < SDL_NUM_SCANCODES; k++) merged[k] = (k < n ? s[k] : 0) | keys[k];
-    return merged;
+    return rrq_input_keys(merged);
 }
 
 int rrq_harness_mouse(int *x, int *y, int *lb, int *rb, int *lbc, int *rbc)

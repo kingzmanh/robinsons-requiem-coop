@@ -8,6 +8,7 @@
 #include "alis.h"
 #include "mem.h"
 #include "script.h"
+#include "sys/rrq_input.h"
 #include <strings.h>
 #include <stdio.h>
 #include <string.h>
@@ -144,6 +145,7 @@ void rrq_coop_request_drive(int v) { drive_val = v; }
 void rrq_coop_before_draw(void)
 {
     if (nowned && active != 0) rrq_coop_switch_quiet(0);
+    rrq_input_select(0);
 }
 
 // Called by alis_loop before an entity slice runs (VM thread).
@@ -152,6 +154,7 @@ void rrq_coop_slice_begin(void)
     if (!nowned || !alis.script) return;
     int p = rrq_coop_owner(alis.script->vram_org);
     if (p != active) rrq_coop_switch_quiet(p);
+    rrq_input_select(p);
     if (p == 1 && drive_val >= 0)
         xwrite8(alis.basemain + 0x1a8f, (u8)drive_val);   // DRDEP: what P2's yoda would write
 }

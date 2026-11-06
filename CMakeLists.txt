@@ -76,6 +76,7 @@ list(APPEND alis_SOURCES
     ${CMAKE_CURRENT_LIST_DIR}/src/sys/sys.c
     ${CMAKE_CURRENT_LIST_DIR}/src/sys/sys_sdl2.c
     ${CMAKE_CURRENT_LIST_DIR}/src/sys/rrq_harness.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/sys/rrq_input.c
     ${CMAKE_CURRENT_LIST_DIR}/src/rrq_trace.c
     ${CMAKE_CURRENT_LIST_DIR}/src/rrq_coop.c
     ${CMAKE_CURRENT_LIST_DIR}/src/audio/audio.c
