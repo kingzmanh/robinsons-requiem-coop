@@ -8,3 +8,6 @@ void rrq_coop_service(void);                 // VM thread, scheduler safe point
 void rrq_coop_request_spawn(const char *name, int owner);
 void rrq_coop_request_drive(int v);
 void rrq_coop_slice_begin(void);
+void rrq_coop_request_p2view(const char *name);
+int  rrq_coop_owner(unsigned int vram);
+void rrq_coop_before_draw(void);

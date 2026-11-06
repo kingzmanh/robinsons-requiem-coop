@@ -140,6 +140,12 @@ int rrq_coop_owner(u32 vram)
 
 void rrq_coop_request_drive(int v) { drive_val = v; }
 
+// Called right before the frame is composed: the displayed view is the local player's.
+void rrq_coop_before_draw(void)
+{
+    if (nowned && active != 0) rrq_coop_switch_quiet(0);
+}
+
 // Called by alis_loop before an entity slice runs (VM thread).
 void rrq_coop_slice_begin(void)
 {
@@ -150,8 +156,59 @@ void rrq_coop_slice_begin(void)
         xwrite8(alis.basemain + 0x1a8f, (u8)drive_val);   // DRDEP: what P2's yoda would write
 }
 
+// ---- P2 view capture (proof of concept) ----
+// Save the full engine state, point the 3D screen's camera at P2's hero with P2's record active,
+// draw one frame, write it as a BMP, then restore the saved state.
+#include "image.h"
+#include <SDL2/SDL.h>
+void alis_save_state(void);
+void alis_load_state(void);
+static char req_view[64];
+static volatile int req_view_flag;
+void rrq_coop_request_p2view(const char *name) { snprintf(req_view, sizeof req_view, "%s", name); req_view_flag = 1; }
+
+static void save_pixelbuf(const char *path)
+{
+    pixelbuf_t *b = &host.pixelbuf;
+    u32 *argb = malloc((size_t)b->w * b->h * 4);
+    for (int i = 0; i < b->w * b->h; i++)
+        argb[i] = b->rgb ? b->rgb[i] : (b->palette[b->data[i]] | 0xff000000u);
+    SDL_Surface *s = SDL_CreateRGBSurfaceWithFormatFrom(argb, b->w, b->h, 32, b->w * 4, SDL_PIXELFORMAT_ARGB8888);
+    if (s) { SDL_SaveBMP(s, path); SDL_FreeSurface(s); }
+    free(argb);
+}
+
+static void p2view(const char *name)
+{
+    sAlisScriptLive *p2hero = NULL;
+    for (int i = 0; i < MAX_SCRIPTS; i++)
+    {
+        sAlisScriptLive *s = alis.live_scripts[i];
+        if (s && s->name && !strcasecmp(s->name, "heros.IO") && rrq_coop_owner(s->vram_org) == 1) { p2hero = s; break; }
+    }
+    if (!p2hero) { printf("[coop] p2view: no P2 hero\n"); return; }
+    int was = active;
+    char path[700];
+    const char *dir = getenv("RRQ_SHOTDIR");
+    alis_save_state();
+    rrq_coop_switch_quiet(1);
+    u32 scr = alis.basemain + 0x0152;                        // RRQ 3D view screen (MAIN cdefsc 0x0152)
+    u16 old = xread16(scr + 0x60);
+    u16 p2id = xread16(p2hero->vram_org - 0x0e);             // the id heros passes to cscfollow (olocw -0x0e)
+    xwrite16(scr + 0x60, p2id);
+    printf("[coop] p2view: camera follow %04x -> %04x\n", old, p2id);
+    draw();
+    snprintf(path, sizeof path, "%s/%s.bmp", dir ? dir : ".", name);
+    save_pixelbuf(path);
+    printf("[coop] p2view saved %s\n", path);
+    alis_load_state();
+    active = was;
+    fflush(stdout);
+}
+
 void rrq_coop_service(void)
 {
+    if (req_view_flag) { req_view_flag = 0; p2view(req_view); }
     if (req_spawn_flag)
     {
         req_spawn_flag = 0;

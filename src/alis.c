@@ -1613,6 +1613,7 @@ void alis_main_V2(void)
         if (alis.varD5 == 0)
         {
             ALIS_SET_SCRIPT(ENTSCR(alis.varD5));
+            rrq_coop_before_draw();
             draw();
 #ifdef ALIS_DSP_MIXER
             dsp_mixer_poll();
@@ -1718,6 +1719,7 @@ void alis_main_V3(void)
         if (alis.varD5 == 0)
         {
             ALIS_SET_SCRIPT(ENTSCR(alis.varD5));
+            rrq_coop_before_draw();
             draw();
 #ifdef ALIS_DSP_MIXER
             dsp_mixer_poll();
