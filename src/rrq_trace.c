@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 
 static FILE *tf;
 static u8 *snap;
@@ -67,6 +68,21 @@ void rrq_trace_slice_end(void)
 }
 
 // List every live entity (slot, script, vram) to stdout and the trace.
+void rrq_trace_dump_context(const char *name)
+{
+    for (int i = 0; i < MAX_SCRIPTS; i++)
+    {
+        sAlisScriptLive *s = alis.live_scripts[i];
+        if (!s || !s->name || strcasecmp(s->name, name)) continue;
+        printf("[rrq] ctx %s vram=%06x  -0x34..-1:", s->name, s->vram_org);
+        for (int k = -0x34; k < 0; k++) printf(" %02x", xread8(s->vram_org + k));
+        printf("\n[rrq] ctx %s vram=%06x  +0..+0x4f:", s->name, s->vram_org);
+        for (int k = 0; k < 0x50; k++) printf(" %02x", xread8(s->vram_org + k));
+        printf("\n");
+    }
+    fflush(stdout);
+}
+
 void rrq_trace_dump_entities(const char *tag)
 {
     if (!inited) init();

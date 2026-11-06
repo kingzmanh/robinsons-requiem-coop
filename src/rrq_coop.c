@@ -9,6 +9,7 @@
 #include "alis.h"
 #include "mem.h"
 #include "script.h"
+#include "image.h"
 #include "sys/rrq_input.h"
 #include <strings.h>
 #include <stdio.h>
@@ -92,6 +93,133 @@ static sAlisScriptLive *find_live(const char *name)
     return NULL;
 }
 
+// ---- P2 avatar: a puppet entity (never runs its own code) that shows a figure from its script's
+// graphics at P2's hero position; drawn in P1's view so P1 can see P2.
+void put(u16 idx);
+void savecoord(u32 addr);
+void updtcoord(u32 addr);
+static sAlisScriptLive *avatar;
+static u16 avatar_res;
+static s16 avatar_dx, avatar_dy;   // test offset: with no P2 hero, place it relative to P1's hero
+static char req_avatar[32]; static int req_avatar_res = -1; static volatile int req_avatar_flag;
+static char req_npcav[32]; static volatile int req_npcav_flag;
+void rrq_coop_request_npcavatar(const char *s) { snprintf(req_npcav, sizeof req_npcav, "%s", s); req_npcav_flag = 1; }
+void rrq_coop_request_avatar(const char *script, int res, int dx, int dy)
+{ snprintf(req_avatar, sizeof req_avatar, "%s", script); req_avatar_res = res; avatar_dx = dx; avatar_dy = dy; req_avatar_flag = 1; }
+
+static sAlisScriptLive *hero_of(int player)
+{
+    for (int i = 0; i < MAX_SCRIPTS; i++)
+    {
+        sAlisScriptLive *s = alis.live_scripts[i];
+        if (s && s->name && !strcasecmp(s->name, "heros.IO") && rrq_coop_owner(s->vram_org) == player) return s;
+    }
+    return NULL;
+}
+
+static void avatar_create(const char *script, int res)
+{
+    if (avatar) { avatar_res = (u16)res; printf("[coop] avatar resource %d\n", res); fflush(stdout); return; }
+    sAlisScriptData *prog = NULL;
+    for (int i = 0; i < alis.nbprog; i++)
+        if (alis.loaded_scripts[i] && !strcasecmp(alis.loaded_scripts[i]->name, script)) { prog = alis.loaded_scripts[i]; break; }
+    sAlisScriptLive *h = hero_of(0);
+    if (!prog || !h) { printf("[coop] avatar: %s not loaded or no hero\n", script); return; }
+    sAlisScriptLive *saved = alis.script;
+    ALIS_SET_SCRIPT(h);
+    avatar = script_live(prog);
+    ALIS_SET_SCRIPT(saved);
+    if (!avatar) return;
+    u8 *prev = alis.mem + h->vram_org, *next = alis.mem + avatar->vram_org;
+    memcpy(next, prev, 0x34);
+    // same setup as the game's 3D creatures: cscreen 0x0152, clinking 0, creducing 0x1f 0x08
+    set_0x16_screen_id(avatar->vram_org, 0x0152);
+    set_0x2a_clinking(avatar->vram_org, 0);
+    set_0x26_creducing(avatar->vram_org, 0x1f);
+    set_0x27_creducing(avatar->vram_org, 0x08);
+    xwrite8(avatar->vram_org - 4, 0);          // asleep: the scheduler never runs its code
+    avatar_res = (u16)res;
+    printf("[coop] avatar %s res %d vram=%06x\n", script, res, avatar->vram_org);
+    fflush(stdout);
+}
+
+// NPC avatar: a clone of a live NPC (its own code animates and draws it); we pin its position.
+static sAlisScriptLive *npcav;
+static void npcav_create(const char *script)
+{
+    sAlisScriptLive *src = find_live(script);
+    if (!src) { printf("[coop] npcavatar: no live %s\n", script); return; }
+    sAlisScriptData *prog = src->data;
+    sAlisScriptLive *saved = alis.script;
+    ALIS_SET_SCRIPT(src);
+    npcav = script_live(prog);
+    ALIS_SET_SCRIPT(saved);
+    if (!npcav) return;
+    u32 sz = prog->header.vram_alloc_sz;
+    memcpy(alis.mem + npcav->vram_org, alis.mem + src->vram_org, sz);   // same character type/state vars
+    printf("[coop] npcavatar %s vram=%06x (clone of %06x, %u bytes of vars)\n", script, npcav->vram_org, src->vram_org, sz);
+    fflush(stdout);
+}
+
+static void npcav_pin(void)
+{
+    if (!npcav) return;
+    sAlisScriptLive *t = hero_of(1);
+    if (!t) t = hero_of(0);
+    if (!t) return;
+    u32 av = npcav->vram_org, h = t->vram_org;
+    memcpy(alis.mem + av, alis.mem + h, 0x18);
+    if (!hero_of(1)) { xwrite16(av, (s16)xread16(av) + avatar_dx); xwrite16(av + 8, (s16)xread16(av + 8) + avatar_dy); }
+    xwrite16(av + 0x10, (s16)xread16(h + 0x10) + 6);    // NPC humans stand ~6 units above the hero's z
+    memcpy(alis.mem + av + 0x18, alis.mem + h + 0x18, 0x18);
+}
+
+static int avatar_target = 1;     // which player's hero the avatar stands in for (the other player)
+static void avatar_update(void)
+{
+    npcav_pin();
+    if (!avatar) return;
+    sAlisScriptLive *t = hero_of(avatar_target);
+    u32 av = avatar->vram_org;
+    if (t)
+    {
+        memcpy(alis.mem + av, alis.mem + t->vram_org, 0x18);   // x, y, z (+fractions)
+        memcpy(alis.mem + av + 0x18, alis.mem + t->vram_org + 0x18, 0x18);   // angles
+        xwrite16(av + 0x10, (s16)xread16(av + 0x10) + 6);                      // stand on the ground
+    }
+    else if ((t = hero_of(0)))
+    {
+        memcpy(alis.mem + av, alis.mem + t->vram_org, 0x30);
+        xwrite16(av, (s16)xread16(av) + avatar_dx);
+        xwrite16(av + 8, (s16)xread16(av + 8) + avatar_dy);
+    }
+    { const char *dz = getenv("RRQ_AVATAR_DZ"); if (dz) xwrite16(av + 0x10, (s16)xread16(av + 0x10) + atoi(dz)); }
+    xwrite8(av - 4, 0);
+    sAlisScriptLive *saved = alis.script;
+    ALIS_SET_SCRIPT(avatar);
+    savecoord(av);                 // sprite world position comes from image.oldc* (set per entity)
+    alis.flagmain = 0;
+    image.invert_x = 0;
+    image.depx = image.depy = image.depz = 0;
+    image.numelem = 0;
+    // body: walking frames 20/28/36/44 (as human.IO), upper part attached as element -2
+    static u32 lastpos; static int frame, tick;
+    u32 posnow = (u32)xread16(av) ^ ((u32)xread16(av + 8) << 16);
+    if (posnow != lastpos && (++tick & 3) == 0) frame = (frame + 1) & 3;
+    lastpos = posnow;
+    if (avatar_res >= 1000)
+    {
+        put((u16)(20 + 8 * frame));
+        image.depx = image.depy = image.depz = 0;
+        image.numelem = (s8)0xfe;
+        put((u16)(avatar_res - 1000));
+    }
+    else
+        put(avatar_res);
+    updtcoord(av);
+    ALIS_SET_SCRIPT(saved);
+}
+
 // Create a second instance of a loaded script as a new entity, inheriting position etc. from the
 // first live instance of the same script (what clivin does when a script spawns a child).
 sAlisScriptLive *rrq_coop_spawn(const char *name)
@@ -171,8 +299,10 @@ static void rb_begin(void)
     rb_armed = 1;
 }
 
+static void npcav_pin(void);
 void rrq_coop_slice_end(void)
 {
+    if (npcav && alis.script == npcav) npcav_pin();
     if (!rb_armed) return;
     rb_armed = 0;
     u8 *m = alis.mem + alis.basemain;
@@ -221,6 +351,7 @@ void rrq_coop_before_draw(void)
 {
     if (nowned && active != 0) rrq_coop_switch_quiet(0);
     rrq_input_select(0);
+    avatar_update();
 }
 
 // Called by alis_loop before an entity slice runs (VM thread).
@@ -344,6 +475,9 @@ void rrq_coop_after_draw(void)
     int was = active;
 
     rrq_coop_switch_quiet(1);
+    avatar_target = 0;            // in P2's view the avatar is P1
+    avatar_update();
+    avatar_target = 1;
     rrq_in_p2_draw = 1;
     draw();
     rrq_in_p2_draw = 0;
@@ -358,7 +492,9 @@ void rrq_coop_after_draw(void)
     // restore (the main script's memory comes back with P1's record in it)
     u8 *mem = alis.mem;
     memcpy(mem, snap_mem, ram);
+    int live_state = alis.state;          // may have been changed by another thread (quit/save)
     alis = snap_alis; image = snap_image; screen = snap_screen;
+    alis.state = live_state;
     memcpy(image.spritemem, snap_sprite, kSpriteMemSize);
     memcpy(image.physic, snap_phys, fb);
     if (image.logic != image.physic) memcpy(image.logic, snap_log, fb);
@@ -372,6 +508,8 @@ void rrq_coop_request_dump(const char *t) { snprintf(req_dump, sizeof req_dump, 
 void rrq_coop_service(void)
 {
     if (req_dump_flag) { req_dump_flag = 0; rrq_coop_dump(req_dump); }
+    if (req_avatar_flag) { req_avatar_flag = 0; avatar_create(req_avatar, req_avatar_res); }
+    if (req_npcav_flag) { req_npcav_flag = 0; npcav_create(req_npcav); }
     if (req_view_flag) { req_view_flag = 0; p2view(req_view); }
     if (req_spawn_flag)
     {
