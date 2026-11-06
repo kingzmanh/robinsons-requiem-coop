@@ -9,6 +9,7 @@
 // Times are ms since the harness started; "+<ms>" means relative to the previous line.
 #include "rrq_harness.h"
 #include "alis.h"
+#include "rrq_trace.h"
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -128,7 +129,8 @@ void rrq_harness_tick(void)
         else if (!strcmp(e->cmd, "shot")) snprintf(pending_shot, sizeof pending_shot, "%s", e->a);
         else if (!strcmp(e->cmd, "savestate")) alis.state = eAlisStateSave;
         else if (!strcmp(e->cmd, "loadstate")) alis.state = eAlisStateLoad;
-        else if (!strcmp(e->cmd, "mark")) { printf("[rrq] mark t=%u %s\n", t, e->a); fflush(stdout); }
+        else if (!strcmp(e->cmd, "mark")) { printf("[rrq] mark t=%u %s\n", t, e->a); fflush(stdout); rrq_trace_mark(e->a); }
+        else if (!strcmp(e->cmd, "dument")) rrq_trace_dump_entities(e->a[0] ? e->a : "-");
         else if (!strcmp(e->cmd, "quit")) { printf("[rrq] quit t=%u\n", t); alis.state = eAlisStateStopped; }
     }
     if (quit_ms && t >= quit_ms && alis.state) { printf("[rrq] RRQ_QUIT_MS reached\n"); alis.state = eAlisStateStopped; }

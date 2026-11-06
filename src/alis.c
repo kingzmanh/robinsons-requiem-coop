@@ -22,6 +22,7 @@
 // This is a VM-core translation unit: opt into hot-state register pinning
 // (see ALIS_VM_REGVARS in alis.h). Must precede any include.
 #define ALIS_VM_CORE
+#include "rrq_trace.h"
 #include "alis.h"
 #include "alis_private.h"
 #include "audio.h"
@@ -99,11 +100,9 @@ void readexec(const sAlisOpcode * table, char * name, u8 identation)
         else
         {
             u32 prg_offset = alis.script->pc;
-            u32 file_offset = prg_offset + alis.script->data->header.code_loc_offset + 2 + 6; //  2 -> size of code_loc_offset, 6 -> kPackedHeaderSize = 6
-            if (alis.script->name == alis.main->name)
-            {
-                file_offset += 16; // 16 -> kVMSpecsSize = 16
-            }
+            // rrq-coop: print the offset inside the loaded script data (data_org-relative) so
+            // listings line up with the unpacked .bin files.
+            u32 file_offset = prg_offset - 1 - alis.script->data->data_org;
 
             if (!strcmp(name, "opcode"))
             {
@@ -1373,6 +1372,7 @@ void alis_load_state(void)
 
 void alis_loop(void)
 {
+    rrq_trace_slice_begin();
     alis.script->running = 1;
     while (alis.state && alis.script->running)
     {
@@ -1398,6 +1398,7 @@ void alis_loop(void)
     }
 
     // alis loop was stopped by 'cexit', 'cstop', or user event
+    rrq_trace_slice_end();
 }
 
 void savecoord(u32 addr)
