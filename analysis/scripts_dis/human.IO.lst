@@ -1,0 +1,345 @@
+; human.IO: 101 distinct executed instructions (runtime coverage only)
+0fb7ae 07 cjsr24  0x00c6 0x00 [call dn +0x0000c6]
+0fb7b2 fb caim
+    0fb7b3 38 oeval
+    0fb7b4 12 odirb  0x81
+    0fb7b6 28 omainti  0x2d76
+    0fb7b9 5e omul
+    0fb7ba 00 oimmb  0x10
+    0fb7bc 3a ofin  [ = 6944]
+    0fb7bd 38 oeval
+    0fb7be 12 odirb  0x81
+    0fb7c0 28 omainti  0x2d88
+    0fb7c3 5e omul
+    0fb7c4 00 oimmb  0x10
+    0fb7c6 3a ofin  [ = 1344]
+    0fb7c7 14 odirw  0x10
+    0fb7c9 02 oimmw  0x0168
+    0fb7cc 14 sdirw  0x18
+    0fb7ce 14 sdirw  0x28
+    0fb7d0 14 sdirw  0x6e
+    0fb7bc 3a ofin  [ = 6624]
+    0fb7c6 3a ofin  [ = 1376]
+    0fb7bc 3a ofin  [ = 6720]
+    0fb7c6 3a ofin  [ = 1728]
+    0fb7bc 3a ofin  [ = 6432]
+    0fb7c6 3a ofin  [ = 2112]
+0fb7d2 07 cjsr24  0x010c 0x00 [call dn +0x00010c]
+0fb7d6 1f ceval
+    0fb7d7 38 oeval
+    0fb7d8 14 odirw  0x6e
+    0fb7da 4e oinfeg
+    0fb7db 00 oimmb  0x10
+    0fb7dd 3a ofin  [ = 0]
+    0fb7dd 3a ofin  [ = -1]
+0fb7de 12 cbz8  0xce [d7==0 => jmp up -0x32]
+0fb7e0 1e cstore
+    0fb7e1 12 odirb  0x81
+    0fb7e3 12 sdirb  0x80
+0fb7e5 1f ceval
+    0fb7e6 38 oeval
+    0fb7e7 12 odirb  0x81
+    0fb7e9 54 osup
+    0fb7ea 00 oimmb  0x00
+    0fb7ec 40 opushacc
+    0fb7ed 12 odirb  0x81
+    0fb7ef 52 oinf
+    0fb7f0 00 oimmb  0x04
+    0fb7f2 42 oand
+    0fb7f3 36 opile
+    0fb7f4 3a ofin  [ = -1]
+    0fb7f4 3a ofin  [ = 0]
+0fb7f5 14 cbz24  [d7<>0 => no jmp +3]
+0fb7f9 1e cstore
+    0fb7fa 38 oeval
+    0fb7fb 00 oimmb  0x06
+    0fb7fd 64 ornd
+    0fb7fe 3a ofin  [ = 3]
+    0fb7ff 14 sdirw  0x5e
+    0fb7fe 3a ofin  [ = 4]
+    0fb7fe 3a ofin  [ = 1]
+0fb801 1f ceval
+    0fb802 38 oeval
+    0fb803 14 odirw  0x5e
+    0fb805 4a oegal
+    0fb806 00 oimmb  0x03
+    0fb808 3a ofin  [ = -1]
+    0fb808 3a ofin  [ = 0]
+0fb809 14 cbz24  [d7<>0 => no jmp +3]
+0fb80d 21 csub
+    0fb80e 00 oimmb  0x01
+    0fb810 12 adirb  0x81
+0fb812 0a cjmp24  0x0005 0x00 [jmp dn +0x000005]
+0fb816 20 cadd
+    0fb817 00 oimmb  0x01
+    0fb819 12 adirb  0x81
+0fb81b 0a cjmp24  0x0026 0x00 [jmp dn +0x000026]
+0fb81f 1f ceval
+    0fb820 38 oeval
+    0fb821 12 odirb  0x81
+    0fb823 4a oegal
+    0fb824 00 oimmb  0x00
+    0fb826 3a ofin  [ = -1]
+0fb827 14 cbz24  [d7<>0 => no jmp +3]
+0fb82b 20 cadd
+    0fb82c 00 oimmb  0x01
+    0fb82e 12 adirb  0x81
+0fb830 0a cjmp24  0x0011 0x00 [jmp dn +0x000011]
+0fb845 1f ceval
+    0fb846 38 oeval
+    0fb847 14 odirw  0x7a
+    0fb849 40 opushacc
+    0fb84a 00 oimmb  0x04
+    0fb84c 28 omainti  0x1a9e
+    0fb84f 54 osup
+    0fb850 00 oimmb  0x00
+    0fb852 40 opushacc
+    0fb853 14 odirw  0x7a
+    0fb855 40 opushacc
+    0fb856 00 oimmb  0x04
+    0fb858 28 omainti  0x1a9e
+    0fb85b 52 oinf
+    0fb85c 00 oimmb  0x03
+    0fb85e 42 oand
+    0fb85f 36 opile
+    0fb860 3a ofin  [ = 0]
+0fb861 14 cbz24  0x000d 0x00 [d7==0 => jmp dn +0x00000d]
+0fb872 1f ceval
+    0fb873 00 oimmb  0x00
+0fb875 13 cbz16  0xff36 [d7==0 => jmp up -0x00ca]
+0fb878 1f ceval
+    0fb879 38 oeval
+    0fb87a 14 odirw  0x7a
+    0fb87c 40 opushacc
+    0fb87d 00 oimmb  0x04
+    0fb87f 28 omainti  0x1a9e
+    0fb882 52 oinf
+    0fb883 00 oimmb  0x01
+    0fb885 40 opushacc
+    0fb886 14 odirw  0x7a
+    0fb888 40 opushacc
+    0fb889 00 oimmb  0x04
+    0fb88b 28 omainti  0x1a9e
+    0fb88e 54 osup
+    0fb88f 00 oimmb  0x02
+    0fb891 44 oor
+    0fb892 36 opile
+    0fb893 3a ofin  [ = -1]
+0fb894 14 cbz24  [d7<>0 => no jmp +3]
+0fb898 1f ceval
+    0fb899 38 oeval
+    0fb89a 1e omainb  0x184c
+    0fb89d 4a oegal
+    0fb89e 00 oimmb  0x03
+    0fb8a0 3a ofin  [ = 0]
+0fb8a1 14 cbz24  0x000c 0x00 [d7==0 => jmp dn +0x00000c]
+0fb8b1 5a cneartyp
+    0fb8b2 02 oimmw  0x0140 0x000f
+    0fb8b7 14 sdirw  0x58
+0fb8b9 1f ceval
+    0fb8ba 38 oeval
+    0fb8bb 14 odirw  0x58
+    0fb8bd 4c odiff
+    0fb8be 00 oimmb  0xff
+    0fb8c0 3a ofin  [ = 0]
+0fb8c1 14 cbz24  0x001c 0x00 [d7==0 => jmp dn +0x00001c]
+0fb8e1 11 cret
+0fb8e2 f9 cavtstmov
+    0fb8e3 00 oimmb  0x01
+    0fb8e5 14 sdirw  0x52
+0fb8e7 1f ceval
+    0fb8e8 38 oeval
+    0fb8e9 14 odirw  0x52
+    0fb8eb 4a oegal
+    0fb8ec 00 oimmb  0xff
+    0fb8ee 3a ofin  [ = -1]
+0fb8ef 14 cbz24  [d7<>0 => no jmp +3]
+0fb8f3 f8 catstmap  0x0000 0x0e5e
+    0fb8f8 12 odirb  0x34
+    0fb8fa 12 odirb  0x38
+    0fb8fc 12 odirb  0x3c
+    0fb8fe 14 sdirw  0x6a
+0fb900 1e cstore
+    0fb901 38 oeval
+    0fb902 14 odirw  0x6a
+    0fb904 42 oand
+    0fb905 02 oimmw  0x3f00
+    0fb908 5c odiv
+    0fb909 02 oimmw  0x0100
+    0fb90c 3a ofin  [ = 8]
+    0fb90d 14 sdirw  0x6c
+    0fb90c 3a ofin  [ = 16]
+    0fb90c 3a ofin  [ = 24]
+    0fb90c 3a ofin  [ = 12]
+0fb90f 1f ceval
+    0fb910 38 oeval
+    0fb911 14 odirw  0x6c
+    0fb913 4c odiff
+    0fb914 00 oimmb  0x14
+    0fb916 40 opushacc
+    0fb917 14 odirw  0x6c
+    0fb919 4c odiff
+    0fb91a 00 oimmb  0x1c
+    0fb91c 42 oand
+    0fb91d 36 opile
+    0fb91e 3a ofin  [ = -1]
+0fb91f 14 cbz24  [d7<>0 => no jmp +3]
+0fb923 f7 cwalkmap  0x0000 0x0e5e
+    0fb928 00 oimmb  0x04
+    0fb92a 00 oimmb  0x00
+    0fb92c 00 oimmb  0x00
+    0fb92e 14 sdirw  0x78
+0fb930 07 cjsr24  0x0da3 0x00 [call dn +0x000da3]
+0fb934 0a cjmp24  0x0001 0x00 [jmp dn +0x000001]
+0fb939 0a cjmp24  0x0101 0x00 [jmp dn +0x000101]
+0fba3e 11 cret
+0fc6d7 c7 creducing
+    0fc6d8 00 oimmb  0x1f
+    0fc6da 00 oimmb  0x01
+0fc6dc 1f ceval
+    0fc6dd 12 odirb  0x82
+0fc6df 14 cbz24  0x00da 0x00 [d7==0 => jmp dn +0x0000da]
+0fc7bd c7 creducing
+    0fc7be 00 oimmb  0x1f
+    0fc7c0 00 oimmb  0x08
+0fc7c2 2f cswitch2
+    0fc7c3 14 odirw  0x62 0x03 0x0000 0x000a
+    0fc7c3 14 odirw  0x62 0x03 0x0000 0x0025
+    0fc7c3 14 odirw  0x62 0x03 0x0000 0x0040
+    0fc7c3 14 odirw  0x62 0x03 0x0000 0x005b
+0fc7d5 48 cput
+    0fc7d6 00 oimmb  0x14
+0fc7d8 20 cadd
+    0fc7d9 00 oimmb  0x01
+    0fc7db 14 adirw  0x62
+0fc7dd 1f ceval
+    0fc7de 38 oeval
+    0fc7df 1e omainb  0x3cc2
+    0fc7e2 4a oegal
+    0fc7e3 00 oimmb  0x00
+    0fc7e5 3a ofin  [ = -1]
+0fc7e6 14 cbz24  [d7<>0 => no jmp +3]
+0fc7ea 07 cjsr24  0x005d 0x00 [call dn +0x00005d]
+0fc7ee 0a cjmp24  0x0053 0x00 [jmp dn +0x000053]
+0fc7f2 48 cput
+    0fc7f3 00 oimmb  0x1c
+0fc7f5 20 cadd
+    0fc7f6 00 oimmb  0x01
+    0fc7f8 14 adirw  0x62
+0fc7fa 1f ceval
+    0fc7fb 38 oeval
+    0fc7fc 1e omainb  0x3cc2
+    0fc7ff 4a oegal
+    0fc800 00 oimmb  0x00
+    0fc802 3a ofin  [ = -1]
+0fc803 14 cbz24  [d7<>0 => no jmp +3]
+0fc807 07 cjsr24  0x00f1 0x00 [call dn +0x0000f1]
+0fc80b 0a cjmp24  0x0036 0x00 [jmp dn +0x000036]
+0fc80f 48 cput
+    0fc810 00 oimmb  0x24
+0fc812 20 cadd
+    0fc813 00 oimmb  0x01
+    0fc815 14 adirw  0x62
+0fc817 1f ceval
+    0fc818 38 oeval
+    0fc819 1e omainb  0x3cc2
+    0fc81c 4a oegal
+    0fc81d 00 oimmb  0x00
+    0fc81f 3a ofin  [ = -1]
+0fc820 14 cbz24  [d7<>0 => no jmp +3]
+0fc824 07 cjsr24  0x0184 0x00 [call dn +0x000184]
+0fc828 0a cjmp24  0x0019 0x00 [jmp dn +0x000019]
+0fc82c 48 cput
+    0fc82d 00 oimmb  0x2c
+0fc82f 1e cstore
+    0fc830 00 oimmb  0x00
+    0fc832 14 sdirw  0x62
+0fc834 1f ceval
+    0fc835 38 oeval
+    0fc836 1e omainb  0x3cc2
+    0fc839 4a oegal
+    0fc83a 00 oimmb  0x00
+    0fc83c 3a ofin  [ = -1]
+0fc83d 14 cbz24  [d7<>0 => no jmp +3]
+0fc841 07 cjsr24  0x0218 0x00 [call dn +0x000218]
+0fc845 c7 creducing
+    0fc846 00 oimmb  0x1f
+    0fc848 00 oimmb  0x08
+0fc84a 43 cstopret
+0fc84b 1f ceval
+    0fc84c 1e omainb  0x3cc2
+0fc84f 14 cbz24  0x0001 0x00 [d7==0 => jmp dn +0x000001]
+0fc854 2e cswitch1
+    0fc855 14 odirw  0x7a 0x14 0x0001 0x0054
+0fc8b1 49 cputnat
+    0fc8b2 00 oimmb  0x00
+    0fc8b4 00 oimmb  0x00
+    0fc8b6 00 oimmb  0x00
+    0fc8b8 00 oimmb  0x40
+    0fc8ba 00 oimmb  0xfe
+0fc8bc 0a cjmp24  0x003b 0x00 [jmp dn +0x00003b]
+0fc8fb 11 cret
+0fc8fc 1f ceval
+    0fc8fd 1e omainb  0x3cc2
+0fc900 14 cbz24  0x0001 0x00 [d7==0 => jmp dn +0x000001]
+0fc905 2e cswitch1
+    0fc906 14 odirw  0x7a 0x14 0x0001 0x0054
+0fc961 49 cputnat
+    0fc962 00 oimmb  0x00
+    0fc964 00 oimmb  0x00
+    0fc966 00 oimmb  0x00
+    0fc968 00 oimmb  0x48
+    0fc96a 00 oimmb  0xfe
+0fc96c 0a cjmp24  0x003b 0x00 [jmp dn +0x00003b]
+0fc9ab 11 cret
+0fc9ac 1f ceval
+    0fc9ad 1e omainb  0x3cc2
+0fc9b0 14 cbz24  0x0001 0x00 [d7==0 => jmp dn +0x000001]
+0fc9b5 2e cswitch1
+    0fc9b6 14 odirw  0x7a 0x14 0x0001 0x0054
+0fca11 49 cputnat
+    0fca12 00 oimmb  0x00
+    0fca14 00 oimmb  0x00
+    0fca16 00 oimmb  0x00
+    0fca18 00 oimmb  0x50
+    0fca1a 00 oimmb  0xfe
+0fca1c 0a cjmp24  0x003c 0x00 [jmp dn +0x00003c]
+0fca5c 11 cret
+0fca5d 1f ceval
+    0fca5e 1e omainb  0x3cc2
+0fca61 14 cbz24  0x0001 0x00 [d7==0 => jmp dn +0x000001]
+0fca66 2e cswitch1
+    0fca67 14 odirw  0x7a 0x14 0x0001 0x0054
+0fcac3 49 cputnat
+    0fcac4 00 oimmb  0x00
+    0fcac6 00 oimmb  0x00
+    0fcac8 00 oimmb  0x00
+    0fcaca 00 oimmb  0x58
+    0fcacc 00 oimmb  0xfe
+0fcace 0a cjmp24  0x003c 0x00 [jmp dn +0x00003c]
+0fcb0e 11 cret
+0fd6b3 1e cstore
+    0fd6b4 14 odirw  0x00
+    0fd6b6 38 seval
+    0fd6b7 14 odirw  0x7a
+    0fd6b9 40 opushacc
+    0fd6ba 00 oimmb  0x06
+    0fd6bc 3a ofin  [ = 6]
+    0fd6bd 28 smainti  0x1a9e
+0fd6c0 1e cstore
+    0fd6c1 14 odirw  0x08
+    0fd6c3 38 seval
+    0fd6c4 14 odirw  0x7a
+    0fd6c6 40 opushacc
+    0fd6c7 00 oimmb  0x07
+    0fd6c9 3a ofin  [ = 7]
+    0fd6ca 28 smainti  0x1a9e
+0fd6cd 1e cstore
+    0fd6ce 14 odirw  0x10
+    0fd6d0 38 seval
+    0fd6d1 14 odirw  0x7a
+    0fd6d3 40 opushacc
+    0fd6d4 00 oimmb  0x08
+    0fd6d6 3a ofin  [ = 8]
+    0fd6d7 28 smainti  0x1a9e
+0fd6da 42 cstop

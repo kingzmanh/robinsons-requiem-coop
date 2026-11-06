@@ -1,0 +1,6 @@
+; BIGPAGE.IO: 5 instructions, 13/33208 bytes, entries ['0x18']
+  000018: cscreen 0x0052
+  00001b: cstore oimmb[0x01] sdirw[0x4e]
+  000020: cput oimmb[0x01]
+  000023: csleep 
+  000024: cexit 

@@ -1,0 +1,122 @@
+kind	offset	size	class	confidence	labels	note	writers
+single	0e89	1	UI	med		mouse x/y, panel mode, current action icon (souris/yoda)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	0f2e	1	PLAYER	med		body bytes; 0f35 = inventory panel scroll	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	0f2f	1	PLAYER	med		body bytes; 0f35 = inventory panel scroll	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	0f30	1	PLAYER	med		body bytes; 0f35 = inventory panel scroll	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	0f31	1	PLAYER	med		body bytes; 0f35 = inventory panel scroll	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	0f32	1	PLAYER	med		body bytes; 0f35 = inventory panel scroll	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	0f33	1	PLAYER	med		body bytes; 0f35 = inventory panel scroll	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	0f34	1	PLAYER	med		body bytes; 0f35 = inventory panel scroll	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	1848	2	PLAYER	med		selection / posture (POST 184c), 184d zone or mode id read by NPCs	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	184c	1	PLAYER	med	POST	selection / posture (POST 184c), 184d zone or mode id read by NPCs	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO PARAM.IO TIME.IO YODA.IO
+single	184d	1	PLAYER	med		selection / posture (POST 184c), 184d zone or mode id read by NPCs	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO PARAM.IO
+single	1922	1	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	1923	1	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	1924	2	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	1926	2	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	1928	2	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	192a	2	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	192c	2	PLAYER	high	FIEVRE	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	192e	2	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	1930	2	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO
+single	1932	2	PLAYER	high	SANG	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	1934	2	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	1936	2	PLAYER	high	EAU	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	1938	2	PLAYER	high	SAC	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	193a	2	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	193c	2	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO PARAM.IO TIME.IO YODA.IO
+single	193e	2	PLAYER	high	FAT	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	1940	2	PLAYER	high	VFAT	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	1942	2	PLAYER	high	ENER	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	1944	2	PLAYER	high	PSY	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO PARAM.IO TIME.IO YODA.IO
+single	1946	2	PLAYER	high	TEMPEX	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	1948	2	PLAYER	high	PLUIE	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	194a	2	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	194c	2	PLAYER	high	VET	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	194e	2	PLAYER	high	VVFAT	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO YODA.IO
+single	1950	2	PLAYER	high	CHAL	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	1952	2	PLAYER	high	PALU	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	1954	1	PLAYER	high	CHUTENS	body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO YODA.IO
+single	19da	2	PLAYER	high		sleep, drunk	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	19dc	2	PLAYER	high	SOMMEIL	sleep, drunk	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	1955	1	PLAYER	high		body stats: fever, blood, water, bag load, fatigue, energy, PSY, temp, rain, clothes, malaria ...	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	19e0	2	PLAYER	high	IVRE	sleep, drunk	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	1a04	1	PLAYER	low		body timers (1a08 fast counter reset on save), mouse 1a06/1a12	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	1a08	2	PLAYER	low		body timers (1a08 fast counter reset on save), mouse 1a06/1a12	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	1a05	1	PLAYER	low		body timers (1a08 fast counter reset on save), mouse 1a06/1a12	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	1a0a	1	PLAYER	low		body timers (1a08 fast counter reset on save), mouse 1a06/1a12	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO ORDI.IO
+single	1a0b	1	PLAYER	low		body timers (1a08 fast counter reset on save), mouse 1a06/1a12	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO ORDI.IO
+single	1a0c	2	PLAYER	low		body timers (1a08 fast counter reset on save), mouse 1a06/1a12	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	1a14	1	PLAYER	low		body timers (1a08 fast counter reset on save), mouse 1a06/1a12	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO YODA.IO
+single	3ca0	1	PLAYER	low		yoda byte	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO YODA.IO
+single	1a46	1	PLAYER	med	DRFUSEE	DRFUSEE (flare), heros 1a48/1a4a	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	1a48	2	PLAYER	med		DRFUSEE (flare), heros 1a48/1a4a	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO PARAM.IO
+single	1a4a	2	PLAYER	med		DRFUSEE (flare), heros 1a48/1a4a	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO PARAM.IO
+single	1a8e	1	PLAYER	high		movement flag DRDEP, SPEED, ALTI, head angle HTETE	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	1a90	1	PLAYER	high	SPEED	movement flag DRDEP, SPEED, ALTI, head angle HTETE	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO PARAM.IO YODA.IO
+single	1a94	2	PLAYER	high	HTETE	movement flag DRDEP, SPEED, ALTI, head angle HTETE	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO COMBAT.IO HEROS.IO PARAM.IO YODA.IO
+single	2d66	1	WORLD	med		NPC interaction byte written by NPC scripts	AMAZONES.IO BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO CENTAURE.IO GEANT.IO GORILLE.IO HUMAN.IO PARAM.IO PROJECT.IO YODA.IO
+single	2d6d	1	PLAYER	med		heros/yoda bytes (DRCOU, MINERVE), 2d9a table	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO
+single	2d6f	1	PLAYER	med	DRCOU	heros/yoda bytes (DRCOU, MINERVE), 2d9a table	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO YODA.IO
+single	2d9e	1	PLAYER	med	MINERVE	heros/yoda bytes (DRCOU, MINERVE), 2d9a table	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO CAPORAL.IO HEROS.IO
+single	2d9f	1	PLAYER	med		heros/yoda bytes (DRCOU, MINERVE), 2d9a table	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO YODA.IO
+single	39b4	1	PLAYER	high	LUX	light: LUX, DRLUX, DRALLUME (torch/lamp lit)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	39b5	1	PLAYER	high	DRLUX	light: LUX, DRLUX, DRALLUME (torch/lamp lit)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO YODA.IO
+single	39b6	1	PLAYER	high	DRALLUME	light: LUX, DRLUX, DRALLUME (torch/lamp lit)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	3ad8	1	PLAYER	high	DRLAMPE	DRLAMPE	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	3ad9	1	WORLD	high	DRAMAZONE	DRAMAZONE story flag (amazons)	AMAZONES.IO BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HUMAN.IO
+single	3ada	1	PLAYER	med	NBPLAQUE	NBPLAQUE (plates carried), 3adb	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	3adb	1	PLAYER	med		NBPLAQUE (plates carried), 3adb	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	3aea	1	PLAYER	low	ETOUFFE	yoda tables 3ae2/3af2, ETOUFFE 3aea	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	3aeb	1	PLAYER	low		yoda tables 3ae2/3af2, ETOUFFE 3aea	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	3b06	1	PLAYER	med	CALPLUIE	CALPLUIE, DRGOURDE (gourd)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	3b07	1	PLAYER	med	DRGOURDE	CALPLUIE, DRGOURDE (gourd)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	3b14	2	PLAYER	med		heros words	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO PARAM.IO
+single	3b16	2	PLAYER	med		heros words	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO PARAM.IO
+single	3b3c	1	PLAYER	med	DRRADEAU	DRRADEAU (raft), 3b3d	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO
+single	3b3d	1	PLAYER	med		DRRADEAU (raft), 3b3d	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO YODA.IO
+single	3baa	1	PLAYER	high		hero position/angle copy (save only)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HEROS.IO
+single	3bac	2	PLAYER	high		hero position/angle copy (save only)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO
+single	3bae	2	PLAYER	high		hero position/angle copy (save only)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO
+single	3bb0	2	PLAYER	high		hero position/angle copy (save only)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO
+single	3bb2	2	PLAYER	high		hero position/angle copy (save only)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO
+single	3bb4	2	PLAYER	high		hero position/angle copy (save only)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO
+single	3bb6	2	PLAYER	high		hero position/angle copy (save only)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO
+single	3bb8	1	WORLD	med	DRDONNE	DRDONNE (gave item to amazons) story flag	AMAZONES.IO BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO
+single	3bb9	1	PLAYER	med	DRGAZ	DRGAZ, DRATOMIC, DRSAC equipment flags	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO HUMAN.IO PARAM.IO
+single	3bba	1	PLAYER	med		DRGAZ, DRATOMIC, DRSAC equipment flags	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO ORDI.IO
+single	3bbb	1	PLAYER	med	DRATOMIC	DRGAZ, DRATOMIC, DRSAC equipment flags	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO YODA.IO
+single	3bc3	1	PLAYER	med	DRSAC	DRGAZ, DRATOMIC, DRSAC equipment flags	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO YODA.IO
+single	3be0	1	PLAYER	med	HATOMIC	HATOMIC, CPTSEL	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	3be2	2	PLAYER	med	CPTSEL	HATOMIC, CPTSEL	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO YODA.IO
+single	3be6	2	WORLD	high	RPLUIE	rain / daylight palette (weather, time of day)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	3be8	2	WORLD	high	VPLUIE	rain / daylight palette (weather, time of day)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	3bea	2	WORLD	high	BPLUIE	rain / daylight palette (weather, time of day)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+single	3bec	2	WORLD	high	RJOUR	rain / daylight palette (weather, time of day)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	3bee	2	WORLD	high	VJOUR	rain / daylight palette (weather, time of day)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	3bf0	2	WORLD	high	BJOUR	rain / daylight palette (weather, time of day)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO PARAM.IO TIME.IO
+single	3bf6	1	WORLD	low		saved bytes (time)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO MONSTRE.IO MONSTREU.IO ROBINSON.IO ROBINSOU.IO
+single	3bf7	1	WORLD	low		saved bytes (time)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO ROBINSON.IO ROBINSOU.IO
+single	3bf8	1	WORLD	low		saved bytes (time)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO ROBINSON.IO ROBINSOU.IO
+single	3bf9	1	WORLD	low		saved bytes (time)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO TIME.IO
+block	1a52	60	META	high		BACKSAVE.INF: last 5 save names (not game state)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO
+block	3c00	20	WORLD	low		yoda/param block	PARAM.IO YODA.IO
+block	0e92	26	PLAYER	high	BLESSURE[1]	wounds table (BLESSURE[]), 13 body parts	HEROS.IO MONSTRE.IO MONSTREU.IO TIME.IO YODA.IO
+block	0eb2	8	PLAYER	med		body table (time/yoda), read by BODY screen	PARAM.IO TIME.IO YODA.IO
+block	0ec0	26	PLAYER	high	GRIPPE[10],VENTRE[9],INSOLATION[8],VENIN[1]	illness table (VENIN, INSOLATION, VENTRE, GRIPPE ...)	HEROS.IO MONSTRE.IO MONSTREU.IO PARAM.IO TIME.IO YODA.IO
+block	0ee0	22	PLAYER	med		body table read by BODY screen	PARAM.IO YODA.IO
+block	0efc	22	PLAYER	med		yoda table, saved	PARAM.IO YODA.IO
+block	0f18	22	PLAYER	med		body table (heros/time/yoda), read by BODY	HEROS.IO PARAM.IO TIME.IO YODA.IO
+block	0f3e	2048	PLAYER	high		INVENTORY: slots x [type, qty, weight, state]	PARAM.IO TIME.IO YODA.IO
+block	1854	21	PLAYER	med		BODY screen state (written only by body.IO)	BODY.IO
+block	195e	124	PLAYER	low		param/yoda table (124 bytes) - skills/known recipes?	PARAM.IO YODA.IO
+block	19e8	22	PLAYER	low		time/yoda table read by MESSAGE	PARAM.IO TIME.IO YODA.IO
+block	3c1e	100	WORLD	med		fires table (feu.IO reads)	TIME.IO YODA.IO
+block	1a9e	3600	WORLD	high		creature/animal state table (all animal scripts)	AMAZONES.IO BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO BISON.IO CARNIVOR.IO CENTAURE.IO CLAMBOT.IO DOGROBOT.IO EAGLE.IO FREDDY.IO GEANT.IO GORILLE.IO HUMAN.IO INIT3D.IO LAPINCRF.IO LARVE.IO LOUP.IO MONGOLE.IO MOULINEX.IO PTERO.IO ROBOT.IO SPIDER.IO STEGO.IO TIGRE.IO TORTUE.IO TRICERA.IO TYRANO.IO VARAN.IO WALKER.IO YODA.IO
+block	28b6	1200	WORLD	high		NPC/human state table (amazons, centaurs, giants ...)	AMAZONES.IO CENTAURE.IO GEANT.IO GORILLE.IO HUMAN.IO PARAM.IO PROJECT.IO TIME.IO YODA.IO
+block	2d9a	4	PLAYER	med		heros/yoda bytes (DRCOU, MINERVE), 2d9a table	PARAM.IO TIME.IO YODA.IO
+block	3ae2	7	PLAYER	low		yoda tables 3ae2/3af2, ETOUFFE 3aea	YODA.IO
+block	3af2	20	PLAYER	low		yoda tables 3ae2/3af2, ETOUFFE 3aea	PARAM.IO YODA.IO
+block	3b0e	6	WORLD	low		yoda table read by avion.IO (plane)	YODA.IO
+block	3c92	40960	WORLD	med		descriptor of a 40 KB table (world objects/map)	BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO COMBAT.IO MESSAGE.IO MESSAGED.IO MESSAGEE.IO MESSAGEU.IO NEWPREF.IO NEWPREFD.IO NEWPREFS.IO NEWPREFU.IO PARAM.IO PLAYFILM.IO SONO.IO TIME.IO YODA.IO
+block	39ac	4096	WORLD	med	LUX,DRLUX,DRALLUME,DRLAMPE,DRAMAZONE,NBPLAQUE,ETOUFFE,CALPLUIE,DRGOURDE,DRRADEAU,DRDONNE,DRGAZ,DRATOMIC,DRSAC,HATOMIC,CPTSEL,RPLUIE,VPLUIE,BPLUIE,RJOUR,VJOUR,BJOUR	chart map descriptor (map knowledge; co-op: shared map)	AMAZONES.IO BARATIN.IO BARATIND.IO BARATINE.IO BARATINU.IO COMBAT.IO HEROS.IO HUMAN.IO INIT3D.IO MESSAGE.IO MESSAGED.IO MESSAGEE.IO MESSAGEU.IO MONSTRE.IO MONSTREU.IO NEWPREF.IO NEWPREFD.IO NEWPREFS.IO NEWPREFU.IO ORDI.IO PARAM.IO PLAYFILM.IO PREFS.IO PREFSD.IO PREFSU.IO ROBINSON.IO ROBINSOU.IO SONO.IO TIME.IO YODA.IO

@@ -1,0 +1,114 @@
+; jungle.IO: 29 distinct executed instructions (runtime coverage only)
+1cce89 1f ceval
+    1cce8a 38 oeval
+    1cce8b 20 omainw  0x0e8a
+    1cce8e 4a oegal
+    1cce8f 00 oimmb  0x01
+    1cce91 3a ofin  [ = -1]
+    1cce91 3a ofin  [ = 0]
+1cce92 14 cbz24  [d7<>0 => no jmp +3]
+1cce96 ee cdarkpal
+    1cce97 02 oimmw  0x0100
+    1cce9a 02 oimmw  0x0100
+    1cce9d 02 oimmw  0x0100
+    1ccea0 00 oimmb  0x00
+    1ccea2 02 oimmw  0x00a0
+1ccea5 0a cjmp24  0x00d5 0x00 [jmp dn +0x0000d5]
+1ccea9 1f ceval
+    1cceaa 38 oeval
+    1cceab 20 omainw  0x0e8a
+    1cceae 4a oegal
+    1cceaf 00 oimmb  0x02
+    1cceb1 3a ofin  [ = 0]
+1cceb2 14 cbz24  0x0008 0x00 [d7==0 => jmp dn +0x000008]
+1ccebe 1f ceval
+    1ccebf 1e omainb  0x1a46
+1ccec2 14 cbz24  0x0009 0x00 [d7==0 => jmp dn +0x000009]
+1ccecf 1e cstore
+    1cced0 00 oimmb  0x00
+    1cced2 14 sdirw  0x5a
+1cced4 1e cstore
+    1cced5 38 oeval
+    1cced6 20 omainw  0x3bec
+    1cced9 56 oadd
+    1cceda 20 omainw  0x3be6
+    1ccedd 40 opushacc
+    1ccede 14 odirw  0x5a
+    1ccee0 5e omul
+    1ccee1 00 oimmb  0x03
+    1ccee3 56 oadd
+    1ccee4 36 opile
+    1ccee5 3a ofin  [ = 256]
+    1ccee6 14 sdirw  0x54
+1ccee8 1e cstore
+    1ccee9 38 oeval
+    1cceea 20 omainw  0x3bee
+    1cceed 56 oadd
+    1cceee 20 omainw  0x3be8
+    1ccef1 56 oadd
+    1ccef2 14 odirw  0x5a
+    1ccef4 3a ofin  [ = 256]
+    1ccef5 14 sdirw  0x56
+1ccef7 1e cstore
+    1ccef8 38 oeval
+    1ccef9 20 omainw  0x3bf0
+    1ccefc 56 oadd
+    1ccefd 20 omainw  0x3bea
+    1ccf00 56 oadd
+    1ccf01 14 odirw  0x5a
+    1ccf03 3a ofin  [ = 256]
+    1ccf04 14 sdirw  0x58
+1ccf06 1f ceval
+    1ccf07 38 oeval
+    1ccf08 14 odirw  0x54
+    1ccf0a 52 oinf
+    1ccf0b 00 oimmb  0x32
+    1ccf0d 3a ofin  [ = 0]
+1ccf0e 14 cbz24  0x0005 0x00 [d7==0 => jmp dn +0x000005]
+1ccf17 1f ceval
+    1ccf18 38 oeval
+    1ccf19 14 odirw  0x56
+    1ccf1b 52 oinf
+    1ccf1c 00 oimmb  0x32
+    1ccf1e 3a ofin  [ = 0]
+1ccf1f 14 cbz24  0x0005 0x00 [d7==0 => jmp dn +0x000005]
+1ccf28 1f ceval
+    1ccf29 38 oeval
+    1ccf2a 14 odirw  0x58
+    1ccf2c 52 oinf
+    1ccf2d 00 oimmb  0x32
+    1ccf2f 3a ofin  [ = 0]
+1ccf30 14 cbz24  0x0005 0x00 [d7==0 => jmp dn +0x000005]
+1ccf39 1f ceval
+    1ccf3a 38 oeval
+    1ccf3b 14 odirw  0x54
+    1ccf3d 54 osup
+    1ccf3e 02 oimmw  0x0100
+    1ccf41 3a ofin  [ = 0]
+1ccf42 14 cbz24  0x0006 0x00 [d7==0 => jmp dn +0x000006]
+1ccf4c 1f ceval
+    1ccf4d 38 oeval
+    1ccf4e 14 odirw  0x56
+    1ccf50 54 osup
+    1ccf51 02 oimmw  0x0100
+    1ccf54 3a ofin  [ = 0]
+1ccf55 14 cbz24  0x0006 0x00 [d7==0 => jmp dn +0x000006]
+1ccf5f 1f ceval
+    1ccf60 38 oeval
+    1ccf61 14 odirw  0x58
+    1ccf63 54 osup
+    1ccf64 02 oimmw  0x0100
+    1ccf67 3a ofin  [ = 0]
+1ccf68 14 cbz24  0x0006 0x00 [d7==0 => jmp dn +0x000006]
+1ccf72 ee cdarkpal
+    1ccf73 14 odirw  0x54
+    1ccf75 14 odirw  0x56
+    1ccf77 14 odirw  0x58
+    1ccf79 00 oimmb  0x00
+    1ccf7b 02 oimmw  0x00a0
+1ccf7e 68 cpalette
+    1ccf7f 00 oimmb  0x21
+1ccf81 3f csleep
+1ccf82 1f ceval
+    1ccf83 00 oimmb  0x00
+1ccf85 13 cbz16  0xff01 [d7==0 => jmp up -0x00ff]

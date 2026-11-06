@@ -1,0 +1,2689 @@
+entry	name	size	callers	callees	strings	data_refs
+00000000	FUN_00000000	13	0	0		
+0000000d	__x386_init	437	0	7		__argc,__argv,__dos,__dosx_zero_base_ptr,__envptr,__osminor,__psp,__stack
+000001c2	_sbrk	51	1	0		__data_bottom,__x386_break
+000001fc	__chkstk	24	0	0		__x386_break
+0000020d	__chkstack	10	0	0		__x386_break
+00000217	__get_video_selector	73	0	0		
+00000260	FUN_00000260	69	1	1		__envptr
+000002a5	FUN_000002a5	77	1	0		__8087
+000002f4	_init_x32	254	1	3		basebios,basecs,baseds,basevideo,segcs,segds,seges,segfs,seggs,segss
+000003f2	allocseg	43	1	3		baseds
+0000041d	adresseg	18	1	1		baseds
+0000042f	adreses	30	0	1		baseds,basees,seges
+0000044d	adresfs	30	3	1		baseds,basefs,segfs
+0000046b	adresgs	30	6	1		baseds,basegs,seggs
+00000489	base_address	16	0	0		
+00000499	FUN_00000499	12	2	0		
+000004b1	base_selector	14	6	0		
+000004bf	FUN_000004bf	21	2	0		
+000004d4	bye	4	0	0		
+000004d8	_main	22	1	1		QcommandL_L_3QADA
+000004f0	stp_sb_detport	4	1	0		
+000004f4	s_ini_r	25	0	0		
+0000050d	s_ini_v	23	0	0		
+00000524	s_ini_ok	5	0	0		
+00000529	detect_adlib	52	1	1		
+0000055d	ad_inis1	58	0	1		
+00000597	ad_inisfin	5	0	0		
+0000059c	ad_wreg	23	2	1		
+000005b3	ad_wait	6	1	0		
+000005b9	ad_wait1	5	0	0		
+000005be	detect_joy	26	1	0		
+000005d8	detect_joy3	17	0	1		
+000005e9	detect_joy4	6	0	1		
+000005ef	detect_joya	32	1	2		
+0000060f	detect_joy1	4	0	0		
+00000613	detect_joyb	32	1	2		
+00000633	detect_joy2	4	0	0		
+00000637	detect_joyx	18	1	0		
+00000649	detect_joyy	5	1	0		
+0000064e	janalog	5	2	0		
+00000653	jreanalog	9	0	0		
+0000065c	ja_loop1	18	0	0		
+0000066e	ja_loop3	7	0	0		
+00000675	ja_loop2	20	0	1		
+00000689	ja_timeout	4	0	0		
+0000068d	ja_done	6	1	0		
+00000693	initmode	7	4	0		
+0000069a	clavier	21	1	0		
+000006af	position	11	16	0		
+000006ba	caracteres	17	6	0		attribut
+000006cb	chaine	33	14	2		
+000006ec	pchaine	11	11	0		langue
+000006f7	vprint	21	1	0		vprints
+0000070c	vprint1	23	0	1		
+00000723	testmouse	27	1	0		mouse_current,mouse_detected
+0000073e	testsoundblaster	26	1	1		sound_current,sound_detected
+00000758	testadlib	30	1	1		sound_current,sound_detected
+00000776	testVGA	25	1	0		vid_current,vid_detected
+0000078f	testEGA	26	0	0		vid_current,vid_detected
+000007a9	testCGA	46	0	0		vid_current,vid_detected
+000007d7	testHGC	1	0	0		
+000007d8	testHGC1	15	0	0		vid_current,vid_detected
+000007e7	testjoystick	28	1	1		joy_current,joy_detected
+00000803	detect	38	1	4		vid_detected
+00000829	detect1	30	0	3		sound_current,sound_detected
+00000847	vgamessage	59	1	5		pvgamess
+00000882	vgamessag1	15	0	1		
+00000891	read_file	476	1	0		fhandle,filetoread,joy_current,joy_detected,keyboard_current,keyboard_detected,max,mouse_current,mouse_detected,nomfichier,paramsnd_current,paramsnd_detected,setupok,sound_current,sound_detected,vid_current,vid_detected
+00000a6d	aff_video	59	2	2		vid_current,vid_msg,vid_possible
+00000aa8	change_video	83	0	0		fsavedone,vid_current
+00000afb	change_paramsnd	75	0	0		fsavedone,paramsnd_current
+00000b46	aff_paramsnd	59	0	2	   PORT      :   $	paramsnd_current,paramsnd_possible
+00000b81	change_sound	118	0	2		attribut,fsavedone,max,sound_current
+00000c0e	aff_sound	64	1	3	  Sound Blaster  $    Sound OFF    $	psound_msg,sound_current
+00000c4e	change_joy	75	0	0		fsavedone,joy_current
+00000c99	aff_joy	59	1	2	   JOYSTICK  :   $	joy_current,joy_possible
+00000cd4	change_mouse	75	0	0		fsavedone,mouse_current
+00000d1f	aff_mouse	71	1	3		mouse_current,pmouse_msg,pmouse_possible
+00000d66	change_keyboard	75	0	0		fsavedone,keyboard_current
+00000db1	aff_keyboard	64	1	3	     AZERTY      $     QWERTY      $     QWERTZU     $	keyboard_current,pkeyboard_msg
+00000df1	go_save	271	0	0		fhandle,filetowrite,fsavedone,joy_current,keyboard_current,mouse_current,nomfichier,paramsnd_current,sound_current,vid_current
+00000f0c	aff_save	30	2	1		fsavedone,psavdmsg,psavemsg
+00000f2a	aff_save1	11	0	2		
+00000f35	go_quit	12	0	0		quitflag
+00000f41	aff_quit	26	1	3		pquitmsg
+00000f5b	go_play	12	0	0		playflag
+00000f67	aff_play	26	1	3		pplaymsg
+00000f81	initscreen	736	1	14	S I L M A R I L S    S E T U P$       $Mem=$	attribut,auteur,kbfree,max,pblabla,rammess,to_aff,to_change
+00001261	choix	24	1	2		
+00001279	iici	637	0	4	  Sound Blaster  $    Sound OFF    $ |      AZERTY      $     QWERTY      $     QWERTZU     $	attribut,joy_detected,joy_possible,keyboard_detected,ligne,max,mouse_detected,paramsnd_detected,paramsnd_possible,pmouse_possible,sound_detected,to_aff,to_change
+00001534	L_modif	34	2	1		attribut,to_aff,to_change
+00001556	L_choix_asc	24	1	1		
+0000156e	waitsetup	134	1	5		ppress,setupok
+000015f4	setparams	23	1	0		mouse_current,nomouse
+0000160b	setpa1	46	0	0		isjoy0,isjoy1,joy_current
+00001639	setpa2	99	0	0		egamode,hgcmode,novbl,sgamode,tvmode,vgamode,vid_current
+0000169c	setpa3	34	0	0		keyboard_current,keymode
+000016be	setpa4	52	0	0		sound_current,sounddata,soundmode
+000016f2	setpa5	1	0	0		
+000016f3	detecte_langue	123	1	0		keyboard_current,keyboard_detected,langue
+0000176e	clearwindow	69	1	2		
+000017b3	drawwindow	110	1	3		ppossible,psuggest
+00001821	setvbl	18	1	1		vid_current
+00001833	resetvbl	7	0	0		vid_current
+0000183a	setvbl5	20	1	1		attribut,fsavedone
+0000184e	getram	21	1	0		kbfree
+00001863	setup	122	1	8		fsavedone,playflag,quitflag,setupok
+000018e0	breakprot	1	0	0		
+000018e1	cbreakpt	1	0	0		
+000018e2	bpoint	1	0	0		
+000018e3	readprot	5	0	0		
+000018e8	mt_Arpeggio1	48	0	1		atprog,basemain,vprotect
+0000191a	readprotx	14	0	0		
+00001928	testdisk	3	1	0		
+0000192c	waitsound	1	0	0		
+0000192d	loadwhite	50	0	2	blancpc.io	awhite
+00001964	loadwhit0	74	0	0		awhite,pwhite,pwhite1
+000019b1	loadwhit1	8	0	0		
+000019b9	loadwhit2	13	0	0		
+000019c6	loadwhit3	10	0	0		
+000019d0	mt_PortaDskip	7	0	0		
+000019d7	inisys	2	1	0		
+000019e7	mt_FinePortaRet	4	0	0		
+000019eb	inisyloop	14	5	0		
+000019f9	inisysp	18	0	1		
+00001a0b	inisyss	9	0	1		nosound
+00001a14	inisysm	9	0	1		nomouse
+00001a1d	inisysa	8	0	1		noadlib
+00001a26	inisysj	9	0	1		nojoy
+00001a2f	inisysin	42	0	1		basebios,curdrive,oldvideo,sgamode,vgamode
+00001a5b	mt_TonePortamento	4	0	0		
+00001a5f	inisys00	39	0	1		cdrom,slash,thedrive,theroot
+00001a88	inisys04	19	0	0		
+00001a9b	mt_TonePortaUp	11	0	1		
+00001aa6	inisys05	124	0	9		adfen,bufmus,bufpack,debmem,finmem,finnoyau,finram,logic,workbuff
+00001b22	inisysx	1	0	0		
+00001b23	endsys	28	0	6		
+00001b41	endsysram	7	0	0		
+00001b48	io_malloc	3	4	0		
+00001b4b	mt_vib_rampdown	44	0	0		finmem,finprog,tabptr
+00001b7a	io_mallo7	4	0	0		
+00001b7f	mt_Vibrato3	5	0	0		
+00001b84	io_mallo9	2	0	0		
+00001b86	io_mallox	3	1	0		
+00001b89	io_mallo8	9	0	1		
+00001b92	io_mfree	29	2	0		finmem
+00001baf	io_mfreex	1	0	0		
+00001bb0	ramshort	36	1	2	NOT ENOUGH MEMORY [A]bort [C]ontinue    	
+00001bd6	mt_TreSkip2	34	0	2	(You need 	charmode
+00001bf9	mt_tre_rampdown	11	0	1	 Kb more)	
+00001c04	ramshort1	20	0	0		
+00001c18	ramshort3	1	0	0		
+00001c19	ramshort2	5	0	0		
+00001c1e	inipays	7	1	0		pays
+00001c25	inipayx	1	0	0		
+00001c26	initimer	8	1	0		novbl
+00001c30	mt_TremoloSkip	37	0	0		rsuitimer,suitimer
+00001c56	mt_SampleOffset	15	0	0		
+00001c65	mt_sononew	13	0	0		oldtimer
+00001c73	initimer0	4	0	0		
+00001c77	mt_VolSlideUp	20	0	0		oldtimer
+00001c8c	initimer1	11	0	0		oldtimer
+00001c97	initimb	8	0	0		oldtimer
+00001ca0	initimer1a	13	0	0		novbl
+00001cad	initimev0	5	0	0		
+00001cb2	initimev1	20	0	0		
+00001cc7	initimev2	5	0	0		
+00001ccc	initimev3	43	0	1		vblfreq
+00001cf8	initime2	13	0	0		vblfreq
+00001d06	initime2c	49	1	0		dtiming,dtiming0,oldtimer,vblfreq
+00001d39	initime2d	66	0	0		htiming,htiming0,vblfreq,vtimer0,vtiming
+00001d7c	initime3	7	0	0		vtiming
+00001d85	mt_efxbuz	7	0	0		vtiming
+00001d8c	initime4	20	0	0		vvmip
+00001da2	initime5	33	0	0		vmip,vtiming
+00001dc3	mt_E_commands	1	0	0		
+00001dc4	endtimer	24	1	0		rsuitimer,suitimer
+00001ddd	mt_e2	10	0	0		oldtimer
+00001de7	mt_e3	6	0	0		
+00001ded	firstime	13	0	0		segds
+00001dfc	mt_e6	13	0	0		oldtimer
+00001e0a	mt_e8	9	0	0		suitimer
+00001e14	ittimev	7	0	0		
+00001e1b	mt_e10	46	0	0		novbl,segds,segfs,vmip
+00001e4f	mt_SetGlissControl	7	0	0		
+00001e56	ittimev0	7	0	0		
+00001e5d	mt_SetVibratoControl	24	0	0		novbl,vblfreq,vmip
+00001e78	ittimev2	21	0	0		vblfreq,vtimer0
+00001e8e	ittimev1	2	0	0		
+00001e90	ittime	37	0	0		segds,seges,segfs
+00001eb6	ittimein	31	0	0		timeclock,vblcount,vtiming
+00001ed6	ittime1	14	0	1		ftopal
+00001ee4	ittime3	22	0	2		dtiming,dtiming0
+00001efb	mt_VolumeFineUp	20	0	0		dtiming,mustate,thedrive
+00001f10	mt_VolumeFineDown	21	0	0		suitimer
+00001f26	ittimex1	14	0	0		
+00001f34	inierror	1	1	0		
+00001f4a	mt_NoteCuteRet	56	0	0		rolddiv
+00001f86	inierrort	16	0	0		
+00001f97	enderror	1	1	0		
+00001fb5	mt_funkok	19	0	0		
+00001fc9	diverror	13	0	0		
+00001fd6	diverrloop	15	0	0		
+00001fe5	diverror1	9	1	0		
+00001fee	diverror16	4	0	1		
+00001ff2	diverrorb	15	0	0		
+00002001	diverr_bs	7	0	0		
+00002008	diverrorlw	4	0	0		
+0000200c	diverrorl	17	0	0		
+0000201d	diverr_ls	11	0	0		
+00002028	vfentotv1	1	0	0		
+00002029	diverrorw	21	0	0		
+0000203e	diverr_ws	16	0	0		
+0000204e	syserror	21	0	1		
+00002063	syserror0	32	0	1		curdrive
+00002083	syserror1	16	0	1		fremap
+00002093	syserrorx	18	1	0		
+000020a5	cderror	5	0	0		
+000020aa	clrfen1	13	0	0		
+000020b7	Mwprotect	34	0	0		
+000020da	fenclip0	2	0	0		
+000020dd	io_mip	7	3	0		vmip
+000020e4	io_config	6	1	0		theconfig
+000020ea	fenclip1	1	0	0		
+000020eb	io_model	18	1	0		tvmode
+000020fd	io_mod4	14	0	0		tvmode
+0000210b	fenclip3	14	0	0		tvmode
+00002119	io_mod6	5	0	0		
+0000211e	io_locate	26	4	0		xlocate,ylocate
+00002138	io_putchar	4	4	0		
+0000213c	io_putcha1	6	0	0		
+00002142	io_putchax	5	0	0		
+00002147	io_string	1	5	0		
+00002148	io_string0	14	0	1		
+00002156	io_stringx	2	0	0		
+00002158	inikey	36	1	1		keymode,pays
+0000217c	inikey_f	20	0	1		f_ascii,f_asciim,pays
+000021a4	inikey1	34	1	0		d_ascii,d_asciim,tabascii,tabasciim
+000021c6	inikey0	56	1	0		rsuitkey,suitkey
+000021ff	endkey	23	1	0		rsuitkey,suitkey
+00002216	itkey	39	0	1		segds
+0000223d	itkey0	33	0	1		lastkey,tabascii
+0000225e	itkey1	40	0	0		lastkey,tabascii,tabkey
+00002286	itkey2	19	10	0		lastshift
+00002299	itkey3	2	0	0		
+0000229b	itkeysuit	10	0	0		suitkey
+000022a5	itk_sd	9	0	1		lastshift
+000022ae	itk_sg	9	0	1		lastshift
+000022b7	itk_ctrl	8	0	1		lastshift
+000022c0	itk_alt	9	0	1		lastshift
+000022c9	oitk_sd	9	0	1		lastshift
+000022d2	oitk_sg	7	0	1		lastshift
+000022db	oitk_ctrl	9	0	1		lastshift
+000022e4	oitk_alt	8	0	1		lastshift
+000022ed	io_inkey	16	5	0		lastkey
+000022fd	io_shiftkey	9	2	0		lastshift
+00002306	io_getkey	11	4	1		
+00002311	io_getkey1	2	0	0		
+00002313	io_getkey2	12	0	1		
+0000231f	inijoy	19	1	0		isjoy0,isjoy1
+00002332	inijoy0	13	0	0		
+0000233f	inijoy3	17	0	1		
+00002350	inijoy4	1	0	0		
+00002351	inijoya	48	1	2		centrh,centrv,theconfig
+00002381	inijoy1	7	0	0		isjoy0
+00002388	inijoyb	35	1	1		theconfig
+000023ab	inijoy2	8	0	0		isjoy1
+000023b3	io_joy	23	1	1		nojoy
+000023cb	io_joy00	9	0	1		
+000023d4	io_job0	13	0	0		isjoy0
+000023e1	io_joy0	8	0	0		
+000023e9	io_job1	16	0	2		
+000023f9	io_job11	19	0	1		centrv
+0000240d	io_joy2	18	0	0		centrv
+0000241f	io_joy3	8	1	0		
+00002427	io_job2	12	0	2		
+00002434	io_job21	10	0	0		centrh
+0000243e	pixel16d	10	0	1		
+00002448	io_joy4	18	0	0		centrh
+0000245a	io_joy5	19	1	0		
+0000246d	io_job3	5	0	0		
+00002474	io_joy1b	9	1	0		
+0000247d	ndestof5	3	0	0		
+00002480	io_joyx	3	4	1		
+00002484	ndestof8	1	0	0		
+00002485	analog	7	4	0		
+0000248c	reanalog	10	0	0		
+00002497	a_loop1	3	0	0		
+0000249a	ndestof7	14	0	0		
+000024a8	a_loop3	6	0	0		
+000024af	a_loop2	5	0	0		
+000024b4	xndestof4	13	0	0		
+000024c1	xndestof5	2	0	0		
+000024c3	a_timeout	3	0	0		
+000024c7	a_done	7	0	0		
+000024cf	io_tojoy2	1	0	0		
+000024d0	io_tomouse	1	0	0		
+000024d1	hmouse	16	1	0		fremouse
+000024e1	hmouse2	1	0	0		
+000024e2	gmouse	8	1	0		fremouse
+000024ea	inimouse	6	1	0		
+000024f0	ndectofen	5	0	0		
+000024f5	ndectof4	52	0	1		emouseb,emousex,emousey,nomouse
+0000252b	sdestofen	18	0	0		mousbuff,moussave
+0000253d	xsdestofen	55	0	1		evt_mouse
+00002577	inimous1	13	0	0		nomouse,theconfig
+00002586	inimousx	12	0	0		fmouse
+00002593	pdestof7	8	0	0		
+0000259b	endmouse	11	1	0		
+000025a6	xpdestofen	21	0	1		
+000025bb	evt_mouse	6	0	0		
+000025c1	xpdestof3	16	0	0		
+000025d2	evt_mouse0	10	0	0		
+000025dd	evt_mouse1	10	0	0		
+000025e7	evt_mouse2	4	0	0		
+000025ec	xpdestof7	6	0	0		
+000025f2	evt_mouse3	27	0	0		emouseb,emousex,emousey
+0000260e	readmouse	35	2	0		emouseb,emousex,emousey,mouseb,mousex,mousey
+00002633	autorun	1	1	0		
+00002634	io_mouse	50	3	0		imousex,imousey,mouseb,mousex,mousey,nomouse
+0000266a	io_mouse0	10	0	0		
+00002675	io_mouse1	10	0	0		
+0000267f	io_mouse2	11	0	0		
+0000268a	io_mouse3	9	0	0		
+00002694	io_mouseno	13	0	0		
+000026dc	blotofe1	2	0	0		
+000026e7	destomap	10	0	0		imousey
+000026f1	io_mouson	23	1	2		oldmousx,oldmousy
+00002709	io_mousoff	6	1	1		
+0000270f	io_moushide	6	0	1		
+00002716	io_gettime	1	1	0		
+00002717	io_free	11	1	1		
+00002722	ofreea0	11	0	1		
+0000272d	ofreea1	11	0	1		
+00002738	ofreea2	11	0	1		
+00002743	ofreea3	11	0	1		
+0000274e	ofreea4	11	0	1		
+00002759	ofreea5	4	0	0		
+0000275d	destomab	7	0	1		
+00002764	ofreea6	11	0	1		
+0000276f	ofreea7	11	0	1		
+0000277a	ofreea8	11	0	1		
+00002785	ofreea9	11	0	1		
+00002790	ofreea10	11	0	1		
+0000279b	ofreea11	11	0	1		
+000027a6	destomapa0	5	0	0		
+000027ab	ofree0	26	1	0		finmem,finprog
+000027c5	ofree1	26	1	0		debsprit,finent
+000027df	ofree2	15	1	0		maxprog,nbprog
+000027ee	ofree3	15	1	0		maxent,nbent
+000027fd	ofree4	23	1	0		basesprite,libsprit
+00002814	ofree41	12	0	0		
+00002820	ofree42	3	0	0		
+00002823	ofreea	4	2	1		
+00002827	ofreeb	4	2	1		
+0000282b	freedisk	4	2	1		
+0000282f	ofreed	4	2	1		
+00002833	freedisk	32	4	0		
+00002853	freedisk1	4	0	0		
+00002857	freedisk2	5	0	0		
+0000285c	io_chdir	9	1	0		
+00002865	io_setdrive	22	4	1		
+0000287b	io_setdin	8	1	0		
+00002883	io_setdx	3	2	0		
+00002886	io_setd1	21	0	2		
+0000289b	io_setd2	2	0	0		
+0000289d	io_setde	6	0	1		
+000028a3	io_setdf	6	0	1		
+000028a9	FUN_000028a9	55	2	0		tampon
+000028e0	diskokx	14	0	0		
+000028ee	io_savepic	47	2	3		sgamode
+0000291e	io_savepic0	33	0	1	0.PCX | 0.PCX | 0.PCX	nompic
+0000293f	io_savepic1	37	0	1		handle,mpalet,physic
+00002964	destomapx	23	0	2		
+0000297b	io_savepic2	9	0	1		
+00002984	io_savepicx	14	1	0		
+00002993	io_digit	10	1	0		typepack
+0000299d	io_digit0	1	0	0		
+0000299e	mapchar0	47	0	1		ddeux,vers
+000029cd	io_di9	5	0	0		
+000029d2	io_digit1	3	1	0		
+000029d5	io_digit10	12	0	1		
+000029e1	io_digit2	8	0	1		
+000029e9	io_digit20	18	0	0		
+000029fb	mapchar3	39	0	0		bufpack
+00002a22	io_digit3	61	0	0		tfibo
+00002a5f	io_digitb	1	2	0		
+00002a60	mapchar11	10	0	0		ddeux
+00002a6a	mapchar13	15	0	1		ddeux
+00002a79	io_digitx	14	1	0		
+00002a87	fdecor	2	0	0		
+00002a89	fsga	2	0	0		
+00002a8b	col0	2	0	0		
+00002a8d	pixel0	2	0	0		
+00002a8f	pal0	2	0	0		
+00002a91	bufplans	4	0	0		
+00002a95	io_tomono	1	0	0		
+00002a96	io_toega	1	0	0		
+00002a97	iniscreen	108	1	1		fenx1,fenx2,feny1,feny2,logic,loglarg,logx1,logx2,logy1,logy2,wlogic,wloglarg,wlogx1,wlogy1
+00002b0c	nmapdes30	17	0	0		wlogx2,wlogy2
+00002b1e	smapdec	6	0	1		
+00002b24	endscreen	5	1	0		oldvideo
+00002b29	pmapdec	5	0	0		
+00002b2e	open	11	5	1		typepack
+00002b3a	openin	12	0	1		
+00002b47	open0	13	0	2		
+00002b54	open1	11	0	1		
+00002b5f	pmapdec20	2	0	0		
+00002b61	open2	14	0	0		cdrom
+00002b6f	pmapdec23	21	0	0		cddrive
+00002b85	pmapdec24	9	0	0		
+00002b8e	open5	16	0	0		filename
+00002b9e	smapdes	22	0	0		cdrom,handle
+00002bb5	pmapdes1	11	0	0		
+00002bc0	pmapdes2	20	0	0		hddrive
+00002bd4	pmapdes5	41	0	0		filename,handle
+00002c00	pmapdes23	15	0	0		cddrive
+00002c0f	pmapdes50	5	0	0		
+00002c14	pmapdes51	8	0	1		
+00002c1c	open4	3	0	0		
+00002c20	pmapdes40	24	0	1		buffer
+00002ca5	open4x	2	0	0		
+00002ca7	open6	28	0	0		
+00002cc3	open3	1	1	0		
+00002cc4	opene	11	1	1		
+00002cd2	existf	10	4	1		
+00002cdc	descha00	41	0	0		cdrom,hddrive
+00002d05	descha01	20	0	0		
+00002d19	descha02	30	0	0		cddrive
+00002d37	descha1	2	0	0		
+00002d39	existf2	3	0	1		
+00002d3c	existfok	10	0	0		
+00002d46	existfx	2	1	0		
+00002d48	close	9	4	1		handle
+00002d51	FUN_00002d51	51	2	0		cddrive,cdrom
+00002d84	io_close1	1	0	0		
+00002d85	io_closee	11	0	1		
+00002d92	creat	15	3	0		cdrom
+00002da2	descha12	12	0	0		hddrive
+00002dae	descha13	17	0	0		
+00002dbf	creat1	16	0	0		handle
+00002dcf	create	11	0	1		
+00002ddc	del	7	1	0		
+00002de3	dele	2	0	0		
+00002de5	descha20	9	0	1		
+00002df0	io_seek	26	1	0		
+00002e0a	descha21	12	0	0		
+00002e16	read	15	10	1		handle
+00002e25	io_read	11	3	0		
+00002e30	io_reade	11	0	1		
+00002e3d	oio_read	23	0	0		
+00002e54	io_read1	18	0	1		
+00002e67	readin	6	1	0		
+00002e6d	descha3	13	0	0		
+00002e7a	reade	11	0	1		
+00002e87	write	4	2	0		
+00002e8b	write0	15	0	0		
+00002e9a	write1	14	0	1		
+00002ea8	writin	1	1	0		
+00002ea9	descha4	19	0	0		handle
+00002ebc	writee	11	0	1		
+00002ec9	bugsound	1	2	0		
+00002eca	findcdrom	33	1	0		curdrive,incdrive,maxdrive
+00002eed	findcd1	102	0	1	cd.tst | cd.tst	cddrive,curdrive,hddrive,incdrive,maxdrive,theroot
+00002f54	findcd2	39	0	0		cddrive,curdrive,hddrive,nopath
+00002f7d	chartpalti	9	0	0		cdrom
+00002f86	findcdx	10	1	0		curdrive
+00002f90	chartbyte	14	0	0		
+00002f9e	printoken	13	0	0		
+00002fab	vblpaletw	22	0	1		
+00002fc2	printbug	34	0	1		
+00002fe6	printbug1	35	0	1		
+0000300a	printbug24	36	0	1		
+0000302e	printbug2	36	0	1		
+00003052	printbu	28	4	2		charmode
+0000306e	vbacktof1	11	0	1		
+00003079	printok	66	1	3		charmode
+000030bb	pcx_save	78	1	1		pcx_hand,pcx_ptrb
+00003109	pcx_cdl	68	0	2		pcx_ptrb
+0000314e	pcx_wdac	10	0	0		
+00003158	pcx_wdac1	17	0	1		pcx_ptrb
+00003169	phytologx	34	0	1		pcx_hand,pcx_ptrb
+0000318b	pcx_err2	5	1	0		
+00003190	pcx_cod	2	1	0		
+00003192	pcx_cod2	2	0	0		
+00003194	pcx_cod3	29	0	1		
+000031b1	pcx_cod4	6	0	0		
+000031b7	pcx_cod7	4	1	0		
+000031bb	endtv	31	0	1		pcx_ptrb
+000031dd	vwaitvbl	8	0	0		
+000031e5	pcx_cod5	29	0	1		pcx_ptrb
+00003203	pcx_cod6	17	0	1		pcx_ptrb
+00003213	vwaitvblx	14	0	0		
+00003224	pcx_writ	56	5	0		pcx_hand,pcx_ptrb
+0000325c	pcx_wri2	17	0	0		pcx_ptrb
+0000326d	pcx_ewri	4	0	0		
+00003271	pcx_ok	16	1	0		
+00003281	pcx_err	16	0	0		
+00003291	my__x386_mouse_init	76	1	0		cfuncaddr,eventmouse
+000032dd	init_ret	18	0	0		
+000032ef	vinivbl4	1	0	0		
+000032f0	mous_err	15	0	0		
+000032ff	vinivbl5	1	0	0		
+00003300	mous_call32	14	0	0		segds
+0000330f	vinivblx	52	0	0		cfuncaddr,stack_ptr
+00003343	dummy	5	2	0		
+00003349	_run	5	1	1		
+0000334e	prog	66	0	3		bsd6,bsd7,bsd7bis,oldsd7,sd6,sd7
+00003391	reprog	25	1	0		fmusic,fsound,ptrent,tablent
+000033aa	moteur	17	0	1		atent,ent
+000033bb	moteur1	19	1	0		atent,ent
+000033ce	itvbl2	17	0	1		ent
+000033df	moteur2	78	1	3		fallent,fseq,saversp
+00003431	itpalet3	15	0	0		
+00003440	moteur6	71	0	2		fseq,timeclock
+00003489	topalet4	20	0	1		saversp
+0000349f	mouseput	5	0	0		
+000034a4	moteur5	5	0	1		
+000034a9	moteur3	5	0	0		
+000034ae	motloop	12	3	0		
+000034ba	cnul	1	0	0		
+000034bb	cesc1	8	0	0		tcodesc1
+000034c3	cesc2	1	0	0		
+000034c5	cesc4	1	0	0		
+000034c6	cjsr8	24	0	0		
+000034de	cjsr16	25	0	0		
+000034f7	cjsr24	26	0	0		
+00003511	cjmp8	7	0	0		
+00003518	cjmp16	8	0	0		
+00003520	cjmp24	9	0	0		
+00003529	cstart8	6	0	1		
+0000352f	cstart16	5	0	0		
+00003534	cstarta	52	2	1		fseq,saversp
+0000356c	cstarta5	17	0	0		saversp
+0000357e	cstarta6	18	1	0		
+00003591	cstarta3	42	0	0		
+000035be	cstart24	11	0	1		
+000035c9	cleave	20	0	1		fseq
+000035dd	cleave0	27	0	0		saversp
+000035f8	cleave1	11	0	1		
+00003603	cleave2	21	0	0		
+00003618	cjsrabs	1	0	0		
+00003619	cjmpabs	1	0	0		
+0000361a	cjsrind16	1	0	0		
+0000361b	cjsrind24	1	0	0		
+0000361c	cjmpind16	1	0	0		
+0000361d	cjmpind24	1	0	0		
+0000361e	cret	28	3	1		fseq,saversp
+0000363a	cret1	23	0	0		
+00003652	cret2	7	0	0		
+00003659	cloop8	19	0	1		savelpc
+0000366c	cloop81	13	0	0		savelpc
+00003682	vmouseras1	12	0	1		
+0000368e	cloop161	14	0	0		savelpc
+0000369c	cloop24	21	0	1		savelpc
+000036b1	cloop241	15	0	0		savelpc
+000036c0	cbz8	12	0	0		
+000036cc	cbz81	2	0	0		
+000036ce	cbz16	12	0	0		
+000036db	cbz161	4	0	0		
+000036df	cbz24	14	0	0		
+000036ed	cbz241	4	0	0		
+000036f1	cbnz8	12	0	0		
+000036fd	cbnz81	2	0	0		
+000036ff	cbnz16	13	0	0		
+0000370c	cbnz161	4	0	0		
+00003710	cbnz24	14	0	0		
+0000371e	cbnz241	4	0	0		
+00003722	cbeq8	6	0	0		
+00003728	inifilm0	6	0	0		
+0000372e	cbeq81	2	0	0		
+00003730	cbeq16	13	0	0		
+0000373d	cbeq161	4	0	0		
+00003741	cbeq24	5	0	0		
+00003746	inifilm1	9	0	0		
+0000374f	cbeq241	3	0	0		
+00003752	inifilm2	1	0	0		
+00003753	cbne8	12	0	0		
+0000375f	cbne81	2	0	0		
+00003761	cbne16	13	0	0		
+0000376e	cbne161	4	0	0		
+00003772	cbne24	14	0	0		
+00003780	cbne241	3	0	0		
+00003783	inifilm3	1	0	0		
+00003784	cstore	11	0	1		calcsp
+0000378f	storacc0	33	12	0		calcsp,oldsd7,sd7,tstore
+000037b1	ceval	11	0	1		calcsp
+000037bc	cadd	11	0	1		calcsp
+000037c7	addacc0	34	4	0		calcsp,oldsd7,sd7,tadd
+000037e9	csub	11	0	1		calcsp
+000037f4	subacc0	5	0	1		
+000037f9	cmul	1	0	0		
+000037fa	cdiv	1	0	0		
+00003836	cnumput	5	0	1		
+00003866	csinput	20	0	2		charmode
+0000387a	cvinput	20	0	2		charmode
+0000388e	getstring	6	1	0		sd7
+00003894	getstrin2	22	1	2		
+000038ab	getstrin1	5	0	0		
+000038b0	getstrin3	31	0	2		sd7
+000038d1	getval	6	1	0		sd7
+000038d7	getval2	24	2	1		
+000038f0	getval0	10	0	2		
+000038fa	getval1	9	0	1		
+00003904	getval3	31	0	2		sd7
+00003925	getcha1	10	2	1		
+0000392f	cspicprint	18	0	2		charmode
+00003941	cvpicprint	12	0	1		charmode
+00003953	csputprint	17	0	2		charmode
+00003964	flitofen2	1	0	0		
+00003965	cvputprint	12	0	1		charmode
+00003977	cvprint	12	0	1		charmode
+00003989	csprinti	13	1	0		charmode
+00003996	cprinti1	7	0	2		
+0000399e	csprinta	12	0	1		charmode
+000039b0	putstring	13	2	1		sd7
+000039c6	clocate	12	0	1		charmode
+000039e3	ctab	12	0	1		charmode
+00003a02	crandom	5	0	1		
+00003a0f	rando1	7	0	0		crnd
+00003a16	putchar	28	7	0		charmode
+00003a32	chardos	5	0	1		
+00003a38	charpic	1	0	0		
+00003a39	charput	69	0	0		flaginvx,flagmain,foasc,fomax,fonum
+00003a7e	fli_fill2	11	0	1		fadddes
+00003a8a	charput1	16	0	0		depx,folarg
+00003a9a	charput4	1	2	0		
+00003a9b	fli_fill21	3	0	0		
+00003a9e	charput3	11	0	1		depx
+00003aa9	charput2	18	0	1		depz,fohaut
+00003abb	printd0	2	4	0		
+00003abd	fli_fill30	11	0	1		sd7
+00003ac8	printd2	14	0	1		
+00003ad6	printd1	3	0	0		
+00003ad9	vald0	40	2	0		nonnul,tabrang
+00003b02	rang	6	0	0		
+00003b08	soust	9	0	0		
+00003b11	suite	3	0	0		
+00003b14	fli_halt	23	0	1		nonnul
+00003b2c	nnul1	9	0	0		nonnul
+00003b35	nnul2	3	0	0		
+00003b38	rang1	2	1	0		
+00003b3a	fli_next1	9	0	0		
+00003b43	printa0	1	1	0		
+00003b44	fli_next2	14	0	0		
+00003b52	printa01	2	1	0		
+00003b54	fli_elements	14	0	2		
+00003b62	printa02	14	0	0		
+00003b70	csettime	9	0	1		
+00003b98	cgettime	30	0	2		
+00003bb7	cwlive	5	0	1		
+00003bc9	fli_sample	9	0	1		wcz
+00003bd2	clive	26	0	0		wcx,wcy,wcz
+00003bed	clivin	20	1	2		
+00003c0c	clive3	182	0	1		noment,wcx,wcy,wcz
+00003ccb	clive6	4	0	0		
+00003cd0	cblast	12	0	1		ferase
+00003cdd	ckill	5	1	1		
+00003cf9	cstop	3	2	0		
+00003cfc	fli_blackdatx	1	0	0		
+00003cfd	cstopret	18	0	1		fseq
+00003d10	cexit	8	0	0		ent
+00003d18	fli_firstdata2	7	0	1		
+00003d1f	cexit1	12	0	0		ent,noment
+00003d2b	fli_firstdata3	5	0	0		
+00003d30	cload	24	0	2		typent
+00003d4b	cload1	8	0	0		
+00003d53	cnewmain	17	0	3		
+00003d66	cunload	7	0	0		typent
+00003d6e	fli_firsttra6	5	0	0		
+00003d73	cdefsc	2	0	0		
+00003d75	fli_firsttra0	137	0	3		basemain,libsprit
+00003dfe	cdefsce	11	0	1		
+00003e0b	cswitching	1	0	0		
+00003e0c	cclipping	8	0	0		fswitch
+00003e14	cscamov	5	0	1		
+00003e47	cscaset	5	0	1		
+00003e74	csczoom	5	0	1		
+00003ea1	cscfollow	5	0	1		
+00003eaf	errorw	5	0	1		
+00003f29	cscdark	111	0	2		basedark,basemain
+00003f98	cscdark1	22	0	1		segdark
+00003fae	cscdark3	6	0	0		
+00003fb4	cscsky	35	0	2		basemain
+00004000	scsky1	68	0	0		
+00004044	cscsun	5	0	1		
+0000408f	cscview	5	0	1		
+000040f0	cscmov	5	0	1		
+0000411d	cscmov1	17	0	0		
+0000412e	cscmov2	17	0	0		
+0000413f	cscmov3	1	0	0		
+00004140	cscset	5	0	1		
+0000416f	cscset1	19	0	0		
+00004182	cscset2	19	0	0		
+00004195	cscset3	1	0	0		
+00004196	cscreen	7	0	0		
+0000419d	cscreen1	1	0	0		
+0000419e	cscheart	5	0	1		
+000041c5	cscheart1	1	0	0		
+000041c6	cscsize	5	0	1		
+000041f6	cscsize1	1	0	0		
+000041f7	cscpos	5	0	1		
+00004223	cscpos1	1	0	0		
+00004224	doscsprite	76	1	0		
+00004270	cschoriz	13	0	1		
+000042aa	cschoriz1	1	0	0		
+000042ab	cscvertic	13	0	1		
+000042ea	cscvert1	1	0	0		
+000042eb	cscturn	5	0	1		
+0000436f	cscturn1	1	0	0		
+00004370	cscreduce	5	0	1		
+000043a4	cscredu1	1	0	0		
+000043a5	cscscale	5	0	1		
+000043c4	cscscal1	1	0	0		
+000043c5	cscmap	5	0	1		
+000043db	cscmap1	26	0	0		basemain
+000043f5	cscmap2	1	0	0		
+000043f6	cscantab	1	0	0		
+000043f7	cneartab	1	0	0		
+000043f8	calloctab	40	0	2		
+00004435	calloctax	1	0	0		
+00004436	cfreetab	28	0	2		
+00004452	cfreetax	1	0	0		
+00004453	cscdump	1	0	0		
+00004454	gbasetab	17	7	0		basemain
+00004465	gbaseta1	6	0	0		
+0000446b	cdefmap	17	0	0		basemain
+0000447c	cdefmap1	11	0	1		
+00004540	cdefma3	55	0	0		
+00004577	cdefmap4	25	0	0		
+00004590	cdefmap5	25	0	0		
+000045a9	cdefmap6	55	0	0		basemain
+000045e0	cdefmapx	1	0	0		
+000045e1	csetmap	18	0	0		basemain
+000045f3	csetmap1	11	0	1		
+0000467d	cputmap	18	0	0		basemain
+0000468f	cputmap1	11	0	1		
+0000470c	cputmap3	12	0	0		
+00004718	cputmap4	81	0	2		
+00004769	cputmap2	14	0	0		
+00004777	putmapcall	9	1	1		
+00004780	ctexmap	73	0	4		awork1,dzero
+000047d4	ctexma1	23	0	0		
+000047eb	ctexma10	6	0	0		
+000047f1	ctexma11	9	0	0		
+000047fa	ctexma12	15	0	1		
+00004809	ctexma13	38	0	0		tpuissance
+0000482f	ctexma14	12	0	0		
+0000483b	ctexma15	11	0	0		
+00004846	ctexma16	2	0	0		
+00004848	ctexma2	65	2	2		
+00004897	ctexma3	34	1	1		
+000048b9	ctexmax	1	1	0		
+000048ba	ctexmaraz	21	0	1		
+000048cf	ctexmasraz	9	0	1		
+000048d8	ctexobst	30	0	2		
+000048f6	ctextop	73	0	1		awork1
+0000493f	ctextox	5	0	0		
+00004944	cwalkmap	67	0	5		walkdim,walkhaut,walktete
+00004987	catstmap	11	0	2		
+000049fa	cchartmap	69	0	2		
+00004a3f	chartdig	25	0	1		
+00004a58	chartdi1	34	0	0		
+00004a7a	chartd20	16	0	0		
+00004a8a	chartd21	31	0	0		clipx1
+00004aa9	chartd22	16	0	0		
+00004ab9	chartd23	31	0	0		clipx2
+00004ad8	chartd30	16	0	0		
+00004ae8	chartd31	31	0	0		clipy1
+00004b07	chartd32	16	0	0		
+00004b17	chartd33	194	0	0		clipx1,clipx2,clipy1,clipy2
+00004bd9	chartdi7	7	0	0		
+00004be0	chartdi8	46	0	0		clipx1,clipy1
+00004c0e	chartdi9	26	0	0		clipy1,clipy2
+00004c28	chartdi3	14	0	0		
+00004c36	chartdi4	11	0	0		
+00004c41	chartdi5	8	0	0		
+00004c49	chartdi6	22	0	0		
+00004c5f	chartclr	5	0	1		
+00004c64	chartset	4	0	0		
+00004c68	chartset0	31	1	0		
+00004c87	charset1	21	0	1		
+00004c9c	chartmod	13	0	1		
+00004ca9	chartzoom	13	0	1		
+00004cb6	chartcol0	13	0	1		
+00004cc3	chartncol	13	0	1		
+00004cd0	cscrolpage	5	0	1		
+00004d19	cscrolpagx	1	0	0		
+00004d1a	cscback	15	0	1		sback
+00004d6e	copensc	48	0	3		basemain
+00004d9e	copensc1	2	0	0		
+00004da0	cclosesc	19	0	0		basemain
+00004db3	scadd	31	2	0		ptscreen
+00004dd2	scadd1	23	0	0		
+00004de9	scbreak	34	1	0		ptscreen
+00004e0b	scbreak1	8	0	0		
+00004e13	scbreak3	23	0	0		
+00004e2a	scbreak2	3	0	0		
+00004e2d	vectoriel	82	1	0		
+00004e7f	cxinvon	6	0	0		
+00004e85	cxinvoff	6	0	0		
+00004e8b	cxinv	6	0	0		
+00004e91	cput	16	0	0		flaginvx,flagmain
+00004ea1	cputin	5	3	1		
+00004ecf	cputnat	16	0	0		flaginvx,flagmain
+00004edf	cputatin	5	3	1		
+00004f19	cxput	27	0	1		flaginvx,flagmain
+00004f34	cxputat	24	0	1		flaginvx,flagmain
+00004f4c	cmput	21	0	1		flaginvx,flagmain
+00004f61	cmputat	21	0	1		flaginvx,flagmain
+00004f76	cmxputat	26	0	1		flaginvx,flagmain
+00004f90	cmxput	25	0	1		flaginvx,flagmain
+00004fa9	put	7	1	0		fmuldes
+00004fb0	putin	36	1	2		finram
+00004fd4	putin1	5	0	0		
+00004fd9	putin2	14	0	1		
+00004fe7	put2	59	0	0		depx,depy,depz,flaginvx,fmuldes
+00005022	put25	50	0	0		depx,depy,depz,flaginvx
+00005054	put26	33	0	1		depx,depy,depz,flaginvx
+00005075	put21	12	1	1		
+00005081	put1	18	0	0		fadddes,fmuldes
+00005093	put13	7	0	1		
+0000509a	put11	7	1	2		
+000050a1	put10	17	0	2		
+000050b2	put6	12	0	2		
+000050be	put3	7	0	0		
+000050c5	put30	5	0	0		
+000050ca	put4	5	1	1		
+000050cf	putmapin	98	1	1		flaginvx
+00005131	put40	34	0	0		
+00005153	put41	67	1	0		depx,depy,depz,oldcx,oldcy,oldcz
+00005196	putfin	18	1	2		fmuldes
+000051a8	put60	7	0	1		
+000051af	put61	24	0	2		
+000051c7	put62	12	1	0		fadddes
+000051d3	nextnum	14	2	0		
+000051e1	testnum	27	1	0		numelem
+000051fc	nextnum1	5	0	0		
+00005201	searchelem	25	5	1		numelem
+0000521a	searche0	14	0	0		
+00005228	searche1	20	1	0		
+0000523c	searche3	5	0	0		
+00005241	searchtete	20	1	1		
+00005255	searcht0	14	0	0		
+00005263	searcht1	11	1	0		
+0000526e	searcht3	5	0	0		
+00005273	createlem	36	2	1		libsprit
+00005297	create2	6	0	0		
+0000529d	create3	70	1	0		basemain,numelem
+000052e3	createe	11	0	1		
+000052f1	clinking	5	0	1		
+000052fc	creducing	5	0	1		
+0000530f	credon	6	0	0		
+00005315	credoff	6	0	0		
+0000531b	calign	5	0	1		
+0000533e	calign0	9	0	1		
+0000534c	cordspr	5	0	1		
+00005356	czoom	5	0	1		
+0000536b	chsprite	5	0	1		
+00005384	deptopix	37	4	1		basemain
+000053a9	deptopi0	131	0	2		acinq,aquatre,dcinq,dquatre,dsix,dtrois,dzero,newf
+0000542c	deptop2	13	0	1		
+00005439	deptop3	18	0	0		dquatre,dzero
+0000544b	deptop0	8	0	0		
+00005453	deptop6	31	0	0		aquatre,dcinq,dzero
+00005472	deptop1	8	0	0		
+0000547a	deptop7	32	0	0		acinq,dsix
+0000549a	deptopi4	90	0	1		aquatre,dcinq,dquatre,dsix,dtrois
+000054f4	deptopi5	27	0	0		dsept,dtrois
+0000550f	deptopi3	14	0	0		dtrois
+0000551d	deptopi1	66	3	0		dcinq,dquatre,dtrois
+0000555f	deptobug	22	0	1		dquatre
+00005575	deptopi7	12	0	0		dquatre
+00005581	deptopi8	31	1	0		dcinq,newf
+000055a0	deptopi9	15	0	0		
+000055af	deptopi6	106	0	0		dcinq,dquatre,dsix,newad,newd,newh,newl,newx,newy,newzoomx,newzoomy
+00005619	quickscal	28	0	0		
+00005635	scalaire	213	1	0		ddeux,dquatre,dtrois,dun,dzero
+0000570b	adresdes	9	3	0		flagmain
+00005714	adresdei	29	1	0		
+00005731	adresdee	14	0	1		
+00005742	adresdem	14	0	1		basemain
+00005750	adrestdes	9	4	0		flagmain
+00005759	adrestdei	27	1	0		
+00005774	adrestdee	14	0	1		
+00005785	adrestdem	14	0	1		basemain
+00005793	ccancen	12	0	1		ferase
+000057a0	cerasen	5	1	1		
+000057ab	cerasen3	15	1	1		ferase
+000057ba	cerasen2	7	0	2		
+000057c1	ccancel	13	0	1		ferase
+000057ce	cerase	7	1	1		
+000057d5	cerase2	23	0	1		
+000057ec	cerase1	8	0	0		ferase
+000057f4	ccancall	13	0	1		ferase
+00005801	cerasall	13	2	0		
+0000580e	cerasel2	10	0	1		
+00005818	cerasel1	8	0	0		ferase
+00005820	killelem	40	4	1		ferase
+00005848	killele1	14	0	1		
+00005856	killele3	18	0	1		
+00005868	killele4	12	0	0		
+00005874	killele5	24	1	1		libsprit
+0000588c	killele7	11	2	0		
+00005897	killele6	7	0	0		
+0000589e	delprec	37	1	0		basemain
+000058c3	delprec3	8	0	1		
+000058cb	delprec1	6	0	0		
+000058d1	delprec2	23	1	0		
+000058e8	cset	5	0	1		
+00005907	cmov	5	0	1		
+00005926	caset	5	0	1		
+00005945	camov	5	0	1		
+00005964	cvmov	34	0	0		
+00005986	cavmov	65	0	1		
+000059c7	cwmov	11	0	1		
+000059e8	cturn	5	0	1		
+00005a61	caim	5	0	1		
+00005a9b	caim1	14	0	1		
+00005ac2	caimp	12	0	0		
+00005ace	caimp1	8	0	0		
+00005ad6	caimp2	5	0	1		
+00005ae7	caimn1	11	0	0		
+00005af2	caimn2	3	0	0		
+00005af5	caim4	12	1	1		
+00005b01	caim5	10	0	0		
+00005b0b	caim6	24	1	1		
+00005b23	corient	5	0	1		
+00005b3b	corient0	37	0	0		
+00005b68	savecoord	67	2	0		oldacx,oldacy,oldacz,oldcx,oldcy,oldcz
+00005bab	updtcoord	51	2	0		oldacx
+00005bde	updtcax1	21	0	0		
+00005bf3	updtcax2	5	0	0		
+00005bf8	updtcax3	35	0	0		oldacy
+00005c1b	updtcay1	21	0	0		
+00005c30	updtcay2	5	0	0		
+00005c35	updtcay3	35	0	0		oldacz
+00005c58	updtcaz1	21	0	0		
+00005c6d	updtcaz2	5	0	0		
+00005c72	updtcaz3	67	0	1		oldacz,oldcx,oldcy,oldcz
+00005cb5	updtcoo1	10	0	0		
+00005cbf	updtcoo5	12	0	0		
+00005ccb	updtcoo6	35	0	0		
+00005cee	updtcoo2	9	1	0		
+00005cf7	folscreen	68	1	0		atent
+00005d3b	folscr0x	30	0	0		
+00005d59	folscr0y	30	0	0		
+00005d77	folscr0z	46	0	0		
+00005da5	folscr1x	35	0	0		
+00005dc8	folscr1y	35	0	0		
+00005deb	folscr1z	1	0	0		
+00005dec	depscreen	64	1	0		dtrois
+00005e2c	depscree2	25	0	0		
+00005e45	depscree1	5	0	0		
+00005e4a	image	34	1	1		fphytolog
+00005e6c	image00	5	0	0		timing
+00005e71	image0	22	0	1		automode,vtiming
+00005e87	image02	21	0	1		fswitch,vtiming
+00005e9c	image01	78	0	1		logic,loglarg,logx1,logx2,logy1,logy2,ptscreen,wlogic,wloglarg,wlogx1,wlogx2,wlogy1,wlogy2
+00005eea	image1	5	1	0		
+00005eef	image3	45	1	2		adeux,basemain,dtrois
+00005f1c	image2	18	0	1		fremap,fswitch
+00005f56	image5	6	0	1		
+00005f5c	image6	22	0	1		
+00005f72	image7	9	0	1		
+00005f7b	image8	9	0	1		
+00005f84	imagin	13	2	0		
+00005f91	image4	14	2	0		
+00005f9f	affiscreen	34	1	1		ftotv
+00005fc1	affiscra0	15	0	0		fremap
+00005fd0	affiscra1	5	0	1		
+00005fd5	affiscra2	38	0	2		
+00005ffb	affiscra3	22	0	0		wback
+00006011	affiscri2	9	0	1		
+0000601a	affiscr9	3	0	0		
+0000601d	affiscin	16	4	1		
+0000602d	affiscr2	50	0	1		fclipjoint,ftotv,joints
+0000605f	affiscr1	10	2	0		ftotv
+00006069	affiscr4	5	0	0		
+0000606e	affiscrx	14	0	0		
+0000607c	affidump	108	1	1		clipx1,clipx2,clipy1,clipy2,fenlargw,fenx1,fenx2,feny1,feny2
+000060e8	affidum1	3	0	0		
+000060eb	affidumpin	31	2	1		
+0000610a	affidum00	5	0	0		
+0000610f	affidum4	9	0	1		ptscreen
+00006118	affidum6	15	0	0		basemain
+00006127	affidum5	7	2	1		
+0000612e	affidum50	22	0	0		basemain
+00006144	affidum8	34	0	1		fclip
+00006166	affidum7	50	0	1		
+00006198	affidum9	10	1	2		
+000061a2	nouvdump	134	0	3		newad,newd,newf,newh,newl,newx,newy,newzoomx,newzoomy
+00006228	effdump	39	1	1		libsprit
+0000624f	afficher	5	0	1		
+00006254	affichin	12	1	0		
+00006260	affichsuit	115	1	2		newad,newd,newf,newh,newl,newx,newy,newzoomx,newzoomy
+000062d3	affiche1	8	0	1		
+000062db	remplacer	17	1	3		
+000062ec	remplac1	22	0	2		
+00006302	effacer	41	0	2		libsprit
+0000632b	nouvlink	28	0	3		dhuit
+00006347	nouvlin1	5	0	0		
+0000634c	remplink	31	0	3		dhuit
+0000636b	rempnolink	11	0	1		
+00006376	efflink	31	1	3		dhuit
+00006395	outlink	26	1	2		joints
+000063af	inouvlink	135	3	3		newad,newd,newf,newh,newl,newx,newy,newzoomx,newzoomy
+00006436	iefflink	40	2	1		libsprit
+0000645e	iremplink	10	2	2		
+00006468	suitlin1	45	4	1		dhuit
+00006495	suitlin2	11	0	2		
+000064a0	suitlin3	7	0	2		
+000064a7	suitlin4	26	0	2		joints
+000064c1	inilink	54	3	0		blocx1,blocx2,blocy1,blocy2,dhuit
+000064f7	addlink	34	3	0		blocx1
+00006519	addlink1	21	0	0		blocx2
+0000652e	addlink2	21	0	0		blocy1
+00006543	addlink3	21	0	0		blocy2
+00006558	addlink4	5	0	0		
+0000655d	affimouse	59	3	2		
+00006598	rempmouse	52	1	2		newad,newd,newx,newy
+000065cc	rempm1	12	0	2		
+000065d8	effamouse	15	1	2		
+000065e7	rangesprite	29	4	0		
+00006604	rangesp0	3	0	0		
+00006607	rangesp1	56	0	0		
+0000663f	rangesp2	28	0	0		
+0000665b	rangesp4	3	0	0		
+0000665e	rangesp3	11	0	0		
+00006669	rclrfen	6	1	1		
+0000666f	rdestofen	6	2	1		
+00006675	rfentotv	55	2	3		fclipmouse,fmouse,logic,physic
+000066ac	rfentotv10	14	0	1		fclipmouse
+000066ba	rfentotv12	27	0	1		logic,physic
+000066d5	rfentotv13	6	0	1		
+000066db	rfentotv0	6	0	1		
+000066e1	rbacktofen	6	0	1		
+000066e7	fenetre	39	8	0		adeux
+0000670e	fenetri	33	0	1		fdoland,scdirect
+0000672f	fenetri1	9	0	1		ptscreen
+00006738	fenetre2	15	2	0		basemain
+00006747	fenetre0	75	1	3		basemain,fclip
+00006792	fenetre02	7	0	0		
+00006799	fenetre61	7	0	0		
+000067a0	fenetre3	13	1	1		
+000067ad	fenetre30	43	0	2		
+000067d8	fenetre1	11	0	1		mousflag
+00006832	fenetre5	20	1	1		adeux
+00006846	fenetre4	14	0	0		
+00006854	clipback	40	0	0		backy1,backy2,cback,clipy1,clipy2
+0000687c	clipbacf	10	0	0		backy1
+00006886	clipbace	10	0	0		backy2
+00006890	clipbacx	8	0	0		cback
+00006898	clipfen	7	2	0		fclip
+0000689f	clipfen0	22	0	0		dzero,fenx2
+000068b5	clipfen1	22	0	0		dun,feny2
+000068cb	clipfen2	22	0	0		ddeux,fenx1
+000068e1	clipfen3	22	0	0		dtrois,feny1
+000068f7	clipfen4	21	0	0		dzero,fenx1
+0000690c	clipfen5	23	0	0		dun,feny1
+00006923	clipfen6	23	0	0		ddeux,fenx2
+0000693a	clipfen7	23	0	0		dtrois,feny2
+00006951	clipfen8	74	0	0		cliph,clipl,clipx1,clipx2,clipy1,clipy2,fclip
+0000699b	tstjoints	13	2	0		
+000069a8	tstjoin0	14	0	1		
+000069b6	tstjoin7	30	0	1		newl,newx
+000069d4	tstjoin8	30	0	1		newh,newy
+000069f2	tstjoin20	20	0	1		newx
+00006a06	tstjoin21	55	0	0		blocx1,newx,newy
+00006a3d	tstjoin2	36	0	0		blocy1,newy
+00006a61	tstjoin3	32	0	0		blocx2,newl,newx
+00006a81	tstjoin4	33	0	0		blocy2,newh,newy
+00006aa2	tstjoin5	25	0	0		joints
+00006abb	tstjoin1	24	4	0		joints
+00006ad3	calcfen	76	1	0		blocx1,blocx2,blocy1,blocy2,joints
+00006b1f	calcfenbloc	65	0	0		blocx1,blocx2,blocy1,blocy2
+00006b60	calcfeb1	9	0	1		
+00006b69	calcfeb0	42	0	0		blocx1,fenx1
+00006b93	calcfeb2	32	0	0		blocy1,feny1
+00006bb3	calcfeb3	42	0	0		blocx2,fenx2
+00006bdd	calcfeb4	32	0	0		blocy2,feny2
+00006bfd	calcfeb5	45	0	0		adfen,fenlargw,fenx1,fenx2,workbuff
+00006c2a	calcfebx	7	1	0		
+00006c31	nextelem	37	0	0		
+00006c56	nextele1	6	0	0		
+00006c73	cforme	5	0	1		
+00006c7e	cdelforme	8	0	0		
+00006c86	cmforme	5	0	1		
+00006c99	getvector	5	4	1		
+00006cc3	getvectoy	17	0	0		
+00006cd4	getvectox	2	0	0		
+00006d6b	cwtstmov	14	0	1		wfinvx
+00006dbd	cwftstmov	14	0	1		wfinvx
+00006e10	ctstform	49	0	1		wcx,wcy,wcz,wfinvx
+00006e5e	ctstmov	14	0	1		wfinvx
+00006ebb	cvtstmov	65	0	1		wcx,wcy,wcz,wfinvx
+00006f18	cavtstmov	101	0	2		wcx,wcy,wcz
+00006f99	cvftstmov	65	0	1		wcx,wcy,wcz,wfinvx
+00006ff7	ctstset	14	0	1		wfinvx
+00007045	cftstmov	14	0	1		wfinvx
+000070a3	cftstset	14	0	1		wfinvx
+000070ef	csuccent	21	1	0		ptrent
+00007104	csuccen1	5	0	0		
+00007109	cpredent	33	0	1		ptrent
+0000712a	cpreden1	9	0	1		
+00007133	crstent	12	8	1		ptrent
+0000713f	cmatent	21	0	1		ptrent
+00007154	clipform	41	0	1		ptrent,tablent,wforme
+0000717d	clipfor5	40	0	1		acinq,atent,baseform
+000071a5	clipfor2	16	2	1		
+000071b5	clipfor0	86	1	2		acinq,azero,basefirm
+0000720b	clipfor3	5	0	1		
+00007210	clipfor4	6	1	1		
+00007216	clipf2	45	0	1		fallent,goodmat,ptrent
+00007243	clipfor1	34	2	0		ptrent
+00007265	multiform	10	1	0		
+0000726f	multifo2	20	0	1		
+00007283	multifo3	5	0	0		
+00007288	multifo1	1	0	0		
+00007289	traitform	24	1	0		baseform
+000072a1	monoform	15	1	0		
+000072b0	traitfoi0	36	0	0		dsept,wfinvx
+000072d4	traitfoi1	64	0	0		dcinq,dquatre,dsix,wcx,wcy,wcz,wfinvx
+00007314	traitfoi2	23	0	1		dcinq,dquatre,dsix
+0000732b	traitfo1	27	0	0		wfinvx
+00007346	traitfoi3	61	0	0		dcinq,dquatre,dsix,wcx,wcy,wcz,wfinvx
+00007383	traitfoi4	21	0	0		dcinq,dquatre,dsix
+00007398	traitfo2	16	1	0		dcinq
+000073a8	traitfo3	16	0	0		dsix
+000073b8	traitfo4	16	0	0		dquatre
+000073c8	traitfo5	67	0	1		dcinq,dquatre,dsix,px1,px2,py1,py2,pz1,pz2
+0000740c	check1	1	0	0		
+0000740d	multifirm	10	1	0		
+00007417	multifi2	20	0	1		
+0000742b	multifi3	5	0	0		
+00007430	multifi1	1	0	0		
+00007431	traitfirm	24	1	0		basefirm
+00007449	monofirm	23	0	1		azero
+00007460	traitfi90	16	0	1		matmask
+00007470	traitfi9	44	0	0		dsept,goodmat
+0000749c	traitfii1	55	0	0		dcinq,dquatre,dsix
+000074d3	traitfii2	23	0	1		dcinq,dquatre,dsix
+000074ea	traitfi1	16	0	1		matmask
+000074fa	traitfi8	35	0	0		goodmat
+0000751d	traitfii3	52	0	0		dcinq,dquatre,dsix
+00007551	traitfii4	21	0	0		dcinq,dquatre,dsix
+00007566	traitfi2	16	1	0		dcinq
+00007576	traitfi3	42	0	0		dcinq,dsix,py1,py2
+000075a0	traitfi4	40	0	0		dquatre,dsix,pz1,pz2
+000075c8	traitfi5	29	0	0		dquatre,px1,px2
+000075e5	traitfi0	4	3	0		
+000075e9	clipmat	25	2	1		
+00007602	clipma9	43	0	2		
+0000762d	clipma1	5	0	1		
+00007632	clipma3	14	1	0		
+00007640	clipma2	17	1	0		
+00007651	multimat	11	1	0		
+0000765c	multima2	25	0	1		
+00007675	multima3	8	0	0		
+0000767d	multima1	1	0	0		
+0000767e	traitmat	25	1	0		
+00007697	monomat	21	1	0		goodmat,matmask
+000076ac	cfindmat	5	0	1		
+000076c8	cfindma2	11	0	0		
+000076d3	cfindma0	43	0	1		fallent,goodmat
+000076fe	cfindma1	20	0	1		fallent
+00007712	cfindtyp	22	0	1		atent,tablent
+00007728	cfindty2	11	0	0		
+00007733	cfindty0	43	1	0		fallent
+0000775e	cfindty1	20	0	1		fallent
+00007772	cfindcla	5	0	1		
+00007788	cfindcl2	11	0	0		
+00007793	cfindcl0	42	0	0		fallent
+000077bd	cfindcl1	20	0	1		fallent
+000077d1	clistent	15	0	0		atent,tablent
+000077e0	clisten2	11	1	0		
+000077eb	clisten0	17	0	1		
+000077fc	clisten1	18	0	1		fallent
+0000780e	trinorme	56	4	0		aun,azero,dtrois
+00007846	trinor0	22	0	0		aun,azero,dtrois
+0000785c	trinor1	26	0	0		
+00007876	trinor9	30	0	0		
+00007894	trinor2	14	0	0		
+000078a2	trinor3	26	0	0		aun,azero
+000078bc	cnearmat	12	0	1		fview
+000078e6	sviewmat	43	0	0		buffer,fallent,tablent
+00007911	cnearma5	10	0	1		atent
+0000791b	cnearma2	10	1	0		
+00007925	cnearma0	73	1	2		azero,fallent
+0000796e	cnearma9	6	0	0		
+00007974	cnearma3	37	0	1		azero
+00007999	cnearma1	26	0	1		fallent
+000079b3	cnearma4	13	0	1		fallent
+000079c0	cneartyp	12	0	1		fview
+000079e4	sviewtyp	50	0	0		buffer,dhuit,fallent,tablent
+00007a16	cnearty5	10	0	1		atent
+00007a20	cnearty2	15	1	0		
+00007a2f	cnearty0	83	1	1		azero,dhuit,fallent
+00007a82	cnearty9	6	0	0		
+00007a88	cnearty3	41	0	1		azero
+00007ab1	cnearty1	26	0	1		fallent
+00007acb	cnearty4	13	0	1		fallent
+00007ad8	cnearcla	12	0	1		fview
+00007afc	sviewcla	43	0	0		buffer,fallent,tablent
+00007b27	cnearcl5	10	0	1		atent
+00007b31	cnearcl2	11	1	0		
+00007b3c	cnearcl0	77	1	1		azero,fallent
+00007b89	cnearcl9	6	0	0		
+00007b8f	cnearcl3	40	0	1		azero
+00007bb7	cnearcl1	26	0	1		fallent
+00007bd1	cnearcl4	13	0	1		fallent
+00007bde	cnearent	12	0	1		fview
+00007c0f	cnearen6	50	0	0		buffer,dhuit,fallent,tablent
+00007c41	cnearen5	10	0	1		atent
+00007c4b	cnearen2	15	1	0		
+00007c5a	cnearen0	22	1	0		dhuit
+00007c70	cnearen7	66	0	1		azero,fallent
+00007cb2	cnearen9	6	0	0		
+00007cb8	cnearen3	41	0	1		azero
+00007ce1	cnearen1	26	0	1		fallent
+00007cfb	cnearen4	13	0	1		fallent
+00007d08	cviewmat	12	0	1		fview
+00007d43	cviewtyp	12	0	1		fview
+00007d78	cviewcla	12	0	1		fview
+00007dad	cviewent	12	0	1		fview
+00007de2	calcnear	149	4	0		azero,ddeux,dtrois,dun,valnorme
+00007e77	calcnea3	9	0	0		fview
+00007e80	calcnea2	18	0	0		
+00007e92	calcnea1	17	0	0		
+00007ea3	calcview	165	0	0		azero,dcinq,ddeux,dquatre,dsept,dsix,dtrois,dun,valchamp
+00007f48	calcvie2	5	0	0		
+00007f4d	calcvie1	5	0	0		
+00007f52	callentity	8	0	0		fallent
+00007f5a	casleepfar	5	0	1		
+00007f7b	cfarslee1	14	2	0		
+00007f89	cfarslee2	119	0	2		valnorme
+00008000	cfarslee3	40	0	2		
+00008028	cfarsleex	1	0	0		
+00008029	casleepon	7	0	0		
+00008030	casleepoff	7	0	0		
+00008037	check2	1	0	0		
+00008038	cdim	36	0	1		
+0000805c	cdim1	7	0	0		
+00008063	cdim2	15	1	0		
+00008072	cdimp	21	0	1		
+00008087	cdimp1	5	0	0		
+0000808c	cdimp2	14	1	0		
+0000809a	cswitch1	6	0	1		
+000080b1	cswit11	14	0	0		
+000080bf	cswit13	10	0	0		
+000080c9	cswit12	13	0	0		
+000080d6	cswitch2	6	0	1		
+000080eb	cswit21	31	0	0		
+0000810a	cswit22	13	0	0		
+00008117	check3	1	0	0		
+00008118	cclock	5	0	1		
+00008130	casleep	5	0	1		
+00008151	casleep1	1	0	0		
+00008152	csleep	19	0	1		fseq
+00008165	csleep1	1	0	0		
+00008166	cwakeup	5	0	1		
+00008187	cwakeup1	1	0	0		
+00008188	csend	12	0	1		
+000081c2	csend1	9	0	1		
+000081e3	csend2	14	0	1		
+000081f1	csend5	27	0	0		dun
+0000820c	csend4	6	0	1		
+00008213	csend3	3	1	0		
+00008216	sendmess	39	2	0		
+0000823d	sendm2	14	0	1		
+0000824b	sendm5	15	0	0		
+0000825a	sendm4	4	1	0		
+0000825e	sendmx	1	0	0		
+0000825f	oscan	17	0	0		
+00008270	oscan2	26	0	0		
+0000828a	oscan1	17	0	0		
+0000829b	oscan3	2	0	0		
+0000829d	cscanclr	16	1	0		
+000082ad	cscanoff	11	0	1		
+000082b8	cscanon	6	0	0		
+000082be	cinteroff	6	0	0		
+000082c4	cinteron	6	0	0		
+000082ca	ctiming	5	0	1		
+000082d6	cinitab	22	0	0		
+000082ec	clinepalet	5	0	1		
+000082f7	cselpalet	5	0	1		
+0000830a	selpalet	1	0	0		
+0000830b	cdarkpal	5	0	1		
+00008384	cdarkpal1	61	0	0		dkpalet,fdarkpal
+000083c1	cdarkpal2	19	0	0		fdarkpal
+000083d4	cdarkpal3	13	0	0		
+000083e1	cdarkpalx	1	0	0		
+000083e2	csavepal	5	0	1		
+00008420	csavepal1	22	0	0		
+00008436	csavepalx	1	0	0		
+00008437	cpalette	13	0	1		flagmain
+000084a2	cpalettx	9	0	0		thepalet
+000084ab	setpalet	61	2	1		fnopal,palc,pald,palt,palt0
+000084e8	setvpale2	28	0	0		palc,palt,palt0
+00008504	setvpale0	73	1	1		tpalet
+0000854d	setvpale6	16	0	2		fdarkpal
+0000855d	setvpale1	17	0	0		
+0000856e	setvpale5	36	1	1		palc,palt,palt0
+00008592	setvpale4	44	0	0		mpalet,palc,palt,palt0,tpalet
+000085be	setvpale3	21	0	1		fnopal,ftopal
+000085d3	setvpalex	26	0	1		fnopal,ftopal
+000085ed	setvpaley	21	1	0		thepalet
+00008602	setdarkpal	20	2	0		bufrvb,dkpalet
+00008616	setdarkp1	39	0	0		
+0000863d	setdarkp11	5	0	0		
+00008642	setdarkp10	20	0	0		
+00008656	setdarkp2	27	0	0		
+00008671	setdarkp3	27	0	0		
+0000868c	setdarkp4	13	0	0		
+00008699	setvpal_st	15	1	0		stpalet
+000086a8	setvpal_s1	9	0	0		
+000086b1	setvpal_s2	11	0	0		
+000086bc	setvpal_s3	12	0	0		
+000086c8	setvpal_s4	16	0	0		stpalet
+000086d8	setmpalet	40	0	1		mpalet
+00008700	cdefcolor	5	0	1		
+0000870b	cmovcolor	5	0	1		
+00008716	ctopalet	13	0	1		flagmain
+00008757	ctopaletx	9	0	0		thepalet
+0000877f	ctopalsav1	23	0	0		fdarkpal,tpalet
+00008796	ctopalsavy	23	1	1		
+000087ae	ctopalsav2	21	0	0		bufrvb,dkpalet
+000087c3	ctopalsav3	36	0	0		
+000087e7	ctopalsav31	5	0	0		
+000087ec	ctopalsav30	23	0	0		
+00008803	ctopalsatr	30	0	0		
+00008821	ctopalsatv	30	0	0		
+0000883f	ctopalsatb	22	0	1		
+00008855	ctoblack	5	0	1		
+0000885a	ctoblackv	54	0	1		palc,pald,palt,palt0
+00008890	ctoblav2	26	0	0		palc,palt,palt0
+000088aa	ctoblav0	46	1	1		tpalet
+000088d8	ctoblav4	42	0	0		mpalet,palc,palt,palt0
+00008902	ctoblack1	47	0	1		fnopal,ftopal,thepalet
+00008931	cfilm	77	0	4		basemain,bfilm
+0000897e	copenfilm	18	0	1		bfilm
+00008990	copenfil0	71	0	3		handle,sd7
+000089d7	copenfi1	41	0	3		basemain
+00008a00	crunfilm	41	0	3		bfilm
+00008a29	cdelfilm	12	0	1		bfilm
+00008a35	cbackstar	5	0	1		
+00008aab	backstax	2	0	0		
+00008aad	cstarring	5	0	1		
+00008b0e	cstarrinx	2	0	0		
+00008b10	czap	17	0	1		pereson
+00008b72	cexplode	17	0	1		pereson
+00008bb0	cexp0	35	0	0		dfreqson,longson,volson
+00008bd3	cexp1	52	0	0		dvolson,freqson,typeson
+00008c07	cexp2	66	0	0		donze,loopsam,pwhite,pwhite1,speedsam,volson
+00008c49	cexp3	3	0	0		
+00008c4c	cexpx	1	0	0		
+00008c4d	cding	17	0	1		pereson
+00008cb0	cding1	22	0	1		dvolson,typeson
+00008cc6	cengine	1	0	0		
+00008cdc	getcana	13	0	1		
+00008cf6	getcanb1	17	0	0		
+00008d07	getcanb2	5	0	0		
+00008d0c	getcanc	19	1	0		canbuff,nbcansam
+00008d1f	getcanc1	17	0	0		
+00008d30	getcanc2	23	0	0		
+00008d47	getcanc3	5	0	0		
+00008d4c	getcanok	10	0	1		
+00008d56	getcanno	5	0	0		
+00008d5b	getcanx	4	1	0		
+00008d5f	runson	1	1	0		
+00008ddb	runsonb	42	0	1		canson,pereson,priorson
+00008e05	runsonb1	29	0	1		bcanal1,canson
+00008e22	runsonb2	29	0	1		bcanal2,canson
+00008e3f	runsonb3	26	0	1		bcanal3,canson
+00008e59	runson0	42	0	0		canson
+00008e83	runson1	25	0	0		canson
+00008e9c	runson2	25	0	0		canson
+00008eb5	runson3	22	0	1		priorson
+00008ecb	runson31	13	0	1		priorson
+00008ed8	runson10	36	4	1		fsam,priorsam,priorson,soundvoice
+00008efc	runson4	66	0	1		dfreqson,dvolson,freqson,soundmode,typeson,volson
+00008f3e	runson5	4	0	0		
+00008f42	runson6	47	1	1		cansam,canson,longson,pereson,typeson
+00008f71	runsonx	14	2	0		
+00008f7f	cnoise	5	0	1		
+00008f94	csetvolum	5	0	1		
+00008fa6	ccadence	5	0	1		
+00008fb3	ccadenc1	1	0	0		
+00008fb4	adresmus	11	1	1		flagmain
+00008fbf	adresmui	24	1	0		
+00008fd7	adresmum	14	1	1		basemain
+00008fe5	cminstru	9	0	1		flagmain
+00008fee	cinstru	7	0	0		flagmain
+00008ff5	cinstrin	42	1	3		
+0000901f	cinstru3	24	0	0		tabinst
+00009037	cinstrux	1	1	0		
+00009038	cmmusic	9	0	1		flagmain
+00009041	cmusic	7	0	0		flagmain
+00009048	cmusin	5	1	1		
+000090ac	music1	1	0	0		
+000090c7	cdelmusic	5	0	1		
+000090eb	cquality	5	0	1		
+000090f1	csoundon	8	0	0		fsound
+000090f9	csoundoff	8	0	0		fsound
+00009101	cmusicon	8	0	0		fmusic
+00009109	cmusicoff	8	0	0		fmusic
+00009111	csound	7	0	0		flagmain
+00009118	csoundin	5	1	1		
+00009192	cmsound	12	0	1		flagmain
+0000919e	cdelsound	10	0	1		
+000091a8	cfopen	8	0	0		
+000091b0	cfopen1	12	0	1		
+000091bc	cfopen2	13	0	2		
+000091d8	cfclose	5	0	0		
+000091dd	cfcreat	2	0	0		
+000091df	cfcreat1	18	0	2		
+000091f1	cfdel	2	0	0		
+000091f3	cfdel1	10	0	1		
+000091fe	cfreadv	16	0	1		buffer
+0000921c	cfwritev	5	0	1		
+0000923b	cfwritei	4	0	0		
+0000923f	cfwriti1	12	0	1		
+0000924b	cfreadb	17	0	0		basemain
+0000925c	cfread0	14	0	0		
+0000926a	cfreadin	51	1	2		typepack,wordpack
+0000929d	freadin1	15	0	1		
+000092ac	freadin2	5	0	1		
+000092b1	freadin3	11	1	0		
+000092bc	cfread1	8	0	0		
+000092c4	cfread2	2	0	0		
+000092c6	cfreadbp	10	0	1		
+000092d0	cfreadbe	11	0	1		
+000092de	cfwriteb	17	0	0		basemain
+000092ef	cfwrit0	14	0	0		
+000092fd	cfwritin	19	1	0		
+00009310	cfwrit1	10	0	0		
+0000931a	cfwrit2	18	0	1		
+0000932c	cfwrit3	8	0	0		
+00009334	cfwrit4	2	0	0		
+00009336	cfwritbp	10	0	1		
+00009340	cfwritbe	11	0	1		
+0000934e	cplot	5	0	1		
+00009359	cdraw	5	0	1		
+00009364	cbox	5	0	1		
+0000936f	cboxf	5	0	1		
+0000937a	cink	5	0	1		
+00009386	cpaper	5	0	1		
+00009392	cpset	5	0	1		
+0000939d	cpmove	5	0	1		
+000093a8	cpmode	5	0	1		
+000093b4	cpicture	5	0	1		
+000093ba	cmouson	10	0	0		nomouse
+000093c4	cmouson1	28	0	1		fmouse,fremouse
+000093e0	cmousonx	1	0	0		
+000093e1	cmousoff	10	0	0		nomouse
+000093eb	cmousof1	21	0	1		fmouse
+00009400	cmousofx	1	0	0		
+00009401	cmouse	32	0	2		
+00009421	cdefmouse	12	0	1		flagmain
+00009450	cdefmou0	32	0	0		aun,mousprite
+00009488	defmousuit	11	1	0		
+00009493	cdefmou1	1	0	0		
+00009494	clipmouse	77	1	0		fenx1,fenx2,feny1,feny2,fmouse,oldmousx,oldmousy
+000094e1	clipmousx	4	0	0		
+000094e5	clipmousy	3	0	0		
+000094e8	itmouse	9	1	0		fmouse
+000094f1	itmouse0	47	0	2		fremouse,oldmousx,oldmousy
+00009520	itmouse1	23	0	2		oldmousx,oldmousy
+00009537	itmousex	20	1	0		fremouse
+0000954b	itmousey	1	0	0		
+0000954c	csetmouse	5	0	1		
+00009574	csetmou1	17	0	1		
+00009585	cpointpix	5	0	1		
+000095e3	cdefvect	19	0	0		
+000095f6	csetvect	8	0	0		
+000095fe	cdefworld	15	0	0		
+0000960d	cworld	8	0	0		
+00009615	cxyscroll	5	0	1		
+00009620	cprotect	5	0	1		
+0000967f	debappro2	13	0	0		
+00009694	calscal	41	2	0		azero,wcx
+000096bd	calsca1	30	0	0		azero,wcy
+000096db	calsca2	30	0	0		azero,wcz
+000096f9	calsca3	1	0	0		
+000096fa	capproach	5	0	1		
+00009724	capproa3	38	0	1		aun,azero
+0000974a	capproa5	26	0	0		adeux,aun,dtrois
+00009764	capproa2	43	0	0		adeux,dtrois
+0000978f	capproa4	1	0	0		
+00009790	cescape	5	0	1		
+000097ba	cescap3	38	0	1		aun,azero
+000097e0	cescap5	26	0	0		adeux,aun,dtrois
+000097fa	cescap2	43	0	0		adeux,dtrois
+00009825	cescap4	1	0	0		
+00009826	pparam	7	19	1		
+00009830	pparam1	9	1	1		
+00009841	gparam1	7	1	1		
+0000984e	gparam	6	126	0		calcsp
+00009854	param	3	20	0		
+00009857	params	10	2	0		toper
+00009861	gsparam	6	2	0		calcsp
+00009867	sparam	18	11	1		sd6,sd7
+00009879	oimmb	7	0	0		
+00009880	oimmw	6	0	0		
+00009886	oimmp	7	0	0		sd7
+0000988d	oimmp1	7	0	0		
+00009894	olocb	15	0	0		
+000098a3	olocw	11	0	0		
+000098ae	olocp	17	0	0		sd7
+000098bf	olocp1	8	0	0		
+000098c7	oloctc	15	0	1		
+000098d6	olocti	11	0	1		
+000098e1	oloctp	7	0	1		
+000098f2	oloctp1	8	0	0		
+000098fa	odirb	14	0	0		
+00009908	odirw	10	0	0		
+00009912	odirp	15	0	0		sd7
+00009921	odirp1	8	0	0		
+00009929	odirtc	16	0	1		
+00009939	odirti	12	0	1		
+00009945	odirtp	8	0	1		
+00009957	odirtp1	8	0	0		
+0000995f	omainb	20	0	0		basemain
+00009973	omainw	16	0	0		basemain
+00009983	omainp	19	0	0		basemain,sd7
+00009996	omainp1	8	0	0		
+0000999e	omaintc	23	0	1		basemain
+000099b5	omainti	19	0	1		basemain
+000099c8	omaintp	15	0	1		basemain
+000099e1	omaintp1	8	0	0		
+000099e9	ohimb	43	0	1		atent
+00009a14	ohimbx	1	0	0		
+00009a15	ohimw	39	0	1		atent
+00009a3c	ohimwx	1	0	0		
+00009a3d	ohimp	36	0	0		atent,sd7
+00009a61	ohimp1	8	0	0		
+00009a69	ohimtc	42	0	1		atent
+00009a93	ohimti	38	0	1		atent
+00009ab9	ohimtp	33	0	1		atent
+00009ae5	ohimtp1	8	0	0		
+00009aed	checkhimrb	25	1	1		atent
+00009b08	checkhimrb1	1	0	0		
+00009b09	checkhimrw	25	1	1		atent
+00009b24	checkhimrw1	1	0	0		
+00009b25	checkhimwb	25	2	1		atent
+00009b40	checkhimwb1	1	0	0		
+00009b41	checkhimww	25	2	1		atent
+00009b5c	checkhimww1	1	0	0		
+00009b5d	checkhimx	1	0	0		
+00009b5e	tabchar	20	12	0		
+00009b72	tabcha0	19	0	0		
+00009b85	tabcha1	31	0	0		
+00009ba4	tabcha2	9	0	0		
+00009bad	tabchap	13	0	0		
+00009bba	tabchap0	19	0	0		
+00009bcd	tabchap1	25	0	0		
+00009be6	tabchap2	8	0	0		
+00009bee	taberri	2	0	0		
+00009bf0	taberr	13	0	1		
+00009bff	taberr2	13	0	1		
+00009c0e	taberr3	13	0	1		
+00009c1d	tabint	20	12	0		
+00009c31	tabint0	22	0	0		
+00009c47	tabint1	31	0	0		
+00009c66	tabint2	9	0	0		
+00009c6f	tabintp	13	0	0		
+00009c7c	tabintp0	26	0	0		
+00009c96	tabintp1	33	0	0		
+00009cb7	tabintp2	12	0	0		
+00009cc3	tabstring	20	12	0		
+00009cd7	tabstr0	28	0	0		
+00009cf3	tabstr1	39	0	0		
+00009d1a	tabstr2	13	0	0		
+00009d27	tabstrp	17	0	0		
+00009d38	tabstrp0	28	0	0		
+00009d54	tabstrp1	33	0	0		
+00009d75	tabstrp2	12	0	0		
+00009d81	oand	5	0	1		
+00009d8a	oor	5	0	1		
+00009d93	oxor	5	0	1		
+00009d9c	oeqv	5	0	1		
+00009da8	oegal	5	0	1		
+00009dbb	odiff	5	0	1		
+00009dce	oinfeg	5	0	1		
+00009de1	osupeg	5	0	1		
+00009df4	oinf	5	0	1		
+00009e07	osup	5	0	1		
+00009e1a	oadd	5	0	1		
+00009e23	osub	5	0	1		
+00009e2f	omod	5	0	1		
+00009e45	omod1	4	0	0		
+00009e49	odiv	5	0	1		
+00009e5f	odiv1	7	0	0		
+00009e66	omul	5	0	1		
+00009e75	oneg	4	0	0		
+00009e79	oabs	8	0	0		
+00009e81	oabs1	1	0	0		
+00009e82	ornd	21	0	1		crnd
+00009e97	calcrnd	16	2	0		
+00009ea7	osgn	11	0	0		
+00009eb2	osgn1	1	0	0		
+00009eb3	osgn2	5	0	0		
+00009eb8	onot	4	0	0		
+00009ebc	cautobase	1	0	0		
+00009ebd	cautomode	5	0	1		
+00009ec3	cautofile	6	0	1		
+00009ec9	oinkey	9	0	1		
+00009ed2	oinkey2	4	0	0		
+00009ed6	tnumpad	13	0	0		
+00009ee4	oshiftkey	11	0	1		
+00009eef	oshiftkey2	4	0	0		
+00009ef3	ogetkey	9	0	1		
+00009efc	ojoy	11	0	1		
+00009f07	ojoykey	5	0	0		
+00009f0c	oprnd	24	0	1		
+00009f24	ofree	6	0	1		
+00009f2a	omodel	9	0	1		
+00009f33	oleft	24	0	1		sd7
+00009f4b	oright	13	0	1		sd7
+00009f58	oright1	25	0	0		sd7
+00009f71	oright3	6	0	0		sd7
+00009f77	oright2	9	0	0		
+00009f80	omid	27	0	1		sd7
+00009f9b	omid1	17	0	0		
+00009fac	omid2	3	0	0		
+00009faf	olen	7	0	0		sd7
+00009fb6	olen1	17	0	0		sd7
+00009fc7	oval	35	1	0		dzero,sd7
+00009fea	oval1	5	0	0		
+00009fef	ovaldec	42	0	0		dzero
+0000a019	ovalhex	1	0	0		
+0000a01a	ovalhex1	20	1	0		
+0000a02e	ovalhex2	23	1	1		
+0000a045	ovalhex3	18	0	1		
+0000a057	ovalfin	9	0	0		
+0000a060	ovalfin1	7	0	0		
+0000a067	oasc	14	0	0		sd7
+0000a075	ostr	17	0	1		sd7
+0000a086	ochr	15	0	0		sd7
+0000a095	oexistf	17	0	1		sd7
+0000a0a6	oexistf1	5	0	0		
+0000a0ab	ochange	42	0	0		
+0000a0d5	ochangex	4	1	0		
+0000a0d9	ochangea	16	0	2		
+0000a0e9	ochangeb	16	0	2		
+0000a0f9	ochangec	16	0	2		
+0000a109	ochangef	9	0	1		
+0000a112	ochanget	21	3	1		
+0000a127	ochangfa	5	0	0		
+0000a12c	ochangfb	5	0	0		
+0000a131	ochangfc	5	0	0		
+0000a136	ocountry	9	0	0		pays
+0000a13f	omip	9	0	1		
+0000a148	oconfig	9	0	1		
+0000a151	compsd7	14	6	0		sd6,sd7
+0000a15f	compsd71	22	0	0		
+0000a175	compsd73	12	0	0		
+0000a181	compsd72	9	0	0		
+0000a18a	pushsd7	7	1	0		sd7
+0000a191	pushsd71	7	0	0		
+0000a198	pushsd72	16	0	0		sd7
+0000a1a8	popsd7	7	3	0		sd7
+0000a1af	popsd71	10	0	0		
+0000a1b9	popsd72	2	0	0		
+0000a1bb	pushsd6	7	0	0		sd6
+0000a1c2	pushsd61	7	0	0		
+0000a1c9	pushsd62	16	0	0		sd6
+0000a1d9	popsd6	7	1	0		sd6
+0000a1e0	popsd61	10	0	0		
+0000a1ea	popsd62	2	0	0		
+0000a1ec	ospushacc	6	0	1		
+0000a1f2	ospile	28	0	1		sd6,sd7
+0000a20e	osegal	16	0	2		
+0000a21e	osegal1	5	0	0		
+0000a223	osdiff	16	0	2		
+0000a233	osdiff1	5	0	0		
+0000a238	osinfeg	16	0	2		
+0000a248	osinfeg1	5	0	0		
+0000a24d	ossupeg	16	0	2		
+0000a25d	ossupeg1	5	0	0		
+0000a262	osinf	16	0	2		
+0000a272	osinf1	5	0	0		
+0000a277	ossup	16	0	2		
+0000a287	ossup1	5	0	0		
+0000a28c	osadd	19	0	1		sd6,sd7
+0000a29f	osadd1	9	0	0		
+0000a2a8	osadd2	25	0	0		sd6,sd7
+0000a2c1	opushacc	7	0	0		
+0000a2c8	opile	10	0	0		
+0000a2d2	oeval	7	2	1		
+0000a2da	ofin	5	0	0		
+0000a2df	slocb	10	0	0		
+0000a2e9	slocw	11	0	0		
+0000a2f4	slocp	15	0	0		oldsd7
+0000a303	slocp1	9	0	0		
+0000a30c	sloctc	16	0	1		
+0000a31c	slocti	17	0	1		
+0000a32d	sloctp	8	0	1		
+0000a33c	sloctp1	9	0	0		
+0000a345	sdirb	11	0	0		
+0000a350	sdirw	12	0	0		
+0000a35c	sdirp	15	0	0		oldsd7
+0000a36b	sdirp1	9	0	0		
+0000a374	sdirtc	17	0	1		
+0000a385	sdirti	18	0	1		
+0000a397	sdirtp	9	0	1		
+0000a3a7	sdirtp1	9	0	0		
+0000a3b0	smainb	15	0	0		basemain
+0000a3bf	smainw	16	0	0		basemain
+0000a3cf	smainp	19	0	0		basemain,oldsd7
+0000a3e2	smainp1	9	0	0		
+0000a3eb	smaintc	24	0	1		basemain
+0000a403	smainti	25	0	1		basemain
+0000a41c	smaintp	17	0	1		basemain
+0000a435	smaintp1	9	0	0		
+0000a43e	shimb	38	0	1		atent
+0000a464	shimbx	1	0	0		
+0000a465	shimw	39	0	1		atent
+0000a48c	shimwx	1	0	0		
+0000a48d	shimp	34	0	0		atent,oldsd7
+0000a4af	shimp1	9	0	0		
+0000a4b8	shimtc	43	0	1		atent
+0000a4e3	shimti	46	0	1		atent
+0000a511	shimtp	34	0	1		atent
+0000a53b	shimtp1	9	0	0		
+0000a544	spile	7	0	0		
+0000a54b	seval	28	0	1		calcsp,tstore
+0000a568	alocb	10	0	0		
+0000a572	alocw	11	0	0		
+0000a57d	alocp	15	0	0		oldsd7
+0000a58c	alocp1	9	0	0		
+0000a595	alocp2	9	0	0		
+0000a59e	aloctc	16	0	1		
+0000a5ae	alocti	17	0	1		
+0000a5bf	aloctp	8	0	1		
+0000a5ce	aloctp1	9	0	0		
+0000a5d7	aloctp2	9	0	0		
+0000a5e0	adirb	9	0	0		
+0000a5e9	adirw	10	0	0		
+0000a5f3	adirl	1	0	0		
+0000a5f4	adirp	14	0	0		oldsd7
+0000a602	adirp1	9	0	0		
+0000a60b	adirp2	9	0	0		
+0000a614	adirtc	17	0	1		
+0000a625	adirti	18	0	1		
+0000a637	adirtp	9	0	1		
+0000a647	adirtp1	9	0	0		
+0000a650	adirtp2	9	0	0		
+0000a659	amainb	15	0	0		basemain
+0000a668	amainw	16	0	0		basemain
+0000a678	amainp	19	0	0		basemain,oldsd7
+0000a68b	amainp1	9	0	0		
+0000a694	amainp2	9	0	0		
+0000a69d	amaintc	24	0	1		basemain
+0000a6b5	amainti	25	0	1		basemain
+0000a6ce	amaintp	17	0	1		basemain
+0000a6e7	amaintp1	9	0	0		
+0000a6f0	amaintp2	9	0	0		
+0000a6f9	ahimb	38	0	1		atent
+0000a71f	ahimbx	1	0	0		
+0000a720	ahimw	39	0	1		atent
+0000a747	ahimwx	1	0	0		
+0000a748	ahimp	34	0	0		atent,oldsd7
+0000a76a	ahimp1	9	0	0		
+0000a773	ahimp2	9	0	0		
+0000a77c	ahimtc	43	0	1		atent
+0000a7a7	ahimti	44	0	1		atent
+0000a7d3	ahimtp	34	0	1		atent
+0000a7fd	ahimtp1	9	0	0		
+0000a806	ahimtp2	9	0	0		
+0000a80f	aeval	28	0	1		calcsp,tadd
+0000a82c	bootmain	30	1	1	MAIN.IO	ent,typent
+0000a84a	newmain	13	1	0		sd6,theroot
+0000a857	newmain1	24	0	0		sd7,slash
+0000a86f	newmain11	9	0	0		
+0000a878	newmain2	10	0	0		
+0000a882	newmain3	36	0	2	main.io	sd6,typent
+0000a8a6	loadmain	25	1	2		buffer
+0000a96d	loadmai1	126	0	4		buffer,finprog,fmouse,fonum,fswitch,mousflag,nbprog,ptscreen,timing,typepack,vprotect
+0000a9eb	loadmai2	10	0	1		
+0000a9f7	loadmai3	38	1	3		basemain,noment
+0000aa1d	inisprit	41	1	1		bdark,segdark
+0000aa46	inispri0	158	0	1		atexsprite,backsprite,basesprite,debsprit,libsprit,mousflag,mousprite,texsprite,tvsprite
+0000aae4	inispri1	36	0	0		debsprit,finsprit
+0000ab08	inispri2	26	0	0		
+0000ab22	loadprog	15	3	1		typent
+0000ab31	loadpro0	16	0	1		typent
+0000ab41	loadpro1	26	0	2		buffer
+0000abb1	loadpro3	55	0	2		typent
+0000abe8	loadpro30	6	0	1		
+0000abee	unpack	44	2	2		acinq,typepack
+0000ac1a	unpack20	64	0	0		aquatre,bufpack,modpack,typepack
+0000ac5a	unpacki	12	0	0		dtrois,modpack
+0000ac66	unpack0	19	2	1		dtrois
+0000ac79	unpacka	10	0	0		dquatre
+0000ac83	unpacka1	29	0	3		dquatre
+0000aca0	unpackb	17	0	1		dquatre
+0000acb1	unpackb1	24	0	2		dquatre
+0000acc9	unpackx	14	1	0		
+0000acd7	getpack	8	3	0		aquatre
+0000acdf	getpack0	10	0	0		dzero
+0000ace9	getpack1	16	0	1		bufpack
+0000ad01	putpack	5	2	0		
+0000ad06	putpack0	18	0	1		dzero,modpack
+0000ad18	putpack1	15	0	0		acinq,modpack
+0000ad27	putpack3	9	0	0		dtrois
+0000ad30	putpack4	18	0	0		dquatre,dtrois
+0000ad42	putpack2	2	1	0		
+0000ad44	unpack60	53	1	1		acinq,aquatre,bufpack
+0000adba	unpkstart	12	1	2		
+0000adc6	unpk601	14	0	2		
+0000add4	unpkdup	4	0	0		
+0000add8	unpkdup1	18	0	1		
+0000adea	unpkdup2	23	0	3		
+0000ae01	unpkoff	29	1	2		toffpk
+0000ae1e	unpkin	7	1	0		
+0000ae25	unpkin2	16	0	1		
+0000ae35	unpkbig	11	0	1		
+0000ae40	unpkbb	20	0	2		
+0000ae54	unpkend	7	2	0		acinq
+0000ae5b	unpkfini	8	2	0		acinq
+0000ae63	unpkfin0	4	0	0		
+0000ae67	unpkfin1	5	0	0		
+0000ae6c	getbit3	2	2	0		
+0000ae6e	getbitN	11	5	0		
+0000ae79	getbitN0b	11	0	0		
+0000ae84	getbitN1	4	0	0		
+0000ae88	getbitN1b	10	0	0		
+0000ae92	getbitN20	8	0	0		aquatre
+0000ae9a	getbitN2	13	0	0		
+0000aea7	getbitN2b	11	0	0		
+0000aeb2	getbitN3	29	0	1		bufpack
+0000aee4	unmixword	67	1	1		bufpack,unmixfin
+0000af2c	unmixw10	17	1	1		unmixfin
+0000af3d	unmixw11	5	0	0		
+0000af42	unmixw12	23	0	0		
+0000af59	unmixw0	5	1	0		
+0000af5e	unmixw1	4	1	0		
+0000af62	unmixw3	7	0	1		
+0000af69	unmixw2	43	0	1		
+0000af94	unmixwx	14	1	0		
+0000afa2	cshrink	5	0	1		
+0000b028	cshrink21	15	0	0		
+0000b037	cshrink4	12	0	0		aun
+0000b043	cshrink5	2	0	0		
+0000b045	cshrink3	76	0	1		finprog,funload
+0000b091	shrinkprog	32	2	0		
+0000b0b1	shrink2	58	0	0		aun,dernprog,finprog,funload
+0000b0eb	shrink8	27	0	0		dernprog,nbprog
+0000b106	shrink8x	21	0	0		atprog
+0000b11b	shrink9	13	0	0		
+0000b128	shrink9a	29	0	0		atent,debent,dernprog,typent
+0000b145	shrink11	6	1	0		
+0000b14b	shrink11a	45	0	1		funload,noment
+0000b178	shrink10	29	0	0		
+0000b195	shrink10b	16	0	0		
+0000b1a5	shrink10a	4	0	1		
+0000b1a9	shrink12	18	0	0		basemain,ptscreen
+0000b1bb	shrin12a	7	0	0		
+0000b1c2	shrin12c	25	0	0		
+0000b1db	shrin12d	14	0	0		
+0000b1e9	shrin12e	2	0	0		
+0000b1eb	shrin12b	12	0	0		
+0000b1f7	shrink13	14	0	0		
+0000b205	unloadprog	30	0	1		typent
+0000b223	unload20	12	0	1		
+0000b22f	unload21	12	0	2		
+0000b23b	unload22	25	0	0		atprog,aun
+0000b254	unload4	26	0	0		dernprog
+0000b26e	unload5	11	0	0		finprog
+0000b279	unload51	97	0	2		adeux,atrois,finprog,funload
+0000b2da	unloadx	1	0	0		
+0000b2db	unload0	14	3	0		
+0000b2e9	debprot	1	0	0		
+0000b2ea	findtype	23	4	0		atprog,nbprog
+0000b301	findtyp1	17	0	0		
+0000b312	findtyp2	12	0	1		
+0000b31e	findtyp3	2	0	0		
+0000b320	findtyp4	2	1	0		
+0000b322	initent	25	1	0		atent
+0000b33b	initent1	69	0	0		dernent,maxent,nbent
+0000b380	setprog	17	2	0		
+0000b391	setprog0	16	0	1		finmem,finprog
+0000b3a1	setprog7	9	0	0		atprog
+0000b3aa	setprog1	25	0	0		dernprog
+0000b3c3	setprog3	14	0	0		
+0000b3d1	setprog4	40	0	0		dernprog,maxprog,nbprog
+0000b3f9	setprog5	5	0	1		
+0000b3fe	setprog6	14	0	0		
+0000b40c	setproge	11	0	1		
+0000b419	setprogf	11	1	1		
+0000b426	liveprog	85	1	1		atent,dernent,ent,maxent,nbent,noment
+0000b47b	liveproe	5	0	0		
+0000b480	livemain	77	2	1		atent,debsprit,finent,noment
+0000b4cd	livemai1	216	0	0		noment
+0000b5a5	livee	11	0	1		
+0000b5b2	livef	11	1	1		
+0000b5bf	killent	41	1	0		atent,noment
+0000b5e8	killentx	22	0	0		ferase
+0000b5fe	killent0	69	0	1		atent,finent
+0000b643	killent4	17	1	0		noment
+0000b654	killent5	20	0	1		
+0000b668	killent3	47	0	0		dernent,noment
+0000b697	killent6	54	0	0		azero,ent,nbent
+0000b6cd	killme	29	0	1		ent
+0000b6ea	openland	92	1	2		atent
+0000b754	openlan0	34	0	1		talti
+0000b7a0	openlan1	64	0	3		landone
+0000b7e0	closeland	8	0	0		landone
+0000b7e8	affiland	275	1	3		atent,backmap,cliph,clipl,clipx1,clipx2,clipy1,clipy2,fenx1,fenx2,feny1,feny2,ftstpix,mapscreen,vbarcliph,vbarclipx2,vbarclipy1,wlogic,wloglarg,wlogx1,wlogy1
+0000b8fb	affilandin	29	0	2		
+0000b918	affilan1	56	0	2		cliph,clipl,landone
+0000b950	affilan2	67	0	0		logic,loglarg,logx1,logy1,switchland,wlogic,wloglarg,wlogx1,wlogy1
+0000b993	affilanx	60	1	0		logic,loglarg,logx1,logy1,wlogic,wloglarg,wlogx1,wlogy1
+0000b9cf	affilans	2	0	0		
+0000b9d1	affilanpix	12	0	3		
+0000b9dd	landtofen	161	1	0		backmap,cliph,clipy1,clipy2,fdoland,landone,mapscreen,vbarcliph,vbarclipx2,vbarclipy1,wlogic,wloglarg,wlogx1,wlogy1
+0000ba7e	landtofe0	46	0	0		cliph,clipl,landone
+0000baac	landtofe3	59	0	3		atent
+0000bae7	landtofe1	12	0	1		fdoland
+0000baf3	landtofe2	79	0	1		cliph,clipy1,logic,loglarg,logx1,logy1,wlogic,wloglarg,wlogx1,wlogy1
+0000bb42	spritland	16	1	0		
+0000bb52	spritlain	14	2	0		
+0000bb60	spritlab	18	0	1		
+0000bb72	spritlax	14	0	0		
+0000bb80	nouvsland	134	1	3		newad,newd,newf,newh,newl,newx,newy,newzoomx,newzoomy
+0000bc06	effsland	39	0	1		libsprit
+0000bc2d	landtopix	46	2	0		
+0000bc5b	landtop1	6	0	0		
+0000bc61	landtop2	32	0	0		
+0000bc81	landtop21	9	0	0		
+0000bc8a	landtop3	40	0	0		finram,zoombid
+0000bcb2	landtop4	135	0	1		newad,newd,newf,newx,newy,newzoomx,newzoomy
+0000bd39	landtop5	42	1	0		newzoomx,newzoomy
+0000bd63	landtop50	41	0	0		newzoomy,zcorrect
+0000bd8c	landtop7	43	0	0		newh,newzoomx,zcorrect
+0000bdb7	landtop6	81	0	0		newl,newx,newy,newzoomx,newzoomy
+0000be08	landtopx	14	0	0		
+0000be16	landtocot	80	0	1		newd,newx,newy,newzoomx,newzoomy
+0000be66	landtoperr	2	0	0		
+0000be68	spritaff	40	2	1		basesprite,spritnext,vbarshad
+0000be90	spritaff2	5	1	0		
+0000be95	spritaff3	43	1	2		
+0000bec0	spritaffy	4	0	0		
+0000bec4	spritaffx	27	0	0		spritnext,spritprof
+0000bedf	trigoland	625	2	1		tabcos,tabsin,vgamessag1
+0000c150	trigopix	744	0	1		eeyiso
+0000c438	lenstoland	136	1	0		
+0000c4c0	clandtopix	194	3	0		
+0000c582	clandtox4	19	0	0		
+0000c595	clandtox3	25	2	0		memxpix
+0000c5ae	clandtoy4	19	0	0		
+0000c5c1	clandtoy3	25	2	0		memypix
+0000c5da	clandtoz3	22	2	0		memxpix,memypix
+0000c5f0	clandtopx	1	1	0		
+0000c5f1	clandtox1	6	0	1		
+0000c5f7	clandtox2	6	0	1		
+0000c5fd	clandtoy1	6	0	1		
+0000c603	clandtoy2	6	0	1		
+0000c609	clandtoz1	6	0	1		
+0000c60f	clandtoz2	6	0	1		
+0000c615	clandtopyp	1	0	0		
+0000c616	clandtopy	29	0	1		
+0000c633	flandtopix	114	1	0		
+0000c6a5	flandtopx	1	0	0		
+0000c6a6	glandtopix	151	2	0		
+0000c73d	glandtopx	3	0	0		
+0000c740	hlandtopix	194	0	0		
+0000c802	hlandto13	22	2	0		
+0000c818	hlandto23	3	2	0		
+0000c81b	hlandto11	6	0	1		
+0000c821	hlandto12	6	0	1		
+0000c827	hlandto21	6	0	1		
+0000c82d	hlandto22	6	0	1		
+0000c833	pixtoland	263	1	0		
+0000c9f4	pointpi2	8	0	0		ntstpix
+0000c9fc	pointpi1	75	0	2		atent,cxtstpix,cytstpix,cztstpix,dtstpix,xtstpix,ytstpix
+0000ca47	pointpi3	26	1	0		ftstpix
+0000ca61	pointpi4	38	0	1		cxtstpix,cytstpix,cztstpix,dtstpix
+0000ca87	polarmov	185	2	0		tabcos,tabsin
+0000cb67	polaran2	12	0	0		
+0000cb89	getan1	17	0	0		
+0000cb9a	getan2	5	0	0		
+0000cb9f	getatan	53	0	0	---------------------------------./012234556678899::;;<<==>>>??@@@AAABBBCCCCDDDDEEEEFFFFGGGGGHHHHHHIIIIIIJJJJJJJKKKKKKKKLLLLLLLLLMMMMMMMMMMNNNNNNNNNNNNOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRRRRRRRRRRRSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY	
+0000cbd4	getatan1	8	0	0		
+0000cbdc	getatan2	12	0	0		
+0000cbe8	getatan3	28	0	1		tabcos
+0000cc04	getacot	53	0	0	---------------------------------./012234556678899::;;<<==>>>??@@@AAABBBCCCCDDDDEEEEFFFFGGGGGHHHHHHIIIIIIJJJJJJJKKKKKKKKLLLLLLLLLMMMMMMMMMMNNNNNNNNNNNNOOOOOOOOOOOOOOPPPPPPPPPPPPPPPPPQQQQQQQQQQQQQQQQQQQQQRRRRRRRRRRRRRRRRRRRRRRRRRSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY	
+0000cc39	getacot1	13	0	0		
+0000cc46	getacot2	8	0	0		
+0000cc4e	getacot3	28	0	1		tabsin
+0000cc6a	getanx	8	5	0		
+0000cc72	getanx1	6	0	0		
+0000cc78	getanv	17	0	1		
+0000cc89	getani	6	0	1		
+0000cc8f	getanh	18	0	1		
+0000cca1	walkland	44	1	0		matmask,walktete
+0000cccd	walklan0	31	0	0		basegs
+0000ccec	walklan1	261	0	1		tabcos,tabsin,walkcx,walkcy,walkcz,walkdx,walkdy,walkocz
+0000cdf1	walklan1b	79	0	1		walkcz,walkdx,walkdy,walkocz
+0000ce40	walklan1c	79	0	1		walkcz,walkdx,walkdy,walkocz
+0000ce8f	walklan2a	91	0	1		walkcz,walkdx,walkdy,walkocz
+0000ceea	walklan2b	91	0	1		walkcz,walkdx,walkdy,walkocz
+0000cf45	walklan2c	25	0	0		walktete
+0000cf5e	walklan21	283	0	1		tabcos,tabsin,walkdx,walkdy,walkhaut,walkocz
+0000d079	walklan8	10	0	0		
+0000d083	walklan9	41	0	0		
+0000d0ac	walklan9a	12	0	0		walktete
+0000d0b8	walklan9b	5	0	1		
+0000d0bd	walklan3	18	0	0		walkcz,walkocz
+0000d0cf	walklan5	44	0	0		walkcx,walkcy,walkcz,walkhaut
+0000d0fb	walklan6	27	0	0		walkcz,walkocz
+0000d116	headland	19	1	0		
+0000d129	headlan1	12	0	1		
+0000d135	headlan2	10	0	0		
+0000d13f	headlan3	17	1	1		
+0000d150	headlan4	10	0	0		
+0000d15a	headlan5	5	1	0		
+0000d15f	headlanx	1	0	0		
+0000d160	landalti	142	6	1		atlland,matmask
+0000d1ee	landals0	16	0	1		
+0000d21b	landals1	32	0	1		
+0000d23b	landaltop	45	0	0		
+0000d268	landalt2	11	0	1		
+0000d273	landalt1	2	0	0		
+0000d275	landaltx	4	4	0		
+0000d279	barland	45	1	0		vbarcliph,vbarclipy1,vbarhead
+0000d2a6	barland2	86	1	1		clipx1,ftstpix,precx,vbarbot
+0000d2fc	barlands	7	2	0		segfs
+0000d303	barlandx	6	1	0		
+0000d309	barclipv	51	0	0		clipy2,vbarclipy1
+0000d33c	barcv0	13	0	0		clipy2
+0000d349	barcv1	15	0	1		clipy2
+0000d358	tbarland	53	1	0		vbarcliph,vbarclipy1,vbarhead
+0000d38d	tbarland2	79	1	0		bothigh,clipx1,precx
+0000d3dc	tbarland4	60	0	0		bothigh,fbottom,vbarbot,vbartex
+0000d418	tbarland3	26	0	1		ftstpix
+0000d432	tbarclipv	59	0	0		clipy2,vbarclipy1
+0000d46d	tbarcv0	13	0	0		clipy2
+0000d47a	tbarcv1	15	0	1		clipy2
+0000d489	barlapix	30	0	0		
+0000d4a7	barlapi0	194	0	0		cxtstpix,cytstpix,cztstpix,dtstpix,etstpix,ntstpix,precx,xtstpix,ytstpix
+0000d569	barlapi3	5	0	0		
+0000d56e	baruni	9	2	0		
+0000d577	baruni2	37	0	0		precx,wloglarg,wlogy1
+0000d59c	barunib	16	0	0		adresi,solh
+0000d5ac	baruni3	15	0	1		
+0000d5bb	barsprite	137	1	1		atexsprite,mapscreen,purey,solh
+0000d644	barspr0	50	0	1		
+0000d676	barspr2	64	0	1		solh
+0000d6b6	barspr3	34	1	0		
+0000d6d8	barspr1	31	0	0		zoombid
+0000d6f7	barspr4	44	0	0		
+0000d723	barspr5	30	0	0		
+0000d741	barspr7	73	0	1		
+0000d78a	barsprix	14	0	0		
+0000d798	bartex	102	0	0		bloglarg,precx,vbarlarg,vbarmod,vbarzoomh,vbarzoomv,wloglarg
+0000d7fe	bartex2	31	0	0		
+0000d81d	bartex31	32	0	1		
+0000d83d	bartex3	20	0	0		
+0000d851	bartex5	50	1	0		vbaralias,vbarzoomv
+0000d883	bartex4	14	0	0		
+0000d891	bartexl	97	0	0		precx,vbarandh,vbarandv,vbarlarg,vbarotex,vbarshad,wlogy1
+0000d8f2	bartexla	18	0	0		segdark,vbarzoomh
+0000d904	bartexl0	27	0	0		vbarandh,vbarandv,vbarotex
+0000d91f	bartexl1	87	0	1		bloglarg,vbaralias,vbarandh,vbarlarg,vbarotex,vbarzoomv
+0000d976	bartexr	82	0	0		precx,vbarandh,vbarandv,vbarshad,wlogy1
+0000d9c8	bartexra	18	0	0		segdark,vbarzoomh
+0000d9da	bartexr0	27	0	0		vbarandh,vbarandv,vbarotex
+0000d9f5	bartexr1	69	0	1		bloglarg,vbaralias,vbarandh,vbarzoomv
+0000da3a	bartexm	98	0	0		precx,vbarandh,vbarandv,vbarshad,wlogy1
+0000da9c	bartexma	16	0	0		segdark,vbarzoomh
+0000daac	bartexmin	11	5	0		vbarbot
+0000dab7	bartexm0	28	0	0		vbarandh,vbarandv,vbarlarg,vbarotex
+0000dad3	bartexm1	46	0	0		vbarandh,vbarmod,vbarzoomv
+0000db01	bartexmx	51	0	1		bothigh,segfs,vbarbot,vbarlarg,vbartex
+0000db34	bartexb	69	0	0		bloglarg,precx,vbarlarg,vbarmod,vbarzoomh,vbarzoomv,wloglarg
+0000db79	bartexbin	55	1	0		botalt,bothigh
+0000dbb0	bartexb31	32	0	1		
+0000dbd0	bartexb3	20	0	0		
+0000dbe4	bartexb5	50	1	0		vbaralias,vbarzoomv
+0000dc16	bartexb4	13	0	0		precboti
+0000dc23	bartexbl	97	0	0		precx,vbarandh,vbarandv,vbarlarg,vbarotex,vbarshad,wlogy1
+0000dc84	bartexbla	18	0	0		segdark,vbarzoomh
+0000dc96	bartexbl0	27	0	0		vbarandh,vbarandv,vbarotex
+0000dcb1	bartexbl1	70	0	1		bloglarg,vbaralias,vbarandh,vbarotex,vbarzoomv
+0000dcf7	bartexbr	82	0	0		precx,vbarandh,vbarandv,vbarshad,wlogy1
+0000dd49	bartexbra	18	0	0		segdark,vbarzoomh
+0000dd5b	bartexbr0	27	0	0		vbarandh,vbarandv,vbarotex
+0000dd76	bartexbr1	61	0	1		bloglarg,vbaralias,vbarandh,vbarzoomv
+0000ddb3	bartexh	8	0	0		
+0000ddbb	bartexh2	59	0	0		vbarhead
+0000ddf6	bartexh31	28	0	1		
+0000de12	bartexh3	20	0	0		
+0000de26	bartexh5	66	1	0		vbaralial,vbaralias,vbarzoomv,wlogic
+0000de68	bartexh4	14	0	0		
+0000de76	bartexhl	142	0	0		precx,vbarandh,vbarandv,vbarlarg,vbarmid,vbarotex,vbarshad,wlogy1
+0000df04	bartexhla	20	0	0		segdark,vbarlarg,vbarotex
+0000df18	bartexhl0	9	0	0		vbarandh
+0000df21	bartexhl1	24	0	0		vbarandv
+0000df39	bartexhl3	36	0	0		bloglarg,vbarzoomh,vbarzoomv
+0000df5d	bartexhl4	15	0	0		vbaralial
+0000df6c	bartexhl5	42	0	1		vbarmid,vbarotex,vbarzoomh
+0000df96	bartexhr	121	0	0		precx,vbarandh,vbarandv,vbarmid,vbarshad,wlogy1
+0000e00f	bartexhra	20	0	0		segdark,vbarlarg,vbarotex
+0000e023	bartexhr0	9	0	0		vbarandh
+0000e02c	bartexhr1	24	0	0		vbarandv
+0000e044	bartexhr3	36	0	0		bloglarg,vbarzoomh,vbarzoomv
+0000e068	bartexhr4	15	0	0		vbaralial
+0000e077	bartexhr5	33	0	1		vbarmid,vbarzoomh
+0000e098	bartexhm	28	0	0		vbarzoomv
+0000e0b4	bartexhm4	102	0	0		precx,vbarandh,vbarandv,vbarmid,vbarshad,wlogy1
+0000e11a	bartexhma	18	0	0		segdark,vbarzoomh
+0000e12c	bartexhm0	28	0	0		vbarandh,vbarandv,vbarlarg,vbarotex
+0000e148	bartexhm1	17	0	0		
+0000e159	bartexhm2	57	0	1		vbarandh,vbarmid,vbarmod,vbarzoomv
+0000e192	doland	50	3	0		spritprof
+0000e1c4	doland0	33	0	2		atalti,spritnext
+0000e1e5	doland01	359	0	2		adresa,fprectop,fprectopa,precbota,precbotb,precbotc,prectopa,prectopb,prectopc,vgamessag1
+0000e34c	doland1	9	0	0		
+0000e355	dolanc	23	1	0		
+0000e36c	dolanc0	14	0	0		
+0000e37a	dolanc1	64	0	0		
+0000e3ba	dolanc11	29	0	1		
+0000e3d7	dolanc12	31	0	0		
+0000e3f6	dolanc13	24	0	0		
+0000e40e	dolanc14	34	1	0		
+0000e430	dolanc15	8	0	1		
+0000e438	dolanc18	11	0	0		
+0000e443	dolanc19	4	0	0		
+0000e447	dolanc20	8	1	0		adresa
+0000e44f	dolanc30	39	0	0		
+0000e476	dolanc2	14	0	0		
+0000e484	dolanc3	31	0	0		flandout
+0000e4a3	dolanc31	36	0	1		flandout
+0000e4c7	dolanc32	38	0	0		flandout
+0000e4ed	dolanc33	24	0	0		
+0000e505	dolanc34	34	1	0		
+0000e527	dolanc35	8	0	1		
+0000e52f	dolanc38	11	0	0		
+0000e53a	dolanc39	9	0	0		adresi
+0000e543	dobar	99	1	0		
+0000e5a6	dobarzz1	92	0	0		solh,vbarshad
+0000e602	dobar0	30	0	0		
+0000e620	dobar4	10	0	1		
+0000e62a	dobar1	27	0	1		
+0000e645	dobar2	14	0	0		fprectop,fprectopa
+0000e653	dobar3	2	1	0		
+0000e655	dolanc5	63	0	1		precx,vbarclipx2,vbarotex
+0000e694	dolancx	9	0	0		
+0000e69d	dolandin	88	1	1		vbarotex
+0000e6f5	doland50	21	0	1		
+0000e70a	doland51	22	0	0		
+0000e720	doland52	15	0	1		
+0000e72f	doland55	22	0	0		
+0000e745	doland56	15	1	1		
+0000e754	doland60	21	0	1		
+0000e769	doland61	22	0	0		
+0000e77f	doland62	15	0	1		
+0000e78e	doland65	22	0	0		
+0000e7a4	doland66	15	1	1		
+0000e7b3	doland70	21	0	1		
+0000e7c8	doland71	22	0	0		
+0000e7de	doland72	12	0	1		
+0000e7ea	doland75	22	0	0		
+0000e800	doland76	12	1	1		
+0000e80c	doland80	21	1	1		
+0000e821	doland81	22	0	0		
+0000e837	doland82	12	0	1		
+0000e843	doland85	22	0	0		
+0000e859	doland86	12	1	1		
+0000e865	doland7	35	8	0		
+0000e888	doland7a	50	0	0		
+0000e8ba	dolcor	206	0	1		vgamessag1
+0000e988	dolandb	21	0	1		spritprof
+0000e99d	doland8	63	0	0		
+0000e9dc	doland9	11	0	0		
+0000e9e7	doland9a	8	0	0		
+0000e9ef	doland9b	74	0	0		clipx1,clipy2,precx
+0000ea39	doland91	37	0	0		fprectop,fprectopa,vbarzoomh
+0000ea5e	doland92	48	0	2		basesprite
+0000ea8e	dotop	62	0	0		actux,adresa,flandout,notopa,precbota,prectopa
+0000eacc	dotopa1	99	0	0		solha
+0000eb2f	dotopa2	113	0	1		adresa,fprectopa,precbota,precbotc,prectopa,prectopc
+0000eba0	dotopa7	9	0	1		fprectopa
+0000eba9	dotopa3	36	0	0		precbotb,precbotc,prectopb,prectopc
+0000ebcd	dotopa4	23	0	0		prectopb,prectopc
+0000ebe4	dotopb4	8	0	0		
+0000ebec	dotopa60	23	0	0		precbotb,precbotc
+0000ec03	dotopa6	12	0	0		notopa
+0000ec0f	dotopa5	106	2	0		fbottom,solh
+0000ec79	dotop2	80	0	0		prectopi,toppixy
+0000ecc9	dotop21	14	0	1		fbottom
+0000ecd7	dotop23	24	0	0		
+0000ecef	dotop24	37	1	0		bothigh,precboti
+0000ed14	dotop22	40	0	1		botalt,fprectop,notopa
+0000ed60	dotop30	25	0	1		fbottom
+0000ed79	dotop31	11	0	0		
+0000ed84	dotop3	46	2	1		actux,prectopi
+0000edb2	dotop4	7	0	0		fprectop
+0000edb9	dotop6	9	0	1		
+0000edc2	skytofen	60	1	0		ftstpix
+0000edfe	skytofe1	76	0	0		clipx1,skyposy
+0000ee4a	skytofe2	29	0	0		clipl,skyposx
+0000ee67	skytofe3	52	0	0		clipl,clipx1,clipy1,skyleft,wloglarg,wlogy1
+0000ee9b	skytof1	32	0	0		cliph,clipy1,skyposy
+0000eebb	skytof10	24	0	0		clipl
+0000eed3	skytof11	10	0	0		
+0000eedd	skytof2	23	0	0		clipy1,skyposy
+0000eef4	skytof20	27	0	0		clipy2,skyposy
+0000ef0f	skytof22	43	0	0		clipy1,skyposy
+0000ef3a	skytof21	20	0	0		skyleft,skyposx
+0000ef4e	skytof3	9	0	0		
+0000ef57	skytof4	15	0	0		clipl
+0000ef66	skytof5	10	0	0		
+0000ef70	skytof6	36	0	0		cliph,clipy2,skyposy
+0000ef94	skytof61	43	0	0		clipl
+0000efbf	skytof7	10	0	0		
+0000efc9	skytofx	14	0	0		
+0000efd7	skytofpix	1	0	0		
+0000efd8	calclan0	47	3	0		signedx,vgamessag1
+0000f007	calclan1	28	0	0		signedy
+0000f023	calclan2	38	0	0		
+0000f049	calclan11	58	0	0		signedy,vgamessag1
+0000f083	calclan21	58	0	0		
+0000f0bd	calclan23	21	0	0		vgamessag1
+0000f0d2	calclan22	15	0	1		
+0000f0e1	calclan3	28	0	0		
+0000f0fd	calclan30	61	0	0		signedx
+0000f13a	calclan31	58	0	0		vgamessag1
+0000f174	calclan33	21	0	0		
+0000f189	calclan32	10	0	0		
+0000f193	calclan5	86	1	0		vgamessag1
+0000f1e9	calclan5a	26	0	0		
+0000f203	calclan5b	96	0	0		
+0000f263	calclanzz1	63	0	0		
+0000f2a2	calclanzz2	17	0	0		
+0000f2b3	calclan6a	30	0	0		
+0000f2d1	calclan6	28	0	0		
+0000f2ed	calclan7	188	0	0		
+0000f3a9	altiland	148	1	1		atalti
+0000f43d	altilan1	50	0	0		
+0000f46f	altilan2	36	0	0		
+0000f493	altilan3	76	0	0		fhorizon
+0000f4df	iniland	156	1	1		basegs,purey,purey2
+0000f57d	inilande	2	0	0		
+0000f57f	iniland3	8	0	0		atlland
+0000f587	iniland4	31	0	0		atlpix
+0000f5a6	iniland5	19	0	0		atalias
+0000f5b9	iniland6	4	0	0		
+0000f5bd	iniland7	47	0	0		
+0000f5ec	inilens	333	1	0		
+0000f739	initrigo	36	1	0		tabsin
+0000f75d	initrig1	39	0	0		tabcos
+0000f784	initrig2	20	0	0		
+0000f798	zoomcv	60	0	0		clipy1,clipy2
+0000f7d4	zoomcv0	28	0	1		clipy2
+0000f7f0	zoomch	60	0	0		clipx1,clipx2
+0000f82c	zoomch0	28	0	1		clipx2
+0000f848	zoomtofen	142	2	0		cliph,clipy1,ztfdlarg,ztfhaut,ztfhfac,ztflarg,ztfposy,ztfvfac
+0000f8d6	zoomtofv	66	1	0		clipl,clipx1,ztfhaut,ztflarg,ztfpixy,ztfposx
+0000f918	zoomtofh	105	1	0		ftstpix,wlogic,wloglarg,wlogy1,ztfdlarg,ztfhfac,ztflarg,ztflowy,ztfpixy,ztfposy
+0000f981	zoomtof1	53	0	0		ztfhfac,ztflowx,ztfposx
+0000f9b6	zoomtof2	38	0	0		vbarshad
+0000f9dc	zoomtof20	76	0	0		wloglarg,ztfdlarg,ztflarg,ztflowy,ztfmod,ztfvfac
+0000fa28	zoomtof3	14	0	0		ztflarg,ztflowx
+0000fa36	zoomtof4	9	0	0		
+0000fa3f	zoomtof5	22	0	0		ztfdlarg
+0000fa55	zoomtof6	15	0	0		ztfhaut,ztfmod
+0000fa64	zoomtofx	14	0	0		
+0000fa72	zoomtofd	7	0	0		segdark
+0000fa79	zoomtofd3	14	0	0		ztflarg,ztflowx
+0000fa87	zoomtofd4	12	0	0		
+0000fa93	zoomtofd5	22	0	0		ztfdlarg
+0000faa9	zoomtofd6	15	0	0		ztfhaut,ztfmod
+0000fab8	zoomtofdx	14	0	0		
+0000fac6	zoomtopix	66	0	0		xtstpix,ytstpix,ztfhaut,ztflarg
+0000fb08	zoomtop0	83	0	0		xtstpix,ytstpix,ztfhfac,ztfposx,ztfposy
+0000fb5b	zoomtop1	84	0	0		antstpix,atent,cxtstpix,cytstpix,cztstpix,dtstpix,etstpix
+0000fbaf	zoomtopx	5	0	0		
+0000fbb4	xzoomtof	54	0	0		ztfdlarg,ztfhfac,ztflowx,ztfposx
+0000fbea	xzoomtof2	38	0	0		vbarshad
+0000fc10	xzoomtof20	76	0	0		wloglarg,ztfdlarg,ztflarg,ztflowy,ztfmod,ztfvfac
+0000fc5c	xzoomtof3	14	0	0		ztflarg,ztflowx
+0000fc6a	xzoomtof4	9	0	0		
+0000fc73	xzoomtof5	22	0	0		ztfdlarg
+0000fc89	xzoomtof6	15	0	0		ztfhaut,ztfmod
+0000fc98	xzoomtofx	14	0	0		
+0000fca6	xzoomtofd	7	0	0		segdark
+0000fcad	xzoomtofd3	14	0	0		ztflarg,ztflowx
+0000fcbb	xzoomtofd4	12	0	0		
+0000fcc7	xzoomtofd5	22	0	0		ztfdlarg
+0000fcdd	xzoomtofd6	15	0	0		ztfhaut,ztfmod
+0000fcec	xzoomtofdx	14	0	0		
+0000fcfa	lineland	461	0	1		
+0000fec7	linelandf	14	0	0		
+0000fed5	drawl	141	1	1		code1,code2,p1code,p2code,savex1,savex2,savey1,savey2,wlinecol,wlinex1,wlinex2,wliney1,wliney2
+0000ff62	testw1	58	0	1		code1,code2,droitex,droitey,wlinex2,wliney2
+0000ff9c	testw2	45	0	1		droitex,droitey,p1code,wlinex1,wliney1
+0000ffc9	testw3	106	1	1		code1,code2,gauchx,gauchy,p1code,p2code,savex1,savex2,savey1,savey2,wlinex1,wlinex2,wliney1,wliney2
+00010033	testw4	31	0	1		gauchx,gauchy,wlinex1,wliney1
+00010052	drawit1	27	1	0		droitex,droitey,gauchx,gauchy
+0001006d	drawit2b	12	1	1		wlinecol
+00010079	drawend	14	0	0		
+00010087	drawit2	29	0	1		wlinex1,wlinex2,wliney1,wliney2
+000100a4	woister	63	2	0		clipxoli,clipxure,clipyoli,clipyure
+000100e3	findpoin	87	4	1		p2code,wlinex1,wlinex2,wliney1,wliney2
+0001013a	findw1	20	0	1		wlinex2,wliney2
+0001014e	findw2	25	0	1		p1code,wlinex1,wliney1
+00010167	fautre	18	0	0		wlinex2,wliney2
+00010179	fautre1	18	0	0		wlinex1,wliney1
+0001018b	fautre2	26	0	0		p1code
+000101a5	fautre3	25	0	1		p2code,wlinex2,wliney2
+000101be	fexit	9	0	0		p1code
+000101c7	ffin	1	1	0		
+000101c8	line	111	1	0		linecol,linex1,linex2,liney1,liney2,loglarg
+00010237	line01	24	0	0		liney1,liney2
+0001024f	line03	27	0	0		linejmp
+0001026a	line04	62	0	0		lineinc1,lineinc2,linex1,liney1,loglarg,physic
+000102a8	linevert	21	0	0		liney1,liney2
+000102bd	linev31	37	0	0		linecol,linex1,loglarg,physic
+000102e2	linev32	7	0	1		
+000102e9	linehori	45	0	1		linecol,linex1,liney1,loglarg,physic
+00010316	linelow	6	0	0		linecol
+0001031c	linelow1	15	0	1		lineinc1
+0001032b	linelow2	12	0	1		lineinc2
+00010337	linehigh	6	0	0		linecol
+0001033d	linehigh1	3	0	0		
+00010340	linehigh2	15	0	1		lineinc1
+0001034f	linehigh3	8	0	0		lineinc2
+00010357	linex	14	5	0		
+00010365	clrecran	45	0	0		physic
+00010392	inisound	117	1	2		bufmus,dmarate,mt_frectab,nbcan,nbcanmus,nbcansam,soundmode,tabsat,tabvol
+00010407	iniso0	19	0	1		
+0001041a	endsound	41	1	3		soundmode
+00010443	endso1	14	0	0		
+00010451	gosound	85	1	0		dmarate,soundmode
+000104a6	gosoundy	1	0	0		
+000104a7	offsound	58	4	1		canbuff,nbcansam,soundmode
+000104e1	offsoundall	13	0	0		canbuff,nbcansam
+000104ee	offsoundb	8	0	0		
+000104f6	offsoundx	13	1	0		
+00010503	offsoundy	1	0	0		
+00010504	goframe	113	1	0		dmarate,fsound,soundmode
+00010575	gofram3	7	0	1		
+0001057c	gofram1	14	0	0		
+0001058a	gofram2	7	0	0		
+00010591	goframx	19	1	0		
+000105a4	goframy	6	0	0		
+000105b9	takecan1	19	0	0		canbuff
+000105cc	takecan2	11	0	0		
+00010610	gomusic3a	19	0	0		tabinst
+00010623	gomusic3b	17	0	0		muadlib
+00010634	gomusic3c	24	0	1		muadlib
+0001064c	gomusicy	1	0	0		
+0001064d	offmusic	33	1	1		muchute,soundmode
+0001066e	offmusicx	13	0	0		
+0001067b	offmusicy	1	0	0		
+0001067c	itmusic	6	1	1		
+00010682	volmusic	1	0	0		
+00010684	gerecan	34	1	0		canbuff,faddcan,fdmaswap,fyacan,nbcansam
+000106a6	gerecan10	14	0	1		fsound
+000106b4	gerecan11	12	0	0		nbcanmus
+000106c0	gerecan12	14	0	1		fmusic
+000106ce	gerecan13	57	0	1		dmacalc,fdmaswap,fyacan,ofyacan
+00010707	gerecan2	24	0	0		basesat,dmabuff,dmacalc
+0001071f	gerecan3	33	0	0		fdmaswap,fyacan,ofyacan
+00010740	gerecanx	1	1	0		
+00010741	calccan	8	2	0		
+00010749	calccan0	56	0	0		dmabuff,faddcan,fyacan,tabvol
+00010781	calccan1	27	0	0		
+0001079c	calccan3	15	1	0		
+000107ab	calccan4	14	0	0		
+000107b9	calccan5	17	0	1		
+000107ca	calccan6	7	0	0		
+000107d1	mcalcan	7	0	0		faddcan
+000107d8	mcalccan1	27	0	0		
+000107f3	mcalccan3	15	1	0		
+00010802	mcalccan4	14	0	0		
+00010810	mcalccan5	17	0	1		
+00010821	mcalccan6	5	0	0		
+00010826	mcalccan7	14	0	0		
+00010834	inicanaux	13	1	0		canbuff,nbcan
+00010841	inicanau1	21	0	0		cfarslee3
+00010856	tabvolcalc	29	1	0		tabvol
+00010873	tabvol_Ca	15	0	0		tabvol
+00010882	tabvol_Cb	7	0	0		
+00010889	tabvol_Cc	16	0	0		
+00010899	tabvol_Cc1	40	0	0		basesat,tabsat
+000108c1	tabsatc0	18	0	0		
+000108d3	tabsatc1	10	0	0		
+000108dd	tabsatc2	7	0	0		
+000108e4	tabvol_Cx	14	0	0		
+000108f2	setcanvol	5	7	0		
+000108f7	setcanrate	5	9	0		
+000108fc	newcanptr	36	2	0		
+00010920	newcanpt1	19	0	0		
+00010933	newcanptx	1	0	0		
+00010934	startcan	6	2	0		
+0001093a	stopcan	6	1	0		
+00010940	sb_init	187	1	1		citmusic,citmusic0,dmacalc,dmahear,dmarate,mt_facspeed,sb_calcofs,sb_calcpage,sb_hearbuff,sb_hearofs,sb_hearpage
+000109fb	sb_init1	60	0	1		
+00010a37	sb_initerr	43	0	0		sb_adresse,sb_irq,sb_irq_mask
+00010a62	sb_initok	18	0	0		
+00010a74	sb_end	60	1	1		olditdma,rolditdma,sb_irqvect
+00010ab0	sb_itdma	208	1	2		dmacalc,dmahear,fdmaswap,sb_adresse,sb_calcofs,sb_calcpage,sb_compteur,sb_dmarate,sb_hearofs,sb_hearpage,segds
+00010b80	sb_itdma2	26	0	1		citmusic,citmusic0
+00010b9a	sb_itdmax	14	0	0		
+00010ba8	sb_waitc	13	2	0		sb_adresse
+00010bb5	sb_wait	8	0	0		
+00010bbd	sb_dspr	19	1	0		sb_adresse
+00010bd0	sb_dspr1	15	0	0		
+00010bdf	sb_dspw	6	0	0		
+00010be5	sb_send	13	4	0		sb_adresse
+00010bf2	sb_sendw	9	0	0		
+00010bfb	sb_int_test	113	0	1		sb_adresse,sb_compteur,segds
+00010c6c	sb_detirq	143	1	4		olditdma,prev_irq,prov_mask,rolditdma,sb_compteur,sb_irqtest
+00010cfb	sb_deti_wait	24	0	1		sb_compteur
+00010d13	sb_deti_found	25	0	0		prov_mask,sb_irq_mask,sb_irqtest,sb_irqvect
+00010d2c	sb_deti_end	45	1	1		olditdma,prev_irq,rolditdma,sb_irqtest
+00010d59	sb_detport	4	1	0		
+00010d5d	sb_detp_r	12	0	0		
+00010d69	sb_detp_l	20	0	0		
+00010d7d	sb_detp_v	32	0	0		sb_adresse
+00010d9d	sb_detp_found	16	0	0		sb_adresse
+00010dad	sb_rate	46	1	1		dmarate,sb_dmarate
+00010ddb	outadlib	39	10	2		regadlib
+00010e02	inadlib	13	3	0		regadlib
+00010e0f	wait34	12	1	0		
+00010e1b	waitlup1	7	0	0		
+00010e22	wait33	12	1	0		
+00010e2e	waitlup2	7	0	0		
+00010e35	ad_setvoice	25	1	0		
+00010e4e	ad_setvoic1	84	0	3		ad_top
+00010ea2	ad_setvoice4	17	0	0		mt_PeriodTable
+00010eb3	ad_setvoice2	13	0	0		
+00010ec0	ad_setvoice3	19	0	1		
+00010ed3	ad_setop	6	1	0		
+00010ed9	ad_setop1	23	0	0		
+00010ef0	ad_setop5	31	0	0		mt_volume
+00010f0f	ad_setop4	101	0	1		
+00010f74	ad_setvol	37	0	1		ad_top
+00010f99	ad_setvol5	31	0	0		mt_volume
+00010fb8	ad_setvol4	8	0	1		
+00010fc0	ad_setfreq	45	1	1		ad_freq
+00010fed	ad_setperc	42	0	2		
+00011017	ad_offvoice	21	1	1		
+0001102c	ad_offperc	34	0	2		
+0001104e	ad_reset	45	0	1		
+0001107b	ad_off	18	0	0		
+0001108d	ad_off1	20	0	1		
+000110a1	ad_off2	38	0	1		
+000110c7	mt_init	97	1	1		canbuff,mt_v0,mt_v1,mt_v2,mt_v3
+00011128	mt_frecalc	35	1	0		mt_frectab
+0001114b	mt_frecal1	23	0	0		
+00011162	mt_gomusic	212	1	2		mt_adlib,mt_atta0,mt_attac,mt_break,mt_chut0,mt_chute,mt_counter,mt_duree,mt_facspeed,mt_pattern,mt_patternbase,mt_patternpos,mt_play,mt_songbase,mt_songpos,mt_songposmax,mt_speed,mt_volum0,mt_volume,muattac,muchute,muduree,muvolume
+00011240	mt_gom1	29	0	1		lastkey,timeclock
+0001125d	mt_gomx	14	1	0		
+0001126b	mt_offmusic	48	1	0		mt_break,mt_chut0,mt_chute,mt_play,mt_volum0,mt_volume
+0001129b	mt_offmusi1	1	0	0		
+0001129c	mt_endmusic	36	2	0		mt_adlib,mt_break,mt_play,mt_v0
+000112c0	mt_endmus1	18	0	1		
+000112d2	mt_instrument	28	1	0		
+000112ee	mt_inst0	45	0	1		mt_begin,mt_start,mt_stop,tabinst
+0001131b	mt_inst5	18	0	1		mt_start
+0001132d	mt_inst1	5	0	0		
+00011332	mt_inst3	25	1	1		mt_begin
+0001134b	mt_inst2	12	0	0		
+00011357	mt_inst20	41	1	0		mt_finetune,mt_stop,mt_vol
+00011380	mt_inst4	13	1	0		
+0001138d	mt_instx	14	0	0		
+0001139b	mt_music	10	2	0		mt_play
+000113a5	mt_music0	26	0	2		mt_patternpos,mt_speed
+000113bf	mt_music1	12	0	0		mt_counter,mt_speed
+000113cb	v_cad	25	0	1		mt_counter
+000113f7	mt_NoNewNote	10	0	2		
+00011401	mt_NoNewAllChannels	54	1	1		mt_v0,mt_v1,mt_v2,mt_v3
+00011437	mt_GetNewNote	72	1	2		mt_counter,mt_v0,mt_v1,mt_v2,mt_v3
+0001147f	atachute	69	1	1		mt_atta0,mt_attac,mt_break,mt_volum0
+000114c4	atachuted	21	0	1		mt_duree
+000114d9	atachutec	29	0	0		mt_chut0,mt_chute
+000114f6	atachutey	7	1	0		mt_volume
+000114fd	atachutex	14	1	0		
+0001150b	atachutee	19	0	1		
+0001151e	ad_playvoice	17	1	1		
+0001152f	ad_plvskip	107	0	2		mt_patternpos,mt_start
+0001159a	ad_playvoicex	5	1	0		
+0001159f	mt_playvoice	14	1	1		mt_adlib
+000115ad	mt_playvoic0	17	0	1		
+000115be	mt_plvskip	113	0	1		mt_begin,mt_finetune,mt_start,mt_stop,mt_vol,mt_volume
+0001162f	mt_setregs	21	0	1		
+00011644	mt_setregs2	51	0	2		
+00011677	mt_DoSetFineTune	7	0	2		
+0001167e	mt_ChkTonePorta	10	0	2		
+00011688	mt_SetPeriod	20	2	0		
+0001169c	mt_ftuloop	18	0	0		mt_PeriodTable
+000116ae	mt_ftufound	50	0	1		mt_PeriodTable
+000116e0	mt_ftucnt	10	0	0		
+000116ea	mt_vibnoc	10	0	0		
+000116f4	mt_trenoc	70	0	5		mt_frectab,mt_volume
+0001173a	mt_SetDMA	28	1	0		mt_pattdeltime,mt_pattdeltime2,mt_patternpos
+00011756	mt_dskc	24	0	0		mt_pattdeltime2,mt_patternpos
+0001176e	mt_dska	39	0	0		mt_patternbase,mt_patternpos,mt_pbreakflag,mt_pbreakpos
+00011795	mt_nnpysk	20	0	0		mt_patternbase,mt_patternpos
+000117a9	mt_NextPosition	66	0	0		mt_patternbase,mt_patternpos,mt_pbreakpos,mt_posjumpflag,mt_songpos,mt_songposmax
+000117eb	mt_NextPosition2	42	0	0		mt_pattern,mt_patternbase,mt_patternpos,mt_songbase,mt_songpos
+00011815	mt_NoNewPosYet	10	1	0		mt_posjumpflag
+0001181f	mt_CheckEfx	28	1	2		
+0001183b	mt_c0	10	0	1		
+00011845	mt_c1	10	0	0		
+0001184f	mt_c2	10	0	0		
+00011859	mt_c3	10	0	1		
+00011863	mt_c4	10	0	1		
+0001186d	mt_c5	10	0	1		
+00011877	mt_c6	10	0	1		
+00011881	SetBack	35	0	2		mt_frectab
+000118a4	mt_c7	10	0	1		
+000118ae	mt_c8	1	0	0		
+000118af	mt_PerNop	24	3	1		mt_frectab
+000118c7	mt_arpeggio	82	1	1		mt_PeriodTable,mt_counter
+00011919	mt_arploop	16	0	0		
+00011929	FUN_00011929	24	1	1		mt_frectab
+00011941	FUN_00011941	59	1	0		mt_counter,mt_lowmask
+0001197c	mt_PortaUskip	24	0	1		mt_frectab
+00011994	FUN_00011994	84	1	1		mt_counter,mt_frectab,mt_lowmask
+000119e8	mt_SetTonePorta	37	1	0		mt_PeriodTable
+00011a0d	mt_StpLoop	71	0	0		
+00011a54	mt_ClearTonePorta	7	0	0		
+00011a5b	FUN_00011a5b	15	1	0		
+00011a6a	mt_TonePortNoChange	77	1	1		
+00011ab7	mt_TonePortaSetPer	38	1	0		mt_PeriodTable
+00011add	mt_GlissLoop	20	0	0		
+00011af1	mt_GlissFound	26	0	1		mt_frectab
+00011b0b	FUN_00011b0b	35	1	0		
+00011b2e	FUN_00011b2e	116	1	1		mt_VibratoTable,mt_frectab
+00011ba2	FUN_00011ba2	10	1	2		
+00011bac	FUN_00011bac	10	1	2		
+00011bb6	FUN_00011bb6	160	1	1		mt_VibratoTable,mt_volume
+00011c6c	FUN_00011c6c	87	3	1		mt_volume
+00011cc3	FUN_00011cc3	62	1	0		mt_pattern,mt_patternbase,mt_patternpos,mt_pbreakpos,mt_posjumpflag,mt_songbase,mt_songpos
+00011d01	FUN_00011d01	54	1	1		mt_vol,mt_volume
+00011d37	FUN_00011d37	36	1	0		mt_pbreakpos,mt_posjumpflag
+00011d5b	FUN_00011d5b	37	1	0		mt_counter,mt_facspeed,mt_speed
+00011d80	FUN_00011d80	67	5	7		
+00011dc3	FUN_00011dc3	170	2	10		
+00011e6b	FUN_00011e6b	10	2	0		
+00011e76	FUN_00011e76	17	1	0		
+00011e87	FUN_00011e87	116	1	4		mt_counter,mt_frectab,mt_volume
+00011efb	FUN_00011efb	21	1	0		mt_counter
+00011f10	FUN_00011f10	20	1	0		mt_counter
+00011f24	FUN_00011f24	39	1	1		mt_counter,mt_volume
+00011f4b	FUN_00011f4b	29	1	0		mt_counter
+00011f69	FUN_00011f69	30	1	0		mt_counter
+00011f87	FUN_00011f87	50	2	0		mt_FunkTable
+00011fb9	fentotv	138	2	0		fenx1,fenx2,feny1,feny2,loglarg,physic,wlogic
+00012043	clrfen	127	4	0		fenx1,fenx2,feny1,feny2,wlogic,wloglarg
+000120c3	FUN_000120c3	55	1	0		clipx2,clipy2
+000120fa	fenclip2	34	0	0		clipx1,clipy1
+0001211c	fenclip4	27	0	0		blocx1,clipx1
+00012137	fenclip5	28	0	0		blocy1,clipy1
+00012153	fenclip6	28	0	0		blocx2,clipx2
+0001216f	fenclip7	178	0	14		blocy2,clipy2
+00012221	pixel256	78	5	0		blocx1,blocx2,loglarg,mods
+0001226f	pixel256h	34	0	0		blocx1,blocx2,blocy2,modd
+00012291	itkey4	136	0	0		blocx1,blocy1,loglarg,wlogic
+00012319	pixel16	76	8	0		blocx1,blocx2,loglarg,mods
+00012365	pixel16h	127	0	0		blocx1,blocx2,blocy1,blocy2,modd,mods,odd
+000123e4	pixel16o	138	0	0		blocx1,blocx2,blocy1,loglarg,odd,wlogic
+0001246e	FUN_0001246e	63	1	1		modd,mods
+000124ad	FUN_000124ad	67	1	1		modd,mods
+000124f0	FUN_000124f0	26	1	1		modd,mods
+0001250a	FUN_0001250a	33	1	1		modd,mods
+0001252b	FUN_0001252b	18	1	1		odd
+0001253d	FUN_0001253d	20	1	1		odd
+00012551	FUN_00012551	85	1	1		modd,mods,odd,valcol
+000125a6	FUN_000125a6	89	1	1		modd,mods,odd,valcol
+000125ff	FUN_000125ff	18	1	1		odd
+00012611	FUN_00012611	20	1	1		odd
+00012625	FUN_00012625	75	1	1		modd,mods,odd,valcol
+00012670	FUN_00012670	84	1	1		modd,mods,odd,valcol
+000126c4	FUN_000126c4	35	1	1		modd,valcol
+000126e7	FUN_000126e7	602	1	3		atent,blocx1,blocx2,blocy1,blocy2,maplig,mapligdep,mapoffx1,mapoffx2,mappix,mappiy,mapsprite,segdark,vchartcol0,vchartncol,vdestomh
+0001282b	ofreec	33	0	0		mapcol,mapoffx1
+0001284c	destomapa1	86	0	0		mapcol,maplig,mapligdep,mapmod,mappiy
+000128a2	destomapc1	7	0	0		maplig
+000128a9	destomap0	187	0	1		mapcol,mapcol0,maplig,maplig0,mapmod,mappix,mappix0,mappiy
+00012964	FUN_00012964	14	1	0		
+00012972	mapchar	117	1	0		blocy1,blocy2,maplig0,mappiy
+000129e7	mapchar1	566	0	0		blocy2,mapcol,mapcol0,mapoffx1,mapoffx2,mappix,wlogic,wloglarg,wlogx1,wlogy1
+00012d51	io_close	105	0	1		blocx1,blocx2,vchartproc,vdestoml
+00012dba	descha19	139	1	0		blocx1,blocy2,moduchart,modulpix,moduly,modumap,modumap16,wloglarg,wlogx1,wlogy1,xdeschart,ydeschart
+00012e45	io_read0	30	0	0		vdestoml,wlogic,wloglarg
+00012e63	io_read2	39	0	0		moduchart,modumap16,xdeschart
+00012e8a	descha31	11	0	0		vchartproc
+00012e95	descha32	77	0	0		modulpix,moduly,modumap,vdestomh,xdeschart,ydeschart
+00012f70	chartpe4	13	0	0		
+00012f97	hpalet	30	4	0		mpalet,rpalet
+00012fc7	vhpalet1	55	0	0		
+00012ffe	backtofen	138	1	0		backmap,clipx1,clipx2,clipy1,clipy2,logic,loglarg
+00013088	fentolog	168	2	0		clipx1,clipx2,clipy1,clipy2,logic,loglarg,wlogic,wloglarg,wlogy1
+00013130	phytolog	71	1	3		fmouse,logic,physic
+00013177	initv	68	1	0		basevideo,freqvbl,loglarg,physic,vblok
+000131ca	FUN_000131ca	1	3	0		
+000131cb	syncvbl	18	1	0		
+00013221	pcx_code	169	0	1		oldit0A,regcrtc,regvrend,vblbit,vblcount
+000132ca	vinivbl2	76	0	1		vblcount,vblok
+0001331d	vendvbl	71	1	1		oldit0A,regcrtc,regintc,vblok
+00013364	itvbl	143	0	2		ftopal,regcrtc,regvrend,segds,vblcount
+000133f3	FUN_000133f3	63	2	2		fnopal,ftopal,palt,palt0
+00013432	topalet	109	3	0		ftopal,mpalet,pald,tpalet
+0001349f	FUN_0001349f	37	4	2		
+000134c4	cesc3	63	1	0		loglarg,oldmousx,oldmousy,physic
+00013503	vmousedra0	26	0	0		oldmousx
+0001351d	vmousedra1	148	0	0		loglarg,mousadres
+000135b1	cstarta4	69	1	0		loglarg,mousbuff,oldmousx,oldmousy,physic
+000135f6	vmousesav0	26	0	0		oldmousx
+00013610	vmousesav1	56	0	0		loglarg,physic
+00013648	mouserase	49	5	0		loglarg,mousbuff,physic
+00013679	cloop16	33	0	0		
+0001369a	mouseralog	82	1	0		logic,loglarg,mousbuff
+000136ec	inifilm	160	2	2		timeclock
+000137b4	endfilm	49	2	2		
+000137e5	endfilm1	22	0	1		
+000137fb	cfont	14	0	0		
+00013809	runfilm	267	1	3		cliph,clipl,clipx1,clipx2,clipy1,clipy2,fenx1,fenx2,feny1,feny2,loglarg,physic,timeclock,wlogic,wloglarg,wlogx1,wlogy1
+00013914	runfilmx	14	1	0		
+00013924	FUN_00013924	57	3	2		
+00013945	flitofen1	49	2	4		
+00013978	flitofen3	19	2	0		
+0001398c	flitofen0	16	0	0		
+0001399c	fli_inifile	56	0	2		
+000139e0	FUN_000139e0	25	1	0		
+000139f9	fli_fill00	217	0	1		
+00013ad2	fli_fill31	33	0	0		
+00013af4	fli_init	32	1	0		
+00013b20	FUN_00013b20	51	1	1		endframe
+00013b54	FUN_00013b54	107	1	6		endframe
+00013bc9	FUN_00013bc9	78	1	1		freqvbl
+00013c18	fli_pal	101	1	3		fdarkpal,mpalet
+00013c80	FUN_00013c80	95	1	0		wlogic
+00013ce4	FUN_00013ce4	25	1	0		wlogic
+00013d00	FUN_00013d00	53	1	0		wlogic
+00013d35	fli_firsttrans	66	0	0		wlogic
+00013d78	fli_data	16	1	0		wlogic
+00013d88	error	322	27	5		charmode,filename,mpalet,nerror,te
+00013eca	errorx	18	0	1		
+00013f08	_malloc	5	2	0		
+00013f10	__cinit	6	1	1		
+00013f16	FUN_00013f16	27	1	1		__x386_get_abs_address
+00013f31	__dodtors	32	1	0		
+00013f51	__exit	9	4	0		
+00013f5a	___faterr	34	0	1		
+00013f7c	__cexit	25	0	1		_full,_partial
+00013f95	__c_exit	25	0	1		_full,_partial
+00013fae	_exit	160	3	3		__atexitp,__fcloseallp,__hookexitp,_full,_partial
+00014050	__x32_mouse_init	140	0	0		__dosx_zero_base_selector
+000140dc	__x32_mouse_term	5	1	0		
+0001411c	__allocinit	1	0	0		
+00014120	__nmalloc	142	0	2		__baslnk,scsky1
+000141b0	__nfree	161	1	2		__baslnk,__data_bottom,__heapbottom
+00014254	_getDS	6	0	0		
+0001425a	_MK_FP	10	0	0		
+00014264	_FP_SEG	6	1	0		
+0001426c	_read	36	0	0		__doserrno
+00014290	_write	4	1	0		
+00014294	_dos_open	15	0	0		
+000142a3	_dos_close	28	0	0		__doserrno
+000142bf	_open	214	0	0		__dos
+00014395	_sopen	58	0	0		__dos
+000143cf	_creat	16	0	0		
+000143df	_dos_creat	27	0	0		__doserrno
+000143fa	_close	14	0	0		
+0001440b	_rename	17	0	0		
+0001441c	_remove	26	0	0		__doserrno
+00014436	__dos_sethandlecount	40	0	0		__dos,__osminor
+0001445e	_lseek	42	0	0		__doserrno
+00014488	_filesize	49	0	0		__doserrno
+000144b9	_isatty	25	0	0		
+000144d2	_access	45	0	0		
+00014500	_coreleft	5	0	0		
+00014508	__x32_memlock	43	0	0		__doserrno
+00014533	__x32_memunlock	6	0	0		
+00014539	__x32_mk_protected_ptr	47	0	0		__dosx_zero_base_selector
+00014568	__x32_free_protected_ptr	42	0	0		__dosx_zero_base_selector
+00014592	__x32_get_abs_address	24	1	0		
+000145aa	__x32_map_physical_address	61	0	0		__dosx_zero_base_ptr
+000145e7	__x32_coreleft	66	0	0		__baslnk,__data_bottom
+00014629	__x32_allcoreleft	54	0	0		__baslnk,__data_bottom

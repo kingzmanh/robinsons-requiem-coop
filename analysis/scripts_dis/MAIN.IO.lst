@@ -1,0 +1,57 @@
+; MAIN.IO: 14 distinct executed instructions (runtime coverage only)
+0405dd 42 cstop
+0405de 1f ceval
+    0405df 06 olocb  0x3cc2
+0405e2 14 cbz24  0x0004 0x00 [d7==0 => jmp dn +0x000004]
+0405ea 1f ceval
+    0405eb 00 oimmb  0x00
+0405ed 12 cbz8  0xee [d7==0 => jmp up -0x12]
+044a8e 1f ceval
+    044a8f 38 oeval
+    044a90 06 olocb  0x3c9f
+    044a93 54 osup
+    044a94 00 oimmb  0x00
+    044a96 3a ofin  [ = 0]
+044a97 14 cbz24  0x0006 0x00 [d7==0 => jmp dn +0x000006]
+044aa1 1f ceval
+    044aa2 00 oimmb  0x00
+044aa4 14 cbz24  0x0003 0x00 [d7==0 => jmp dn +0x000003]
+044aab 1f ceval
+    044aac 38 oeval
+    044aad 6a oinkey  [""] [0]
+    044aae 4a oegal
+    044aaf 00 oimmb  0x70
+    044ab1 40 opushacc
+    044ab2 6a oinkey  [""] [0]
+    044ab3 4a oegal
+    044ab4 00 oimmb  0x50
+    044ab6 44 oor
+    044ab7 36 opile
+    044ab8 3a ofin  [ = 0]
+    044aad 6a oinkey  ["F1"] [187]
+    044ab2 6a oinkey  ["F1"] [187]
+    044aad 6a oinkey  ["Escape"] [27]
+    044ab2 6a oinkey  ["Escape"] [27]
+    044aad 6a oinkey  ["F2"] [188]
+    044ab2 6a oinkey  ["F2"] [188]
+    044aad 6a oinkey  ["F3"] [189]
+    044ab2 6a oinkey  ["F3"] [189]
+    044aad 6a oinkey  ["F4"] [190]
+    044ab2 6a oinkey  ["F4"] [190]
+    044aad 6a oinkey  ["F5"] [191]
+    044ab2 6a oinkey  ["F5"] [191]
+    044aad 6a oinkey  ["F6"] [192]
+    044ab2 6a oinkey  ["F6"] [192]
+    044aad 6a oinkey  ["F7"] [193]
+    044ab2 6a oinkey  ["F7"] [193]
+    044aad 6a oinkey  ["F8"] [194]
+    044ab2 6a oinkey  ["F8"] [194]
+    044aad 6a oinkey  ["F9"] [195]
+    044ab2 6a oinkey  ["F9"] [195]
+    044aad 6a oinkey  ["F10"] [196]
+    044ab2 6a oinkey  ["F10"] [196]
+044ab9 14 cbz24  0x0048 0x00 [d7==0 => jmp dn +0x000048]
+044b05 1f ceval
+    044b06 74 oshiftkey
+044b07 14 cbz24  0x0217 0x00 [d7==0 => jmp dn +0x000217]
+044d22 42 cstop

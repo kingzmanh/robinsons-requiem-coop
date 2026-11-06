@@ -1,0 +1,48 @@
+; SKYJUN.IO: 40 instructions, 178/42976 bytes, entries ['0x18']
+  000018: cscreen 0x0152
+  00001b: cscsky oimmb[0x01] oimmb[0x01] oimmb[0x00]
+  000022: ceval (omainb[0x3bf7] oegal[oimmb[0x00]])
+  00002b: cbz24 -> 0x00c8
+  00002f: cfindtyp 0x000f sdirw[0x52]
+  000034: cclock oimmb[0x0f]
+L000037:
+  000037: ceval (ohimw[0x0052,0x0000] oinf[oimmw[0x0190]])
+  000043: cbz24 -> 0x00c1
+  000047: cfindtyp 0x0015 sdirw[0x52]
+  00004c: ceval (odirw[0x52] odiff[oimmb[0xff]])
+  000054: cbz24 -> 0x005b
+  000058: casleep odirw[0x52]
+L00005b:
+  00005b: cfindtyp 0x0020 sdirw[0x52]
+  000060: ceval (odirw[0x52] odiff[oimmb[0xff]])
+  000068: cbz24 -> 0x006f
+  00006c: casleep odirw[0x52]
+L00006f:
+  00006f: cfindtyp 0x0003 sdirw[0x52]
+  000074: casleep odirw[0x52]
+  000077: cfindtyp 0x0009 sdirw[0x52]
+  00007c: casleep odirw[0x52]
+  00007f: clive 0x0011 sdirw[0x52]
+  000084: csleep 
+  000085: cfindtyp 0x0003 sdirw[0x52]
+  00008a: cwakeup odirw[0x52]
+  00008d: cfindtyp 0x0009 sdirw[0x52]
+  000092: cwakeup odirw[0x52]
+  000095: cfindtyp 0x0015 sdirw[0x52]
+  00009a: ceval (odirw[0x52] odiff[oimmb[0xff]])
+  0000a2: cbz24 -> 0x00a9
+  0000a6: cwakeup odirw[0x52]
+L0000a9:
+  0000a9: cfindtyp 0x0020 sdirw[0x52]
+  0000ae: ceval (odirw[0x52] odiff[oimmb[0xff]])
+  0000b6: cbz24 -> 0x00bd
+  0000ba: cwakeup odirw[0x52]
+L0000bd:
+  0000bd: cjmp24 -> 0x00c8
+L0000c1:
+  0000c1: cstop 
+  0000c2: ceval oimmb[0x00]
+  0000c5: cbz16 -> 0x0037
+L0000c8:
+  0000c8: csleep 
+  0000c9: cexit 

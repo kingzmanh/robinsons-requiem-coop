@@ -1,0 +1,42 @@
+; SCASCADE.IO: 30 instructions, 130/33856 bytes, entries ['0x18', '0x1c']
+  000018: cjmp24 -> 0x003c
+  00001c: cstore oscan sdirw[0x54]
+  000020: cswitch2 odirw[0x54] base -32768 0->0x0036 1->0x002e
+  00002a: cjmp24 -> 0x003a
+L00002e:
+  00002e: cjsr24 -> 0x0071
+  000032: cjmp24 -> 0x003a
+L000036:
+  000036: cjsr24 -> 0x0082
+L00003a:
+  00003a: cscanclr 
+  00003b: cstop 
+L00003c:
+  00003c: cswitch1 omainb[0x184d] 0x1->0x004e 0x8->0x005b
+  00004a: cjmp24 -> 0x0064
+L00004e:
+  00004e: cset oimmw[0x1880] oimmw[0x0320] oimmb[0x0a]
+  000057: cjmp24 -> 0x0064
+L00005b:
+  00005b: cset oimmw[0x07a0] oimmw[0x0400] oimmb[0x5a]
+L000064:
+  000064: cclock oimmb[0x0a]
+  000067: cinteron 
+  000068: cscanon 
+  000069: casleepon 
+  00006a: csleep 
+L00006b:
+  00006b: cstop 
+  00006c: ceval oimmb[0x00]
+  00006f: cbz8 -> 0x006b
+L000071:
+  000071: cstore oimmb[0x01] sdirb[0x52]
+  000076: csound oimmb[0x00] oimmb[0xff] oimmb[0x7f] oimmb[0xff] oimmb[0x0a]
+  000081: cret 
+L000082:
+  000082: ceval odirb[0x52]
+  000085: cbz24 -> 0x0099
+  000089: cstore oimmb[0x00] sdirb[0x52]
+  00008e: csound oimmb[0x00] oimmb[0xff] oimmb[0x7f] oimmb[0x01] oimmb[0x0a]
+L000099:
+  000099: cret 

@@ -1,0 +1,1156 @@
+; MESSAGE.IO: 816 instructions, 9246/10448 bytes, entries ['0x18']
+  000018: cscreen 0x0052
+  00001b: cfindtyp 0x0007 sdirw[0x5c]
+  000020: ceval (odirw[0x5c] odiff[oimmb[0xff]])
+  000028: cbz24 -> 0x002f
+  00002c: ckill odirw[0x5c]
+L00002f:
+  00002f: cstore oimmb[0x01] sdirw[0x4e]
+  000034: cclock oimmb[0x05]
+  000037: cswitch2 odirb[0x4c] base 29 0->0x047e 1->0x0463 2->0x043e 3->0x0427 4->0x0409 5->0x03e7 6->0x03d5 7->0x03b9 8->0x03aa 9->0x038c 10->0x0379 11->0x035f 12->0x034a 13->0x017c 14->0x0330 15->0x0312 16->0x02ff 17->0x02ef 18->0x02df 19->0x02df 20->0x02df 21->0x02d0 22->0x02d0 23->0x02d0 24->0x02b0 25->0x0293 26->0x0287 27->0x017c 28->0x017c 29->0x106c 30->0x0497 31->0x04ad 32->0x04c7 33->0x04e4 34->0x04f4 35->0x050a 36->0x0521 37->0x0538 38->0x0553 39->0x0563 40->0x0572 41->0x0582 42->0x059a 43->0x05b6 44->0x05cc 45->0x05e0 46->0x0603 47->0x0621 48->0x0646 49->0x0669 50->0x0689 51->0x06a4 52->0x06c2 53->0x06d0 54->0x06e6 55->0x0700 56->0x070c 57->0x071b 58->0x0735 59->0x0747 60->0x0756 61->0x0767 62->0x077f 63->0x106c 64->0x106c 65->0x106c 66->0x0790 67->0x07a6 68->0x07c7 69->0x07e2 70->0x0800 71->0x0816 72->0x106c 73->0x082d 74->0x0840 75->0x084e 76->0x0860 77->0x087d 78->0x0896 79->0x08ae 80->0x106c 81->0x08bf 82->0x08d1 83->0x08df 84->0x08f7 85->0x0909 86->0x0923 87->0x0931 88->0x0944 89->0x0957 90->0x096f 91->0x0983 92->0x0991 93->0x09a8 94->0x09bf 95->0x09ce 96->0x09e3 97->0x106c 98->0x0a07 99->0x0a25 100->0x0a3e 101->0x0a4f 102->0x0a6a 103->0x0a7a 104->0x0a88 105->0x0a99 106->0x0aa9 107->0x0ab8 108->0x0ad2 109->0x0ae9 110->0x0b06 111->0x0b15 112->0x0b36 113->0x0b5a 114->0x0b7b 115->0x0b97 116->0x0ba6 117->0x0bb2 118->0x106c 119->0x106c 120->0x106c 121->0x106c 122->0x106c 123->0x106c 124->0x106c 125->0x0bc7 126->0x0c44 127->0x0c7c 128->0x106c 129->0x106c 130->0x0cc3 131->0x0cc3 132->0x0d0e 133->0x0d31 134->0x0d53 135->0x0d60 136->0x0d6d 137->0x0d7a 138->0x0dae 139->0x0dbb 140->0x0deb 141->0x0e1b 142->0x0e5f 143->0x0ea3 144->0x0eb0 145->0x0ebd 146->0x0eed 147->0x0f1d 148->0x0f60 149->0x0fa3 150->0x0ffd 151->0x1058 152->0x106c 153->0x106c 154->0x106c 155->0x1060 156->0x1068
+  000178: cjmp24 -> 0x106c
+L00017c:
+  00017c: cstore (odirb[0x4d] opushacc oimmb[0x01] omainti[0x0f3e]) sdirw[0x56]
+  000189: cstore (odirw[0x56] opushacc odirb[0x4d] opushacc oimmb[0x02] omainti[0x0f3e] omul[opile]) sdirw[0x58]
+  00019b: cstore oimmb[0x01] sdirb[0x54]
+  0001a0: ceval (odirw[0x56] oegal[oimmb[0x01]])
+  0001a8: cbz24 -> 0x01e3
+  0001ac: ceval (odirb[0x4c] oegal[oimmb[0xfe]])
+  0001b4: cbz24 -> 0x01cf
+  0001b8: cstore oimmp['BOUTEILLE VIDE'] sdirp[0x5e]
+  0001cb: cjmp24 -> 0x01df
+L0001cf:
+  0001cf: cstore oimmp['GOURDE VIDE'] sdirp[0x5e]
+L0001df:
+  0001df: cjmp24 -> 0x027f
+L0001e3:
+  0001e3: cjsr24 -> 0x11d5
+  0001e7: ceval (odirb[0x4c] oegal[oimmb[0xfe]])
+  0001ef: cbz24 -> 0x0206
+  0001f3: cadd oimmp[' DE WHISKY'] adirp[0x5e]
+  000202: cjmp24 -> 0x027f
+L000206:
+  000206: ceval (odirb[0x4c] oabs opushacc oimmb[0x00] omainti[0x195e] osup[oimmb[0x00]])
+  000215: cbz24 -> 0x024a
+  000219: cadd oimmp[' REMPLIE DE LAIT DE STEGOSAURUS OLIBRIUS'] adirp[0x5e]
+  000246: cjmp24 -> 0x027f
+L00024a:
+  00024a: ceval (odirb[0x4c] oabs opushacc oimmb[0x00] omainti[0x195e] oegal[oimmb[0x00]])
+  000259: cbz24 -> 0x0274
+  00025d: cadd oimmp[" D'EAU POTABLE"] adirp[0x5e]
+  000270: cjmp24 -> 0x027f
+L000274:
+  000274: cadd oimmp[" D'EAU"] adirp[0x5e]
+L00027f:
+  00027f: cjmp24 -> 0x1092
+L000287:
+  000287: cstore oimmp['SEL'] sdirp[0x5e]
+  00028f: cjmp24 -> 0x106c
+L000293:
+  000293: cstore oimmp['FEUILLE DE MAJUARINA'] sdirp[0x5e]
+  0002ac: cjmp24 -> 0x106c
+L0002b0:
+  0002b0: cstore oimmp["FRUIT DU L'YK S'YK D'YK"] sdirp[0x5e]
+  0002cc: cjmp24 -> 0x106c
+L0002d0:
+  0002d0: cstore oimmp['VIANDE'] sdirp[0x5e]
+  0002db: cjmp24 -> 0x106c
+L0002df:
+  0002df: cstore oimmp['POISSON'] sdirp[0x5e]
+  0002eb: cjmp24 -> 0x106c
+L0002ef:
+  0002ef: cstore oimmp['LOMBRIC'] sdirp[0x5e]
+  0002fb: cjmp24 -> 0x106c
+L0002ff:
+  0002ff: cstore oimmp['CHAMPIGNON'] sdirp[0x5e]
+  00030e: cjmp24 -> 0x106c
+L000312:
+  000312: cstore oimmp['MACROLEPIOTA RHACODES'] sdirp[0x5e]
+  00032c: cjmp24 -> 0x106c
+L000330:
+  000330: cstore oimmp['TRANCHE DE CACTUS'] sdirp[0x5e]
+  000346: cjmp24 -> 0x106c
+L00034a:
+  00034a: cstore oimmp["OEUF D'AIGLE"] sdirp[0x5e]
+  00035b: cjmp24 -> 0x106c
+L00035f:
+  00035f: cstore oimmp['BRASSICA OLERACEA'] sdirp[0x5e]
+  000375: cjmp24 -> 0x106c
+L000379:
+  000379: cstore oimmp['CITROUILLE'] sdirp[0x5e]
+  000388: cjmp24 -> 0x106c
+L00038c:
+  00038c: cstore oimmp['BOULETTE DE SCHAMALHO'] sdirp[0x5e]
+  0003a6: cjmp24 -> 0x106c
+L0003aa:
+  0003aa: cstore oimmp['PATATE'] sdirp[0x5e]
+  0003b5: cjmp24 -> 0x106c
+L0003b9:
+  0003b9: cstore oimmp["FRUIT DE L'AHRYS-AH"] sdirp[0x5e]
+  0003d1: cjmp24 -> 0x106c
+L0003d5:
+  0003d5: cstore oimmp['ARTICHAUT'] sdirp[0x5e]
+  0003e3: cjmp24 -> 0x106c
+L0003e7:
+  0003e7: cstore oimmp['CUCURBITACEE INDETERMINEE'] sdirp[0x5e]
+  000405: cjmp24 -> 0x106c
+L000409:
+  000409: cstore oimmp["POIRE 'BLANCHE NEIGE'"] sdirp[0x5e]
+  000423: cjmp24 -> 0x106c
+L000427:
+  000427: cstore oimmp["POMME 'NEWTON'"] sdirp[0x5e]
+  00043a: cjmp24 -> 0x106c
+L00043e:
+  00043e: cstore oimmp["GRAPPE DITE 'DE LA NOURRICE'"] sdirp[0x5e]
+  00045f: cjmp24 -> 0x106c
+L000463:
+  000463: cstore oimmp['TORTUE EPILEPTIQUE'] sdirp[0x5e]
+  00047a: cjmp24 -> 0x106c
+L00047e:
+  00047e: cstore oimmp['FLEUR DES CHAMPS'] sdirp[0x5e]
+  000493: cjmp24 -> 0x106c
+L000497:
+  000497: cstore oimmp['ASPIRINE MU44'] sdirp[0x5e]
+  0004a9: cjmp24 -> 0x106c
+L0004ad:
+  0004ad: cstore oimmp['ANTIBIOTIQUE ML44'] sdirp[0x5e]
+  0004c3: cjmp24 -> 0x106c
+L0004c7:
+  0004c7: cstore oimmp['ANTISPASMODIQUE MV44'] sdirp[0x5e]
+  0004e0: cjmp24 -> 0x106c
+L0004e4:
+  0004e4: cstore oimmp['QUININE'] sdirp[0x5e]
+  0004f0: cjmp24 -> 0x106c
+L0004f4:
+  0004f4: cstore oimmp['VITAMINE MY44'] sdirp[0x5e]
+  000506: cjmp24 -> 0x106c
+L00050a:
+  00050a: cstore oimmp['TRANQUILLISANT'] sdirp[0x5e]
+  00051d: cjmp24 -> 0x106c
+L000521:
+  000521: cstore oimmp['SOMNIFERE MC44'] sdirp[0x5e]
+  000534: cjmp24 -> 0x106c
+L000538:
+  000538: cstore oimmp['CAPSULE DE CYANURE'] sdirp[0x5e]
+  00054f: cjmp24 -> 0x106c
+L000553:
+  000553: cstore oimmp['BANDAGE'] sdirp[0x5e]
+  00055f: cjmp24 -> 0x106c
+L000563:
+  000563: cstore oimmp['GARROT'] sdirp[0x5e]
+  00056e: cjmp24 -> 0x106c
+L000572:
+  000572: cstore oimmp['ATTELLE'] sdirp[0x5e]
+  00057e: cjmp24 -> 0x106c
+L000582:
+  000582: cstore oimmp['FIL ET AIGUILLE'] sdirp[0x5e]
+  000596: cjmp24 -> 0x106c
+L00059a:
+  00059a: cstore oimmp["SERINGUE D'ATROPINE"] sdirp[0x5e]
+  0005b2: cjmp24 -> 0x106c
+L0005b6:
+  0005b6: cstore oimmp['SERINGUE VIDE'] sdirp[0x5e]
+  0005c8: cjmp24 -> 0x106c
+L0005cc:
+  0005cc: cstore oimmp['ASPIROVENIN'] sdirp[0x5e]
+  0005dc: cjmp24 -> 0x106c
+L0005e0:
+  0005e0: cstore oimmp["FLACON D'ANESTHESIANT MW44"] sdirp[0x5e]
+  0005ff: cjmp24 -> 0x106c
+L000603:
+  000603: cstore oimmp["PIQURE D'ANESTHESIANT"] sdirp[0x5e]
+  00061d: cjmp24 -> 0x106c
+L000621:
+  000621: cstore oimmp['FLACON SERUM ANTI-VENIN MS44'] sdirp[0x5e]
+  000642: cjmp24 -> 0x106c
+L000646:
+  000646: cstore oimmp['PIQURE DE SERUM ANTI-VENIN'] sdirp[0x5e]
+  000665: cjmp24 -> 0x106c
+L000669:
+  000669: cstore oimmp['FLACON DE MORPHINE MH44'] sdirp[0x5e]
+  000685: cjmp24 -> 0x106c
+L000689:
+  000689: cstore oimmp['PIQURE DE MORPHINE'] sdirp[0x5e]
+  0006a0: cjmp24 -> 0x106c
+L0006a4:
+  0006a4: cstore oimmp["FLACON D'ANTISEPTIQUE"] sdirp[0x5e]
+  0006be: cjmp24 -> 0x106c
+L0006c2:
+  0006c2: cstore oimmp['HACHE'] sdirp[0x5e]
+  0006cc: cjmp24 -> 0x106c
+L0006d0:
+  0006d0: cstore oimmp['COUP DE POING'] sdirp[0x5e]
+  0006e2: cjmp24 -> 0x106c
+L0006e6:
+  0006e6: cstore oimmp['CHARGEUR DE LASER'] sdirp[0x5e]
+  0006fc: cjmp24 -> 0x106c
+L000700:
+  000700: cstore oimmp['ARC'] sdirp[0x5e]
+  000708: cjmp24 -> 0x106c
+L00070c:
+  00070c: cstore oimmp['FLECHE'] sdirp[0x5e]
+  000717: cjmp24 -> 0x106c
+L00071b:
+  00071b: cstore oimmp['COUTEAU DE SURVIE'] sdirp[0x5e]
+  000731: cjmp24 -> 0x106c
+L000735:
+  000735: cstore oimmp['BRANCHAGE'] sdirp[0x5e]
+  000743: cjmp24 -> 0x106c
+L000747:
+  000747: cstore oimmp['COLLET'] sdirp[0x5e]
+  000752: cjmp24 -> 0x106c
+L000756:
+  000756: cstore oimmp['OSSEMENT'] sdirp[0x5e]
+  000763: cjmp24 -> 0x106c
+L000767:
+  000767: cstore oimmp['BATTERIE PIEGEE'] sdirp[0x5e]
+  00077b: cjmp24 -> 0x106c
+L00077f:
+  00077f: cstore oimmp['BATTERIE'] sdirp[0x5e]
+  00078c: cjmp24 -> 0x106c
+L000790:
+  000790: cstore oimmp['RASOIR A MAIN'] sdirp[0x5e]
+  0007a2: cjmp24 -> 0x106c
+L0007a6:
+  0007a6: cstore oimmp['PASTILLE DE DESINFECTION'] sdirp[0x5e]
+  0007c3: cjmp24 -> 0x106c
+L0007c7:
+  0007c7: cstore oimmp['EPINGLE A NOURRICE'] sdirp[0x5e]
+  0007de: cjmp24 -> 0x106c
+L0007e2:
+  0007e2: cstore oimmp['CANNE A PECHE AMORCEE'] sdirp[0x5e]
+  0007fc: cjmp24 -> 0x106c
+L000800:
+  000800: cstore oimmp['CANNE A PECHE'] sdirp[0x5e]
+  000812: cjmp24 -> 0x106c
+L000816:
+  000816: cstore oimmp['TORPILLE RX-T0'] sdirp[0x5e]
+  000829: cjmp24 -> 0x106c
+L00082d:
+  00082d: cstore oimmp['FIL DE FER'] sdirp[0x5e]
+  00083c: cjmp24 -> 0x106c
+L000840:
+  000840: cstore oimmp['LIANE'] sdirp[0x5e]
+  00084a: cjmp24 -> 0x106c
+L00084e:
+  00084e: cstore oimmp['ALLUMETTE'] sdirp[0x5e]
+  00085c: cjmp24 -> 0x106c
+L000860:
+  000860: cstore oimmp['PISTOLET DE DETRESSE'] sdirp[0x5e]
+  000879: cjmp24 -> 0x106c
+L00087d:
+  00087d: cstore oimmp['FUSEE ECLAIRANTE'] sdirp[0x5e]
+  000892: cjmp24 -> 0x106c
+L000896:
+  000896: cstore oimmp['PEAU DE REPTILE'] sdirp[0x5e]
+  0008aa: cjmp24 -> 0x106c
+L0008ae:
+  0008ae: cstore oimmp['FOURRURE'] sdirp[0x5e]
+  0008bb: cjmp24 -> 0x106c
+L0008bf:
+  0008bf: cstore oimmp['FEUILLAGE'] sdirp[0x5e]
+  0008cd: cjmp24 -> 0x106c
+L0008d1:
+  0008d1: cstore oimmp['PLUME'] sdirp[0x5e]
+  0008db: cjmp24 -> 0x106c
+L0008df:
+  0008df: cstore oimmp['TORCHE HALOGENE'] sdirp[0x5e]
+  0008f3: cjmp24 -> 0x106c
+L0008f7:
+  0008f7: cstore oimmp['TEE SHIRT'] sdirp[0x5e]
+  000905: cjmp24 -> 0x106c
+L000909:
+  000909: cstore oimmp['COCKTAIL EXPLOSIF'] sdirp[0x5e]
+  00091f: cjmp24 -> 0x106c
+L000923:
+  000923: cstore oimmp['LANCE'] sdirp[0x5e]
+  00092d: cjmp24 -> 0x106c
+L000931:
+  000931: cstore oimmp['CASSE-TETE'] sdirp[0x5e]
+  000940: cjmp24 -> 0x106c
+L000944:
+  000944: cstore oimmp['PILE URG1B'] sdirp[0x5e]
+  000953: cjmp24 -> 0x106c
+L000957:
+  000957: cstore oimmp['POCHE DE PLASMA'] sdirp[0x5e]
+  00096b: cjmp24 -> 0x106c
+L00096f:
+  00096f: cstore oimmp['LASER LOURD'] sdirp[0x5e]
+  00097f: cjmp24 -> 0x106c
+L000983:
+  000983: cstore oimmp['LASER'] sdirp[0x5e]
+  00098d: cjmp24 -> 0x106c
+L000991:
+  000991: cstore oimmp['TORCHE ETEINTE'] sdirp[0x5e]
+  0009a4: cjmp24 -> 0x106c
+L0009a8:
+  0009a8: cstore oimmp['TORCHE ALLUMEE'] sdirp[0x5e]
+  0009bb: cjmp24 -> 0x106c
+L0009bf:
+  0009bf: cstore oimmp['RESINE'] sdirp[0x5e]
+  0009ca: cjmp24 -> 0x106c
+L0009ce:
+  0009ce: cstore oimmp['FAIRE UN FEU'] sdirp[0x5e]
+  0009df: cjmp24 -> 0x106c
+L0009e3:
+  0009e3: cstore oimmp['REMPLACER LA TORCHE ALLUMEE'] sdirp[0x5e]
+  000a03: cjmp24 -> 0x106c
+L000a07:
+  000a07: cstore oimmp['LANCE-ROQUETTES RX-F0'] sdirp[0x5e]
+  000a21: cjmp24 -> 0x106c
+L000a25:
+  000a25: cstore oimmp['COLLIER INDIGENE'] sdirp[0x5e]
+  000a3a: cjmp24 -> 0x106c
+L000a3e:
+  000a3e: cstore oimmp['SALPETRE'] sdirp[0x5e]
+  000a4b: cjmp24 -> 0x106c
+L000a4f:
+  000a4f: cstore oimmp['SOUFRE PULVERULENT'] sdirp[0x5e]
+  000a66: cjmp24 -> 0x106c
+L000a6a:
+  000a6a: cstore oimmp['CHARBON'] sdirp[0x5e]
+  000a76: cjmp24 -> 0x106c
+L000a7a:
+  000a7a: cstore oimmp['VESTE'] sdirp[0x5e]
+  000a84: cjmp24 -> 0x106c
+L000a88:
+  000a88: cstore oimmp['PANTALON'] sdirp[0x5e]
+  000a95: cjmp24 -> 0x106c
+L000a99:
+  000a99: cstore oimmp['RANGERS'] sdirp[0x5e]
+  000aa5: cjmp24 -> 0x106c
+L000aa9:
+  000aa9: cstore oimmp['BONNET'] sdirp[0x5e]
+  000ab4: cjmp24 -> 0x106c
+L000ab8:
+  000ab8: cstore oimmp['VESTE DE FOURRURE'] sdirp[0x5e]
+  000ace: cjmp24 -> 0x106c
+L000ad2:
+  000ad2: cstore oimmp['PAIRE DE GANTS'] sdirp[0x5e]
+  000ae5: cjmp24 -> 0x106c
+L000ae9:
+  000ae9: cstore oimmp['PANTALON DE FOURRURE'] sdirp[0x5e]
+  000b02: cjmp24 -> 0x106c
+L000b06:
+  000b06: cstore oimmp['BOTTES'] sdirp[0x5e]
+  000b11: cjmp24 -> 0x106c
+L000b15:
+  000b15: cstore oimmp['VESTE EN PEAU DE REPTILE'] sdirp[0x5e]
+  000b32: cjmp24 -> 0x106c
+L000b36:
+  000b36: cstore oimmp['PANTALON EN PEAU DE REPTILE'] sdirp[0x5e]
+  000b56: cjmp24 -> 0x106c
+L000b5a:
+  000b5a: cstore oimmp['PAIRE DE GANTS EN KEVLAR'] sdirp[0x5e]
+  000b77: cjmp24 -> 0x106c
+L000b7b:
+  000b7b: cstore oimmp['CHAPEAU DE FEUILLES'] sdirp[0x5e]
+  000b93: cjmp24 -> 0x106c
+L000b97:
+  000b97: cstore oimmp['CASQUE'] sdirp[0x5e]
+  000ba2: cjmp24 -> 0x106c
+L000ba6:
+  000ba6: cjsr24 -> 0x2115
+  000baa: cjmp24 -> 0x1096
+L000bb2:
+  000bb2: cstore oimmp['MASQUE A GAZ'] sdirp[0x5e]
+  000bc3: cjmp24 -> 0x106c
+L000bc7:
+  000bc7: cstore oimmp['! PHASE TERMINALE PROGRAMMEE - CHAMP GRAVITATIONNEL DESACTIVE'] sdirp[0x5e]
+  000c09: cadd oimmp[' - OUVERTURE DES SAS - DESTRUCTION DU SITE DANS H2'] adirp[0x5e]
+  000c40: cjmp24 -> 0x106c
+L000c44:
+  000c44: cstore oimmp['! IDENTIFICATION DU SESAME---...---...'] sdirp[0x5e]
+  000c6f: cstore odirb[0x4d] sdirb[0x53]
+  000c74: cjsr24 -> 0x2187
+  000c78: cjmp24 -> 0x106c
+L000c7c:
+  000c7c: cstore oimmp['! ENREGISTREMENT ET CLASSEMENT DU DOSSIER---...---...'] sdirp[0x5e]
+  000cb6: cstore odirb[0x4d] sdirb[0x53]
+  000cbb: cjsr24 -> 0x2187
+  000cbf: cjmp24 -> 0x106c
+L000cc3:
+  000cc3: ceval (oimmb[0x08] omainti[0x0ec0])
+  000ccb: cbz24 -> 0x0cf5
+  000ccf: cstore oimmp['. INSOLATION'] sdirp[0x5e]
+  000ce0: cstore (oimmb[0x08] omainti[0x0ec0] odiv[oimmb[0x46]]) sdirw[0x5a]
+  000ced: cjsr24 -> 0x231a
+  000cf1: cjmp24 -> 0x0d0a
+L000cf5:
+  000cf5: ceval (odirb[0x4c] oegal[oimmb[0x66]])
+  000cfd: cbz24 -> 0x0d0a
+  000d01: cstore oimmb[0x08] sdirb[0x52]
+  000d06: cjsr24 -> 0x1e2b
+L000d0a:
+  000d0a: cjmp24 -> 0x106c
+L000d0e:
+  000d0e: cstore oimmp['. SURDITE'] sdirp[0x5e]
+  000d1c: cstore (oimmb[0x0b] omainti[0x0ec0] odiv[oimmb[0x32]]) sdirw[0x5a]
+  000d29: cjsr24 -> 0x231a
+  000d2d: cjmp24 -> 0x106c
+L000d31:
+  000d31: cstore oimmp['. GRIPPE'] sdirp[0x5e]
+  000d3e: cstore (oimmb[0x0a] omainti[0x0ec0] odiv[oimmb[0x64]]) sdirw[0x5a]
+  000d4b: cjsr24 -> 0x231a
+  000d4f: cjmp24 -> 0x106c
+L000d53:
+  000d53: cstore oimmb[0x0a] sdirb[0x52]
+  000d58: cjsr24 -> 0x1e2b
+  000d5c: cjmp24 -> 0x106c
+L000d60:
+  000d60: cstore oimmb[0x01] sdirb[0x52]
+  000d65: cjsr24 -> 0x1da5
+  000d69: cjmp24 -> 0x106c
+L000d6d:
+  000d6d: cstore oimmb[0x00] sdirb[0x52]
+  000d72: cjsr24 -> 0x1da5
+  000d76: cjmp24 -> 0x106c
+L000d7a:
+  000d7a: cstore oimmp['. INTOXICATION ALIMENTAIRE'] sdirp[0x5e]
+  000d99: cstore (oimmb[0x09] omainti[0x0ec0] odiv[oimmb[0x78]]) sdirw[0x5a]
+  000da6: cjsr24 -> 0x231a
+  000daa: cjmp24 -> 0x106c
+L000dae:
+  000dae: cstore oimmb[0x09] sdirb[0x52]
+  000db3: cjsr24 -> 0x1e2b
+  000db7: cjmp24 -> 0x106c
+L000dbb:
+  000dbb: cstore oimmb[0x00] sdirb[0x52]
+  000dc0: ceval (oimmb[0x00] omainti[0x0ec0] oegal[oimmb[0x00]] opushacc oimmb[0x00] omainti[0x0e92] osupeg[oimmw[0x0578]] oor[opile])
+  000dd7: cbz24 -> 0x0de3
+  000ddb: cjsr24 -> 0x1e2b
+  000ddf: cjmp24 -> 0x0de7
+L000de3:
+  000de3: cjsr24 -> 0x1efe
+L000de7:
+  000de7: cjmp24 -> 0x106c
+L000deb:
+  000deb: cstore oimmb[0x02] sdirb[0x52]
+  000df0: ceval (oimmb[0x02] omainti[0x0ec0] oegal[oimmb[0x00]] opushacc oimmb[0x02] omainti[0x0e92] osupeg[oimmw[0x0578]] oor[opile])
+  000e07: cbz24 -> 0x0e13
+  000e0b: cjsr24 -> 0x1e2b
+  000e0f: cjmp24 -> 0x0e17
+L000e13:
+  000e13: cjsr24 -> 0x1efe
+L000e17:
+  000e17: cjmp24 -> 0x106c
+L000e1b:
+  000e1b: ceval (oimmb[0x03] omainti[0x0ec0] osup[oimmb[0x00]] opushacc oimmb[0x03] omainti[0x0e92] oinf[oimmw[0x0578]] oand[opile])
+  000e32: cbz24 -> 0x0e52
+  000e36: cstore oimmp['. MAIN INFECTEE'] sdirp[0x5e]
+  000e4a: cjsr24 -> 0x23ae
+  000e4e: cjmp24 -> 0x0e5b
+L000e52:
+  000e52: cstore oimmb[0x03] sdirb[0x52]
+  000e57: cjsr24 -> 0x1e2b
+L000e5b:
+  000e5b: cjmp24 -> 0x106c
+L000e5f:
+  000e5f: ceval (oimmb[0x01] omainti[0x0ec0] osup[oimmb[0x00]] opushacc oimmb[0x01] omainti[0x0e92] oinf[oimmw[0x0578]] oand[opile])
+  000e76: cbz24 -> 0x0e96
+  000e7a: cstore oimmp['. MAIN INFECTEE'] sdirp[0x5e]
+  000e8e: cjsr24 -> 0x23ae
+  000e92: cjmp24 -> 0x0e9f
+L000e96:
+  000e96: cstore oimmb[0x01] sdirb[0x52]
+  000e9b: cjsr24 -> 0x1e2b
+L000e9f:
+  000e9f: cjmp24 -> 0x106c
+L000ea3:
+  000ea3: cstore oimmb[0x03] sdirb[0x52]
+  000ea8: cjsr24 -> 0x1da5
+  000eac: cjmp24 -> 0x106c
+L000eb0:
+  000eb0: cstore oimmb[0x02] sdirb[0x52]
+  000eb5: cjsr24 -> 0x1da5
+  000eb9: cjmp24 -> 0x106c
+L000ebd:
+  000ebd: cstore oimmb[0x06] sdirb[0x52]
+  000ec2: ceval (oimmb[0x06] omainti[0x0ec0] oegal[oimmb[0x00]] opushacc oimmb[0x06] omainti[0x0e92] osupeg[oimmw[0x0578]] oor[opile])
+  000ed9: cbz24 -> 0x0ee5
+  000edd: cjsr24 -> 0x1e2b
+  000ee1: cjmp24 -> 0x0ee9
+L000ee5:
+  000ee5: cjsr24 -> 0x1efe
+L000ee9:
+  000ee9: cjmp24 -> 0x106c
+L000eed:
+  000eed: cstore oimmb[0x04] sdirb[0x52]
+  000ef2: ceval (oimmb[0x04] omainti[0x0ec0] oegal[oimmb[0x00]] opushacc oimmb[0x04] omainti[0x0e92] osupeg[oimmw[0x0578]] oor[opile])
+  000f09: cbz24 -> 0x0f15
+  000f0d: cjsr24 -> 0x1e2b
+  000f11: cjmp24 -> 0x0f19
+L000f15:
+  000f15: cjsr24 -> 0x1efe
+L000f19:
+  000f19: cjmp24 -> 0x106c
+L000f1d:
+  000f1d: ceval (oimmb[0x07] omainti[0x0ec0] osup[oimmb[0x00]] opushacc oimmb[0x07] omainti[0x0e92] oinf[oimmw[0x0578]] oand[opile])
+  000f34: cbz24 -> 0x0f53
+  000f38: cstore oimmp['. PIED INFECTE'] sdirp[0x5e]
+  000f4b: cjsr24 -> 0x23ae
+  000f4f: cjmp24 -> 0x0f5c
+L000f53:
+  000f53: cstore oimmb[0x07] sdirb[0x52]
+  000f58: cjsr24 -> 0x1e2b
+L000f5c:
+  000f5c: cjmp24 -> 0x106c
+L000f60:
+  000f60: ceval (oimmb[0x05] omainti[0x0ec0] osup[oimmb[0x00]] opushacc oimmb[0x05] omainti[0x0e92] oinf[oimmw[0x0578]] oand[opile])
+  000f77: cbz24 -> 0x0f96
+  000f7b: cstore oimmp['. PIED INFECTE'] sdirp[0x5e]
+  000f8e: cjsr24 -> 0x23ae
+  000f92: cjmp24 -> 0x0f9f
+L000f96:
+  000f96: cstore oimmb[0x05] sdirb[0x52]
+  000f9b: cjsr24 -> 0x1e2b
+L000f9f:
+  000f9f: cjmp24 -> 0x106c
+L000fa3:
+  000fa3: ceval (oimmb[0x0b] omainti[0x0e92] oegal[oimmb[0xff]])
+  000fae: cbz24 -> 0x0fcd
+  000fb2: cstore oimmp['. OEIL DROIT CREVE'] sdirp[0x5e]
+  000fc9: cjmp24 -> 0x0ff9
+L000fcd:
+  000fcd: ceval (oimmb[0x0c] omainti[0x0ec0] osup[oimmb[0x00]])
+  000fd8: cbz24 -> 0x0ff9
+  000fdc: cstore oimmp['. AVEUGLEMENT TEMPORAIRE'] sdirp[0x5e]
+L000ff9:
+  000ff9: cjmp24 -> 0x106c
+L000ffd:
+  000ffd: ceval (oimmb[0x0c] omainti[0x0e92] oegal[oimmb[0xff]])
+  001008: cbz24 -> 0x1028
+  00100c: cstore oimmp['. OEIL GAUCHE CREVE'] sdirp[0x5e]
+  001024: cjmp24 -> 0x1054
+L001028:
+  001028: ceval (oimmb[0x0c] omainti[0x0ec0] osup[oimmb[0x00]])
+  001033: cbz24 -> 0x1054
+  001037: cstore oimmp['. AVEUGLEMENT TEMPORAIRE'] sdirp[0x5e]
+L001054:
+  001054: cjmp24 -> 0x106c
+L001058:
+  001058: cjsr24 -> 0x2023
+  00105c: cjmp24 -> 0x106c
+L001060:
+  001060: cjsr24 -> 0x1313
+  001064: cjmp24 -> 0x106c
+L001068:
+  001068: cjsr24 -> 0x1597
+L00106c:
+  00106c: ceval (omainw[0x0e8a] oegal[oimmb[0x0a]] opushacc odirb[0x4c] oinf[oimmb[0x59]] oand[opile])
+  00107d: cbz24 -> 0x1085
+  001081: cjsr24 -> 0x125c
+L001085:
+  001085: ceval (odirp[0x5e] osegal[oimmp['']])
+  00108d: cbz24 -> 0x1092
+  001091: cexit 
+L001092:
+  001092: cjsr24 -> 0x10cb
+L001096:
+  001096: cstore oimmb[0x87] sdirb[0x4c]
+  00109b: cstore oimmb[0x00] smainb[0x3c9e]
+L0010a1:
+  0010a1: cerasen oimmb[0x63]
+  0010a4: cstop 
+  0010a5: cstop 
+  0010a6: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  0010b1: cnumput odirw[0x56] oimmw[0x00c8] oimmb[0x3e] oimmb[0x63]
+  0010bb: csputprint oimmp['<']
+  0010bf: csputprint oimmp['\r\n']
+  0010c4: cstop 
+  0010c5: cstop 
+  0010c6: ceval oimmb[0x00]
+  0010c9: cbz8 -> 0x10a1
+L0010cb:
+  0010cb: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  0010d6: cnumput oimmb[0x16] oimmw[0x00c8] oimmb[0x3e] oimmb[0x63]
+  0010e0: csputprint oimmp['<']
+  0010e4: csputprint oimmp['\r\n']
+  0010e9: cstop 
+  0010ea: cstore oimmb[0x00] sdirb[0x52]
+L0010ef:
+  0010ef: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  0010fa: ceval (odirb[0x52] oinf[oimmb[0x15]])
+  001102: cbz24 -> 0x114c
+  001106: cnumput (oimmb[0x16] opushacc odirb[0x52] omul[oimmb[0x0a]] oadd[opile]) oimmw[0x00c8] oimmb[0x3e] odirb[0x52]
+  00111a: csputprint (odirp[0x5e] ospushacc odirb[0x52] opushacc oimmb[0x01] omid)
+  001126: csputprint oimmp['\r\n']
+  00112b: cnumput (oimmb[0x20] opushacc odirb[0x52] omul[oimmb[0x0a]] oadd[opile]) oimmw[0x00c8] oimmb[0x3e] oimmb[0x63]
+  00113f: csputprint oimmp['<']
+  001143: csputprint oimmp['\r\n']
+  001148: cjmp24 -> 0x1197
+L00114c:
+  00114c: cerasall 
+  00114d: ceval (odirb[0x4c] oegal[oimmb[0x7e]])
+  001155: cbz24 -> 0x1165
+  001159: cputnat oimmb[0x00] oimmw[0x00d2] oimmb[0x00] oimmb[0x01] oimmb[0x7e]
+L001165:
+  001165: cnumput oimmb[0x16] oimmw[0x00c8] oimmb[0x3e] odirb[0x52]
+  00116f: csputprint (odirp[0x5e] ospushacc odirb[0x52] osub[oimmb[0x14]] opushacc oimmb[0x15] omid)
+  00117e: csputprint oimmp['\r\n']
+  001183: cnumput oimmw[0x00e8] oimmw[0x00c8] oimmb[0x3e] oimmb[0x63]
+  00118e: csputprint oimmp['<']
+  001192: csputprint oimmp['\r\n']
+L001197:
+  001197: cstop 
+  001198: cadd oimmb[0x01] adirb[0x52]
+  00119d: ceval (odirb[0x52] opushacc odirp[0x5e] olen osub[oimmb[0x01]] oinfeg[opile])
+  0011ab: cbnz16 -> 0x10ef
+  0011ae: cstop 
+  0011af: ceval (odirb[0x52] osup[oimmb[0x15]])
+  0011b7: cbz24 -> 0x11c5
+  0011bb: cstore oimmw[0x00e8] sdirw[0x56]
+  0011c1: cjmp24 -> 0x11d4
+L0011c5:
+  0011c5: cstore (oimmb[0x16] opushacc odirb[0x52] omul[oimmb[0x0a]] oadd[opile]) sdirw[0x56]
+L0011d4:
+  0011d4: cret 
+L0011d5:
+  0011d5: ceval (odirw[0x58] osupeg[oimmb[0x64]])
+  0011dd: cbz24 -> 0x122c
+  0011e1: cadd (odirw[0x58] odiv[oimmb[0x64]] ostr) adirp[0x5e]
+  0011ec: cstore (odirw[0x58] omod[oimmb[0x64]] odiv[oimmb[0x0a]]) sdirw[0x56]
+  0011f9: ceval odirw[0x56]
+  0011fc: cbz24 -> 0x120e
+  001200: cadd (oimmp['.'] ospushacc odirw[0x56] ostr osadd[ospile]) adirp[0x5e]
+L00120e:
+  00120e: ceval odirb[0x54]
+  001211: cbz24 -> 0x1220
+  001215: cadd oimmp[' L'] adirp[0x5e]
+  00121c: cjmp24 -> 0x1228
+L001220:
+  001220: cadd oimmp[' KG'] adirp[0x5e]
+L001228:
+  001228: cjmp24 -> 0x125b
+L00122c:
+  00122c: ceval odirb[0x54]
+  00122f: cbz24 -> 0x1245
+  001233: cadd (odirw[0x58] ostr osadd[oimmp[' CL']]) adirp[0x5e]
+  001241: cjmp24 -> 0x125b
+L001245:
+  001245: cadd (odirw[0x58] omul[oimmb[0x0a]] ostr osadd[oimmp[' GRAMMES']]) adirp[0x5e]
+L00125b:
+  00125b: cret 
+L00125c:
+  00125c: cstore (odirb[0x4d] opushacc oimmb[0x02] omainti[0x0f3e]) sdirw[0x58]
+  001269: cstore oimmb[0x00] sdirb[0x54]
+  00126e: ceval (odirw[0x58] oegal[oimmb[0x00]])
+  001276: cbz24 -> 0x1298
+  00127a: cadd oimmp['  - POIDS NEGLIGEABLE'] adirp[0x5e]
+  001294: cjmp24 -> 0x1312
+L001298:
+  001298: cstore (odirb[0x4d] opushacc oimmb[0x01] omainti[0x0f3e]) sdirw[0x56]
+  0012a5: ceval (odirw[0x56] oinf[oimmb[0x02]])
+  0012ad: cbz24 -> 0x12c9
+  0012b1: cadd oimmp['  - POIDS : '] adirp[0x5e]
+  0012c2: cjsr16 -> 0x11d5
+  0012c5: cjmp24 -> 0x1312
+L0012c9:
+  0012c9: cadd oimmp['  - POIDS UNITAIRE : '] adirp[0x5e]
+  0012e3: cjsr16 -> 0x11d5
+  0012e6: cadd oimmp['  - POIDS TOTAL : '] adirp[0x5e]
+  0012fd: cstore (odirw[0x58] opushacc odirb[0x4d] opushacc oimmb[0x01] omainti[0x0f3e] omul[opile]) sdirw[0x58]
+  00130f: cjsr16 -> 0x11d5
+L001312:
+  001312: cret 
+L001313:
+  001313: cputnat oimmb[0x00] oimmw[0x00d2] oimmb[0x00] oimmb[0x01] oimmb[0x7e]
+  00131f: cstore oimmp['...... SESAME MIS EN VEILLE - CAUSE DU DECES : '] sdirp[0x5e]
+  001353: cswitch2 odirb[0x4d] base -1 0->0x1390 1->0x1390 2->0x1390 3->0x13a5 4->0x13cb 5->0x13df 6->0x13fa 7->0x1409 8->0x141c 9->0x143d 10->0x1454 11->0x1467 12->0x1477 13->0x149d 14->0x14be 15->0x14e2 16->0x14fe 17->0x1596 18->0x14e2 19->0x1512 20->0x1528 21->0x1539 22->0x154d 23->0x156f 24->0x1585
+  00138c: cjmp24 -> 0x1596
+L001390:
+  001390: cadd oimmp['HYPERTHERMIE'] adirp[0x5e]
+  0013a1: cjmp24 -> 0x1596
+L0013a5:
+  0013a5: cadd oimmp['TACHYCARDIE - ARRET CARDIAQUE'] adirp[0x5e]
+  0013c7: cjmp24 -> 0x1596
+L0013cb:
+  0013cb: cadd oimmp['HYPOTENSION'] adirp[0x5e]
+  0013db: cjmp24 -> 0x1596
+L0013df:
+  0013df: cadd oimmp['CRISE HYPERTENSIVE'] adirp[0x5e]
+  0013f6: cjmp24 -> 0x1596
+L0013fa:
+  0013fa: cadd oimmp['NOYADE'] adirp[0x5e]
+  001405: cjmp24 -> 0x1596
+L001409:
+  001409: cadd oimmp['EPUISEMENT'] adirp[0x5e]
+  001418: cjmp24 -> 0x1596
+L00141c:
+  00141c: cadd oimmp['HEMORRAGIE INCONTROLABLE'] adirp[0x5e]
+  001439: cjmp24 -> 0x1596
+L00143d:
+  00143d: cadd oimmp['DESHYDRATATION'] adirp[0x5e]
+  001450: cjmp24 -> 0x1596
+L001454:
+  001454: cadd oimmp['HYPERALGIE'] adirp[0x5e]
+  001463: cjmp24 -> 0x1596
+L001467:
+  001467: cadd oimmp['SYNCOPE'] adirp[0x5e]
+  001473: cjmp24 -> 0x1596
+L001477:
+  001477: cadd oimmp["CATEGORIE 'OVERDOSE-ETHYLISME"] adirp[0x5e]
+  001499: cjmp24 -> 0x1596
+L00149d:
+  00149d: cadd oimmp['EMPOISONNEMENT PAR VENIN'] adirp[0x5e]
+  0014ba: cjmp24 -> 0x1596
+L0014be:
+  0014be: cadd oimmp['EMPOISONNEMENT PAR GANGRENE'] adirp[0x5e]
+  0014de: cjmp24 -> 0x1596
+L0014e2:
+  0014e2: cadd oimmp['TRAUMATISME VIOLENT'] adirp[0x5e]
+  0014fa: cjmp24 -> 0x1596
+L0014fe:
+  0014fe: cadd oimmp['ETOUFFEMENT'] adirp[0x5e]
+  00150e: cjmp24 -> 0x1596
+L001512:
+  001512: cadd oimmp['ELECTROCUTION'] adirp[0x5e]
+  001524: cjmp24 -> 0x1596
+L001528:
+  001528: cadd oimmp['ASPHYXIE'] adirp[0x5e]
+  001535: cjmp24 -> 0x1596
+L001539:
+  001539: cadd oimmp['HYDROCUTION'] adirp[0x5e]
+  001549: cjmp24 -> 0x1596
+L00154d:
+  00154d: cadd oimmp['EMPOISONNEMENT AU CYANURE'] adirp[0x5e]
+  00156b: cjmp24 -> 0x1596
+L00156f:
+  00156f: cadd oimmp['CARBONISATION'] adirp[0x5e]
+  001581: cjmp24 -> 0x1596
+L001585:
+  001585: cadd oimmp['IMPACT LASER'] adirp[0x5e]
+L001596:
+  001596: cret 
+L001597:
+  001597: cswitch2 odirb[0x4d] base -1 0->0x15fe 1->0x1627 2->0x1656 3->0x1679 4->0x1679 5->0x16aa 6->0x1880 7->0x16e0 8->0x1750 9->0x177b 10->0x17a3 11->0x17cb 12->0x17ed 13->0x1803 14->0x1833 15->0x1853 16->0x18a2 17->0x18cd 18->0x18f6 19->0x1933 20->0x195f 21->0x1978 22->0x19ab 23->0x19d0 24->0x1ad1 25->0x1833 26->0x1b37 27->0x1da4 28->0x1b4e 29->0x1b6b 30->0x1b8d 31->0x1ba7 32->0x1bc0 33->0x1da4 34->0x1bda 35->0x1da4 36->0x1c0c 37->0x1c37 38->0x1c69 39->0x1c8f 40->0x1da4 41->0x1cc7 42->0x1ce3 43->0x1d19 44->0x1d3e 45->0x1d76
+  0015fa: cjmp24 -> 0x1da4
+L0015fe:
+  0015fe: cstore oimmp['! IMPOSSIBLE - ETAT TROP ANXIEUX'] sdirp[0x5e]
+  001623: cjmp24 -> 0x1da4
+L001627:
+  001627: cstore oimmp['! IMPOSSIBLE - DOULEUR TROP IMPORTANTE'] sdirp[0x5e]
+  001652: cjmp24 -> 0x1da4
+L001656:
+  001656: cstore oimmp['! IMPOSSIBLE - PAS SOMMEIL'] sdirp[0x5e]
+  001675: cjmp24 -> 0x1da4
+L001679:
+  001679: cstore oimmp['! AMPUTATION NON RECOMMANDEE A CE NIVEAU'] sdirp[0x5e]
+  0016a6: cjmp24 -> 0x1da4
+L0016aa:
+  0016aa: cstore oimmp['! IMPOSSIBLE - ORDINATEUR SESAME NON CONNECTE'] sdirp[0x5e]
+  0016dc: cjmp24 -> 0x1da4
+L0016e0:
+  0016e0: cstore oimmp['. SERUM ANTI-VENIN '] sdirp[0x5e]
+  0016f8: cstore (oimmb[0x01] omainti[0x0ec0]) sdirw[0x5a]
+  001702: ceval (odirw[0x5a] osup[oimmb[0xc4]])
+  00170a: cbz24 -> 0x1721
+  00170e: cadd oimmp[' PEU ACTIF'] adirp[0x5e]
+  00171d: cjmp24 -> 0x174c
+L001721:
+  001721: ceval (odirw[0x5a] osup[oimmb[0x88]])
+  001729: cbz24 -> 0x173c
+  00172d: cadd oimmp[' ACTIF'] adirp[0x5e]
+  001738: cjmp24 -> 0x174c
+L00173c:
+  00173c: cadd oimmp[' TRES ACTIF'] adirp[0x5e]
+L00174c:
+  00174c: cjmp24 -> 0x1da4
+L001750:
+  001750: cstore oimmp['! IMPOSSIBLE - MANQUE DE MUNITIONS'] sdirp[0x5e]
+  001777: cjmp24 -> 0x1da4
+L00177b:
+  00177b: cstore oimmp['! EAU PETITE GOURDE DESINFECTEE'] sdirp[0x5e]
+  00179f: cjmp24 -> 0x1da4
+L0017a3:
+  0017a3: cstore oimmp['! EAU GROSSE GOURDE DESINFECTEE'] sdirp[0x5e]
+  0017c7: cjmp24 -> 0x1da4
+L0017cb:
+  0017cb: cstore oimmp["! PAS D'EAU A DESINFECTER"] sdirp[0x5e]
+  0017e9: cjmp24 -> 0x1da4
+L0017ed:
+  0017ed: cstore oimmp['! GOURDE VIDE'] sdirp[0x5e]
+  0017ff: cjmp24 -> 0x1da4
+L001803:
+  001803: cstore oimmp['! IMPOSSIBLE - PLUS DE FORCE POUR NAGER'] sdirp[0x5e]
+  00182f: cjmp24 -> 0x1da4
+L001833:
+  001833: cstore oimmp['! ACTION IMPOSSIBLE ICI'] sdirp[0x5e]
+  00184f: cjmp24 -> 0x1da4
+L001853:
+  001853: cstore oimmp['! IMPOSSIBLE - MANQUE DE COMBUSTIBLE'] sdirp[0x5e]
+  00187c: cjmp24 -> 0x1da4
+L001880:
+  001880: cstore oimmp['! REPAS CHAUD ENERGETIQUE'] sdirp[0x5e]
+  00189e: cjmp24 -> 0x1da4
+L0018a2:
+  0018a2: cstore oimmp['! VIANDE CUITE A POINT ENERGETIQUE'] sdirp[0x5e]
+  0018c9: cjmp24 -> 0x1da4
+L0018cd:
+  0018cd: cstore oimmp['! FRITURE DE POISSON ENERGETIQUE'] sdirp[0x5e]
+  0018f2: cjmp24 -> 0x1da4
+L0018f6:
+  0018f6: cstore oimmp['! IMPOSSIBLE - PAS DE FUSEES ECLAIRANTES DISPONIBLES'] sdirp[0x5e]
+  00192f: cjmp24 -> 0x1da4
+L001933:
+  001933: cstore oimmp['! IMPOSSIBLE - PILE URG1B A CHANGER'] sdirp[0x5e]
+  00195b: cjmp24 -> 0x1da4
+L00195f:
+  00195f: cstore oimmp['! MAMELLES VIDES'] sdirp[0x5e]
+  001974: cjmp24 -> 0x1da4
+L001978:
+  001978: cstore oimmp['! PAS DE RECIPIENT DISPONIBLE POUR LE LAIT'] sdirp[0x5e]
+  0019a7: cjmp24 -> 0x1da4
+L0019ab:
+  0019ab: cstore oimmp['! RIEN TROUVE DE PARTICULIER'] sdirp[0x5e]
+  0019cc: cjmp24 -> 0x1da4
+L0019d0:
+  0019d0: ceval (odirw[0x50] oegal[oimmb[0x03]])
+  0019d8: cbz24 -> 0x19fd
+  0019dc: cstore oimmp['! IMPOSSIBLE - FRACTURES'] sdirp[0x5e]
+  0019f9: cjmp24 -> 0x1acd
+L0019fd:
+  0019fd: ceval (odirw[0x50] oegal[oimmb[0x02]])
+  001a05: cbz24 -> 0x1a6e
+  001a09: ceval (oimmb[0x03] omainti[0x0e92] oegal[oimmb[0xff]])
+  001a14: cbz24 -> 0x1a42
+  001a18: cstore oimmp['! IMPOSSIBLE - BRAS GAUCHE AMPUTE'] sdirp[0x5e]
+  001a3e: cjmp24 -> 0x1a6a
+L001a42:
+  001a42: cstore oimmp['! IMPOSSIBLE - BRAS GAUCHE FRACTURE'] sdirp[0x5e]
+L001a6a:
+  001a6a: cjmp24 -> 0x1acd
+L001a6e:
+  001a6e: ceval (oimmb[0x01] omainti[0x0e92] oegal[oimmb[0xff]])
+  001a79: cbz24 -> 0x1aa6
+  001a7d: cstore oimmp['! IMPOSSIBLE - BRAS DROIT AMPUTE'] sdirp[0x5e]
+  001aa2: cjmp24 -> 0x1acd
+L001aa6:
+  001aa6: cstore oimmp['! IMPOSSIBLE - BRAS DROIT FRACTURE'] sdirp[0x5e]
+L001acd:
+  001acd: cjmp24 -> 0x1da4
+L001ad1:
+  001ad1: ceval (oimmb[0x04] omainti[0x0e92] oegal[oimmb[0xff]] opushacc oimmb[0x06] omainti[0x0e92] oegal[oimmb[0xff]] oor[opile])
+  001ae7: cbz24 -> 0x1b10
+  001aeb: cstore oimmp['! IMPOSSIBLE - JAMBE AMPUTEE'] sdirp[0x5e]
+  001b0c: cjmp24 -> 0x1b33
+L001b10:
+  001b10: cstore oimmp['! IMPOSSIBLE - JAMBE FRACTUREE'] sdirp[0x5e]
+L001b33:
+  001b33: cjmp24 -> 0x1da4
+L001b37:
+  001b37: cstore oimmp['! EAU BOUILLIE'] sdirp[0x5e]
+  001b4a: cjmp24 -> 0x1da4
+L001b4e:
+  001b4e: cstore oimmp['! PAS DE FRUITS MURS'] sdirp[0x5e]
+  001b67: cjmp24 -> 0x1da4
+L001b6b:
+  001b6b: cstore oimmp['! IMPOSSIBLE - PAS DE FEU'] sdirp[0x5e]
+  001b89: cjmp24 -> 0x1da4
+L001b8d:
+  001b8d: cstore oimmp['! NOUVELLE TORCHE'] sdirp[0x5e]
+  001ba3: cjmp24 -> 0x1da4
+L001ba7:
+  001ba7: cstore oimmp['! TORCHE ETEINTE'] sdirp[0x5e]
+  001bbc: cjmp24 -> 0x1da4
+L001bc0:
+  001bc0: cstore oimmp['! TORCHE MOUILLEE'] sdirp[0x5e]
+  001bd6: cjmp24 -> 0x1da4
+L001bda:
+  001bda: cstore oimmp['! PAS ASSEZ DE PEAUX POUR FABRIQUER HABIT'] sdirp[0x5e]
+  001c08: cjmp24 -> 0x1da4
+L001c0c:
+  001c0c: cstore oimmp['! PAS DE FRUITS MURS SUR CET ARBRE'] sdirp[0x5e]
+  001c33: cjmp24 -> 0x1da4
+L001c37:
+  001c37: cstore oimmp["! IMPOSSIBLE - PRESENCE D'UN MASQUE A GAZ"] sdirp[0x5e]
+  001c65: cjmp24 -> 0x1da4
+L001c69:
+  001c69: cstore oimmp['! IMPOSSIBLE - ARME MANQUANTE'] sdirp[0x5e]
+  001c8b: cjmp24 -> 0x1da4
+L001c8f:
+  001c8f: cstore oimmp["! IMPOSSIBLE D'AVANCER - CHARGE TROP IMPORTANTE"] sdirp[0x5e]
+  001cc3: cjmp24 -> 0x1da4
+L001cc7:
+  001cc7: cstore oimmp['. PLAIE DESINFECTEE'] sdirp[0x5e]
+  001cdf: cjmp24 -> 0x1da4
+L001ce3:
+  001ce3: cstore oimmp['! IMPOSSIBLE - PAS ASSEZ DE FORCE POUR COURIR'] sdirp[0x5e]
+  001d15: cjmp24 -> 0x1da4
+L001d19:
+  001d19: cstore oimmp['JOUABLE UNIQUEMENT SUR TERRE'] sdirp[0x5e]
+  001d3a: cjmp24 -> 0x1da4
+L001d3e:
+  001d3e: cstore oimmp[". VENIN ASPIRE - RISQUE D'EMPOISONNEMENT ECARTE"] sdirp[0x5e]
+  001d72: cjmp24 -> 0x1da4
+L001d76:
+  001d76: cstore oimmp['! INUTILE - PILE DU SESAME ENCORE CHARGEE'] sdirp[0x5e]
+L001da4:
+  001da4: cret 
+L001da5:
+  001da5: cstore oimmp[". PRESENCE D'UN GARROT - COMPRESSION "] sdirp[0x5e]
+  001dcf: cstore (odirb[0x52] omainti[0x0eb2] odiv[oimmb[0x78]]) sdirw[0x5a]
+  001ddc: cswitch2 odirw[0x5a] base 0 0->0x1dea 1->0x1dff
+  001de6: cjmp24 -> 0x1e12
+L001dea:
+  001dea: cadd oimmp['A SURVEILLER'] adirp[0x5e]
+  001dfb: cjmp24 -> 0x1e26
+L001dff:
+  001dff: cadd oimmp['DANGEREUSE'] adirp[0x5e]
+  001e0e: cjmp24 -> 0x1e26
+L001e12:
+  001e12: cadd oimmp['TRES DANGEREUSE'] adirp[0x5e]
+L001e26:
+  001e26: cjsr24 -> 0x1f7f
+  001e2a: cret 
+L001e2b:
+  001e2b: ceval (odirb[0x52] omainti[0x0e92])
+  001e33: cbz24 -> 0x1ef9
+  001e37: ceval (odirb[0x52] omainti[0x0e92] oinf[oimmw[0x0578]])
+  001e43: cbz24 -> 0x1e6d
+  001e47: cstore oimmp['. INFECTION'] sdirp[0x5e]
+  001e57: cstore (odirb[0x52] omainti[0x0e92] odiv[oimmw[0x00fa]]) sdirw[0x5a]
+  001e65: cjsr24 -> 0x231a
+  001e69: cjmp24 -> 0x1ef9
+L001e6d:
+  001e6d: cstore oimmp['. MEMBRE GANGRENE - '] sdirp[0x5e]
+  001e86: cstore (odirb[0x52] omainti[0x0e92] osub[oimmw[0x0578]] odiv[oimmw[0x00c8]]) sdirw[0x5a]
+  001e98: cswitch2 odirw[0x5a] base 0 0->0x1ea6 1->0x1ec3
+  001ea2: cjmp24 -> 0x1ee1
+L001ea6:
+  001ea6: cadd oimmp['AMPUTATION A PREVOIR'] adirp[0x5e]
+  001ebf: cjmp24 -> 0x1ef9
+L001ec3:
+  001ec3: cadd oimmp['AMPUTATION NECESSAIRE'] adirp[0x5e]
+  001edd: cjmp24 -> 0x1ef9
+L001ee1:
+  001ee1: cadd oimmp["A AMPUTER D'URGENCE"] adirp[0x5e]
+L001ef9:
+  001ef9: cjsr24 -> 0x1f7f
+  001efd: cret 
+L001efe:
+  001efe: cstore (odirb[0x52] omainti[0x0ec0] odiv[oimmb[0x1e]]) sdirw[0x5a]
+  001f0b: cswitch2 odirw[0x5a] base 0 0->0x1f1a 1->0x1f2d
+  001f16: cjmp24 -> 0x1f47
+L001f1a:
+  001f1a: cadd oimmp['. FRACTURE'] adirp[0x5e]
+  001f29: cjmp24 -> 0x1f5d
+L001f2d:
+  001f2d: cadd oimmp['. DOUBLE FRACTURE'] adirp[0x5e]
+  001f43: cjmp24 -> 0x1f5d
+L001f47:
+  001f47: cadd oimmp['. TRIPLE FRACTURE'] adirp[0x5e]
+L001f5d:
+  001f5d: ceval (odirb[0x52] omainti[0x0e92] osup[oimmb[0x00]])
+  001f68: cbz24 -> 0x1f7a
+  001f6c: cadd oimmp[' INFECTEE'] adirp[0x5e]
+L001f7a:
+  001f7a: cjsr24 -> 0x1f7f
+  001f7e: cret 
+L001f7f:
+  001f7f: cjsr24 -> 0x203e
+  001f83: ceval (odirb[0x52] odiff[oimmb[0xff]])
+  001f8b: cbz24 -> 0x2022
+  001f8f: ceval (odirb[0x52] omainti[0x0e92] oegal[oimmb[0xff]] opushacc odirb[0x4c] odiff[oimmb[0x63]] oand[opile])
+  001fa2: cbz24 -> 0x1fa7
+  001fa6: cexit 
+L001fa7:
+  001fa7: ceval (odirb[0x52] omainti[0x19e8] odiff[oimmb[0x00]])
+  001fb2: cbz24 -> 0x2022
+  001fb6: cstore (odirp[0x5e] osadd[oimmp[' - ANESTHESIE LOCALE ']]) sdirp[0x5e]
+  001fd5: cstore (odirb[0x52] omainti[0x19e8] odiv[oimmb[0x32]]) sdirw[0x5a]
+  001fe2: cswitch2 odirw[0x5a] base 0 0->0x1ff0 1->0x2003
+  001fec: cjmp24 -> 0x2012
+L001ff0:
+  001ff0: cadd oimmp['PEU ACTIVE'] adirp[0x5e]
+  001fff: cjmp24 -> 0x2022
+L002003:
+  002003: cadd oimmp['ACTIVE'] adirp[0x5e]
+  00200e: cjmp24 -> 0x2022
+L002012:
+  002012: cadd oimmp['TRES ACTIVE'] adirp[0x5e]
+L002022:
+  002022: cret 
+L002023:
+  002023: cstore oimmp['MEMBRE INTACT'] sdirp[0x5e]
+  002035: cstore odirb[0x4d] sdirb[0x4c]
+  00203a: cjsr16 -> 0x1f7f
+  00203d: cret 
+L00203e:
+  00203e: csub oimmb[0x64] adirb[0x4c]
+  002043: cswitch2 odirb[0x4c] base -1 0->0x20f4 1->0x20f4 2->0x210f 3->0x210f 4->0x2106 5->0x2094 6->0x2074 7->0x20fd 8->0x20fd 9->0x2082 10->0x20a2 11->0x20ab 12->0x208b 13->0x20d4 14->0x20b4 15->0x20e2 16->0x20c2 17->0x20eb 18->0x20cb
+  002070: cjmp24 -> 0x210f
+L002074:
+  002074: cstore oimmb[0x00] sdirb[0x52]
+  002079: cstore oimmb[0x63] sdirb[0x4c]
+  00207e: cjmp24 -> 0x2114
+L002082:
+  002082: cstore oimmb[0x00] sdirb[0x52]
+  002087: cjmp24 -> 0x2114
+L00208b:
+  00208b: cstore oimmb[0x01] sdirb[0x52]
+  002090: cjmp24 -> 0x2114
+L002094:
+  002094: cstore oimmb[0x02] sdirb[0x52]
+  002099: cstore oimmb[0x63] sdirb[0x4c]
+  00209e: cjmp24 -> 0x2114
+L0020a2:
+  0020a2: cstore oimmb[0x02] sdirb[0x52]
+  0020a7: cjmp24 -> 0x2114
+L0020ab:
+  0020ab: cstore oimmb[0x03] sdirb[0x52]
+  0020b0: cjmp24 -> 0x2114
+L0020b4:
+  0020b4: cstore oimmb[0x04] sdirb[0x52]
+  0020b9: cstore oimmb[0x63] sdirb[0x4c]
+  0020be: cjmp24 -> 0x2114
+L0020c2:
+  0020c2: cstore oimmb[0x04] sdirb[0x52]
+  0020c7: cjmp24 -> 0x2114
+L0020cb:
+  0020cb: cstore oimmb[0x05] sdirb[0x52]
+  0020d0: cjmp24 -> 0x2114
+L0020d4:
+  0020d4: cstore oimmb[0x06] sdirb[0x52]
+  0020d9: cstore oimmb[0x63] sdirb[0x4c]
+  0020de: cjmp24 -> 0x2114
+L0020e2:
+  0020e2: cstore oimmb[0x06] sdirb[0x52]
+  0020e7: cjmp24 -> 0x2114
+L0020eb:
+  0020eb: cstore oimmb[0x07] sdirb[0x52]
+  0020f0: cjmp24 -> 0x2114
+L0020f4:
+  0020f4: cstore oimmb[0x08] sdirb[0x52]
+  0020f9: cjmp24 -> 0x2114
+L0020fd:
+  0020fd: cstore oimmb[0x09] sdirb[0x52]
+  002102: cjmp24 -> 0x2114
+L002106:
+  002106: cstore oimmb[0x0a] sdirb[0x52]
+  00210b: cjmp24 -> 0x2114
+L00210f:
+  00210f: cstore oimmb[0xff] sdirb[0x52]
+L002114:
+  002114: cret 
+L002115:
+  002115: cstore oimmp['ORDINATEUR SESAME - IDENTIFICATION---...---...'] sdirp[0x5e]
+  002148: cjsr16 -> 0x10cb
+  00214b: cstop 
+  00214c: cstop 
+  00214d: cerasall 
+  00214e: cstore oimmb[0x00] sdirb[0x53]
+L002153:
+  002153: ceval (odirb[0x53] omaintc[0x3af2] osup[oimmb[0x00]])
+  00215e: cbz24 -> 0x2177
+  002162: cstop 
+  002163: cerasall 
+  002164: cstore oimmp['...---'] sdirp[0x5e]
+  00216f: cjsr24 -> 0x2187
+  002173: cjsr16 -> 0x10cb
+  002176: cstop 
+L002177:
+  002177: cadd oimmb[0x01] adirb[0x53]
+  00217c: ceval (odirb[0x53] oinfeg[oimmb[0x13]])
+  002184: cbnz8 -> 0x2153
+  002186: cret 
+L002187:
+  002187: cswitch2 odirb[0x53] base 0 0->0x21ba 1->0x21cc 2->0x21de 3->0x21f2 4->0x2202 5->0x2213 6->0x2225 7->0x2237 8->0x2245 9->0x2255 10->0x2265 11->0x2275 12->0x2289 13->0x229e 14->0x22b5 15->0x22c4 16->0x22d6 17->0x22e5 18->0x22fa 19->0x230b
+  0021b6: cjmp24 -> 0x2319
+L0021ba:
+  0021ba: cadd oimmp['TREPLIEV1'] adirp[0x5e]
+  0021c8: cjmp24 -> 0x2319
+L0021cc:
+  0021cc: cadd oimmp['SOCRATE19'] adirp[0x5e]
+  0021da: cjmp24 -> 0x2319
+L0021de:
+  0021de: cadd oimmp['NIETZSCHE26'] adirp[0x5e]
+  0021ee: cjmp24 -> 0x2319
+L0021f2:
+  0021f2: cadd oimmp['FREUD37'] adirp[0x5e]
+  0021fe: cjmp24 -> 0x2319
+L002202:
+  002202: cadd oimmp['PAVLOV95'] adirp[0x5e]
+  00220f: cjmp24 -> 0x2319
+L002213:
+  002213: cadd oimmp['EPICURE92'] adirp[0x5e]
+  002221: cjmp24 -> 0x2319
+L002225:
+  002225: cadd oimmp['DIOGENE48'] adirp[0x5e]
+  002233: cjmp24 -> 0x2319
+L002237:
+  002237: cadd oimmp['NINA1'] adirp[0x5e]
+  002241: cjmp24 -> 0x2319
+L002245:
+  002245: cadd oimmp['DARWIN5'] adirp[0x5e]
+  002251: cjmp24 -> 0x2319
+L002255:
+  002255: cadd oimmp['KANT217'] adirp[0x5e]
+  002261: cjmp24 -> 0x2319
+L002265:
+  002265: cadd oimmp['HEGEL17'] adirp[0x5e]
+  002271: cjmp24 -> 0x2319
+L002275:
+  002275: cadd oimmp['PYTHAGORE32'] adirp[0x5e]
+  002285: cjmp24 -> 0x2319
+L002289:
+  002289: cadd oimmp['DESCARTES122'] adirp[0x5e]
+  00229a: cjmp24 -> 0x2319
+L00229e:
+  00229e: cadd oimmp['SCHOPENHAUER26'] adirp[0x5e]
+  0022b1: cjmp24 -> 0x2319
+L0022b5:
+  0022b5: cadd oimmp['HUME60'] adirp[0x5e]
+  0022c0: cjmp24 -> 0x2319
+L0022c4:
+  0022c4: cadd oimmp['SPINOZA44'] adirp[0x5e]
+  0022d2: cjmp24 -> 0x2319
+L0022d6:
+  0022d6: cadd oimmp['MARX49'] adirp[0x5e]
+  0022e1: cjmp24 -> 0x2319
+L0022e5:
+  0022e5: cadd oimmp['THEOPHRASTE7'] adirp[0x5e]
+  0022f6: cjmp24 -> 0x2319
+L0022fa:
+  0022fa: cadd oimmp['PASCAL22'] adirp[0x5e]
+  002307: cjmp24 -> 0x2319
+L00230b:
+  00230b: cadd oimmp['ABELARD39'] adirp[0x5e]
+L002319:
+  002319: cret 
+L00231a:
+  00231a: cadd oimmp[' - NIVEAU DE GRAVITE : '] adirp[0x5e]
+  002336: cswitch2 odirw[0x5a] base 0 0->0x2348 1->0x2362 2->0x2377 3->0x238a
+  002344: cjmp24 -> 0x239b
+L002348:
+  002348: cadd oimmp['INFECTION BENIGNE'] adirp[0x5e]
+  00235e: cjmp24 -> 0x23ad
+L002362:
+  002362: cadd oimmp['A SURVEILLER'] adirp[0x5e]
+  002373: cjmp24 -> 0x23ad
+L002377:
+  002377: cadd oimmp['INQUIETANT'] adirp[0x5e]
+  002386: cjmp24 -> 0x23ad
+L00238a:
+  00238a: cadd oimmp['CRITIQUE'] adirp[0x5e]
+  002397: cjmp24 -> 0x23ad
+L00239b:
+  00239b: cadd oimmp['TRES CRITIQUE'] adirp[0x5e]
+L0023ad:
+  0023ad: cret 
+L0023ae:
+  0023ae: cstore (oimmb[0x03] omainti[0x0ec0] odiv[oimmb[0x32]]) sdirw[0x5a]
+  0023bb: cadd oimmp[" PAR MORSURE VENIMEUSE - NIVEAU D'EMPOISONNEMENT DU SANG : "] adirp[0x5e]
+  0023fb: cswitch2 odirw[0x5a] base 0 0->0x240a 1->0x2419
+  002406: cjmp24 -> 0x242b
+L00240a:
+  00240a: cadd oimmp['FAIBLE'] adirp[0x5e]
+  002415: cjmp24 -> 0x243a
+L002419:
+  002419: cadd oimmp['IMPORTANT'] adirp[0x5e]
+  002427: cjmp24 -> 0x243a
+L00242b:
+  00242b: cadd oimmp['TRES ELEVE'] adirp[0x5e]
+L00243a:
+  00243a: cjsr16 -> 0x1f7f
+  00243d: cret 

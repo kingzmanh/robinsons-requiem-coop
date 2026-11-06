@@ -1,0 +1,114 @@
+offset	type	readers	writers	adders
+0e66	w	body.IO time.IO		
+0e71	b	heros.IO ordi.IO		
+0e82	w	map.IO souris.IO yoda.IO	souris.IO	
+0e84	w	map.IO souris.IO yoda.IO	souris.IO	
+0e86	w	yoda.IO	souris.IO	
+0e88	b	map.IO souris.IO yoda.IO	souris.IO yoda.IO	
+0e89	b	body.IO		
+0e8a	w	jungle.IO messageu.IO yoda.IO	yoda.IO	
+0e92	ti	body.IO time.IO yoda.IO		
+0eb2	ti	body.IO time.IO		
+0ec0	ti	body.IO time.IO yoda.IO		
+0ee0	ti	body.IO		
+0f18	ti	body.IO time.IO		
+0f2e	b	body.IO time.IO		
+0f2f	b	body.IO yoda.IO		
+0f30	b	body.IO		
+0f31	b	body.IO time.IO		
+0f32	b	body.IO time.IO		
+0f33	b	body.IO		
+0f34	b	body.IO		
+0f35	b	objet.IO	yoda.IO	
+0f3e	ti	objet.IO		
+1744	ti	objet.IO	objet.IO yoda.IO	
+183a	tc		yoda.IO	
+1846	b		yoda.IO	
+1847	b	yoda.IO	yoda.IO	
+1848	w	objet.IO		
+184a	w	yoda.IO	objet.IO yoda.IO	
+184c	b	caporal.IO heros.IO human.IO time.IO yoda.IO	yoda.IO	
+184d	b	heros.IO map.IO ordi.IO time.IO yoda.IO		
+1922	b	ordi.IO sjungle.IO time.IO		time.IO
+1923	b	ordi.IO time.IO		
+1924	w	ordi.IO time.IO yoda.IO		
+1926	w	ordi.IO time.IO		time.IO
+1928	w	ordi.IO time.IO		time.IO
+192a	w	ordi.IO souris.IO time.IO		time.IO
+192c	w	time.IO		
+192e	w	ordi.IO time.IO	time.IO	time.IO
+1932	w	ordi.IO time.IO		time.IO
+1934	w	ordi.IO time.IO		time.IO
+1936	w	ordi.IO time.IO		time.IO
+1938	w	heros.IO ordi.IO time.IO yoda.IO		
+193a	w	time.IO	time.IO	time.IO
+193c	w	time.IO		
+193e	w	time.IO yoda.IO		time.IO
+1940	w	time.IO	time.IO	
+1942	w	ordi.IO time.IO yoda.IO		time.IO
+1944	w	time.IO		
+1946	w	ordi.IO time.IO		time.IO
+1948	w	ordi.IO time.IO yoda.IO		
+194a	w	sjungle.IO		
+194c	w	time.IO		
+194e	w	time.IO		time.IO
+1950	w	time.IO	time.IO	
+1952	w	ordi.IO time.IO		time.IO
+1954	b	ordi.IO time.IO		
+1955	b	time.IO yoda.IO		
+19da	w	time.IO		time.IO
+19dc	w	time.IO yoda.IO		
+19de	b	yoda.IO		
+19df	b	souris.IO		
+19e0	w	time.IO		
+19e8	ti	time.IO		
+19ff	b	time.IO		
+1a00	b	time.IO		
+1a02	b	time.IO		
+1a04	b	time.IO	time.IO	
+1a05	b	ordi.IO time.IO		
+1a06	w	yoda.IO	souris.IO	
+1a08	w	time.IO	time.IO	time.IO
+1a0a	b	time.IO		
+1a0c	w	ordi.IO yoda.IO		
+1a0e	b	yoda.IO	souris.IO	
+1a10	w	yoda.IO	souris.IO	
+1a12	w	yoda.IO	souris.IO	
+1a15	b	objet.IO time.IO	heros.IO	
+1a46	b	jungle.IO time.IO		
+1a8f	b	heros.IO	heros.IO yoda.IO	
+1a90	b	heros.IO	yoda.IO	
+1a92	w	heros.IO	heros.IO	
+1a94	w	heros.IO	yoda.IO	
+1a9e	ti	human.IO map.IO	eagle.IO human.IO	
+2d6a	w	souris.IO yoda.IO	souris.IO	
+2d6d	b	heros.IO		
+2d6f	b	heros.IO yoda.IO		
+2d76	ti	human.IO		
+2d88	ti	human.IO		
+2d9f	b	heros.IO yoda.IO	yoda.IO	yoda.IO
+39b5	b	objet.IO		
+39b6	b	objet.IO		
+39b7	b	heros.IO		
+3adb	b	body.IO		
+3aeb	b	body.IO		
+3b06	b	time.IO		time.IO
+3bab	b	map.IO		
+3bba	b	ordi.IO		
+3bbc	b	time.IO		
+3bbd	b	time.IO		
+3bbe	b	heros.IO		
+3bc1	b	yoda.IO		
+3be2	w	time.IO		
+3be4	w	map.IO yoda.IO		
+3be6	w	jungle.IO		
+3be8	w	jungle.IO		
+3bea	w	jungle.IO		
+3bec	w	jungle.IO		
+3bee	w	jungle.IO		
+3bf0	w	jungle.IO		
+3c14	b	time.IO	yoda.IO	
+3c15	b	caporal.IO		
+3c9e	b		messageu.IO	
+3cc2	b	human.IO map.IO yoda.IO		
+3cc4	b	yoda.IO		

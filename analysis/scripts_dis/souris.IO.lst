@@ -1,0 +1,158 @@
+; souris.IO: 42 distinct executed instructions (runtime coverage only)
+049382 86 cmouse
+    049383 20 smainw  0x0e82
+    049386 20 smainw  0x2d6a
+    049389 12 sdirb  0x5c
+04938b 1e cstore
+    04938c 38 oeval
+    04938d 02 oimmw  0x00c7
+    049390 58 osub
+    049391 20 omainw  0x2d6a
+    049394 3a ofin  [ = 199]
+    049395 20 smainw  0x0e84
+    049394 3a ofin  [ = 29]
+    049394 3a ofin  [ = 139]
+049398 1e cstore
+    049399 00 oimmb  0x00
+    04939b 1e smainb  0x1a0e
+04939e 1e cstore
+    04939f 38 oeval
+    0493a0 00 oimmb  0x00
+    0493a2 6e ojoy
+    0493a3 3a ofin  [ = 0]
+    0493a4 20 smainw  0x1a10
+    0493a3 3a ofin  [ = 128]
+0493a7 1e cstore
+    0493a8 6a oinkey  [""] [0]
+    0493a9 20 smainw  0x1a12
+    0493a8 6a oinkey  ["F1"] [187]
+    0493a8 6a oinkey  ["Escape"] [27]
+    0493a8 6a oinkey  ["F2"] [188]
+    0493a8 6a oinkey  ["F3"] [189]
+    0493a8 6a oinkey  ["F4"] [190]
+    0493a8 6a oinkey  ["F5"] [191]
+    0493a8 6a oinkey  ["F6"] [192]
+    0493a8 6a oinkey  ["F7"] [193]
+    0493a8 6a oinkey  ["F8"] [194]
+    0493a8 6a oinkey  ["F9"] [195]
+    0493a8 6a oinkey  ["F10"] [196]
+0493ac 2f cswitch2
+    0493ad 12 odirb  0x5c 0x02 0xffff
+    0493ad 12 odirb  0x5c 0x02 0xffff 0x0008
+    0493ad 12 odirb  0x5c 0x02 0xffff 0x0010
+0493b9 0a cjmp24  0x0024 0x00 [jmp dn +0x000024]
+0493bd 1e cstore
+    0493be 00 oimmb  0x02
+    0493c0 1e smainb  0x0e88
+0493c3 0a cjmp24  0x0020 0x00 [jmp dn +0x000020]
+0493c7 1e cstore
+    0493c8 00 oimmb  0x01
+    0493ca 1e smainb  0x0e88
+0493cd 0a cjmp24  0x0016 0x00 [jmp dn +0x000016]
+0493e1 1e cstore
+    0493e2 00 oimmb  0x00
+    0493e4 1e smainb  0x0e88
+0493e7 1f ceval
+    0493e8 38 oeval
+    0493e9 74 oshiftkey
+    0493ea 42 oand
+    0493eb 00 oimmb  0x03
+    0493ed 4c odiff
+    0493ee 00 oimmb  0x00
+    0493f0 3a ofin  [ = 0]
+0493f1 14 cbz24  0x001c 0x00 [d7==0 => jmp dn +0x00001c]
+049411 1e cstore
+    049412 00 oimmb  0x00
+    049414 14 sdirw  0x56
+049416 1e cstore
+    049417 00 oimmb  0x00
+    049419 14 sdirw  0x58
+04941b 1f ceval
+    04941c 38 oeval
+    04941d 1e omainb  0x19df
+    049420 4c odiff
+    049421 00 oimmb  0x00
+    049423 40 opushacc
+    049424 20 omainw  0x192a
+    049427 54 osup
+    049428 02 oimmw  0x0195
+    04942b 44 oor
+    04942c 36 opile
+    04942d 3a ofin  [ = 0]
+04942e 14 cbz24  0x0080 0x00 [d7==0 => jmp dn +0x000080]
+0494b2 1f ceval
+    0494b3 14 odirw  0x5a
+0494b5 14 cbz24  0x0012 0x00 [d7==0 => jmp dn +0x000012]
+0494cb 4c cset
+    0494cc 20 omainw  0x0e82
+    0494cf 00 oimmb  0x00
+    0494d1 20 omainw  0x0e84
+0494d4 1f ceval
+    0494d5 38 oeval
+    0494d6 1e omainb  0x0e88
+    0494d9 4c odiff
+    0494da 00 oimmb  0x00
+    0494dc 40 opushacc
+    0494dd 20 omainw  0x0e84
+    0494e0 52 oinf
+    0494e1 00 oimmb  0x36
+    0494e3 40 opushacc
+    0494e4 20 omainw  0x0e82
+    0494e7 52 oinf
+    0494e8 02 oimmw  0x00f4
+    0494eb 42 oand
+    0494ec 36 opile
+    0494ed 44 oor
+    0494ee 36 opile
+    0494ef 3a ofin  [ = 0]
+    0494ef 3a ofin  [ = -1]
+0494f0 14 cbz24  0x004d 0x00 [d7==0 => jmp dn +0x00004d]
+0494f4 a5 ctstform
+    0494f5 02 oimmw  0x7fff
+    0494f8 00 oimmb  0x00
+    0494fa 14 sdirw  0x62
+0494fc 1f ceval
+    0494fd 38 oeval
+    0494fe 14 odirw  0x62
+    049500 4c odiff
+    049501 00 oimmb  0xff
+    049503 3a ofin  [ = -1]
+    049503 3a ofin  [ = 0]
+049504 14 cbz24  [d7<>0 => no jmp +3]
+049508 1f ceval
+    049509 38 oeval
+    04950a 1e omainb  0x0e88
+    04950d 4a oegal
+    04950e 00 oimmb  0x02
+    049510 3a ofin  [ = -1]
+    049510 3a ofin  [ = 0]
+049511 14 cbz24  [d7<>0 => no jmp +3]
+049515 e1 cmatent
+    049516 20 smainw  0x0e86
+049519 1e cstore
+    04951a 00 oimmb  0x00
+    04951c 20 smainw  0x1a06
+04951f 0a cjmp24  0x000a 0x00 [jmp dn +0x00000a]
+049523 e1 cmatent
+    049524 20 smainw  0x1a06
+049527 1e cstore
+    049528 00 oimmb  0x00
+    04952a 20 smainw  0x0e86
+04952d 0a cjmp24  0x000c 0x00 [jmp dn +0x00000c]
+049531 1e cstore
+    049532 00 oimmb  0x00
+    049534 20 smainw  0x0e86
+049537 1e cstore
+    049538 00 oimmb  0x00
+    04953a 20 smainw  0x1a06
+04953d 0a cjmp24  0x000c 0x00 [jmp dn +0x00000c]
+049541 1e cstore
+    049542 00 oimmb  0x00
+    049544 20 smainw  0x0e86
+049547 1e cstore
+    049548 00 oimmb  0x00
+    04954a 20 smainw  0x1a06
+04954d 42 cstop
+04954e 1f ceval
+    04954f 00 oimmb  0x00
+049551 13 cbz16  0xfe2e [d7==0 => jmp up -0x01d2]

@@ -1,0 +1,17 @@
+# scene2: entity list + walking with the mouse pad
+200 dument start
+500 mark idle
+3000 shot s0
+3500 mark walk_fwd
+3600 click 288 170 l 3000
+7000 shot s1
+7100 dument after_fwd
+7500 mark turn_right
+7600 click 304 170 l 1500
+9500 shot s2
+9600 dument after_turn
+10000 mark walk_fwd2
+10100 click 288 170 r 2500
+13000 shot s3
+13100 dument after_run
+13500 quit

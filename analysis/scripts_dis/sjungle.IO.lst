@@ -1,0 +1,97 @@
+; sjungle.IO: 17 distinct executed instructions (runtime coverage only)
+1fb335 1e cstore
+    1fb336 38 oeval
+    1fb337 00 oimmb  0x0f
+    1fb339 64 ornd
+    1fb33a 3a ofin  [ = 13]
+    1fb33b 12 sdirb  0x53
+    1fb33a 3a ofin  [ = 5]
+    1fb33a 3a ofin  [ = 3]
+    1fb33a 3a ofin  [ = 11]
+    1fb33a 3a ofin  [ = 4]
+    1fb33a 3a ofin  [ = 9]
+    1fb33a 3a ofin  [ = 7]
+    1fb33a 3a ofin  [ = 2]
+    1fb33a 3a ofin  [ = 8]
+    1fb33a 3a ofin  [ = 0]
+    1fb33a 3a ofin  [ = 14]
+    1fb33a 3a ofin  [ = 12]
+1fb33d 2f cswitch2
+    1fb33e 12 odirb  0x53 0x0a 0xfffe
+    1fb33e 12 odirb  0x53 0x0a 0xfffe 0x0080
+    1fb33e 12 odirb  0x53 0x0a 0xfffe 0x0084
+    1fb33e 12 odirb  0x53 0x0a 0xfffe 0x0074
+    1fb33e 12 odirb  0x53 0x0a 0xfffe 0x002b
+    1fb33e 12 odirb  0x53 0x0a 0xfffe 0x0078
+    1fb33e 12 odirb  0x53 0x0a 0xfffe 0x007c
+    1fb33e 12 odirb  0x53 0x0a 0xfffe 0x0018
+    1fb33e 12 odirb  0x53 0x0a 0xfffe 0x0049
+    1fb33e 12 odirb  0x53 0x0a 0xfffe 0x005f
+1fb359 0a cjmp24  0x006e 0x00 [jmp dn +0x00006e]
+1fb35d 9d csound
+    1fb35e 00 oimmb  0x00
+    1fb360 00 oimmb  0x0a
+    1fb362 00 oimmb  0x7f
+    1fb364 00 oimmb  0x01
+    1fb366 38 oeval
+    1fb367 00 oimmb  0x05
+    1fb369 40 opushacc
+    1fb36a 00 oimmb  0x03
+    1fb36c 64 ornd
+    1fb36d 56 oadd
+    1fb36e 36 opile
+    1fb36f 3a ofin  [ = 7]
+    1fb36f 3a ofin  [ = 6]
+1fb370 0a cjmp24  0x0057 0x00 [jmp dn +0x000057]
+1fb374 9d csound
+    1fb375 00 oimmb  0x02
+    1fb377 00 oimmb  0x0c
+    1fb379 00 oimmb  0x7f
+    1fb37b 00 oimmb  0x01
+    1fb37d 38 oeval
+    1fb37e 00 oimmb  0x08
+    1fb380 40 opushacc
+    1fb381 00 oimmb  0x02
+    1fb383 64 ornd
+    1fb384 58 osub
+    1fb385 36 opile
+    1fb386 3a ofin  [ = 7]
+    1fb386 3a ofin  [ = 8]
+1fb387 0a cjmp24  0x0040 0x00 [jmp dn +0x000040]
+1fb39a 9d csound
+    1fb39b 00 oimmb  0x09
+    1fb39d 00 oimmb  0x10
+    1fb39f 00 oimmb  0x7f
+    1fb3a1 00 oimmb  0x01
+    1fb3a3 00 oimmb  0x05
+1fb3a5 0a cjmp24  0x0022 0x00 [jmp dn +0x000022]
+1fb3b8 9d csound
+    1fb3b9 00 oimmb  0x0c
+    1fb3bb 00 oimmb  0x14
+    1fb3bd 00 oimmb  0x7f
+    1fb3bf 00 oimmb  0x01
+    1fb3c1 38 oeval
+    1fb3c2 00 oimmb  0x08
+    1fb3c4 40 opushacc
+    1fb3c5 00 oimmb  0x03
+    1fb3c7 64 ornd
+    1fb3c8 58 osub
+    1fb3c9 36 opile
+    1fb3ca 3a ofin  [ = 7]
+    1fb3ca 3a ofin  [ = 8]
+1fb3cb 42 cstop
+1fb3cc 1f ceval
+    1fb3cd 38 oeval
+    1fb3ce 1e omainb  0x1922
+    1fb3d1 4c odiff
+    1fb3d2 12 odirb  0x54
+    1fb3d4 3a ofin  [ = 0]
+    1fb3d4 3a ofin  [ = -1]
+1fb3d5 12 cbz8  0xf4 [d7==0 => jmp up -0x0c]
+1fb3d7 1e cstore
+    1fb3d8 1e omainb  0x1922
+    1fb3db 12 sdirb  0x54
+1fb3dd 1f ceval
+    1fb3de 20 omainw  0x194a
+1fb3e1 14 cbz24  0x0004 0x00 [d7==0 => jmp dn +0x000004]
+1fb3e9 09 cjmp16  0xff49 [jmp up -0x00b7]

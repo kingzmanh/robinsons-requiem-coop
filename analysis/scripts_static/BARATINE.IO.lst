@@ -1,0 +1,1841 @@
+; BARATINE.IO: 1667 instructions, 19547/24864 bytes, entries ['0x18', '0x4c58']
+  000018: cdim 0x0070 cnt=0x40 0x02
+  000021: cdim 0x00a8 cnt=0x40 0x18
+  00002a: ceval (oimmb[0x01] opushacc omainb[0x3cdd] oegal[oimmb[0x00]] oand[opile])
+  000038: cbz24 -> 0x0070
+  00003c: ceval (odirb[0x4c] oinfeg[oimmb[0xb0]] opushacc odirb[0x4c] osup[oimmb[0x92]] oand[opile] opushacc odirb[0x4c] oegal[oimmb[0x91]] oor[opile])
+  000054: cbz24 -> 0x0070
+L000058:
+  000058: cstop 
+  000059: ceval (omainw[0x3ce0] odiff[oimmb[0x00]])
+  000062: cbz8 -> 0x0058
+L000064:
+  000064: cstop 
+  000065: ceval (omainw[0x3ce2] oinf[oimmb[0x05]])
+  00006e: cbz8 -> 0x0064
+L000070:
+  000070: ceval (odirb[0x4c] oegal[oimmb[0x7f]])
+  000078: cbz24 -> 0x008e
+  00007c: cfopen 'bisou.io' 0x0002
+  000088: cjsr24 -> 0x44cd
+  00008c: cfclose 
+  00008d: cexit 
+L00008e:
+  00008e: cstore oimmb[0x01] sdirb[0x9d]
+  000093: ceval (odirb[0x4d] oegal[oimmb[0xff]])
+  00009b: cbz24 -> 0x00ae
+  00009f: cstore oimmb[0x01] sdirb[0x9f]
+  0000a4: cstore oimmb[0x00] sdirb[0x9d]
+  0000a9: cstore oimmb[0x00] sdirb[0x4d]
+L0000ae:
+  0000ae: ceval (oimmb[0x01] opushacc omainb[0x3cdd] oegal[oimmb[0x00]] oand[opile])
+  0000bc: cbz24 -> 0x00e1
+  0000c0: ceval (odirb[0x4c] oinfeg[oimmb[0xb0]] opushacc odirb[0x4c] osup[oimmb[0x9c]] oand[opile] opushacc odirb[0x4c] oegal[oimmb[0x91]] oor[opile])
+  0000d8: cbz24 -> 0x00e1
+  0000dc: cstore oimmb[0x00] sdirb[0x9d]
+L0000e1:
+  0000e1: cset oimmb[0x00] oimmb[0x00] oimmb[0x00]
+  0000e8: cscreen 0x0052
+  0000eb: cfindtyp 0x0012 sdirw[0x52]
+  0000f0: ceval (odirw[0x52] odiff[oimmb[0xff]])
+  0000f8: cbz24 -> 0x00ff
+  0000fc: ckill odirw[0x52]
+L0000ff:
+  0000ff: cstore oimmb[0x00] sdirw[0x66]
+L000104:
+  000104: ceval odirb[0x9d]
+  000107: cbz24 -> 0x010e
+  00010b: cput oimmb[0x06]
+L00010e:
+  00010e: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  000119: ceval (odirb[0x4c] oinfeg[oimmb[0xb0]] opushacc odirb[0x4c] osup[oimmb[0x91]] oand[opile])
+  000129: cbz24 -> 0x0162
+  00012d: cstore oimmb[0x01] sdirb[0x98]
+  000132: ceval (odirb[0x4c] oinfeg[oimmb[0x9c]])
+  00013a: cbz24 -> 0x015a
+  00013e: ceval (odirw[0x58] odiff[oimmb[0xff]])
+  000146: cbz24 -> 0x0152
+  00014a: cstore oimmb[0x02] shimb[0x0058,0x004d]
+L000152:
+  000152: cjsr24 -> 0x4c39
+  000156: cjmp24 -> 0x0162
+L00015a:
+  00015a: cstore oimmb[0x03] shimb[0x0058,0x004d]
+L000162:
+  000162: cswitch1 odirb[0x4c] 0xff81->0x020e 0xff86->0x0322 0xff87->0x053e 0xff88->0x068a 0xff89->0x07ea 0xff8a->0x0a19 0xff91->0x1c32 0xff93->0x1b37 0xff94->0x1a3f 0xff95->0x1851 0xff96->0x1554 0xff97->0x1373 0xff98->0x120c 0xff99->0x110c 0xff9a->0x0f6c 0xff9b->0x0dae 0xff9c->0x0c55 0xff9d->0x376b 0xff9e->0x35f9 0xff9f->0x34cb 0xffa0->0x333c 0xffa1->0x31c9 0xffa2->0x3008 0xffa4->0x2e4e 0xffa5->0x2cdb 0xffa6->0x2b1f 0xffa7->0x298d 0xffa9->0x2831 0xffaa->0x2696 0xffab->0x24da 0xffac->0x2331 0xffad->0x21b5 0xffae->0x2022 0xffb0->0x1e51 0x63->0x3950 0x64->0x3a6f 0x65->0x3a9d 0x66->0x3aa9 0x67->0x3b51 0x68->0x3b59 0x69->0x3b59
+  00020a: cjmp24 -> 0x3c34
+L00020e:
+  00020e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x3c] oimmb[0x01]
+  000217: csputprint oimmp['PALETTES RVB']
+  000226: csputprint oimmp['\r\n']
+  00022b: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x32] oimmb[0x01]
+  000234: csputprint oimmp['RPLUIE:']
+  00023e: cvputprint omainw[0x3be6]
+  000242: csputprint oimmp['\r\n']
+  000247: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x2c] oimmb[0x01]
+  000250: csputprint oimmp['VPLUIE:']
+  00025a: cvputprint omainw[0x3be8]
+  00025e: csputprint oimmp['\r\n']
+  000263: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x26] oimmb[0x01]
+  00026c: csputprint oimmp['BPLUIE:']
+  000276: cvputprint omainw[0x3bea]
+  00027a: csputprint oimmp['\r\n']
+  00027f: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x1e] oimmb[0x01]
+  000288: csputprint oimmp['PAVLOV:']
+  000292: cvputprint (oimmb[0x04] opushacc oimmb[0x00] omainti[0x1a9e])
+  00029d: csputprint oimmp['\r\n']
+  0002a2: cnumput oimmw[0x008c] oimmb[0x00] oimmb[0x32] oimmb[0x01]
+  0002ac: csputprint oimmp['RJOUR:']
+  0002b5: cvputprint omainw[0x3bec]
+  0002b9: csputprint oimmp['\r\n']
+  0002be: cnumput oimmw[0x008c] oimmb[0x00] oimmb[0x2c] oimmb[0x01]
+  0002c8: csputprint oimmp['VJOUR:']
+  0002d1: cvputprint omainw[0x3bee]
+  0002d5: csputprint oimmp['\r\n']
+  0002da: cnumput oimmw[0x008c] oimmb[0x00] oimmb[0x26] oimmb[0x01]
+  0002e4: csputprint oimmp['BJOUR:']
+  0002ed: cvputprint omainw[0x3bf0]
+  0002f1: csputprint oimmp['\r\n']
+  0002f6: cjsr24 -> 0x3cd7
+L0002fa:
+  0002fa: cstop 
+  0002fb: ceval (omainb[0x0e88] oegal[oimmb[0x00]] opushacc oinkey oegal[oimmb[0x00]] oand[opile])
+  00030b: cbz8 -> 0x02fa
+L00030d:
+  00030d: cstop 
+  00030e: ceval (oinkey odiff[oimmb[0x00]] oor[omainb[0x0e88]])
+  000319: cbz8 -> 0x030d
+  00031b: cerasall 
+  00031c: cstop 
+  00031d: cexit 
+L000322:
+  000322: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x3c] oimmb[0x01]
+  00032b: csputprint oimmp['DRFUSEE  :']
+  000338: cvputprint omainb[0x1a46]
+  00033c: csputprint oimmp['\r\n']
+  000341: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x36] oimmb[0x01]
+  00034a: csputprint oimmp['DRPAUSE  :']
+  000357: cvputprint omainb[0x1a47]
+  00035b: csputprint oimmp['\r\n']
+  000360: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x30] oimmb[0x01]
+  000369: csputprint oimmp['DRDEP    :']
+  000376: cvputprint omainb[0x1a8f]
+  00037a: csputprint oimmp['\r\n']
+  00037f: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x2a] oimmb[0x01]
+  000388: csputprint oimmp['DRLUX    :']
+  000395: cvputprint omainb[0x39b5]
+  000399: csputprint oimmp['\r\n']
+  00039e: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x24] oimmb[0x01]
+  0003a7: csputprint oimmp['DRALLUME :']
+  0003b4: cvputprint omainb[0x39b6]
+  0003b8: csputprint oimmp['\r\n']
+  0003bd: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x1e] oimmb[0x01]
+  0003c6: csputprint oimmp['DRLAMPE  :']
+  0003d3: cvputprint omainb[0x3ad8]
+  0003d7: csputprint oimmp['\r\n']
+  0003dc: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x18] oimmb[0x01]
+  0003e5: csputprint oimmp['DRAMAZONE:']
+  0003f2: cvputprint omainb[0x3ad9]
+  0003f6: csputprint oimmp['\r\n']
+  0003fb: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x12] oimmb[0x01]
+  000404: csputprint oimmp['DRGOURDE :']
+  000411: cvputprint omainb[0x3b07]
+  000415: csputprint oimmp['\r\n']
+  00041a: cnumput oimmw[0x0087] oimmb[0x00] oimmb[0x3c] oimmb[0x01]
+  000424: csputprint oimmp['DRDONNE :']
+  000430: cvputprint omainb[0x3bb8]
+  000434: csputprint oimmp['\r\n']
+  000439: cnumput oimmw[0x0087] oimmb[0x00] oimmb[0x36] oimmb[0x01]
+  000443: csputprint oimmp['DRGAZ   :']
+  00044f: cvputprint omainb[0x3bb9]
+  000453: csputprint oimmp['\r\n']
+  000458: cnumput oimmw[0x0087] oimmb[0x00] oimmb[0x30] oimmb[0x01]
+  000462: csputprint oimmp['DRATOMIC:']
+  00046e: cvputprint omainb[0x3bbb]
+  000472: csputprint oimmp['\r\n']
+  000477: cnumput oimmw[0x0087] oimmb[0x00] oimmb[0x2a] oimmb[0x01]
+  000481: csputprint oimmp['DRSAC   :']
+  00048d: cvputprint omainb[0x3bc3]
+  000491: csputprint oimmp['\r\n']
+  000496: cnumput oimmw[0x0087] oimmb[0x00] oimmb[0x24] oimmb[0x01]
+  0004a0: csputprint oimmp['DRRADEAU:']
+  0004ac: cvputprint omainb[0x3b3c]
+  0004b0: csputprint oimmp['\r\n']
+  0004b5: cnumput oimmw[0x0087] oimmb[0x00] oimmb[0x1e] oimmb[0x01]
+  0004bf: csputprint oimmp['LUX     :']
+  0004cb: cvputprint omainb[0x39b4]
+  0004cf: csputprint oimmp['\r\n']
+  0004d4: cnumput oimmw[0x0087] oimmb[0x00] oimmb[0x18] oimmb[0x01]
+  0004de: csputprint oimmp['HATOMIC :']
+  0004ea: cvputprint omainb[0x3be0]
+  0004ee: csputprint oimmp['\r\n']
+  0004f3: cnumput oimmw[0x0087] oimmb[0x00] oimmb[0x12] oimmb[0x01]
+  0004fd: csputprint oimmp['CPTSEL  :']
+  000509: cvputprint omainw[0x3be2]
+  00050d: csputprint oimmp['\r\n']
+  000512: cjsr24 -> 0x3cd7
+L000516:
+  000516: cstop 
+  000517: ceval (omainb[0x0e88] oegal[oimmb[0x00]] opushacc oinkey oegal[oimmb[0x00]] oand[opile])
+  000527: cbz8 -> 0x0516
+L000529:
+  000529: cstop 
+  00052a: ceval (oinkey odiff[oimmb[0x00]] oor[omainb[0x0e88]])
+  000535: cbz8 -> 0x0529
+  000537: cerasall 
+  000538: cstop 
+  000539: cexit 
+L00053e:
+  00053e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x3e] oimmb[0x01]
+  000547: csputprint oimmp['TEMPEX    :']
+  000555: cvputprint omainw[0x1946]
+  000559: csputprint oimmp['\r\n']
+  00055e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x38] oimmb[0x01]
+  000567: csputprint oimmp['CHAL      :']
+  000575: cvputprint omainw[0x1950]
+  000579: csputprint oimmp['\r\n']
+  00057e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x32] oimmb[0x01]
+  000587: csputprint oimmp['FIEVRE    :']
+  000595: cvputprint omainw[0x192c]
+  000599: csputprint oimmp['\r\n']
+  00059e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x2c] oimmb[0x01]
+  0005a7: csputprint oimmp['ETOUFFE   :']
+  0005b5: cvputprint omainb[0x3aea]
+  0005b9: csputprint oimmp['\r\n']
+  0005be: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x26] oimmb[0x01]
+  0005c7: csputprint oimmp['SAC       :']
+  0005d5: cvputprint omainw[0x1938]
+  0005d9: csputprint oimmp['\r\n']
+  0005de: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x20] oimmb[0x01]
+  0005e7: csputprint oimmp['PLUIE     :']
+  0005f5: cvputprint omainw[0x1948]
+  0005f9: csputprint oimmp['\r\n']
+  0005fe: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x1a] oimmb[0x01]
+  000607: csputprint oimmp['CALPLUIE  :']
+  000615: cvputprint omainb[0x3b06]
+  000619: csputprint oimmp['\r\n']
+  00061e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x14] oimmb[0x01]
+  000627: csputprint oimmp['NBPLAQUE  :']
+  000635: cvputprint omainb[0x3ada]
+  000639: csputprint oimmp['\r\n']
+  00063e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x0e] oimmb[0x01]
+  000647: csputprint oimmp['VET       :']
+  000655: cvputprint omainw[0x194c]
+  000659: csputprint oimmp['\r\n']
+  00065e: cjsr24 -> 0x3cd7
+L000662:
+  000662: cstop 
+  000663: ceval (omainb[0x0e88] oegal[oimmb[0x00]] opushacc oinkey oegal[oimmb[0x00]] oand[opile])
+  000673: cbz8 -> 0x0662
+L000675:
+  000675: cstop 
+  000676: ceval (oinkey odiff[oimmb[0x00]] oor[omainb[0x0e88]])
+  000681: cbz8 -> 0x0675
+  000683: cerasall 
+  000684: cstop 
+  000685: cexit 
+L00068a:
+  00068a: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x3e] oimmb[0x01]
+  000693: csputprint oimmp['GRIPPE    :']
+  0006a1: cvputprint (oimmb[0x0a] omainti[0x0ec0])
+  0006a9: csputprint oimmp['\r\n']
+  0006ae: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x38] oimmb[0x01]
+  0006b7: csputprint oimmp['VENTRE    :']
+  0006c5: cvputprint (oimmb[0x09] omainti[0x0ec0])
+  0006cd: csputprint oimmp['\r\n']
+  0006d2: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x32] oimmb[0x01]
+  0006db: csputprint oimmp['INSOLATION:']
+  0006e9: cvputprint (oimmb[0x08] omainti[0x0ec0])
+  0006f1: csputprint oimmp['\r\n']
+  0006f6: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x2c] oimmb[0x01]
+  0006ff: csputprint oimmp['VENIN     :']
+  00070d: cvputprint (oimmb[0x01] omainti[0x0ec0])
+  000715: csputprint oimmp['\r\n']
+  00071a: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x26] oimmb[0x01]
+  000723: csputprint oimmp['BLESSURE  :']
+  000731: cvputprint (oimmb[0x01] omainti[0x0e92])
+  000739: csputprint oimmp['\r\n']
+  00073e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x20] oimmb[0x01]
+  000747: csputprint oimmp['FAT       :']
+  000755: cvputprint omainw[0x193e]
+  000759: csputprint oimmp['\r\n']
+  00075e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x1a] oimmb[0x01]
+  000767: csputprint oimmp['PSY       :']
+  000775: cvputprint omainw[0x1944]
+  000779: csputprint oimmp['\r\n']
+  00077e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x14] oimmb[0x01]
+  000787: csputprint oimmp['PALU      :']
+  000795: cvputprint omainw[0x1952]
+  000799: csputprint oimmp['\r\n']
+  00079e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x0e] oimmb[0x01]
+  0007a7: csputprint oimmp['IVRE      :']
+  0007b5: cvputprint omainw[0x19e0]
+  0007b9: csputprint oimmp['\r\n']
+  0007be: cjsr24 -> 0x3cd7
+L0007c2:
+  0007c2: cstop 
+  0007c3: ceval (omainb[0x0e88] oegal[oimmb[0x00]] opushacc oinkey oegal[oimmb[0x00]] oand[opile])
+  0007d3: cbz8 -> 0x07c2
+L0007d5:
+  0007d5: cstop 
+  0007d6: ceval (oinkey odiff[oimmb[0x00]] oor[omainb[0x0e88]])
+  0007e1: cbz8 -> 0x07d5
+  0007e3: cerasall 
+  0007e4: cstop 
+  0007e5: cexit 
+L0007ea:
+  0007ea: cfindtyp 0x000f sdirw[0x52]
+  0007ef: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x3c] oimmb[0x01]
+  0007f8: csputprint oimmp['ACX :']
+  000800: cvputprint ohimw[0x0052,0x0018]
+  000806: csputprint oimmp['\r\n']
+  00080b: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x36] oimmb[0x01]
+  000814: csputprint oimmp['ACY :']
+  00081c: cvputprint ohimw[0x0052,0x0020]
+  000822: csputprint oimmp['\r\n']
+  000827: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x30] oimmb[0x01]
+  000830: csputprint oimmp['ACZ :']
+  000838: cvputprint ohimw[0x0052,0x0028]
+  00083e: csputprint oimmp['\r\n']
+  000843: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x2a] oimmb[0x01]
+  00084c: csputprint oimmp['CX  :']
+  000854: cvputprint ohimw[0x0052,0x0000]
+  00085a: csputprint oimmp['\r\n']
+  00085f: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x24] oimmb[0x01]
+  000868: csputprint oimmp['CY  :']
+  000870: cvputprint ohimw[0x0052,0x0008]
+  000876: csputprint oimmp['\r\n']
+  00087b: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x1e] oimmb[0x01]
+  000884: csputprint oimmp['CZ  :']
+  00088c: cvputprint ohimw[0x0052,0x0010]
+  000892: csputprint oimmp['\r\n']
+  000897: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x18] oimmb[0x01]
+  0008a0: csputprint oimmp['POST:']
+  0008a8: cvputprint omainb[0x184c]
+  0008ac: csputprint oimmp['\r\n']
+  0008b1: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x12] oimmb[0x01]
+  0008ba: csputprint oimmp['ALTI:']
+  0008c2: cvputprint omainw[0x1a92]
+  0008c6: csputprint oimmp['\r\n']
+  0008cb: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x0c] oimmb[0x01]
+  0008d4: csputprint oimmp['MINERVE:']
+  0008df: cvputprint omainb[0x2d9e]
+  0008e3: csputprint oimmp['\r\n']
+  0008e8: cnumput oimmb[0x73] oimmb[0x00] oimmb[0x3c] oimmb[0x01]
+  0008f1: csputprint oimmp['SPEED  :']
+  0008fc: cvputprint omainb[0x1a90]
+  000900: csputprint oimmp['\r\n']
+  000905: cnumput oimmb[0x73] oimmb[0x00] oimmb[0x36] oimmb[0x01]
+  00090e: csputprint oimmp['VFAT   :']
+  000919: cvputprint omainw[0x1940]
+  00091d: csputprint oimmp['\r\n']
+  000922: cnumput oimmb[0x73] oimmb[0x00] oimmb[0x30] oimmb[0x01]
+  00092b: csputprint oimmp['ENER   :']
+  000936: cvputprint omainw[0x1942]
+  00093a: csputprint oimmp['\r\n']
+  00093f: cnumput oimmb[0x73] oimmb[0x00] oimmb[0x2a] oimmb[0x01]
+  000948: csputprint oimmp['EAU    :']
+  000953: cvputprint omainw[0x1936]
+  000957: csputprint oimmp['\r\n']
+  00095c: cnumput oimmb[0x73] oimmb[0x00] oimmb[0x24] oimmb[0x01]
+  000965: csputprint oimmp['SANG   :']
+  000970: cvputprint omainw[0x1932]
+  000974: csputprint oimmp['\r\n']
+  000979: cnumput oimmb[0x73] oimmb[0x00] oimmb[0x1e] oimmb[0x01]
+  000982: csputprint oimmp['VVFAT  :']
+  00098d: cvputprint omainw[0x194e]
+  000991: csputprint oimmp['\r\n']
+  000996: cnumput oimmb[0x73] oimmb[0x00] oimmb[0x18] oimmb[0x01]
+  00099f: csputprint oimmp['SOMMEIL:']
+  0009aa: cvputprint omainw[0x19dc]
+  0009ae: csputprint oimmp['\r\n']
+  0009b3: cnumput oimmb[0x73] oimmb[0x00] oimmb[0x12] oimmb[0x01]
+  0009bc: csputprint oimmp['CHUTENS:']
+  0009c7: cvputprint omainb[0x1954]
+  0009cb: csputprint oimmp['\r\n']
+  0009d0: cnumput oimmb[0x73] oimmb[0x00] oimmb[0x0c] oimmb[0x01]
+  0009d9: csputprint oimmp['DRCOU  :']
+  0009e4: cvputprint omainb[0x2d6f]
+  0009e8: csputprint oimmp['\r\n']
+  0009ed: cjsr24 -> 0x3cd7
+L0009f1:
+  0009f1: cstop 
+  0009f2: ceval (omainb[0x0e88] oegal[oimmb[0x00]] opushacc oinkey oegal[oimmb[0x00]] oand[opile])
+  000a02: cbz8 -> 0x09f1
+L000a04:
+  000a04: cstop 
+  000a05: ceval (oinkey odiff[oimmb[0x00]] oor[omainb[0x0e88]])
+  000a10: cbz8 -> 0x0a04
+  000a12: cerasall 
+  000a13: cstop 
+  000a14: cexit 
+L000a19:
+  000a19: cfindtyp 0x000f sdirw[0x52]
+  000a1e: cnumput oimmb[0x28] oimmb[0x00] oimmb[0x3c] oimmb[0x01]
+  000a27: csputprint oimmp['ROBINSON DEBUG MODE']
+  000a3d: csputprint oimmp['\r\n']
+  000a42: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x32] oimmb[0x01]
+  000a4b: csputprint oimmp['POS:']
+  000a52: cvputprint (ohimw[0x0052,0x0000] odiv[oimmb[0x10]])
+  000a5d: csputprint oimmp['.']
+  000a61: cvputprint (ohimw[0x0052,0x0008] odiv[oimmb[0x10]])
+  000a6c: csputprint oimmp['.']
+  000a70: cvputprint ohimw[0x0052,0x0010]
+  000a76: csputprint oimmp['\r\n']
+  000a7b: clistent sdirw[0x52]
+L000a7e:
+  000a7e: ceval (odirw[0x52] odiff[oimmb[0xff]])
+  000a86: cbz24 -> 0x0a94
+  000a8a: cadd oimmb[0x01] adirw[0x60]
+  000a8f: csuccent sdirw[0x52]
+  000a92: cjmp8 -> 0x0a7e
+L000a94:
+  000a94: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x2c] oimmb[0x01]
+  000a9d: csputprint oimmp['ENTITES:']
+  000aa8: cvputprint odirw[0x60]
+  000aab: csputprint oimmp['\r\n']
+  000ab0: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x25] oimmb[0x01]
+  000ab9: csputprint oimmp['HTETE  :']
+  000ac4: cvputprint omainw[0x1a94]
+  000ac8: csputprint oimmp['\r\n']
+  000acd: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x1e] oimmb[0x01]
+  000ad6: csputprint oimmp['MATSOU :']
+  000ae1: cvputprint omainw[0x0e86]
+  000ae5: csputprint oimmp['\r\n']
+  000aea: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x17] oimmb[0x01]
+  000af3: csputprint oimmp['NSOURIS:']
+  000afe: cvputprint omainb[0x19de]
+  000b02: csputprint oimmp['\r\n']
+  000b07: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x10] oimmb[0x01]
+  000b10: csputprint oimmp['MSE:']
+  000b17: cvputprint omainw[0x0e82]
+  000b1b: csputprint oimmp['.']
+  000b1f: cvputprint omainw[0x0e84]
+  000b23: csputprint oimmp[' ']
+  000b27: cvputprint (oimmw[0x00c8] osub[omainw[0x0e84]])
+  000b31: csputprint oimmp['\r\n']
+  000b36: cnumput oimmb[0x14] oimmb[0x00] oimmb[0x0a] oimmb[0x01]
+  000b3f: csputprint oimmp['MATFIC:']
+  000b49: cvputprint omainw[0x1a06]
+  000b4d: csputprint oimmp['\r\n']
+  000b52: cnumput oimmw[0x00aa] oimmb[0x00] oimmb[0x32] oimmb[0x01]
+  000b5c: csputprint oimmp['ALT:']
+  000b63: cvputprint omainw[0x1a92]
+  000b67: csputprint oimmp['\r\n']
+  000b6c: cnumput oimmw[0x00aa] oimmb[0x00] oimmb[0x2c] oimmb[0x01]
+  000b76: csputprint oimmp['MEM:']
+  000b7d: cvputprint (oimmb[0x00] ofree)
+  000b83: csputprint oimmp['\r\n']
+  000b88: cnumput oimmw[0x00aa] oimmb[0x00] oimmb[0x25] oimmb[0x01]
+  000b92: csputprint oimmp['SPR:']
+  000b99: cvputprint (oimmb[0x04] ofree)
+  000b9f: csputprint oimmp['\r\n']
+  000ba4: cnumput oimmw[0x00aa] oimmb[0x00] oimmb[0x1e] oimmb[0x01]
+  000bae: csputprint oimmp['VAR:']
+  000bb5: cvputprint (oimmb[0x01] ofree)
+  000bbb: csputprint oimmp['\r\n']
+  000bc0: ceval omainb[0x3bab]
+  000bc4: cbz24 -> 0x0be4
+  000bc8: cnumput oimmw[0x00aa] oimmb[0x00] oimmb[0x17] oimmb[0x01]
+  000bd2: csputprint oimmp['VIR:ON']
+  000bdb: csputprint oimmp['\r\n']
+  000be0: cjmp24 -> 0x0bfd
+L000be4:
+  000be4: cnumput oimmw[0x00aa] oimmb[0x00] oimmb[0x17] oimmb[0x01]
+  000bee: csputprint oimmp['VIR:OFF']
+  000bf8: csputprint oimmp['\r\n']
+L000bfd:
+  000bfd: cnumput oimmw[0x00aa] oimmb[0x00] oimmb[0x10] oimmb[0x01]
+  000c07: csputprint oimmp['VER:']
+  000c0e: cvputprint (omainw[0x3bc4] odiv[oimmb[0x64]])
+  000c17: csputprint oimmp['.']
+  000c1b: cvputprint (omainw[0x3bc4] omod[oimmb[0x0a]])
+  000c24: csputprint oimmp['\r\n']
+  000c29: cjsr24 -> 0x3cd7
+L000c2d:
+  000c2d: cstop 
+  000c2e: ceval (omainb[0x0e88] oegal[oimmb[0x00]] opushacc oinkey oegal[oimmb[0x00]] oand[opile])
+  000c3e: cbz8 -> 0x0c2d
+L000c40:
+  000c40: cstop 
+  000c41: ceval (oinkey odiff[oimmb[0x00]] oor[omainb[0x0e88]])
+  000c4c: cbz8 -> 0x0c40
+  000c4e: cerasall 
+  000c4f: cstop 
+  000c50: cexit 
+L000c55:
+  000c55: cstore oimmp['SALUD TREPLIEV1.'] (oimmb[0x00]) sdirtp[0xa8]
+  000c6e: cstore oimmp['BIENVENIDO AL CLUB DE'] (oimmb[0x01]) sdirtp[0xa8]
+  000c8c: cstore oimmp['VACACIONES. VAS A'] (oimmb[0x02]) sdirtp[0xa8]
+  000ca6: cstore oimmp['ENTENDER DEPRISA:AQUI,'] (oimmb[0x03]) sdirtp[0xa8]
+  000cc5: cstore oimmp['NO ESTAMOS EN CARNAVAL'] (oimmb[0x04]) sdirtp[0xa8]
+  000ce4: cstore oimmp['DEL MIEDO, CADA UNO'] (oimmb[0x05]) sdirtp[0xa8]
+  000d00: cstore oimmp['POR SI MISMO, SE'] (oimmb[0x06]) sdirtp[0xa8]
+  000d19: cstore oimmp['APOYA SOBRE MI'] (oimmb[0x07]) sdirtp[0xa8]
+  000d30: cstore oimmp['TERRITORIO...'] (oimmb[0x08]) sdirtp[0xa8]
+  000d46: cjsr24 -> 0x3c41
+  000d4a: cstore oimmp['ENTONCES...'] (oimmb[0x00]) sdirtp[0xa8]
+  000d5e: cstore oimmp['Y QUE YO NO TE'] (oimmb[0x01]) sdirtp[0xa8]
+  000d75: cstore oimmp['ENCUENTRE MERODEANDO'] (oimmb[0x02]) sdirtp[0xa8]
+  000d92: cstore oimmp['EN EL SECTOR...'] (oimmb[0x03]) sdirtp[0xa8]
+  000daa: cjmp24 -> 0x3c35
+L000dae:
+  000dae: cstore oimmp['SALUD VIEJO'] (oimmb[0x00]) sdirtp[0xa8]
+  000dc2: cstore oimmp['CANALLA ! SIEMPRE'] (oimmb[0x01]) sdirtp[0xa8]
+  000ddc: cstore oimmp['LIGANDO ?...'] (oimmb[0x02]) sdirtp[0xa8]
+  000df1: cstore oimmp['ESTA VEZ-YO...'] (oimmb[0x03]) sdirtp[0xa8]
+  000e08: cstore oimmp['TENGO UN SUPER'] (oimmb[0x04]) sdirtp[0xa8]
+  000e1f: cstore oimmp['PLAN CON LAS'] (oimmb[0x05]) sdirtp[0xa8]
+  000e34: cstore oimmp['AMAZONAS DEL PUEBLO,'] (oimmb[0x06]) sdirtp[0xa8]
+  000e51: cstore oimmp["LAS 'VIERNES', COMO"] (oimmb[0x07]) sdirtp[0xa8]
+  000e6d: cstore oimmp['YO LAS LLAMO...'] (oimmb[0x08]) sdirtp[0xa8]
+  000e85: cjsr24 -> 0x3c41
+  000e89: cstore oimmp['PUEDES IR A VERLAS,'] (oimmb[0x00]) sdirtp[0xa8]
+  000ea5: cstore oimmp['PERO ATENCION NADA'] (oimmb[0x01]) sdirtp[0xa8]
+  000ec0: cstore oimmp['DE TOCAR !'] (oimmb[0x02]) sdirtp[0xa8]
+  000ed3: cstore oimmp['COGE ESTE MEDALLON'] (oimmb[0x03]) sdirtp[0xa8]
+  000eee: cstore oimmp['ELLAS LE RECONOCERAN'] (oimmb[0x04]) sdirtp[0xa8]
+  000f0b: cstore oimmp['COGELO, DE MI PARTE,'] (oimmb[0x05]) sdirtp[0xa8]
+  000f28: cstore oimmp['ELLAS NO AMAN'] (oimmb[0x06]) sdirtp[0xa8]
+  000f3e: cstore oimmp['NADA A LOS'] (oimmb[0x07]) sdirtp[0xa8]
+  000f51: cstore oimmp['EXTRANJEROS...'] (oimmb[0x08]) sdirtp[0xa8]
+  000f68: cjmp24 -> 0x3c35
+L000f6c:
+  000f6c: cstore oimmp['BUESNOS DIAS,'] (oimmb[0x00]) sdirtp[0xa8]
+  000f82: cstore oimmp['BUENOS DIAS, LA GRUESA'] (oimmb[0x01]) sdirtp[0xa8]
+  000fa1: cstore oimmp['IMBECIL, ELLA NO'] (oimmb[0x02]) sdirtp[0xa8]
+  000fba: cstore oimmp['QUIERE NADA DE LO QUE'] (oimmb[0x03]) sdirtp[0xa8]
+  000fd8: cstore oimmp['TENGO EN MI CASA !...'] (oimmb[0x04]) sdirtp[0xa8]
+  000ff6: cstore oimmp['DE TODO ! ENTONCES EN'] (oimmb[0x05]) sdirtp[0xa8]
+  001014: cstore oimmp['ATENCION, HAGO LA'] (oimmb[0x06]) sdirtp[0xa8]
+  00102e: cstore oimmp['MASA. ME ENTRENO PARA'] (oimmb[0x07]) sdirtp[0xa8]
+  00104c: cstore oimmp['EL TOUR DE FRANCIA.'] (oimmb[0x08]) sdirtp[0xa8]
+  001068: cjsr24 -> 0x3c41
+  00106c: cstore oimmp['BUENO, ESTO NO ME'] (oimmb[0x00]) sdirtp[0xa8]
+  001086: cstore oimmp['ABURRE, NADA, PERO NO'] (oimmb[0x01]) sdirtp[0xa8]
+  0010a4: cstore oimmp['ES NADA DE GRACIOSO...'] (oimmb[0x02]) sdirtp[0xa8]
+  0010c3: cstore oimmp['VOY A VER SI PUEDO'] (oimmb[0x03]) sdirtp[0xa8]
+  0010de: cstore oimmp['RECUPERAR MI'] (oimmb[0x04]) sdirtp[0xa8]
+  0010f3: cstore oimmp['BICICLETA...'] (oimmb[0x05]) sdirtp[0xa8]
+  001108: cjmp24 -> 0x3c35
+L00110c:
+  00110c: cstore oimmp['ENTONCES EL DON JUAN'] (oimmb[0x00]) sdirtp[0xa8]
+  001129: cstore oimmp['DE LOS PANTANOS... UN'] (oimmb[0x01]) sdirtp[0xa8]
+  001147: cstore oimmp['NINO EN EL DORSO ?'] (oimmb[0x02]) sdirtp[0xa8]
+  001162: cstore oimmp['ES LO MAS FUERTE DE'] (oimmb[0x03]) sdirtp[0xa8]
+  00117e: cstore oimmp['TODO, EH ?... NO LO'] (oimmb[0x04]) sdirtp[0xa8]
+  00119a: cstore oimmp['PUEDES IMPEDIR ?...'] (oimmb[0x05]) sdirtp[0xa8]
+  0011b6: cstore oimmp['ESTE SERA EL ULTIMO'] (oimmb[0x06]) sdirtp[0xa8]
+  0011d2: cstore oimmp['TONO ! VOY HACERTE'] (oimmb[0x07]) sdirtp[0xa8]
+  0011ed: cstore oimmp['POLVO LA PIEL !...'] (oimmb[0x08]) sdirtp[0xa8]
+  001208: cjmp24 -> 0x3c35
+L00120c:
+  00120c: cstore oimmp['FELICIDADES CAMARADA'] (oimmb[0x00]) sdirtp[0xa8]
+  001229: cstore oimmp['SE QUE PUEDO'] (oimmb[0x01]) sdirtp[0xa8]
+  00123e: cstore oimmp['CONTAR CON UN AS'] (oimmb[0x02]) sdirtp[0xa8]
+  001257: cstore oimmp['COMO TU.'] (oimmb[0x03]) sdirtp[0xa8]
+  001268: cstore oimmp['DESGRACIDAMENTE, UN'] (oimmb[0x04]) sdirtp[0xa8]
+  001284: cstore oimmp['PROBLEMA PERSISTE :'] (oimmb[0x05]) sdirtp[0xa8]
+  0012a0: cstore oimmp['LA BASE DE LOS DROIDES'] (oimmb[0x06]) sdirtp[0xa8]
+  0012bf: cstore oimmp['ESTA ENVUELTA EN UN'] (oimmb[0x07]) sdirtp[0xa8]
+  0012db: cstore oimmp['GAS AXFISIANTE...'] (oimmb[0x08]) sdirtp[0xa8]
+  0012f5: cjsr24 -> 0x3c41
+  0012f9: cstore oimmp['... Y YO TENGO SOLO'] (oimmb[0x00]) sdirtp[0xa8]
+  001315: cstore oimmp['UNA MASCARA DE GAS...'] (oimmb[0x01]) sdirtp[0xa8]
+  001333: cstore oimmp['COMO TE DIJE EN CASA :'] (oimmb[0x02]) sdirtp[0xa8]
+  001352: cstore oimmp['ARDIENTES LAGRIMAS !'] (oimmb[0x03]) sdirtp[0xa8]
+  00136f: cjmp24 -> 0x3c35
+L001373:
+  001373: cstore oimmp['CAMARADA, NO TIENES'] (oimmb[0x00]) sdirtp[0xa8]
+  00138f: cstore oimmp['TODOS LOS SESAMOS.'] (oimmb[0x01]) sdirtp[0xa8]
+  0013aa: cstore oimmp['S.I., PARA ESTAS'] (oimmb[0x02]) sdirtp[0xa8]
+  0013c3: cstore oimmp['RECARGAS MEDICINALES,'] (oimmb[0x03]) sdirtp[0xa8]
+  0013e1: cstore oimmp['ES NECESARIO CONOCER'] (oimmb[0x04]) sdirtp[0xa8]
+  0013fe: cstore oimmp['TODAS LAS'] (oimmb[0x05]) sdirtp[0xa8]
+  001410: cstore oimmp['INFORMACIONES'] (oimmb[0x06]) sdirtp[0xa8]
+  001426: cstore oimmp['CONTENIDAS'] (oimmb[0x07]) sdirtp[0xa8]
+  001439: cstore oimmp['EN LOS SESAMOS...'] (oimmb[0x08]) sdirtp[0xa8]
+  001453: cjsr24 -> 0x3c41
+  001457: cstore oimmp['LA BASE DE LOS DROIDES'] (oimmb[0x00]) sdirtp[0xa8]
+  001476: cstore oimmp['NO PASARA DE LA FASE'] (oimmb[0x01]) sdirtp[0xa8]
+  001493: cstore oimmp['DE AUTODESTRUCCION LA'] (oimmb[0x02]) sdirtp[0xa8]
+  0014b1: cstore oimmp['INTEGRIDAD DE NUESTRA'] (oimmb[0x03]) sdirtp[0xa8]
+  0014cf: cstore oimmp['PROMOCION SERA'] (oimmb[0x04]) sdirtp[0xa8]
+  0014e6: cstore oimmp['INTRODUCIDA EN SU'] (oimmb[0x05]) sdirtp[0xa8]
+  001500: cstore oimmp['ORDENADOR. ENTONCES,'] (oimmb[0x06]) sdirtp[0xa8]
+  00151d: cstore oimmp['LA PERSECUCION'] (oimmb[0x07]) sdirtp[0xa8]
+  001534: cstore oimmp['COMIENZA, CAMARADA.'] (oimmb[0x08]) sdirtp[0xa8]
+  001550: cjmp24 -> 0x3c35
+L001554:
+  001554: cstore oimmp['BIENVENIDO CAMARADA,'] (oimmb[0x00]) sdirtp[0xa8]
+  001571: cstore oimmp['TE ACUERDAS DE MI ?'] (oimmb[0x01]) sdirtp[0xa8]
+  00158d: cstore oimmp['... NIETZSCHE26, TU'] (oimmb[0x02]) sdirtp[0xa8]
+  0015a9: cstore oimmp['SEGUNDO !... CONOZCO'] (oimmb[0x03]) sdirtp[0xa8]
+  0015c6: cstore oimmp['BIEN ESTE PLANETA, LO'] (oimmb[0x04]) sdirtp[0xa8]
+  0015e4: cstore oimmp['HE ESTUDIADO ANTES DE'] (oimmb[0x05]) sdirtp[0xa8]
+  001602: cstore oimmp['ADMITIRME EN LA MISION'] (oimmb[0x06]) sdirtp[0xa8]
+  001621: cstore oimmp['SE DONDE SE ENCUENTRA'] (oimmb[0x07]) sdirtp[0xa8]
+  00163f: cstore oimmp['EL CG DE LOS DROIDES.'] (oimmb[0x08]) sdirtp[0xa8]
+  00165d: cjsr24 -> 0x3c41
+  001661: cstore oimmp['...TENGO UN MEDIO PARA'] (oimmb[0x00]) sdirtp[0xa8]
+  001680: cstore oimmp['INTRODUCIRNOS.'] (oimmb[0x01]) sdirtp[0xa8]
+  001697: cstore oimmp['SI PUEDES TRAERME'] (oimmb[0x02]) sdirtp[0xa8]
+  0016b1: cstore oimmp['S.I., PARA ESTAS'] (oimmb[0x03]) sdirtp[0xa8]
+  0016ca: cstore oimmp['DE LOS ROBINSONS DE'] (oimmb[0x04]) sdirtp[0xa8]
+  0016e6: cstore oimmp['NUESTRA PROMOCION,'] (oimmb[0x05]) sdirtp[0xa8]
+  001701: cstore oimmp['PUEDO INTRODUCIRLOS'] (oimmb[0x06]) sdirtp[0xa8]
+  00171d: cstore oimmp['EN LOS ORDENADORES'] (oimmb[0x07]) sdirtp[0xa8]
+  001738: cstore oimmp['DE LOS DROIDES...'] (oimmb[0x08]) sdirtp[0xa8]
+  001752: cjsr24 -> 0x3c41
+  001756: cstore oimmp['ESTO DESACTIVARA TODOS'] (oimmb[0x00]) sdirtp[0xa8]
+  001775: cstore oimmp['LOS SISTEMAS DE'] (oimmb[0x01]) sdirtp[0xa8]
+  00178d: cstore oimmp['SEGURIDAD DEL PLANETA'] (oimmb[0x02]) sdirtp[0xa8]
+  0017ab: cstore oimmp['Y PODREMOS PARTIR'] (oimmb[0x03]) sdirtp[0xa8]
+  0017c5: cstore oimmp['CON NUESTRA QUERIDA'] (oimmb[0x04]) sdirtp[0xa8]
+  0017e1: cstore oimmp['NINA, A LA CUAL DEBES'] (oimmb[0x05]) sdirtp[0xa8]
+  0017ff: cstore oimmp['DE CONOCER, SUPONGO...'] (oimmb[0x06]) sdirtp[0xa8]
+  00181e: cstore oimmp['TE HE CONTADO TODO,'] (oimmb[0x07]) sdirtp[0xa8]
+  00183a: cstore oimmp['CAMARADA !'] (oimmb[0x08]) sdirtp[0xa8]
+  00184d: cjmp24 -> 0x3c35
+L001851:
+  001851: cstore oimmp['ADONDE VAS ?'] (oimmb[0x00]) sdirtp[0xa8]
+  001866: cstore oimmp['NO ES TERRIBLE,'] (oimmb[0x01]) sdirtp[0xa8]
+  00187e: cstore oimmp['YO NO SIENTO NADA EN'] (oimmb[0x02]) sdirtp[0xa8]
+  00189b: cstore oimmp['MI ESTADO NORMAL...ARF'] (oimmb[0x03]) sdirtp[0xa8]
+  0018ba: cstore oimmp['OUF... TU ME CONCOCES'] (oimmb[0x04]) sdirtp[0xa8]
+  0018d8: cstore oimmp['ESPERO ? DARWIN5 !...'] (oimmb[0x05]) sdirtp[0xa8]
+  0018f6: cstore oimmp['BROUMF... TE DIRE, QUE'] (oimmb[0x06]) sdirtp[0xa8]
+  001915: cstore oimmp['HE CAMBIADO MUCHO'] (oimmb[0x07]) sdirtp[0xa8]
+  00192f: cstore oimmp['EN 5 ANOS...GNOUARF...'] (oimmb[0x08]) sdirtp[0xa8]
+  00194e: cjsr24 -> 0x3c41
+  001952: cstore oimmp['HE EFECTUADO MISIONES'] (oimmb[0x00]) sdirtp[0xa8]
+  001970: cstore oimmp['LLENAS DE RIESGO Y ME'] (oimmb[0x01]) sdirtp[0xa8]
+  00198e: cstore oimmp['ENCUENTRO LLENO DE'] (oimmb[0x02]) sdirtp[0xa8]
+  0019a9: cstore oimmp['PORQUERIA ! GROUWW...'] (oimmb[0x03]) sdirtp[0xa8]
+  0019c7: cstore oimmp['VUELVO A COGERLO'] (oimmb[0x04]) sdirtp[0xa8]
+  0019e0: cstore oimmp['...MWOUFF...'] (oimmb[0x05]) sdirtp[0xa8]
+  0019f5: cstore oimmp['TENGO HAMBRE'] (oimmb[0x06]) sdirtp[0xa8]
+  001a0a: cstore oimmp['TODO DE UN GOLPE'] (oimmb[0x07]) sdirtp[0xa8]
+  001a23: cstore oimmp['... GARROUFF...'] (oimmb[0x08]) sdirtp[0xa8]
+  001a3b: cjmp24 -> 0x3c35
+L001a3f:
+  001a3f: cstore oimmp['PAZ AMIGO... VES EL'] (oimmb[0x00]) sdirtp[0xa8]
+  001a5b: cstore oimmp['COLLAR DEL HERMANO'] (oimmb[0x01]) sdirtp[0xa8]
+  001a76: cstore oimmp['EPICURE. EL MUCHO'] (oimmb[0x05]) sdirtp[0xa8]
+  001a90: cstore oimmp['HABLAR, Y NADA DE'] (oimmb[0x06]) sdirtp[0xa8]
+  001aaa: cstore oimmp['ACTUAR... NOSOTROS'] (oimmb[0x02]) sdirtp[0xa8]
+  001ac5: cstore oimmp['TENER MIEDO KAGOO. EL'] (oimmb[0x03]) sdirtp[0xa8]
+  001ae3: cstore oimmp['VENIR NOCHE Y MATAR'] (oimmb[0x04]) sdirtp[0xa8]
+  001aff: cstore oimmp['PEQUENAS VIERNES !'] (oimmb[0x07]) sdirtp[0xa8]
+  001b1a: cstore oimmp['TU MATAR KAGOO !'] (oimmb[0x08]) sdirtp[0xa8]
+  001b33: cjmp24 -> 0x3c35
+L001b37:
+  001b37: cstore oimmp['JOIE GRAN HERMANO...'] (oimmb[0x00]) sdirtp[0xa8]
+  001b54: cstore oimmp['TU MATAR KAGOO,'] (oimmb[0x01]) sdirtp[0xa8]
+  001b6c: cstore oimmp['TU GRAN GUERRERO...'] (oimmb[0x02]) sdirtp[0xa8]
+  001b88: cstore oimmp['PEQUENAS VIERNES MUY'] (oimmb[0x03]) sdirtp[0xa8]
+  001ba5: cstore oimmp['FELICES Y DARTE '] (oimmb[0x04]) sdirtp[0xa8]
+  001bbe: cstore oimmp['RECOMPENSA : NUESTRA'] (oimmb[0x05]) sdirtp[0xa8]
+  001bdb: cstore oimmp['MADRE LUMINOSA !'] (oimmb[0x06]) sdirtp[0xa8]
+  001bf4: cstore oimmp['TIENES DERECHO AHORA'] (oimmb[0x07]) sdirtp[0xa8]
+  001c11: cstore oimmp['A OTRA RECOMPENSA...'] (oimmb[0x08]) sdirtp[0xa8]
+  001c2e: cjmp24 -> 0x3c35
+L001c32:
+  001c32: cstore oimmp['BUENOS DIAS'] (oimmb[0x00]) sdirtp[0xa8]
+  001c46: cstore oimmp['ROBINSON TREPLIEV1.'] (oimmb[0x01]) sdirtp[0xa8]
+  001c62: cstore oimmp['TE HABLA PLATON625,'] (oimmb[0x02]) sdirtp[0xa8]
+  001c7e: cstore oimmp['TU PRESIDENTE.'] (oimmb[0x03]) sdirtp[0xa8]
+  001c95: cstore oimmp['QUERIA HACERTE PARTICIPE'] (oimmb[0x04]) sdirtp[0xa8]
+  001cb6: cstore oimmp['PERSONALMENTE DE TU'] (oimmb[0x05]) sdirtp[0xa8]
+  001cd2: cstore oimmp['ULTIMA MISION.'] (oimmb[0x06]) sdirtp[0xa8]
+  001ce9: cstore oimmp['HABRA QUE LIVARTE SOBRE'] (oimmb[0x07]) sdirtp[0xa8]
+  001d09: cstore oimmp['EL PLANETA ZARATHOUSTRA,'] (oimmb[0x08]) sdirtp[0xa8]
+  001d2a: cjsr24 -> 0x3c41
+  001d2e: cstore oimmp['UN PLANETA DEL SISTEMA'] (oimmb[0x00]) sdirtp[0xa8]
+  001d4d: cstore oimmp['DE EDIPO.'] (oimmb[0x01]) sdirtp[0xa8]
+  001d5f: cstore oimmp['LAS COORDENADAS ESPACIALES'] (oimmb[0x02]) sdirtp[0xa8]
+  001d82: cstore oimmp['HAN ALDO YA TRANSFERIDAS'] (oimmb[0x03]) sdirtp[0xa8]
+  001da3: cstore oimmp['A TU ORDENADOR.'] (oimmb[0x04]) sdirtp[0xa8]
+  001dbb: cstore oimmp['VAS A PASAR MOMENTOS'] (oimmb[0x05]) sdirtp[0xa8]
+  001dd8: cstore oimmp['MARAVILLOSOS E'] (oimmb[0x06]) sdirtp[0xa8]
+  001def: cstore oimmp['INOIVIDABLES EN TUS'] (oimmb[0x07]) sdirtp[0xa8]
+  001e0b: cstore oimmp['ULTIMAS HORAS ROBINSON.'] (oimmb[0x08]) sdirtp[0xa8]
+  001e2b: cjsr24 -> 0x3c41
+  001e2f: cstore oimmp['FELIZ ESTANCIA...'] (oimmb[0x00]) sdirtp[0xa8]
+  001e49: cjsr24 -> 0x3c41
+  001e4d: cjmp24 -> 0x3c35
+L001e51:
+  001e51: cstore oimmp['BUESNOS TREPLIEV1...'] (oimmb[0x00]) sdirtp[0xa8]
+  001e6e: cstore oimmp['ESTO ES MIO, NINA1...'] (oimmb[0x01]) sdirtp[0xa8]
+  001e8c: cstore oimmp['NO TE INQUIENTES HACES'] (oimmb[0x02]) sdirtp[0xa8]
+  001eab: cstore oimmp['BIEN EN DORMIR...'] (oimmb[0x03]) sdirtp[0xa8]
+  001ec5: cstore oimmp['PERO CONOCES MIS'] (oimmb[0x04]) sdirtp[0xa8]
+  001ede: cstore oimmp['PODERES DE TELEPATIA.'] (oimmb[0x05]) sdirtp[0xa8]
+  001efc: cstore oimmp['Y TU SUBCOSCIENTE ES'] (oimmb[0x06]) sdirtp[0xa8]
+  001f19: cstore oimmp['MUY FACIL'] (oimmb[0x07]) sdirtp[0xa8]
+  001f2b: cstore oimmp['DE CAPTAR...'] (oimmb[0x08]) sdirtp[0xa8]
+  001f40: cjsr24 -> 0x3c41
+  001f44: cstore oimmb[0x62] sdirb[0x4d]
+  001f49: cstore oimmp['REHUSO A POSARME'] (oimmb[0x00]) sdirtp[0xa8]
+  001f62: cstore oimmp['EN UNA ZONA'] (oimmb[0x01]) sdirtp[0xa8]
+  001f76: cstore oimmp['VOLCANICA. SI LLEGAS'] (oimmb[0x02]) sdirtp[0xa8]
+  001f93: cstore oimmp['A DESACTIVAR LOS'] (oimmb[0x03]) sdirtp[0xa8]
+  001fac: cstore oimmp['CAMPOS DE FUERZA,'] (oimmb[0x04]) sdirtp[0xa8]
+  001fc6: cstore oimmp['PRODREMOS PARTIR DE'] (oimmb[0x05]) sdirtp[0xa8]
+  001fe2: cstore oimmp['ESTE MALDITO'] (oimmb[0x06]) sdirtp[0xa8]
+  001ff7: cstore oimmp['PLANETA.'] (oimmb[0x07]) sdirtp[0xa8]
+  002008: cstore oimmp['... SEGURO...'] (oimmb[0x08]) sdirtp[0xa8]
+  00201e: cjmp24 -> 0x3c35
+L002022:
+  002022: cstore oimmp['AVE,'] (oimmb[0x00]) sdirtp[0xa8]
+  00202f: cstore oimmp['CAMARADA PROMO,'] (oimmb[0x01]) sdirtp[0xa8]
+  002047: cstore oimmp['ME PREGUNTO SI HE'] (oimmb[0x02]) sdirtp[0xa8]
+  002061: cstore oimmp['JUGADO EL BUEN CABALLO'] (oimmb[0x03]) sdirtp[0xa8]
+  002080: cstore oimmp['EN EL CONTACTO...'] (oimmb[0x04]) sdirtp[0xa8]
+  00209a: cstore oimmp['TU TIENES EL'] (oimmb[0x05]) sdirtp[0xa8]
+  0020af: cstore oimmp['AIRE PALURDO !'] (oimmb[0x06]) sdirtp[0xa8]
+  0020c6: cstore oimmp['COBARDE !'] (oimmb[0x07]) sdirtp[0xa8]
+  0020d8: cjsr24 -> 0x3c41
+  0020dc: cstore oimmb[0x62] sdirb[0x4d]
+  0020e1: cstore oimmp['NIETZSCHE26, EL,'] (oimmb[0x00]) sdirtp[0xa8]
+  0020fa: cstore oimmp['PARECE MUCHO MAS'] (oimmb[0x01]) sdirtp[0xa8]
+  002113: cstore oimmp['ESPABILADO.'] (oimmb[0x02]) sdirtp[0xa8]
+  002127: cstore oimmp['ESTA INSTALADO'] (oimmb[0x03]) sdirtp[0xa8]
+  00213e: cstore oimmp['CONFORTABLEMENTE'] (oimmb[0x04]) sdirtp[0xa8]
+  002157: cstore oimmp['AL FONDO DE UN CANON,'] (oimmb[0x05]) sdirtp[0xa8]
+  002175: cstore oimmp['Y NO LE FALTA DE NADA.'] (oimmb[0x06]) sdirtp[0xa8]
+  002194: cstore oimmp['BUENO...SALUD GAMIN!'] (oimmb[0x07]) sdirtp[0xa8]
+  0021b1: cjmp24 -> 0x3c35
+L0021b5:
+  0021b5: cstore oimmp['ENTONCES, FENEANT...'] (oimmb[0x00]) sdirtp[0xa8]
+  0021d2: cstore oimmp['QUE ES LO QUE TU'] (oimmb[0x01]) sdirtp[0xa8]
+  0021eb: cstore oimmp['FABRICAS ?...'] (oimmb[0x02]) sdirtp[0xa8]
+  002201: cstore oimmp['NO TENGO LA INTENCION'] (oimmb[0x03]) sdirtp[0xa8]
+  00221f: cstore oimmp['DE PASAR MI VIDA AQUI.'] (oimmb[0x04]) sdirtp[0xa8]
+  00223e: cstore oimmp['TENGO OTROS'] (oimmb[0x05]) sdirtp[0xa8]
+  002252: cstore oimmp['PROYECTOS !'] (oimmb[0x06]) sdirtp[0xa8]
+  002266: cjsr24 -> 0x3c41
+  00226a: cstore oimmb[0x62] sdirb[0x4d]
+  00226f: cstore oimmp['FREUD37 SE INQUIETA'] (oimmb[0x00]) sdirtp[0xa8]
+  00228b: cstore oimmp['MUCHO MAS QUE TU EL'] (oimmb[0x01]) sdirtp[0xa8]
+  0022a7: cstore oimmp['ESTA EN EL DESIERTO Y'] (oimmb[0x02]) sdirtp[0xa8]
+  0022c5: cstore oimmp['SIENTO QUE ESTA'] (oimmb[0x03]) sdirtp[0xa8]
+  0022dd: cstore oimmp['MUY CERCA DE'] (oimmb[0x04]) sdirtp[0xa8]
+  0022f2: cstore oimmp['MI.'] (oimmb[0x05]) sdirtp[0xa8]
+  0022fe: cstore oimmp['PUEDO COMETER'] (oimmb[0x06]) sdirtp[0xa8]
+  002314: cstore oimmp['INFIDELIDADES...'] (oimmb[0x07]) sdirtp[0xa8]
+  00232d: cjmp24 -> 0x3c35
+L002331:
+  002331: cstore oimmp['QUERIDO TREPLIEV, SOY'] (oimmb[0x00]) sdirtp[0xa8]
+  00234f: cstore oimmp['BIENA VENTURADO AL'] (oimmb[0x01]) sdirtp[0xa8]
+  00236a: cstore oimmp['ENCONTRARTE. DORMIDO,'] (oimmb[0x02]) sdirtp[0xa8]
+  002388: cstore oimmp['PERO ACCESIBLE, PUEDO'] (oimmb[0x03]) sdirtp[0xa8]
+  0023a6: cstore oimmp['CONFIARTE ALGUNAS'] (oimmb[0x04]) sdirtp[0xa8]
+  0023c0: cstore oimmp['INFORMACIONES'] (oimmb[0x05]) sdirtp[0xa8]
+  0023d6: cstore oimmp['NECESARIAS PARA'] (oimmb[0x06]) sdirtp[0xa8]
+  0023ee: cstore oimmp['TU CUESTION.'] (oimmb[0x07]) sdirtp[0xa8]
+  002403: cjsr24 -> 0x3c41
+  002407: cstore oimmb[0x62] sdirb[0x4d]
+  00240c: cstore oimmp['TENGO VISTO'] (oimmb[0x00]) sdirtp[0xa8]
+  002420: cstore oimmp['SCHOPENHAUER26 Y'] (oimmb[0x01]) sdirtp[0xa8]
+  002439: cstore oimmp['PAVLOV95,'] (oimmb[0x02]) sdirtp[0xa8]
+  00244b: cstore oimmp['QUE DISCUTIAN CON'] (oimmb[0x03]) sdirtp[0xa8]
+  002465: cstore oimmp['UNA GRAN CLARIDAD.'] (oimmb[0x04]) sdirtp[0xa8]
+  002480: cstore oimmp['NO ESTABAN DE ACUERDO'] (oimmb[0x05]) sdirtp[0xa8]
+  00249e: cstore oimmp['EN NADA...'] (oimmb[0x06]) sdirtp[0xa8]
+  0024b1: cstore oimmp['YO SOY DEVOTO,'] (oimmb[0x07]) sdirtp[0xa8]
+  0024c8: cstore oimmp['BISES'] (oimmb[0x08]) sdirtp[0xa8]
+  0024d6: cjmp24 -> 0x3c35
+L0024da:
+  0024da: cstore oimmp['EH, TREPLIEV,'] (oimmb[0x00]) sdirtp[0xa8]
+  0024f0: cstore oimmp['ME PREGUNTO SI NOS'] (oimmb[0x01]) sdirtp[0xa8]
+  00250b: cstore oimmp['VAMOS A PASAR TODA'] (oimmb[0x02]) sdirtp[0xa8]
+  002526: cstore oimmp['NUESTRA VIDE AQUI...'] (oimmb[0x03]) sdirtp[0xa8]
+  002543: cstore oimmp['EL DESTINO ES'] (oimmb[0x04]) sdirtp[0xa8]
+  002559: cstore oimmp['TOTALMENTE EXTRANO...'] (oimmb[0x05]) sdirtp[0xa8]
+  002577: cstore oimmp['NO SE QUE PENSAR DE'] (oimmb[0x06]) sdirtp[0xa8]
+  002593: cstore oimmp['TANTOS MISTERIOS...'] (oimmb[0x07]) sdirtp[0xa8]
+  0025af: cjsr24 -> 0x3c41
+  0025b3: cstore oimmb[0x62] sdirb[0x4d]
+  0025b8: cstore oimmp['HE CONTACTADO EPUCURO'] (oimmb[0x00]) sdirtp[0xa8]
+  0025d6: cstore oimmp['EL SE PORTA BIEN ESTA'] (oimmb[0x01]) sdirtp[0xa8]
+  0025f4: cstore oimmp['ATADO A LA AMISTAD'] (oimmb[0x02]) sdirtp[0xa8]
+  00260f: cstore oimmp['CON LOS INDIGENAS.'] (oimmb[0x03]) sdirtp[0xa8]
+  00262a: cstore oimmp['ESTO ES BELLO'] (oimmb[0x04]) sdirtp[0xa8]
+  002640: cstore oimmp['EL ACERCAMIENTO ENTRE'] (oimmb[0x05]) sdirtp[0xa8]
+  00265e: cstore oimmp['LOS PUEBLOS BUENAS'] (oimmb[0x06]) sdirtp[0xa8]
+  002679: cstore oimmp['TARDES TREPLIEV.'] (oimmb[0x07]) sdirtp[0xa8]
+  002692: cjmp24 -> 0x3c35
+L002696:
+  002696: cstore oimmp['ENFIN ! HE AQUI !'] (oimmb[0x00]) sdirtp[0xa8]
+  0026b0: cstore oimmp['CERDO !!! DONDE HAS'] (oimmb[0x01]) sdirtp[0xa8]
+  0026cc: cstore oimmp['ESTADO TODO ESTE'] (oimmb[0x02]) sdirtp[0xa8]
+  0026e5: cstore oimmp['TIEMPO ?'] (oimmb[0x03]) sdirtp[0xa8]
+  0026f6: cstore oimmp['QUE HAS HECHO ?'] (oimmb[0x04]) sdirtp[0xa8]
+  00270e: cstore oimmp['SI TU HAS VISTA LAS'] (oimmb[0x05]) sdirtp[0xa8]
+  00272a: cstore oimmp['HIJAS YO LO SABRE...'] (oimmb[0x06]) sdirtp[0xa8]
+  002747: cstore oimmp['Y TE APARTARE !!!'] (oimmb[0x07]) sdirtp[0xa8]
+  002761: cjsr24 -> 0x3c41
+  002765: cstore oimmb[0x62] sdirb[0x4d]
+  00276a: cstore oimmp['TE SENALO QUE'] (oimmb[0x00]) sdirtp[0xa8]
+  002780: cstore oimmp['DIOGENE45 ESTA'] (oimmb[0x01]) sdirtp[0xa8]
+  002797: cstore oimmp['ESCONDIDO EN UNA'] (oimmb[0x02]) sdirtp[0xa8]
+  0027b0: cstore oimmp['CAVERNA Y ESTA ARMADO.'] (oimmb[0x03]) sdirtp[0xa8]
+  0027cf: cstore oimmp['EL RIESGO DE HACER TU'] (oimmb[0x04]) sdirtp[0xa8]
+  0027ed: cstore oimmp['FIESTA... ANTES QUE'] (oimmb[0x05]) sdirtp[0xa8]
+  002809: cstore oimmp['EL MISMO LA'] (oimmb[0x06]) sdirtp[0xa8]
+  00281d: cstore oimmp['HAGA...'] (oimmb[0x07]) sdirtp[0xa8]
+  00282d: cjmp24 -> 0x3c35
+L002831:
+  002831: cstore oimmp['BUESNOS DIAS'] (oimmb[0x00]) sdirtp[0xa8]
+  002846: cstore oimmp['QUERIDO, NO QUEDA'] (oimmb[0x01]) sdirtp[0xa8]
+  002860: cstore oimmp['MAS CAMINO POR'] (oimmb[0x02]) sdirtp[0xa8]
+  002877: cstore oimmp['HACER.'] (oimmb[0x03]) sdirtp[0xa8]
+  002886: cstore oimmp['VAMOS A IR POR FIN A'] (oimmb[0x04]) sdirtp[0xa8]
+  0028a3: cstore oimmp['ENCONTRARNOS.'] (oimmb[0x05]) sdirtp[0xa8]
+  0028b9: cjsr24 -> 0x3c41
+  0028bd: cstore oimmb[0x62] sdirb[0x4d]
+  0028c2: cstore oimmp['HE COGIDO MI SESAMO'] (oimmb[0x00]) sdirtp[0xa8]
+  0028de: cstore oimmp['POR UNA FALLA'] (oimmb[0x01]) sdirtp[0xa8]
+  0028f4: cstore oimmp['DEL VOLCAN. ESPERO'] (oimmb[0x02]) sdirtp[0xa8]
+  00290f: cstore oimmp['QUE PODRAS'] (oimmb[0x03]) sdirtp[0xa8]
+  002922: cstore oimmp['ENCONTRARLO EN EL'] (oimmb[0x04]) sdirtp[0xa8]
+  00293c: cstore oimmp['ORDENADOR. HASTA'] (oimmb[0x05]) sdirtp[0xa8]
+  002955: cstore oimmp['PRONTO MI AMOR.'] (oimmb[0x06]) sdirtp[0xa8]
+  00296d: cstore oimmp['BIENTOT, MON AMOUR.'] (oimmb[0x07]) sdirtp[0xa8]
+  002989: cjmp24 -> 0x3c35
+L00298d:
+  00298d: cstore oimmp['O TREPLIEV ! SOBRE MIS'] (oimmb[0x00]) sdirtp[0xa8]
+  0029ac: cstore oimmp['OJOS, UNA LUNA'] (oimmb[0x01]) sdirtp[0xa8]
+  0029c3: cstore oimmp['RESPLANDECIENTE'] (oimmb[0x02]) sdirtp[0xa8]
+  0029db: cstore oimmp['ILUMINA EL CIELO...'] (oimmb[0x03]) sdirtp[0xa8]
+  0029f7: cstore oimmp['CARA A ESTE FRIO ASTRO'] (oimmb[0x04]) sdirtp[0xa8]
+  002a16: cstore oimmp['RETENGO MI ALIENTO'] (oimmb[0x05]) sdirtp[0xa8]
+  002a31: cstore oimmp['ESPERANDO UNA LUZ, UNA'] (oimmb[0x06]) sdirtp[0xa8]
+  002a50: cstore oimmp['SONRISA, UNA MIRADA...'] (oimmb[0x07]) sdirtp[0xa8]
+  002a6f: cstore oimmp['LLORO...'] (oimmb[0x08]) sdirtp[0xa8]
+  002a80: cjsr24 -> 0x3c41
+  002a84: cstore oimmb[0x62] sdirb[0x4d]
+  002a89: cstore oimmp['Y KANT217, PARTE'] (oimmb[0x00]) sdirtp[0xa8]
+  002aa2: cstore oimmp['COMO UN HEROE,'] (oimmb[0x01]) sdirtp[0xa8]
+  002ab9: cstore oimmp['AFRONTA LOS'] (oimmb[0x02]) sdirtp[0xa8]
+  002acd: cstore oimmp['CABALLEROS SIN MIEDO.'] (oimmb[0x03]) sdirtp[0xa8]
+  002aeb: cstore oimmp['EL TAMBIEN, DESARMADO,'] (oimmb[0x04]) sdirtp[0xa8]
+  002b0a: cstore oimmp['LLORA...'] (oimmb[0x05]) sdirtp[0xa8]
+  002b1b: cjmp24 -> 0x3c35
+L002b1f:
+  002b1f: cstore oimmp['QUERIDO AMIGO,'] (oimmb[0x00]) sdirtp[0xa8]
+  002b36: cstore oimmp['ESTOY MUY FELIZ DE'] (oimmb[0x01]) sdirtp[0xa8]
+  002b51: cstore oimmp['PODER COMUNICARME'] (oimmb[0x02]) sdirtp[0xa8]
+  002b6b: cstore oimmp['CONTIGO.'] (oimmb[0x03]) sdirtp[0xa8]
+  002b7c: cstore oimmp['ESPERO PODER DARTE'] (oimmb[0x04]) sdirtp[0xa8]
+  002b97: cstore oimmp['LAS PRECIOSAS'] (oimmb[0x05]) sdirtp[0xa8]
+  002bad: cstore oimmp['INFORMACIONES, AFIN'] (oimmb[0x06]) sdirtp[0xa8]
+  002bc9: cstore oimmp['QUE PUEDAS REUNIRTE'] (oimmb[0x07]) sdirtp[0xa8]
+  002be5: cstore oimmp['CONMIGO MAS TARDE.'] (oimmb[0x08]) sdirtp[0xa8]
+  002c00: cjsr24 -> 0x3c41
+  002c04: cstore oimmb[0x62] sdirb[0x4d]
+  002c09: cstore oimmp['TE INFORMO PUES QUE'] (oimmb[0x00]) sdirtp[0xa8]
+  002c25: cstore oimmp['EL DENOMINADO HEGEL17'] (oimmb[0x01]) sdirtp[0xa8]
+  002c43: cstore oimmp['HA PARTIDO A NEGOCIAR'] (oimmb[0x02]) sdirtp[0xa8]
+  002c61: cstore oimmp['EL ALIMENTO A UNA'] (oimmb[0x03]) sdirtp[0xa8]
+  002c7b: cstore oimmp['CIUDAD INDIGENA CERCA'] (oimmb[0x04]) sdirtp[0xa8]
+  002c99: cstore oimmp['DE UN CANON.'] (oimmb[0x05]) sdirtp[0xa8]
+  002cae: cstore oimmp['ADIOS, Y BUENA'] (oimmb[0x06]) sdirtp[0xa8]
+  002cc5: cstore oimmp['JORANADA.'] (oimmb[0x07]) sdirtp[0xa8]
+  002cd7: cjmp24 -> 0x3c35
+L002cdb:
+  002cdb: cstore oimmp['CHUTTT...'] (oimmb[0x00]) sdirtp[0xa8]
+  002ced: cstore oimmp['DESCONFIO...'] (oimmb[0x01]) sdirtp[0xa8]
+  002d02: cstore oimmp['TENGO LA IMPRESION QUE'] (oimmb[0x02]) sdirtp[0xa8]
+  002d21: cstore oimmp['ME VIGILAN...'] (oimmb[0x03]) sdirtp[0xa8]
+  002d37: cstore oimmp['NO SE SI PUEDO TENER'] (oimmb[0x04]) sdirtp[0xa8]
+  002d54: cstore oimmp['CONFIANZA...'] (oimmb[0x05]) sdirtp[0xa8]
+  002d69: cstore oimmp['ENFIN...'] (oimmb[0x06]) sdirtp[0xa8]
+  002d7a: cjsr24 -> 0x3c41
+  002d7e: cstore oimmb[0x62] sdirb[0x4d]
+  002d83: cstore oimmp['SOBRE PYTHAGORE32 HE'] (oimmb[0x00]) sdirtp[0xa8]
+  002da0: cstore oimmp['PASADO EL DIA'] (oimmb[0x01]) sdirtp[0xa8]
+  002db6: cstore oimmp['RECOGIENDO LAS BOLITAS'] (oimmb[0x02]) sdirtp[0xa8]
+  002dd5: cstore oimmp['EN LAS SCHAMALHO !'] (oimmb[0x03]) sdirtp[0xa8]
+  002df0: cstore oimmp['SOBRETODO NO HE'] (oimmb[0x04]) sdirtp[0xa8]
+  002e08: cstore oimmp['CONFIADO EN LAS'] (oimmb[0x05]) sdirtp[0xa8]
+  002e20: cstore oimmp['PERSONAS !'] (oimmb[0x06]) sdirtp[0xa8]
+  002e33: cstore oimmp['TE CONTACTARE.'] (oimmb[0x07]) sdirtp[0xa8]
+  002e4a: cjmp24 -> 0x3c35
+L002e4e:
+  002e4e: cstore oimmp['BUENOS DIAS,'] (oimmb[0x00]) sdirtp[0xa8]
+  002e63: cstore oimmp['ESTOY MUY ALEGRE !'] (oimmb[0x01]) sdirtp[0xa8]
+  002e7e: cstore oimmp['HE LOGRADO'] (oimmb[0x02]) sdirtp[0xa8]
+  002e91: cstore oimmp['CONTACTARTE Y NO HA'] (oimmb[0x03]) sdirtp[0xa8]
+  002ead: cstore oimmp['SIDO NADA FACIL...'] (oimmb[0x04]) sdirtp[0xa8]
+  002ec8: cstore oimmp['HAY DEMASIDO'] (oimmb[0x05]) sdirtp[0xa8]
+  002edd: cstore oimmp['VIENTO...'] (oimmb[0x06]) sdirtp[0xa8]
+  002eef: cstore oimmp['HI HI HI...'] (oimmb[0x07]) sdirtp[0xa8]
+  002f03: cjsr24 -> 0x3c41
+  002f07: cstore oimmb[0x62] sdirb[0x4d]
+  002f0c: cstore oimmp['HE VISTO DESCARTES122.'] (oimmb[0x00]) sdirtp[0xa8]
+  002f2b: cstore oimmp['TIENE MUCHO CALOR, EL'] (oimmb[0x01]) sdirtp[0xa8]
+  002f49: cstore oimmp['POBRE,Y ESTA SEDIENTO.'] (oimmb[0x02]) sdirtp[0xa8]
+  002f68: cstore oimmp['ESTA COMO YO ...'] (oimmb[0x03]) sdirtp[0xa8]
+  002f81: cstore oimmp['YO TENGO UN MONTON'] (oimmb[0x04]) sdirtp[0xa8]
+  002f9c: cstore oimmp['DE BOTELLAS DE WHISKY'] (oimmb[0x05]) sdirtp[0xa8]
+  002fba: cstore oimmp['EN MI NAVE...'] (oimmb[0x06]) sdirtp[0xa8]
+  002fd0: cstore oimmp['PROMETO GUARDARLE'] (oimmb[0x07]) sdirtp[0xa8]
+  002fea: cstore oimmp['ALGUNAS... HIPS !'] (oimmb[0x08]) sdirtp[0xa8]
+  003004: cjmp24 -> 0x3c35
+L003008:
+  003008: cstore oimmp['QUE ? ESTOY AHI,'] (oimmb[0x00]) sdirtp[0xa8]
+  003021: cstore oimmp['NO ? ENTIENDO Y A'] (oimmb[0x01]) sdirtp[0xa8]
+  00303b: cstore oimmp['TUS REPROCHES !?'] (oimmb[0x02]) sdirtp[0xa8]
+  003054: cstore oimmp['NO TE MANIFIESTO'] (oimmb[0x03]) sdirtp[0xa8]
+  00306d: cstore oimmp['SIEMPRE ME'] (oimmb[0x04]) sdirtp[0xa8]
+  003080: cstore oimmp['ATENCION ?'] (oimmb[0x05]) sdirtp[0xa8]
+  003093: cstore oimmp['NO ESTARAS'] (oimmb[0x06]) sdirtp[0xa8]
+  0030a6: cstore oimmp['CELOSO, ACASO ?'] (oimmb[0x07]) sdirtp[0xa8]
+  0030be: cjsr24 -> 0x3c41
+  0030c2: cstore oimmb[0x62] sdirb[0x4d]
+  0030c7: cstore oimmp['CREES SIN DUDA QUE YO'] (oimmb[0x00]) sdirtp[0xa8]
+  0030e5: cstore oimmp['ESTOY A UN ATADO A'] (oimmb[0x01]) sdirtp[0xa8]
+  003100: cstore oimmp['HUME60 ? Y ES BIEN'] (oimmb[0x02]) sdirtp[0xa8]
+  00311b: cstore oimmp['SABIDO QUE ESTO NO ES'] (oimmb[0x03]) sdirtp[0xa8]
+  003139: cstore oimmp['MAS QUE UN MONTON DE'] (oimmb[0x04]) sdirtp[0xa8]
+  003156: cstore oimmp['HUESOS, AMONTONADO POR'] (oimmb[0x05]) sdirtp[0xa8]
+  003175: cstore oimmp['LOS HOMBRES-MONO. YO'] (oimmb[0x06]) sdirtp[0xa8]
+  003192: cstore oimmp['LE DESPRECIO.'] (oimmb[0x07]) sdirtp[0xa8]
+  0031a8: cstore oimmp['TU ME AMAS SIEMPRE ?'] (oimmb[0x08]) sdirtp[0xa8]
+  0031c5: cjmp24 -> 0x3c35
+L0031c9:
+  0031c9: cstore oimmp['SALUD TREPLIEV1,'] (oimmb[0x00]) sdirtp[0xa8]
+  0031e2: cstore oimmp['SI ME SIRVES BIEN'] (oimmb[0x01]) sdirtp[0xa8]
+  0031fc: cstore oimmp['LA VERAS SIEMPRE ESTA'] (oimmb[0x02]) sdirtp[0xa8]
+  00321a: cstore oimmp['GRAN RUBIA'] (oimmb[0x03]) sdirtp[0xa8]
+  00322d: cstore oimmp['DE PEGGY4 !?...'] (oimmb[0x04]) sdirtp[0xa8]
+  003245: cstore oimmp['ELLA NO HARA NADA'] (oimmb[0x05]) sdirtp[0xa8]
+  00325f: cstore oimmp['POR ELLA ESTA'] (oimmb[0x06]) sdirtp[0xa8]
+  003275: cstore oimmp['IMPERTINENTE !...'] (oimmb[0x07]) sdirtp[0xa8]
+  00328f: cjsr24 -> 0x3c41
+  003293: cstore oimmb[0x62] sdirb[0x4d]
+  003298: cstore oimmp['BUENO, TENGO'] (oimmb[0x00]) sdirtp[0xa8]
+  0032ad: cstore oimmp['LAS NOVEDADES'] (oimmb[0x01]) sdirtp[0xa8]
+  0032c3: cstore oimmp['DE SPINOZA44...'] (oimmb[0x02]) sdirtp[0xa8]
+  0032db: cstore oimmp['EL SE ENCUENTRA SIN'] (oimmb[0x03]) sdirtp[0xa8]
+  0032f7: cstore oimmp['LUCES, EN UNA'] (oimmb[0x04]) sdirtp[0xa8]
+  00330d: cstore oimmp['CAVERNA HEDIONDA...'] (oimmb[0x05]) sdirtp[0xa8]
+  003329: cstore oimmp['A MAS.'] (oimmb[0x06]) sdirtp[0xa8]
+  003338: cjmp24 -> 0x3c35
+L00333c:
+  00333c: cstore oimmp['OH MI GRUESO LAPIN,'] (oimmb[0x00]) sdirtp[0xa8]
+  003358: cstore oimmp['TU ME FALTAS'] (oimmb[0x01]) sdirtp[0xa8]
+  00336d: cstore oimmp['TERRIBLEMENTE...'] (oimmb[0x02]) sdirtp[0xa8]
+  003386: cstore oimmp['PIENSO ESTO A'] (oimmb[0x03]) sdirtp[0xa8]
+  00339c: cstore oimmp['CADA INSTANTE...'] (oimmb[0x04]) sdirtp[0xa8]
+  0033b5: cstore oimmp['HABLO CONTIGO...'] (oimmb[0x05]) sdirtp[0xa8]
+  0033ce: cstore oimmp['HACE FRIO AQUI...'] (oimmb[0x06]) sdirtp[0xa8]
+  0033e8: cstore oimmp['OHHH...'] (oimmb[0x07]) sdirtp[0xa8]
+  0033f8: cjsr24 -> 0x3c41
+  0033fc: cstore oimmb[0x62] sdirb[0x4d]
+  003401: cstore oimmp['TEN CUIDADO CON TODO.'] (oimmb[0x00]) sdirtp[0xa8]
+  00341f: cstore oimmp['NO BUSQUES NADA COMO'] (oimmb[0x01]) sdirtp[0xa8]
+  00343c: cstore oimmp['ESE IMPRUDENTE DE'] (oimmb[0x02]) sdirtp[0xa8]
+  003456: cstore oimmp['MARX49, SI ESTA'] (oimmb[0x03]) sdirtp[0xa8]
+  00346e: cstore oimmp['CONCLUIDO POR LOS'] (oimmb[0x04]) sdirtp[0xa8]
+  003488: cstore oimmp['VILLANOS...'] (oimmb[0x05]) sdirtp[0xa8]
+  00349c: cstore oimmp['DEPRISA MI AMOR,'] (oimmb[0x06]) sdirtp[0xa8]
+  0034b5: cstore oimmp['SIGUEME !'] (oimmb[0x07]) sdirtp[0xa8]
+  0034c7: cjmp24 -> 0x3c35
+L0034cb:
+  0034cb: cstore oimmp['SALUD.'] (oimmb[0x00]) sdirtp[0xa8]
+  0034da: cstore oimmp['HACE FRIO. HACE UN'] (oimmb[0x01]) sdirtp[0xa8]
+  0034f5: cstore oimmp['TIEMPO DE PERROS.'] (oimmb[0x02]) sdirtp[0xa8]
+  00350f: cstore oimmp['DIVERTIDAS CONSERVAS.'] (oimmb[0x03]) sdirtp[0xa8]
+  00352d: cstore oimmp['ME ABURRO.'] (oimmb[0x04]) sdirtp[0xa8]
+  003540: cstore oimmp['NO PASA NADA'] (oimmb[0x05]) sdirtp[0xa8]
+  003555: cstore oimmp['EN ESTE JUEGO.'] (oimmb[0x06]) sdirtp[0xa8]
+  00356c: cjsr24 -> 0x3c41
+  003570: cstore oimmb[0x62] sdirb[0x4d]
+  003575: cstore oimmp['MALAS NOTICIAS :'] (oimmb[0x00]) sdirtp[0xa8]
+  00358e: cstore oimmp['THEOPHRASTE7 ESTA'] (oimmb[0x01]) sdirtp[0xa8]
+  0035a8: cstore oimmp['DESTROZADO'] (oimmb[0x02]) sdirtp[0xa8]
+  0035bb: cstore oimmp['POR UN KAGOO !'] (oimmb[0x03]) sdirtp[0xa8]
+  0035d2: cstore oimmp['DURA VIDA...'] (oimmb[0x04]) sdirtp[0xa8]
+  0035e7: cstore oimmp['ADIOS'] (oimmb[0x05]) sdirtp[0xa8]
+  0035f5: cjmp24 -> 0x3c35
+L0035f9:
+  0035f9: cstore oimmp['HE DORMIDO BIEN'] (oimmb[0x00]) sdirtp[0xa8]
+  003611: cstore oimmp['MI PEQUENO TREPIED'] (oimmb[0x01]) sdirtp[0xa8]
+  00362c: cstore oimmp['QUERIDO...'] (oimmb[0x02]) sdirtp[0xa8]
+  00363f: cstore oimmp['BIEN... ASI, MANANA,'] (oimmb[0x03]) sdirtp[0xa8]
+  00365c: cstore oimmp['PODRA ENCONTRAR'] (oimmb[0x04]) sdirtp[0xa8]
+  003674: cstore oimmp['A SU AMOR NINETTE...'] (oimmb[0x05]) sdirtp[0xa8]
+  003691: cjsr24 -> 0x3c41
+  003695: cstore oimmb[0x62] sdirb[0x4d]
+  00369a: cstore oimmp['ESTA COMO YO ...'] (oimmb[0x00]) sdirtp[0xa8]
+  0036b3: cstore oimmp['PASCAL22. SE ENCUENTRA'] (oimmb[0x01]) sdirtp[0xa8]
+  0036d2: cstore oimmp['EN EL SUENO ETERNO,'] (oimmb[0x02]) sdirtp[0xa8]
+  0036ee: cstore oimmp['EL... AL FONDO DE UNA'] (oimmb[0x03]) sdirtp[0xa8]
+  00370c: cstore oimmp['GRUTA Y CERCA DEL'] (oimmb[0x04]) sdirtp[0xa8]
+  003726: cstore oimmp['MAR. QUE PIE !'] (oimmb[0x05]) sdirtp[0xa8]
+  00373d: cstore oimmp['BESITO,'] (oimmb[0x06]) sdirtp[0xa8]
+  00374d: cstore oimmp['MI GRUESO PATO...'] (oimmb[0x07]) sdirtp[0xa8]
+  003767: cjmp24 -> 0x3c35
+L00376b:
+  00376b: cstore oimmp['TREPLIEV ! POR QUE'] (oimmb[0x00]) sdirtp[0xa8]
+  003786: cstore oimmp['ESTAMOS AQUI ?'] (oimmb[0x01]) sdirtp[0xa8]
+  00379d: cstore oimmp['NUESTRO DESTINO'] (oimmb[0x02]) sdirtp[0xa8]
+  0037b5: cstore oimmp['NOS LLEVARA A MORIR'] (oimmb[0x03]) sdirtp[0xa8]
+  0037d1: cstore oimmp['SOBRE ESTE MONTON DE'] (oimmb[0x04]) sdirtp[0xa8]
+  0037ee: cstore oimmp['BASURA ? NO ESTAMOS'] (oimmb[0x05]) sdirtp[0xa8]
+  00380a: cstore oimmp['EN EL TREN DE LOS'] (oimmb[0x06]) sdirtp[0xa8]
+  003824: cstore oimmp['SUENOS? DONDE SE JUEGA'] (oimmb[0x07]) sdirtp[0xa8]
+  003843: cstore oimmp['A LOS VIDEO JUEGOS ?'] (oimmb[0x08]) sdirtp[0xa8]
+  003860: cjsr24 -> 0x3c41
+  003864: cstore oimmb[0x62] sdirb[0x4d]
+  003869: cstore oimmp['ESTE SE COMO ABELARD39'] (oimmb[0x00]) sdirtp[0xa8]
+  003888: cstore oimmp['PARECE DORMIDO EN UN '] (oimmb[0x01]) sdirtp[0xa8]
+  0038a6: cstore oimmp['LUGAR SOFOCANTE...'] (oimmb[0x02]) sdirtp[0xa8]
+  0038c1: cstore oimmp['PERO ESTA DORMIDO'] (oimmb[0x03]) sdirtp[0xa8]
+  0038db: cstore oimmp['DE VERAS ? NO ES TODO'] (oimmb[0x04]) sdirtp[0xa8]
+  0038f9: cstore oimmp['MAS QUE UNA ILUSION ?'] (oimmb[0x05]) sdirtp[0xa8]
+  003917: cstore oimmp['ESTA DONDE NO ESTA ?'] (oimmb[0x06]) sdirtp[0xa8]
+  003934: cstore oimmp['TO TE LO PIDO !'] (oimmb[0x07]) sdirtp[0xa8]
+  00394c: cjmp24 -> 0x3c35
+L003950:
+  003950: cjsr24 -> 0x4c39
+  003954: ceval (omainb[0x0e71] oegal[oimmb[0x00]])
+  00395d: cbz24 -> 0x39cf
+  003961: cstore oimmp['INTRODUCE EL DISCO'] (oimmb[0x00]) sdirtp[0xa8]
+  00397c: cstore oimmp['DE GRABACIONES'] (oimmb[0x01]) sdirtp[0xa8]
+  003993: cstore oimmp['(FORMATEADO)'] (oimmb[0x02]) sdirtp[0xa8]
+  0039a8: cstore oimmb[0x03] sdirw[0x66]
+  0039ad: cjsr24 -> 0x3e5b
+  0039b1: cstore oimmp['OPRIME RETURN'] (oimmb[0x04]) sdirtp[0xa8]
+  0039c7: cjsr24 -> 0x3cd7
+  0039cb: cjsr24 -> 0x3e78
+L0039cf:
+  0039cf: cjsr24 -> 0x3ed3
+  0039d3: ceval odirb[0x97]
+  0039d6: cbz24 -> 0x39df
+  0039da: cstore odirb[0x92] sdirb[0x95]
+L0039df:
+  0039df: ceval (odirb[0x95] oegal[odirb[0x92]])
+  0039e7: cbz24 -> 0x3a67
+  0039eb: cjsr24 -> 0x4113
+  0039ef: cstore (olocp[0x0184] ospushacc oimmb[0x08] oleft) slocp[0x0184]
+  0039fc: cstore oimmb[0x00] sdirw[0x60]
+L003a01:
+  003a01: ceval (odirw[0x60] omaintp[0x1a52] osegal[olocp[0x0184]] opushacc olocp[0x0184] ospushacc odirw[0x60] omaintp[0x1a52] osegal[ospile] oand[opile])
+  003a1b: cbz24 -> 0x3a23
+  003a1f: cjmp24 -> 0x471b
+L003a23:
+  003a23: cadd oimmb[0x01] adirw[0x60]
+  003a28: ceval (odirw[0x60] oinfeg[oimmb[0x04]])
+  003a30: cbnz8 -> 0x3a01
+  003a32: cstore oimmb[0x04] sdirw[0x60]
+L003a37:
+  003a37: cstore (odirw[0x60] omaintp[0x1a52]) (odirw[0x60] oadd[oimmb[0x01]]) smaintp[0x1a52]
+  003a49: cadd oimmb[0xff] adirw[0x60]
+  003a4e: ceval (odirw[0x60] osupeg[oimmb[0x00]])
+  003a56: cbnz8 -> 0x3a37
+  003a58: cstore olocp[0x0184] (oimmb[0x00]) smaintp[0x1a52]
+  003a63: cjsr24 -> 0x4a02
+L003a67:
+  003a67: cjmp24 -> 0x471b
+L003a6f:
+  003a6f: cstore oimmp['DISCO LLENO'] (oimmb[0x00]) sdirtp[0xa8]
+  003a83: cstore oimmp['OPRIME RETURN'] (oimmb[0x01]) sdirtp[0xa8]
+  003a99: cjmp24 -> 0x3c35
+L003a9d:
+  003a9d: cjsr24 -> 0x4c39
+  003aa1: cjsr24 -> 0x4a7a
+  003aa5: cjmp24 -> 0x3c35
+L003aa9:
+  003aa9: cjsr24 -> 0x4c39
+  003aad: ceval (omainb[0x0e71] oegal[oimmb[0x00]])
+  003ab6: cbz24 -> 0x3b24
+  003aba: cstore oimmp['INTRODUCE EL DISCO'] (oimmb[0x00]) sdirtp[0xa8]
+  003ad5: cstore oimmp['TU DISCO'] (oimmb[0x01]) sdirtp[0xa8]
+  003ae6: cstore oimmp['DE GRABACIONES'] (oimmb[0x02]) sdirtp[0xa8]
+  003afd: cstore oimmb[0x03] sdirw[0x66]
+  003b02: cjsr24 -> 0x3e5b
+  003b06: cstore oimmp['OPRIME RETURN'] (oimmb[0x04]) sdirtp[0xa8]
+  003b1c: cjsr24 -> 0x3cd7
+  003b20: cjsr24 -> 0x3e78
+L003b24:
+  003b24: cstore oimmb[0x01] sdirb[0x98]
+  003b29: cjsr24 -> 0x3ed3
+  003b2d: ceval odirb[0x97]
+  003b30: cbz24 -> 0x3b39
+  003b34: cstore odirb[0x92] sdirb[0x95]
+L003b39:
+  003b39: ceval (odirb[0x95] oegal[odirb[0x92]])
+  003b41: cbz24 -> 0x3b49
+  003b45: cjsr24 -> 0x4113
+L003b49:
+  003b49: cjsr24 -> 0x43f5
+  003b4d: cjmp24 -> 0x3c35
+L003b51:
+  003b51: cjsr24 -> 0x43df
+  003b55: cjmp24 -> 0x3c35
+L003b59:
+  003b59: cstore oimmp['CONTROL DE SEGURIDAD'] (oimmb[0x00]) sdirtp[0xa8]
+  003b76: cstore oimmp['COGE EL MANUAL'] (oimmb[0x01]) sdirtp[0xa8]
+  003b8d: cstore oimmp["DE ROBINSON'S REQUIEM"] (oimmb[0x02]) sdirtp[0xa8]
+  003bab: cstore oimmp['Y INTRODUCE'] (oimmb[0x03]) sdirtp[0xa8]
+  003bbf: cstore oimmp['CORRESPONDIENTE'] (oimmb[0x04]) sdirtp[0xa8]
+  003bd7: cstore oimmp['DE LA PAGINA :'] (oimmb[0x05]) sdirtp[0xa8]
+  003bee: cstore oimmp['DE LA LINEA  :'] (oimmb[0x06]) sdirtp[0xa8]
+  003c05: cstore oimmp['DE LA PALABRA:'] (oimmb[0x07]) sdirtp[0xa8]
+  003c1c: cstore oimmp[' '] (oimmb[0x08]) sdirtp[0xa8]
+  003c26: cjsr24 -> 0x3cd7
+  003c2a: cstore oimmb[0x63] sdirb[0x4d]
+  003c2f: csleep 
+  003c30: cjmp24 -> 0x3c35
+L003c34:
+  003c34: cexit 
+L003c35:
+  003c35: cjsr24 -> 0x3cd7
+  003c39: cjsr24 -> 0x3e78
+  003c3d: cjmp24 -> 0x4be3
+L003c41:
+  003c41: cjsr24 -> 0x3cd7
+  003c45: ceval (oimmb[0x01] opushacc omainb[0x3cdd] oegal[oimmb[0x00]] oand[opile])
+  003c53: cbz24 -> 0x3cc7
+  003c57: ceval (odirb[0x4c] oinfeg[oimmb[0xb0]] opushacc odirb[0x4c] osup[oimmb[0x9c]] oand[opile] opushacc odirb[0x4c] oegal[oimmb[0x91]] oor[opile])
+  003c6f: cbz24 -> 0x3c74
+  003c73: cret 
+L003c74:
+  003c74: ceval (odirb[0x4c] odiff[oimmb[0x96]])
+  003c7c: cbz24 -> 0x3c9d
+  003c80: cstore (omainw[0x3ce0] odiv[oimmb[0x02]]) smainw[0x3ce8]
+L003c8c:
+  003c8c: cstop 
+  003c8d: ceval (omainw[0x3ce2] osupeg[omainw[0x3ce8]])
+  003c97: cbz8 -> 0x3c8c
+  003c99: cjmp24 -> 0x3cc3
+L003c9d:
+  003c9d: cstore (omainw[0x3ce0] odiv[oimmb[0x03]] opushacc oimmb[0x01] oadd[odirb[0xa0]] omul[opile]) smainw[0x3ce8]
+L003cb1:
+  003cb1: cstop 
+  003cb2: ceval (omainw[0x3ce2] osupeg[omainw[0x3ce8]])
+  003cbc: cbz8 -> 0x3cb1
+  003cbe: cadd oimmb[0x01] adirb[0xa0]
+L003cc3:
+  003cc3: cjmp24 -> 0x3ccb
+L003cc7:
+  003cc7: cjsr24 -> 0x3e78
+L003ccb:
+  003ccb: cerasall 
+  003ccc: ceval odirb[0x9d]
+  003ccf: cbz24 -> 0x3cd6
+  003cd3: cput oimmb[0x06]
+L003cd6:
+  003cd6: cret 
+L003cd7:
+  003cd7: cstore oimmb[0x00] sdirw[0x60]
+L003cdc:
+  003cdc: ceval (odirw[0x60] odirtp[0xa8] osegal[oimmp['']])
+  003ce6: cbz24 -> 0x3d04
+  003cea: cfont oimmb[0xf0] oimmb[0x00] oimmb[0x00] oimmb[0x00] oimmb[0x00]
+  003cf5: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  003d00: cjmp24 -> 0x3d13
+L003d04:
+  003d04: cadd oimmb[0x01] adirw[0x60]
+  003d09: ceval (odirw[0x60] oinfeg[oimmb[0x08]])
+  003d11: cbnz8 -> 0x3cdc
+L003d13:
+  003d13: cstore oimmb[0x3c] sdirw[0x64]
+  003d18: cstore (oimmb[0x4b] opushacc odirw[0x60] omul[oimmb[0x05]] osub[opile] odiv[oimmb[0x05]]) sdirb[0x9c]
+  003d2a: cstore oimmb[0x00] sdirw[0x60]
+L003d2f:
+  003d2f: ceval (oimmb[0x01] opushacc omainb[0x3cdd] oegal[oimmb[0x00]] oand[opile] opushacc odirb[0x4c] oinfeg[oimmb[0xb0]] opushacc odirb[0x4c] osup[oimmb[0x9c]] oand[opile] oand[opile] opushacc odirb[0x4c] oegal[oimmb[0x91]] oor[opile])
+  003d55: cbz24 -> 0x3dd6
+  003d59: cfont oimmb[0xf0] oimmb[0x04] oimmb[0x00] oimmb[0x00] oimmb[0x00]
+  003d64: ceval (odirb[0x4c] oegal[oimmb[0x96]])
+  003d6c: cbz24 -> 0x3d83
+  003d70: cstore (omainw[0x3ce0] odiv[oimmb[0x1b]] omul[odirb[0xa0]]) smainw[0x3ce8]
+  003d7f: cjmp24 -> 0x3d92
+L003d83:
+  003d83: cstore (omainw[0x3ce0] odiv[oimmb[0x12]] omul[odirb[0xa0]]) smainw[0x3ce8]
+L003d92:
+  003d92: cstore (oimmw[0x00a5] opushacc odirw[0x60] odirtp[0xa8] olen omul[oimmb[0x0a]] odiv[oimmb[0x02]] osub[opile] oadd[oimmb[0x05]]) sdirw[0x62]
+  003dab: cnumput odirw[0x62] oimmb[0x00] oimmb[0x14] odirw[0x66]
+  003db4: csputprint (odirw[0x60] odirtp[0xa8])
+  003dbb: csputprint oimmp['\r\n']
+L003dc0:
+  003dc0: cstop 
+  003dc1: ceval (omainw[0x3ce2] osupeg[omainw[0x3ce8]])
+  003dcb: cbz8 -> 0x3dc0
+  003dcd: cadd oimmb[0x01] adirb[0xa0]
+  003dd2: cjmp24 -> 0x3e12
+L003dd6:
+  003dd6: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  003de1: cstore (oimmw[0x0086] opushacc odirw[0x60] odirtp[0xa8] olen omul[oimmb[0x0a]] odiv[oimmb[0x02]] osub[opile]) sdirw[0x62]
+  003df7: cnumput odirw[0x62] oimmb[0x00] odirw[0x64] (odirw[0x66] oadd[odirw[0x60]])
+  003e05: csputprint (odirw[0x60] odirtp[0xa8])
+  003e0c: csputprint oimmp['\r\n']
+  003e11: cstop 
+L003e12:
+  003e12: csub odirb[0x9c] adirw[0x64]
+  003e17: cadd oimmb[0x01] adirw[0x60]
+  003e1c: ceval (odirw[0x60] oinfeg[oimmb[0x08]])
+  003e24: cbnz16 -> 0x3d2f
+  003e27: cfont oimmb[0xf0] oimmb[0x00] oimmb[0x00] oimmb[0x00] oimmb[0x00]
+  003e32: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  003e3d: cstore oimmb[0x00] sdirw[0x60]
+L003e42:
+  003e42: cstore oimmp[''] (odirw[0x60]) sdirtp[0xa8]
+  003e4b: cadd oimmb[0x01] adirw[0x60]
+  003e50: ceval (odirw[0x60] oinfeg[oimmb[0x08]])
+  003e58: cbnz8 -> 0x3e42
+  003e5a: cstopret 
+L003e5b:
+  003e5b: cstore oimmp["DANS LE LECTEUR 'A'"] (odirw[0x66]) sdirtp[0xa8]
+  003e77: cret 
+L003e78:
+  003e78: cstop 
+  003e79: ceval (omainw[0x1a12] oegal[oimmb[0x00]] opushacc omainb[0x0e88] oegal[oimmb[0x00]] oand[opile] opushacc omainw[0x1a10] oegal[oimmb[0x00]] oand[opile])
+  003e94: cbz8 -> 0x3e78
+L003e96:
+  003e96: cstop 
+  003e97: ceval (omainw[0x1a12] odiff[oimmb[0x00]] opushacc omainb[0x0e88] odiff[oimmb[0x00]] oor[opile] opushacc omainw[0x1a10] odiff[oimmb[0x00]] oor[opile])
+  003eb2: cbz8 -> 0x3e96
+L003eb4:
+  003eb4: cstop 
+  003eb5: ceval (omainw[0x1a12] oegal[oimmb[0x00]] opushacc omainb[0x0e88] oegal[oimmb[0x00]] oand[opile] opushacc omainw[0x1a10] oegal[oimmb[0x00]] oand[opile])
+  003ed0: cbz8 -> 0x3eb4
+  003ed2: cret 
+L003ed3:
+  003ed3: cjsr24 -> 0x4a1d
+  003ed7: ceval odirb[0x97]
+  003eda: cbz24 -> 0x3ee2
+  003ede: cjmp24 -> 0x40fb
+L003ee2:
+  003ee2: cstore oimmb[0x3e] sdirw[0x60]
+  003ee7: cstore oimmb[0x39] sdirw[0x64]
+  003eec: cerasall 
+  003eed: ceval odirb[0x9d]
+  003ef0: cbz24 -> 0x3ef7
+  003ef4: cput oimmb[0x06]
+L003ef7:
+  003ef7: cstore oimmb[0x00] sdirw[0x60]
+L003efc:
+  003efc: cstore (oimmw[0x0082] opushacc odirw[0x60] omaintp[0x1a52] olen omul[oimmb[0x0a]] odiv[oimmb[0x02]] osub[opile]) sdirw[0x62]
+  003f13: ceval (odirw[0x60] omaintp[0x1a52] osegal[oimmp['']])
+  003f1e: cbz24 -> 0x3f26
+  003f22: cjmp24 -> 0x3f61
+L003f26:
+  003f26: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  003f31: cnumput odirw[0x62] oimmb[0x00] odirw[0x64] (odirw[0x66] oadd[odirw[0x60]])
+  003f3f: csputprint (odirw[0x60] omaintp[0x1a52])
+  003f47: csputprint oimmp['\r\n']
+  003f4c: csub oimmb[0x08] adirw[0x64]
+  003f51: cstop 
+  003f52: cadd oimmb[0x01] adirw[0x60]
+  003f57: ceval (odirw[0x60] oinfeg[oimmb[0x04]])
+  003f5f: cbnz8 -> 0x3efc
+L003f61:
+  003f61: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  003f6c: cnumput oimmb[0x32] oimmb[0x00] odirw[0x64] oimmb[0x64]
+  003f75: csputprint oimmp['OTRA GRABACION']
+  003f86: csputprint oimmp['\r\n']
+  003f8b: cstore odirw[0x60] sdirb[0x92]
+  003f90: cstore oimmb[0x38] sdirw[0x68]
+L003f95:
+  003f95: cstore oimmb[0x63] sdirb[0x95]
+  003f9a: ceval (omainw[0x0e82] oinf[oimmw[0x00f3]] opushacc omainw[0x0e82] osup[oimmb[0x0e]] oand[opile] opushacc omainw[0x0e84] oinf[oimmb[0x3b]] oand[opile] opushacc omainw[0x0e84] osup[oimmb[0x0b]] oand[opile])
+  003fbf: cbz24 -> 0x40c6
+  003fc3: ceval (omainw[0x0e84] osup[oimmb[0x33]])
+  003fcc: cbz24 -> 0x3fde
+  003fd0: cstore oimmb[0x38] sdirw[0x68]
+  003fd5: cstore oimmb[0x00] sdirb[0x95]
+  003fda: cjmp24 -> 0x40b6
+L003fde:
+  003fde: ceval (omainw[0x0e84] osup[oimmb[0x2c]] opushacc omainw[0x0e84] oinf[oimmb[0x33]] oand[opile] opushacc odirb[0x92] osup[oimmb[0x00]] oand[opile])
+  003ff8: cbz24 -> 0x400a
+  003ffc: cstore oimmb[0x30] sdirw[0x68]
+  004001: cstore oimmb[0x01] sdirb[0x95]
+  004006: cjmp24 -> 0x40b6
+L00400a:
+  00400a: ceval (omainw[0x0e84] osup[oimmb[0x24]] opushacc omainw[0x0e84] oinf[oimmb[0x2c]] oand[opile] opushacc odirb[0x92] osup[oimmb[0x01]] oand[opile])
+  004024: cbz24 -> 0x4036
+  004028: cstore oimmb[0x28] sdirw[0x68]
+  00402d: cstore oimmb[0x02] sdirb[0x95]
+  004032: cjmp24 -> 0x40b6
+L004036:
+  004036: ceval (omainw[0x0e84] osup[oimmb[0x1b]] opushacc omainw[0x0e84] oinf[oimmb[0x24]] oand[opile] opushacc odirb[0x92] osup[oimmb[0x02]] oand[opile])
+  004050: cbz24 -> 0x4062
+  004054: cstore oimmb[0x20] sdirw[0x68]
+  004059: cstore oimmb[0x03] sdirb[0x95]
+  00405e: cjmp24 -> 0x40b6
+L004062:
+  004062: ceval (omainw[0x0e84] oinf[oimmb[0x1b]] opushacc omainw[0x0e84] osup[oimmb[0x13]] oand[opile] opushacc odirb[0x92] osup[oimmb[0x03]] oand[opile])
+  00407c: cbz24 -> 0x408e
+  004080: cstore oimmb[0x18] sdirw[0x68]
+  004085: cstore oimmb[0x04] sdirb[0x95]
+  00408a: cjmp24 -> 0x40b6
+L00408e:
+  00408e: ceval (omainw[0x0e84] oinf[oimmb[0x13]] opushacc omainw[0x0e84] osup[oimmb[0x0b]] oand[opile] opushacc odirb[0x92] osup[oimmb[0x04]] oand[opile])
+  0040a8: cbz24 -> 0x40b6
+  0040ac: cstore oimmb[0x10] sdirw[0x68]
+  0040b1: cstore oimmb[0x05] sdirb[0x95]
+L0040b6:
+  0040b6: cputnat oimmw[0x0080] oimmb[0x00] odirw[0x68] oimmb[0x00] oimmb[0x6e]
+  0040c2: cjmp24 -> 0x40c9
+L0040c6:
+  0040c6: cerasen oimmb[0x6e]
+L0040c9:
+  0040c9: cstop 
+  0040ca: ceval (omainb[0x0e88] oegal[oimmb[0x02]] opushacc odirb[0x95] odiff[oimmb[0x63]] oand[opile])
+  0040db: cbz16 -> 0x3f95
+  0040de: cstore oimmb[0x00] sdirw[0x60]
+L0040e3:
+  0040e3: cstore oimmp[''] (odirw[0x60]) sdirtp[0xa8]
+  0040ec: cadd oimmb[0x01] adirw[0x60]
+  0040f1: ceval (odirw[0x60] oinfeg[oimmb[0x04]])
+  0040f9: cbnz8 -> 0x40e3
+L0040fb:
+  0040fb: ceval (odirb[0x95] odiff[oimmb[0x05]])
+  004103: cbz24 -> 0x4112
+  004107: cstore (odirb[0x95] omaintp[0x1a52]) slocp[0x0184]
+L004112:
+  004112: cstopret 
+L004113:
+  004113: cstore oimmb[0x00] sdirb[0x93]
+  004118: cstore oimmb[0x00] sdirb[0x94]
+  00411d: cstore oimmb[0x01] smainb[0x1a47]
+  004123: cerasall 
+  004124: ceval odirb[0x9d]
+  004127: cbz24 -> 0x412e
+  00412b: cput oimmb[0x06]
+L00412e:
+  00412e: cstore oimmp['INTRODUCE EL NOMBRE'] (oimmb[0x00]) sdirtp[0xa8]
+  00414a: cstore oimmp['DE TU PARTIDA GRADADA'] (oimmb[0x01]) sdirtp[0xa8]
+  004168: cstore oimmp[' '] (oimmb[0x02]) sdirtp[0xa8]
+  004172: cstore oimmp['DESPUES OPRIME RETURN'] (oimmb[0x03]) sdirtp[0xa8]
+  004190: cjsr16 -> 0x3cd7
+  004193: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  00419e: cnumput (oimmb[0x46] opushacc odirb[0x94] omul[oimmb[0x08]] oadd[opile]) oimmb[0x01] oimmb[0x27] oimmb[0xd8]
+  0041b1: csputprint oimmp['.SAV']
+  0041b8: csputprint oimmp['\r\n']
+L0041bd:
+  0041bd: ceval omainw[0x1a12]
+  0041c1: cbz24 -> 0x41dc
+  0041c5: cerasen oimmb[0x9d]
+  0041c8: cjsr24 -> 0x427e
+L0041cc:
+  0041cc: cstop 
+  0041cd: ceval (omainw[0x1a12] oegal[oimmb[0x00]])
+  0041d6: cbz8 -> 0x41cc
+  0041d8: cjmp24 -> 0x421d
+L0041dc:
+  0041dc: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  0041e7: ceval odirw[0x68]
+  0041ea: cbz24 -> 0x4214
+  0041ee: cnumput (oimmb[0x46] opushacc odirb[0x94] omul[oimmb[0x0a]] oadd[opile]) oimmb[0x01] oimmb[0x27] oimmb[0x9d]
+  004201: csputprint oimmp['<']
+  004205: csputprint oimmp['\r\n']
+  00420a: cstore oimmb[0x00] sdirw[0x68]
+  00420f: cstop 
+  004210: cjmp24 -> 0x421d
+L004214:
+  004214: cerasen oimmb[0x9d]
+  004217: cstore oimmb[0x01] sdirw[0x68]
+  00421c: cstop 
+L00421d:
+  00421d: ceval (omainw[0x1a12] oegal[oimmb[0x0d]] opushacc odirb[0x94] osup[oimmb[0x00]] oand[opile])
+  00422e: cbz8 -> 0x41bd
+  004230: cerasall 
+  004231: ceval odirb[0x9d]
+  004234: cbz24 -> 0x423b
+  004238: cput oimmb[0x06]
+L00423b:
+  00423b: cstore oimmp[''] slocp[0x0184]
+  004241: cstore oimmb[0x00] sdirb[0x94]
+L004246:
+  004246: cstore (odirb[0x94] odirti[0x70]) smainw[0x1a12]
+  004250: cstore (omainw[0x1a12] ochr) slocp[0x0180]
+  00425a: cadd olocp[0x0180] alocp[0x0184]
+  004261: cadd oimmb[0x01] adirb[0x94]
+  004266: ceval (odirb[0x94] oinfeg[oimmb[0x07]])
+  00426e: cbnz8 -> 0x4246
+  004270: cjsr24 -> 0x43df
+  004274: cjsr16 -> 0x3cd7
+  004277: cstore oimmb[0x00] smainb[0x1a47]
+  00427d: cstopret 
+L00427e:
+  00427e: cerasen oimmb[0x15]
+  004281: ceval (omainw[0x1a12] osupeg[oimmb[0x61]] opushacc omainw[0x1a12] oinfeg[oimmb[0x7a]] oand[opile])
+  004293: cbz24 -> 0x429d
+  004297: csub oimmb[0x20] amainw[0x1a12]
+L00429d:
+  00429d: ceval (omainw[0x1a12] osupeg[oimmb[0x41]] opushacc omainw[0x1a12] oinfeg[oimmb[0x5a]] oand[opile] opushacc omainw[0x1a12] osupeg[oimmb[0x30]] opushacc omainw[0x1a12] oinfeg[oimmb[0x39]] oand[opile] oor[opile] opushacc omainw[0x1a12] oegal[oimmb[0x08]] oor[opile] opushacc omainw[0x1a12] oegal[oimmw[0x00bb]] oor[opile])
+  0042d4: cbz24 -> 0x43de
+  0042d8: ceval (omainw[0x1a12] oegal[oimmw[0x00bb]])
+  0042e2: cbz24 -> 0x42f1
+  0042e6: cstore oimmb[0x01] sdirb[0x93]
+  0042eb: cstore oimmb[0x01] sdirb[0x96]
+  0042f0: cret 
+L0042f1:
+  0042f1: ceval (omainw[0x1a12] oegal[oimmb[0x08]])
+  0042fa: cbz24 -> 0x4354
+  0042fe: ceval (odirb[0x94] osup[oimmb[0x00]])
+  004306: cbz24 -> 0x434f
+  00430a: cerasen (odirb[0x94] osub[oimmb[0x1e]])
+  004312: csub oimmb[0x01] adirb[0x94]
+  004317: cstore oimmb[0x00] (odirb[0x94]) sdirti[0x70]
+  004320: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  00432b: cnumput (oimmb[0x46] opushacc odirb[0x94] omul[oimmb[0x0a]] oadd[opile]) oimmb[0x01] oimmb[0x27] oimmb[0xd8]
+  00433e: csputprint oimmp['.SAV']
+  004345: csputprint oimmp['\r\n']
+  00434a: cstop 
+  00434b: cjmp24 -> 0x4350
+L00434f:
+  00434f: cstop 
+L004350:
+  004350: cjmp24 -> 0x43de
+L004354:
+  004354: ceval (odirb[0x94] oinf[oimmb[0x08]])
+  00435c: cbz24 -> 0x43dd
+  004360: ceval (odirb[0x94] oegal[oimmb[0x00]] opushacc omainw[0x1a12] oinf[oimmb[0x41]] oand[opile])
+  004371: cbz24 -> 0x4379
+  004375: cjmp24 -> 0x43de
+L004379:
+  004379: cstore omainw[0x1a12] (odirb[0x94]) sdirti[0x70]
+  004383: cadd oimmb[0x01] adirb[0x94]
+  004388: cstore (omainw[0x1a12] ochr) slocp[0x0180]
+  004392: cfont oimmb[0x20] oimmb[0x06] oimmb[0x0a] oimmb[0x07] oimmb[0x41]
+  00439d: cnumput (oimmb[0x3c] opushacc odirb[0x94] omul[oimmb[0x0a]] oadd[opile]) oimmb[0x01] oimmb[0x27] (odirb[0x94] osub[oimmb[0x1e]])
+  0043b5: csputprint olocp[0x0180]
+  0043b9: cnumput (oimmb[0x46] opushacc odirb[0x94] omul[oimmb[0x0a]] oadd[opile]) oimmb[0x01] oimmb[0x27] oimmb[0xd8]
+  0043cc: csputprint oimmp['.SAV']
+  0043d3: csputprint oimmp['\r\n']
+  0043d8: cstop 
+  0043d9: cjmp24 -> 0x43de
+L0043dd:
+  0043dd: cstop 
+L0043de:
+  0043de: cret 
+L0043df:
+  0043df: cstore oimmp['PACIENCIA...'] (oimmb[0x00]) sdirtp[0xa8]
+  0043f4: cret 
+L0043f5:
+  0043f5: cadd oimmp['.SAV'] alocp[0x0184]
+  0043ff: ceval (olocp[0x0184] oexistf)
+  004406: cbz24 -> 0x442c
+  00440a: cstore oimmb[0x02] smainb[0x3ca3]
+  004410: cfopen olocp[0x0184] oimmb[0x02]
+  004417: cjsr24 -> 0x4490
+  00441b: cfclose 
+  00441c: ceval odirb[0x4d]
+  00441f: cbz24 -> 0x4428
+  004423: cstore oimmb[0x02] sdirb[0x9b]
+L004428:
+  004428: cjmp24 -> 0x448b
+L00442c:
+  00442c: cerasall 
+  00442d: ceval odirb[0x9d]
+  004430: cbz24 -> 0x4437
+  004434: cput oimmb[0x06]
+L004437:
+  004437: cstore oimmp['FICHERO DE GRABACIONES'] (oimmb[0x00]) sdirtp[0xa8]
+  004456: cstore oimmp['NO ENCONTRADO'] (oimmb[0x01]) sdirtp[0xa8]
+  00446c: cstore oimmp['OPRIME RETURN'] (oimmb[0x02]) sdirtp[0xa8]
+  004482: cjsr16 -> 0x3cd7
+  004485: cjsr16 -> 0x3e78
+  004488: cjmp16 -> 0x0104
+L00448b:
+  00448b: cjsr24 -> 0x4be3
+  00448f: cret 
+L004490:
+  004490: ceval (odirb[0x9f] oegal[oimmb[0x00]])
+  004498: cbz24 -> 0x44cd
+  00449c: cfindtyp 0x0002 sdirw[0x5e]
+  0044a1: clistent sdirw[0x5c]
+L0044a4:
+  0044a4: ceval (odirw[0x5c] odiff[oimmb[0xff]])
+  0044ac: cbz24 -> 0x44cd
+  0044b0: ceval (odirw[0x5c] odiff[odirw[0x5e]] opushacc odirw[0x5c] odiff[olocw[0xfff2]] oand[opile])
+  0044c1: cbz24 -> 0x44c8
+  0044c5: casleep odirw[0x5c]
+L0044c8:
+  0044c8: csuccent sdirw[0x5c]
+  0044cb: cjmp8 -> 0x44a4
+L0044cd:
+  0044cd: cfreadv smainb[0x0e89]
+  0044d1: cfreadv smainb[0x0f2e]
+  0044d5: cfreadv smainb[0x0f2f]
+  0044d9: cfreadv smainb[0x0f30]
+  0044dd: cfreadv smainb[0x0f31]
+  0044e1: cfreadv smainb[0x0f32]
+  0044e5: cfreadv smainb[0x0f33]
+  0044e9: cfreadv smainb[0x0f34]
+  0044ed: cfreadv smainw[0x1848]
+  0044f1: cfreadv smainb[0x184c]
+  0044f5: cfreadv smainb[0x184d]
+  0044f9: cfreadv smainb[0x1922]
+  0044fd: cfreadv smainb[0x1923]
+  004501: cfreadv smainw[0x1924]
+  004505: cfreadv smainw[0x1926]
+  004509: cfreadv smainw[0x1928]
+  00450d: cfreadv smainw[0x192a]
+  004511: cfreadv smainw[0x192c]
+  004515: cfreadv smainw[0x192e]
+  004519: cfreadv smainw[0x1930]
+  00451d: cfreadv smainw[0x1932]
+  004521: cfreadv smainw[0x1934]
+  004525: cfreadv smainw[0x1936]
+  004529: cfreadv smainw[0x1938]
+  00452d: cfreadv smainw[0x193a]
+  004531: cfreadv smainw[0x193c]
+  004535: cfreadv smainw[0x193e]
+  004539: cfreadv smainw[0x1940]
+  00453d: cfreadv smainw[0x1942]
+  004541: cfreadv smainw[0x1944]
+  004545: cfreadv smainw[0x1946]
+  004549: cfreadv smainw[0x1948]
+  00454d: cfreadv smainw[0x194a]
+  004551: cfreadv smainw[0x194c]
+  004555: cfreadv smainw[0x194e]
+  004559: cfreadv smainw[0x1950]
+  00455d: cfreadv smainw[0x1952]
+  004561: cfreadv smainb[0x1954]
+  004565: cfreadv smainw[0x19da]
+  004569: cfreadv smainw[0x19dc]
+  00456d: cfreadv smainb[0x1955]
+  004571: cfreadv smainw[0x19e0]
+  004575: cfreadv smainb[0x1a04]
+  004579: cfreadv smainw[0x1a08]
+  00457d: cfreadv smainb[0x1a05]
+  004581: cfreadv smainb[0x1a0a]
+  004585: cfreadv smainb[0x1a0b]
+  004589: cfreadv smainw[0x1a0c]
+  00458d: cfreadv smainb[0x1a14]
+  004591: cfreadv smainb[0x3ca0]
+  004595: cfreadv smainb[0x1a46]
+  004599: cfreadv smainw[0x1a48]
+  00459d: cfreadv smainw[0x1a4a]
+  0045a1: cfreadv smainb[0x1a8e]
+  0045a5: cfreadv smainb[0x1a90]
+  0045a9: cfreadv smainw[0x1a94]
+  0045ad: cfreadv smainb[0x2d66]
+  0045b1: cfreadv smainb[0x2d6d]
+  0045b5: cfreadv smainb[0x2d6f]
+  0045b9: cfreadv smainb[0x2d9e]
+  0045bd: cfreadv smainb[0x2d9f]
+  0045c1: cfreadv smainb[0x39b4]
+  0045c5: cfreadv smainb[0x39b5]
+  0045c9: cfreadv smainb[0x39b6]
+  0045cd: cfreadv smainb[0x3ad8]
+  0045d1: cfreadv smainb[0x3ad9]
+  0045d5: cfreadv smainb[0x3ada]
+  0045d9: cfreadv smainb[0x3adb]
+  0045dd: cfreadv smainb[0x3aea]
+  0045e1: cfreadv smainb[0x3aeb]
+  0045e5: cfreadv smainb[0x3b06]
+  0045e9: cfreadv smainb[0x3b07]
+  0045ed: cfreadv smainw[0x3b14]
+  0045f1: cfreadv smainw[0x3b16]
+  0045f5: cfreadv smainb[0x3b3c]
+  0045f9: cfreadv smainb[0x3b3d]
+  0045fd: cfreadv smainb[0x3baa]
+  004601: cfreadv smainw[0x3bac]
+  004605: cfreadv smainw[0x3bae]
+  004609: cfreadv smainw[0x3bb0]
+  00460d: cfreadv smainw[0x3bb2]
+  004611: cfreadv smainw[0x3bb4]
+  004615: cfreadv smainw[0x3bb6]
+  004619: cfreadv smainb[0x3bb8]
+  00461d: cfreadv smainb[0x3bb9]
+  004621: cfreadv smainb[0x3bba]
+  004625: cfreadv smainb[0x3bbb]
+  004629: cfreadv smainb[0x3bc3]
+  00462d: cfreadv smainb[0x3be0]
+  004631: cfreadv smainw[0x3be2]
+  004635: cfreadv smainw[0x3be6]
+  004639: cfreadv smainw[0x3be8]
+  00463d: cfreadv smainw[0x3bea]
+  004641: cfreadv smainw[0x3bec]
+  004645: cfreadv smainw[0x3bee]
+  004649: cfreadv smainw[0x3bf0]
+  00464d: cfreadv smainb[0x3bf6]
+  004651: cfreadv smainb[0x3bf7]
+  004655: cfreadv smainb[0x3bf8]
+  004659: cfreadv smainb[0x3bf9]
+  00465d: cfreadb main[0x1a52] 0x3c
+  004666: cfreadb main[0x3c00] 0x14
+  00466f: cfreadb main[0x0e92] 0x1a
+  004678: cfreadb main[0x0eb2] 0x8
+  004681: cfreadb main[0x0ec0] 0x1a
+  00468a: cfreadb main[0x0ee0] 0x16
+  004693: cfreadb main[0x0efc] 0x16
+  00469c: cfreadb main[0x0f18] 0x16
+  0046a5: cfreadb main[0x0f3e] 0x800
+  0046ae: cfreadb main[0x1854] 0x15
+  0046b7: cfreadb main[0x195e] 0x7c
+  0046c0: cfreadb main[0x19e8] 0x16
+  0046c9: cfreadb main[0x3c1e] 0x64
+  0046d2: cfreadb main[0x1a9e] 0xe10
+  0046db: cfreadb main[0x28b6] 0x4b0
+  0046e4: cfreadb main[0x2d9a] 0x4
+  0046ed: cfreadb main[0x3ae2] 0x7
+  0046f6: cfreadb main[0x3af2] 0x14
+  0046ff: cfreadb main[0x3b0e] 0x6
+  004708: cfreadb main[0x3c92] 0xa000
+  004711: cfreadb main[0x39ac] 0x1000
+  00471a: cret 
+L00471b:
+  00471b: cstore oimmb[0x01] sdirw[0x90]
+L004720:
+  004720: ceval (odirw[0x90] opushacc oimmb[0x00] omainti[0x1a9e] oinfeg[oimmb[0x00]] opushacc odirw[0x90] opushacc oimmb[0x00] omainti[0x1a9e] odiff[oimmb[0x9d]] oand[opile])
+  00473c: cbz24 -> 0x474d
+  004740: cstore oimmb[0x88] (odirw[0x90] opushacc oimmb[0x00]) smainti[0x1a9e]
+L00474d:
+  00474d: cadd oimmb[0x01] adirw[0x90]
+  004752: ceval (odirw[0x90] oinfeg[oimmb[0x78]])
+  00475a: cbnz8 -> 0x4720
+  00475c: cadd oimmp['.SAV'] alocp[0x0184]
+  004766: cfindtyp 0x000f sdirw[0x5a]
+  00476b: cstore ohimw[0x005a,0x0000] smainw[0x3bb0]
+  004774: cstore ohimw[0x005a,0x0008] smainw[0x3bac]
+  00477d: cstore ohimw[0x005a,0x0010] smainw[0x3bae]
+  004786: cstore ohimw[0x005a,0x0018] smainw[0x3bb2]
+  00478f: cstore ohimw[0x005a,0x0020] smainw[0x3bb4]
+  004798: cstore ohimw[0x005a,0x0028] smainw[0x3bb6]
+  0047a1: cstore oimmb[0x00] smainw[0x1a08]
+  0047a7: cfopen olocp[0x0184] oimmw[0x0302]
+  0047af: cfwritev omainb[0x0e89]
+  0047b3: cfwritev omainb[0x0f2e]
+  0047b7: cfwritev omainb[0x0f2f]
+  0047bb: cfwritev omainb[0x0f30]
+  0047bf: cfwritev omainb[0x0f31]
+  0047c3: cfwritev omainb[0x0f32]
+  0047c7: cfwritev omainb[0x0f33]
+  0047cb: cfwritev omainb[0x0f34]
+  0047cf: cfwritev omainw[0x1848]
+  0047d3: cfwritev omainb[0x184c]
+  0047d7: cfwritev omainb[0x184d]
+  0047db: cfwritev omainb[0x1922]
+  0047df: cfwritev omainb[0x1923]
+  0047e3: cfwritev omainw[0x1924]
+  0047e7: cfwritev omainw[0x1926]
+  0047eb: cfwritev omainw[0x1928]
+  0047ef: cfwritev omainw[0x192a]
+  0047f3: cfwritev omainw[0x192c]
+  0047f7: cfwritev omainw[0x192e]
+  0047fb: cfwritev omainw[0x1930]
+  0047ff: cfwritev omainw[0x1932]
+  004803: cfwritev omainw[0x1934]
+  004807: cfwritev omainw[0x1936]
+  00480b: cfwritev omainw[0x1938]
+  00480f: cfwritev omainw[0x193a]
+  004813: cfwritev omainw[0x193c]
+  004817: cfwritev omainw[0x193e]
+  00481b: cfwritev omainw[0x1940]
+  00481f: cfwritev omainw[0x1942]
+  004823: cfwritev omainw[0x1944]
+  004827: cfwritev omainw[0x1946]
+  00482b: cfwritev omainw[0x1948]
+  00482f: cfwritev omainw[0x194a]
+  004833: cfwritev omainw[0x194c]
+  004837: cfwritev omainw[0x194e]
+  00483b: cfwritev omainw[0x1950]
+  00483f: cfwritev omainw[0x1952]
+  004843: cfwritev omainb[0x1954]
+  004847: cfwritev omainw[0x19da]
+  00484b: cfwritev omainw[0x19dc]
+  00484f: cfwritev omainb[0x1955]
+  004853: cfwritev omainw[0x19e0]
+  004857: cfwritev omainb[0x1a04]
+  00485b: cfwritev omainw[0x1a08]
+  00485f: cfwritev omainb[0x1a05]
+  004863: cfwritev omainb[0x1a0a]
+  004867: cfwritev omainb[0x1a0b]
+  00486b: cfwritev omainw[0x1a0c]
+  00486f: cfwritev omainb[0x1a14]
+  004873: cfwritev omainb[0x3ca0]
+  004877: cfwritev omainb[0x1a46]
+  00487b: cfwritev omainw[0x1a48]
+  00487f: cfwritev omainw[0x1a4a]
+  004883: cfwritev omainb[0x1a8e]
+  004887: cfwritev omainb[0x1a90]
+  00488b: cfwritev omainw[0x1a94]
+  00488f: cfwritev omainb[0x2d66]
+  004893: cfwritev omainb[0x2d6d]
+  004897: cfwritev omainb[0x2d6f]
+  00489b: cfwritev omainb[0x2d9e]
+  00489f: cfwritev omainb[0x2d9f]
+  0048a3: cfwritev omainb[0x39b4]
+  0048a7: cfwritev omainb[0x39b5]
+  0048ab: cfwritev omainb[0x39b6]
+  0048af: cfwritev omainb[0x3ad8]
+  0048b3: cfwritev omainb[0x3ad9]
+  0048b7: cfwritev omainb[0x3ada]
+  0048bb: cfwritev omainb[0x3adb]
+  0048bf: cfwritev omainb[0x3aea]
+  0048c3: cfwritev omainb[0x3aeb]
+  0048c7: cfwritev omainb[0x3b06]
+  0048cb: cfwritev omainb[0x3b07]
+  0048cf: cfwritev omainw[0x3b14]
+  0048d3: cfwritev omainw[0x3b16]
+  0048d7: cfwritev omainb[0x3b3c]
+  0048db: cfwritev omainb[0x3b3d]
+  0048df: cfwritev omainb[0x3baa]
+  0048e3: cfwritev omainw[0x3bac]
+  0048e7: cfwritev omainw[0x3bae]
+  0048eb: cfwritev omainw[0x3bb0]
+  0048ef: cfwritev omainw[0x3bb2]
+  0048f3: cfwritev omainw[0x3bb4]
+  0048f7: cfwritev omainw[0x3bb6]
+  0048fb: cfwritev omainb[0x3bb8]
+  0048ff: cfwritev omainb[0x3bb9]
+  004903: cfwritev omainb[0x3bba]
+  004907: cfwritev omainb[0x3bbb]
+  00490b: cfwritev omainb[0x3bc3]
+  00490f: cfwritev omainb[0x3be0]
+  004913: cfwritev omainw[0x3be2]
+  004917: cfwritev omainw[0x3be6]
+  00491b: cfwritev omainw[0x3be8]
+  00491f: cfwritev omainw[0x3bea]
+  004923: cfwritev omainw[0x3bec]
+  004927: cfwritev omainw[0x3bee]
+  00492b: cfwritev omainw[0x3bf0]
+  00492f: cfwritev omainb[0x3bf6]
+  004933: cfwritev omainb[0x3bf7]
+  004937: cfwritev omainb[0x3bf8]
+  00493b: cfwritev omainb[0x3bf9]
+  00493f: cfwriteb main[0x1a52] 0x3c
+  004948: cfwriteb main[0x3c00] 0x14
+  004951: cfwriteb main[0x0e92] 0x1a
+  00495a: cfwriteb main[0x0eb2] 0x8
+  004963: cfwriteb main[0x0ec0] 0x1a
+  00496c: cfwriteb main[0x0ee0] 0x16
+  004975: cfwriteb main[0x0efc] 0x16
+  00497e: cfwriteb main[0x0f18] 0x16
+  004987: cfwriteb main[0x0f3e] 0x800
+  004990: cfwriteb main[0x1854] 0x15
+  004999: cfwriteb main[0x195e] 0x7c
+  0049a2: cfwriteb main[0x19e8] 0x16
+  0049ab: cfwriteb main[0x3c1e] 0x64
+  0049b4: cfwriteb main[0x1a9e] 0xe10
+  0049bd: cfwriteb main[0x28b6] 0x4b0
+  0049c6: cfwriteb main[0x2d9a] 0x4
+  0049cf: cfwriteb main[0x3ae2] 0x7
+  0049d8: cfwriteb main[0x3af2] 0x14
+  0049e1: cfwriteb main[0x3b0e] 0x6
+  0049ea: cfwriteb main[0x3c92] 0xa000
+  0049f3: cfwriteb main[0x39ac] 0x1000
+  0049fc: cfclose 
+  0049fd: cjsr24 -> 0x4be3
+  004a01: cret 
+L004a02:
+  004a02: cfopen 'BACKSAVE.INF' 0x0302
+  004a12: cfwriteb main[0x1a52] 0x3c
+  004a1b: cfclose 
+  004a1c: cret 
+L004a1d:
+  004a1d: cstore oimmb[0x00] sdirb[0x97]
+  004a22: ceval (oimmp['BACKSAVE.INF'] oexistf)
+  004a34: cbz24 -> 0x4a56
+  004a38: cfopen 'BACKSAVE.INF' 0x0002
+  004a48: cfreadb main[0x1a52] 0x3c
+  004a51: cfclose 
+  004a52: cjmp24 -> 0x4a79
+L004a56:
+  004a56: cstore oimmb[0x00] sdirw[0x60]
+L004a5b:
+  004a5b: cstore oimmp[''] (odirw[0x60]) smaintp[0x1a52]
+  004a65: cadd oimmb[0x01] adirw[0x60]
+  004a6a: ceval (odirw[0x60] oinfeg[oimmb[0x05]])
+  004a72: cbnz8 -> 0x4a5b
+  004a74: cstore oimmb[0x01] sdirb[0x97]
+L004a79:
+  004a79: cret 
+L004a7a:
+  004a7a: cstore oimmp['ESTAS SEGURO'] (oimmb[0x00]) sdirtp[0xa8]
+  004a8f: cstore oimmp['DE QUERER ABANDONAR'] (oimmb[0x01]) sdirtp[0xa8]
+  004aab: cstore oimmp['ESTA PARTIDA'] (oimmb[0x02]) sdirtp[0xa8]
+  004ac0: cstore oimmp['Y COMENZAR'] (oimmb[0x03]) sdirtp[0xa8]
+  004ad3: cstore oimmp['UNA NUEVA ?'] (oimmb[0x04]) sdirtp[0xa8]
+  004ae7: cstore oimmp['(OPRIME S O N)'] (oimmb[0x05]) sdirtp[0xa8]
+  004afe: cjsr16 -> 0x3cd7
+L004b01:
+  004b01: cstop 
+  004b02: ceval (omainw[0x1a12] oegal[oimmb[0x00]] opushacc omainb[0x0e88] oegal[oimmb[0x00]] oand[opile] opushacc omainw[0x1a10] oegal[oimmb[0x00]] oand[opile])
+  004b1d: cbz8 -> 0x4b01
+  004b1f: cstore oimmb[0x00] sdirb[0x93]
+L004b24:
+  004b24: cswitch1 oinkey 0x1b->0x4b4e 0x4e->0x4b4e 0x53->0x4b40 0x6e->0x4b4e 0x73->0x4b40
+  004b3c: cjmp24 -> 0x4b53
+L004b40:
+  004b40: cstore oimmb[0x01] sdirb[0x93]
+  004b45: cstore oimmb[0x01] sdirb[0x9b]
+  004b4a: cjmp24 -> 0x4b53
+L004b4e:
+  004b4e: cstore oimmb[0x01] sdirb[0x93]
+L004b53:
+  004b53: ceval odirb[0x93]
+  004b56: cbz8 -> 0x4b24
+L004b58:
+  004b58: cstop 
+  004b59: ceval (omainw[0x1a12] oegal[oimmb[0x00]] opushacc omainb[0x0e88] oegal[oimmb[0x00]] oand[opile] opushacc omainw[0x1a10] oegal[oimmb[0x00]] oand[opile])
+  004b74: cbz8 -> 0x4b58
+  004b76: cerasall 
+  004b77: cput oimmb[0x06]
+  004b7a: ceval (omainb[0x0e71] oegal[oimmb[0x00]] opushacc odirb[0x9b] oegal[oimmb[0x01]] oand[opile])
+  004b8b: cbz24 -> 0x4bde
+  004b8f: cstore oimmp['INTRODUCE'] (oimmb[0x00]) sdirtp[0xa8]
+  004ba1: cstore oimmp['EL DISCO DEL JUEGO'] (oimmb[0x01]) sdirtp[0xa8]
+  004bbc: cstore oimmb[0x02] sdirw[0x66]
+  004bc1: cjsr16 -> 0x3e5b
+  004bc4: cstore oimmp['OPRIME RETURN'] (oimmb[0x03]) sdirtp[0xa8]
+  004bda: cjmp24 -> 0x4be2
+L004bde:
+  004bde: cjmp24 -> 0x4be3
+L004be2:
+  004be2: cret 
+L004be3:
+  004be3: cstop 
+  004be4: ceval (omainw[0x1a12] oegal[oimmb[0x00]] opushacc omainb[0x0e88] oegal[oimmb[0x00]] oand[opile] opushacc omainw[0x1a10] oegal[oimmb[0x00]] oand[opile])
+  004bff: cbz8 -> 0x4be3
+  004c01: cerasall 
+  004c02: cstore oimmb[0x00] smainb[0x1a47]
+  004c08: cstore (oimmb[0x63] oadd[odirb[0x9e]]) sdirb[0x4d]
+  004c12: ceval odirb[0x9b]
+  004c15: cbz24 -> 0x4c20
+  004c19: csend oimmb[0x00] odirb[0x9b]
+  004c1f: csleep 
+L004c20:
+  004c20: ceval odirb[0x99]
+  004c23: cbz24 -> 0x4c2d
+  004c27: cwakeup odirw[0x54]
+  004c2a: cwakeup odirw[0x56]
+L004c2d:
+  004c2d: ceval odirb[0x98]
+  004c30: cbz24 -> 0x4c35
+  004c34: csleep 
+L004c35:
+  004c35: cstop 
+  004c36: cstop 
+  004c37: cstop 
+  004c38: cexit 
+L004c39:
+  004c39: cstore oimmb[0x01] sdirb[0x99]
+  004c3e: cstore oimmb[0x01] sdirb[0x98]
+  004c43: cfindtyp 0x0003 sdirw[0x54]
+  004c48: casleep odirw[0x54]
+  004c4b: cfindtyp 0x0009 sdirw[0x56]
+  004c50: casleep odirw[0x56]
+  004c53: cret 
+  004c58: ceval odirb[0x98]
+  004c5b: cbz24 -> 0x4c91
+  004c5f: ceval (omainb[0x0e88] oegal[oimmb[0x01]] opushacc odirb[0x4c] osupeg[oimmb[0x63]] oand[opile] opushacc omainw[0x1a12] oegal[oimmb[0x1b]] oor[opile])
+  004c79: cbz24 -> 0x4c91
+  004c7d: ceval (odirb[0x4c] oegal[oimmb[0x66]])
+  004c85: cbz24 -> 0x4c8e
+  004c89: cstore oimmb[0xff] sdirb[0x9e]
+L004c8e:
+  004c8e: cstart16 -> 0x4be3
+L004c91:
+  004c91: cstop 
+  004c92: cexit 

@@ -1,0 +1,98 @@
+; STEGO.IO: 81 instructions, 391/60800 bytes, entries ['0x18', '0x17e', '0x1c']
+  000018: cjmp24 -> 0x004d
+  00001c: cstore oscan sdirw[0x5a]
+  000020: ceval (odirw[0x5a] oegal[oimmw[0x8001]] opushacc odirw[0x5a] oegal[oimmw[0x8000]] oor[opile])
+  000032: cbz24 -> 0x003a
+  000036: cjmp24 -> 0x004b
+L00003a:
+  00003a: cstore oimmb[0xff] (odirb[0x4d] opushacc oimmb[0x00]) smainti[0x1a9e]
+  000047: cstart24 -> 0x0148
+L00004b:
+  00004b: cscanclr 
+  00004c: cstop 
+L00004d:
+  00004d: cinteron 
+  00004e: cscanon 
+  00004f: casleepon 
+  000050: cclock oimmb[0x0a]
+  000053: cscreen 0x0152
+  000056: clinking oimmb[0x00]
+  000059: cset (odirb[0x4d] opushacc oimmb[0x06] omainti[0x1a9e]) (odirb[0x4d] opushacc oimmb[0x07] omainti[0x1a9e]) (odirb[0x4d] opushacc oimmb[0x08] omainti[0x1a9e])
+  000078: creducing oimmb[0x00] oimmb[0x01]
+  00007d: ceval (odirb[0x4d] opushacc oimmb[0x00] omainti[0x1a9e] oinf[oimmb[0x9c]])
+  00008b: cbz24 -> 0x009d
+  00008f: casleepoff 
+  000090: cinteroff 
+  000091: cscanoff 
+  000092: cput oimmb[0x0c]
+  000095: cjmp24 -> 0x016e
+L00009d:
+  00009d: ceval (odirb[0x4d] opushacc oimmb[0x00] omainti[0x1a9e] oinfeg[oimmb[0x00]])
+  0000ab: cbz24 -> 0x00b0
+  0000af: cexit 
+L0000b0:
+  0000b0: cforme oimmb[0x00]
+  0000b3: cput oimmb[0x06]
+  0000b6: cputnat oimmb[0x00] oimmb[0x01] oimmb[0x00] oimmb[0x0d] oimmb[0xff]
+L0000c1:
+  0000c1: cstart24 -> 0x00ca
+  0000c5: ceval oimmb[0x00]
+  0000c8: cbz8 -> 0x00c1
+L0000ca:
+  0000ca: cstore (oimmb[0x28] ornd) sdirb[0x56]
+  0000d2: ceval (odirb[0x56] oegal[oimmb[0x0c]])
+  0000da: cbz24 -> 0x0127
+  0000de: ceval (odirb[0x4d] opushacc oimmb[0x04] omainti[0x1a9e])
+  0000e9: cbz24 -> 0x010a
+  0000ed: cput oimmb[0x06]
+  0000f0: cstop 
+  0000f1: cput oimmb[0x07]
+  0000f4: cstop 
+  0000f5: cput oimmb[0x08]
+  0000f8: cstop 
+  0000f9: cstore oimmb[0x00] (odirb[0x4d] opushacc oimmb[0x04]) smainti[0x1a9e]
+  000106: cjmp24 -> 0x0123
+L00010a:
+  00010a: cput oimmb[0x08]
+  00010d: cstop 
+  00010e: cput oimmb[0x07]
+  000111: cstop 
+  000112: cput oimmb[0x06]
+  000115: cstop 
+  000116: cstore oimmb[0x01] (odirb[0x4d] opushacc oimmb[0x04]) smainti[0x1a9e]
+L000123:
+  000123: cjmp24 -> 0x0128
+L000127:
+  000127: cstop 
+L000128:
+  000128: cstore (oimmb[0x50] ornd) sdirb[0x56]
+  000130: ceval (odirb[0x56] oegal[oimmb[0x1b]])
+  000138: cbz24 -> 0x0147
+  00013c: csound oimmb[0x00] oimmb[0x32] oimmb[0x7f] oimmb[0x01] oimmb[0x05]
+L000147:
+  000147: cret 
+L000148:
+  000148: cinteroff 
+  000149: cscanoff 
+  00014a: casleepoff 
+  00014b: cforme oimmb[0x01]
+  00014e: cerasen oimmb[0xff]
+  000151: cstore oimmb[0x00] sdirb[0x57]
+L000156:
+  000156: cput (oimmb[0x09] oadd[odirb[0x57]])
+  00015e: cstop 
+  00015f: cadd oimmb[0x01] adirb[0x57]
+  000164: ceval (odirb[0x57] oinfeg[oimmb[0x02]])
+  00016c: cbnz8 -> 0x0156
+L00016e:
+  00016e: cstore oimmb[0xff] sdirw[0x50]
+L000173:
+  000173: csleep 
+  000174: ceval oimmb[0x00]
+  000177: cbz8 -> 0x0173
+  000179: cexit 
+  00017e: cstore odirw[0x00] (odirb[0x4d] opushacc oimmb[0x06]) smainti[0x1a9e]
+  00018b: cstore odirw[0x08] (odirb[0x4d] opushacc oimmb[0x07]) smainti[0x1a9e]
+  000198: cstore odirw[0x10] (odirb[0x4d] opushacc oimmb[0x08]) smainti[0x1a9e]
+  0001a5: cstop 
+  0001a6: cexit 

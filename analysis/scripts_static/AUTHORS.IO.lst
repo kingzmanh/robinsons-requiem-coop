@@ -1,0 +1,26 @@
+; AUTHORS.IO: 20 instructions, 72/130888 bytes, entries ['0x18']
+  000018: cscreen 0x0052
+  00001b: cclock oimmb[0x01]
+  00001e: cjsr24 -> 0x0047
+  000022: cswitch2 odirb[0x4d] base 0 0->0x0030 1->0x003d
+  00002c: cjmp24 -> 0x0046
+L000030:
+  000030: cput oimmb[0x04]
+  000033: cstop 
+  000034: ctopalet oimmb[0x00] oimmb[0x1e]
+  000039: cjmp24 -> 0x0046
+L00003d:
+  00003d: cput oimmb[0x05]
+  000040: cstop 
+  000041: ctopalet oimmb[0x01] oimmb[0x1e]
+L000046:
+  000046: csleep 
+L000047:
+  000047: ctoblack oimmb[0x1e]
+  00004a: cstore oimmb[0x00] sdirw[0x52]
+L00004f:
+  00004f: cstop 
+  000050: cadd oimmb[0x01] adirw[0x52]
+  000055: ceval (odirw[0x52] oinfeg[oimmb[0x23]])
+  00005d: cbnz8 -> 0x004f
+  00005f: cret 

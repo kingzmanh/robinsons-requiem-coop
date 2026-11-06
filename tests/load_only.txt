@@ -1,0 +1,2 @@
+3000 shot loaded
++500 quit

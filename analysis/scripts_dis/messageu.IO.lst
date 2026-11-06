@@ -1,0 +1,271 @@
+; messageu.IO: 65 distinct executed instructions (runtime coverage only)
+09c213 47 cscreen  0x0052
+09c216 94 cfindtyp  0x0007
+    09c219 14 sdirw  0x5c
+09c21b 1f ceval
+    09c21c 38 oeval
+    09c21d 14 odirw  0x5c
+    09c21f 4c odiff
+    09c220 00 oimmb  0xff
+    09c222 3a ofin  [ = 0]
+09c223 14 cbz24  0x0003 0x00 [d7==0 => jmp dn +0x000003]
+09c22a 1e cstore
+    09c22b 00 oimmb  0x01
+    09c22d 14 sdirw  0x4e
+09c22f 36 cclock
+    09c230 00 oimmb  0x05
+09c232 2f cswitch2
+    09c233 12 odirb  0x4c 0x9c 0x001d 0x0e13
+09d186 07 cjsr24  0x051f 0x00 [call dn +0x00051f]
+09d18a 1f ceval
+    09d18b 38 oeval
+    09d18c 20 omainw  0x0e8a
+    09d18f 4a oegal
+    09d190 00 oimmb  0x0a
+    09d192 40 opushacc
+    09d193 12 odirb  0x4c
+    09d195 52 oinf
+    09d196 00 oimmb  0x59
+    09d198 42 oand
+    09d199 36 opile
+    09d19a 3a ofin  [ = 0]
+09d19b 14 cbz24  0x0004 0x00 [d7==0 => jmp dn +0x000004]
+09d1a3 1f ceval
+    09d1a4 38 oeval
+    09d1a5 16 odirp  0x5e
+    09d1a7 8a osegal
+    09d1a8 04 oimmp
+    09d1aa 3a ofin  [ = 0]
+09d1ab 14 cbz24  0x0001 0x00 [d7==0 => jmp dn +0x000001]
+09d1b0 07 cjsr24  0x0035 0x00 [call dn +0x000035]
+09d1b4 1e cstore
+    09d1b5 00 oimmb  0x87
+    09d1b7 12 sdirb  0x4c
+09d1b9 1e cstore
+    09d1ba 00 oimmb  0x00
+    09d1bc 1e smainb  0x3c9e
+09d1bf 4b cerasen
+    09d1c0 00 oimmb  0x63
+09d1c2 42 cstop
+09d1c3 42 cstop
+09d1c4 ba cfont
+    09d1c5 00 oimmb  0x20
+    09d1c7 00 oimmb  0x06
+    09d1c9 00 oimmb  0x0a
+    09d1cb 00 oimmb  0x07
+    09d1cd 00 oimmb  0x41
+09d1cf bf cnumput
+    09d1d0 14 odirw  0x56
+    09d1d2 02 oimmw  0x00c8
+    09d1d5 00 oimmb  0x3e
+    09d1d7 00 oimmb  0x63
+09d1d9 b9 csputprint
+    09d1da 04 oimmp  ["<"]
+09d1dd b9 csputprint
+    09d1de 04 oimmp  ["
+09d1e2 42 cstop
+09d1e3 42 cstop
+09d1e4 1f ceval
+    09d1e5 00 oimmb  0x00
+09d1e7 12 cbz8  0xd6 [d7==0 => jmp up -0x2a]
+09d1e9 ba cfont
+    09d1ea 00 oimmb  0x20
+    09d1ec 00 oimmb  0x06
+    09d1ee 00 oimmb  0x0a
+    09d1f0 00 oimmb  0x07
+    09d1f2 00 oimmb  0x41
+09d1f4 bf cnumput
+    09d1f5 00 oimmb  0x16
+    09d1f7 02 oimmw  0x00c8
+    09d1fa 00 oimmb  0x3e
+    09d1fc 00 oimmb  0x63
+09d1fe b9 csputprint
+    09d1ff 04 oimmp  ["<"]
+09d202 b9 csputprint
+    09d203 04 oimmp  ["
+09d207 42 cstop
+09d208 1e cstore
+    09d209 00 oimmb  0x00
+    09d20b 12 sdirb  0x52
+09d20d ba cfont
+    09d20e 00 oimmb  0x20
+    09d210 00 oimmb  0x06
+    09d212 00 oimmb  0x0a
+    09d214 00 oimmb  0x07
+    09d216 00 oimmb  0x41
+09d218 1f ceval
+    09d219 38 oeval
+    09d21a 12 odirb  0x52
+    09d21c 52 oinf
+    09d21d 00 oimmb  0x15
+    09d21f 3a ofin  [ = -1]
+    09d21f 3a ofin  [ = 0]
+09d220 14 cbz24  [d7<>0 => no jmp +3]
+09d224 bf cnumput
+    09d225 38 oeval
+    09d226 00 oimmb  0x16
+    09d228 40 opushacc
+    09d229 12 odirb  0x52
+    09d22b 5e omul
+    09d22c 00 oimmb  0x0a
+    09d22e 56 oadd
+    09d22f 36 opile
+    09d230 3a ofin  [ = 22]
+    09d231 02 oimmw  0x00c8
+    09d234 00 oimmb  0x3e
+    09d236 12 odirb  0x52
+    09d230 3a ofin  [ = 32]
+    09d230 3a ofin  [ = 42]
+    09d230 3a ofin  [ = 52]
+    09d230 3a ofin  [ = 62]
+    09d230 3a ofin  [ = 72]
+    09d230 3a ofin  [ = 82]
+    09d230 3a ofin  [ = 92]
+    09d230 3a ofin  [ = 102]
+    09d230 3a ofin  [ = 112]
+    09d230 3a ofin  [ = 122]
+    09d230 3a ofin  [ = 132]
+    09d230 3a ofin  [ = 142]
+    09d230 3a ofin  [ = 152]
+    09d230 3a ofin  [ = 162]
+    09d230 3a ofin  [ = 172]
+    09d230 3a ofin  [ = 182]
+    09d230 3a ofin  [ = 192]
+    09d230 3a ofin  [ = 202]
+    09d230 3a ofin  [ = 212]
+    09d230 3a ofin  [ = 222]
+09d238 b9 csputprint
+    09d239 38 oeval
+    09d23a 16 odirp  0x5e
+    09d23c 96 ospushacc
+    09d23d 12 odirb  0x52
+    09d23f 40 opushacc
+    09d240 00 oimmb  0x01
+    09d242 80 omid
+    09d243 3a ofin  [ = -1] ["!"]
+    09d243 3a ofin  [ = -1] [" "]
+    09d243 3a ofin  [ = -1] ["I"]
+    09d243 3a ofin  [ = -1] ["M"]
+    09d243 3a ofin  [ = -1] ["P"]
+    09d243 3a ofin  [ = -1] ["O"]
+    09d243 3a ofin  [ = -1] ["S"]
+    09d243 3a ofin  [ = -1] ["B"]
+    09d243 3a ofin  [ = -1] ["L"]
+    09d243 3a ofin  [ = -1] ["E"]
+    09d243 3a ofin  [ = -1] ["-"]
+    09d243 3a ofin  [ = -1] ["N"]
+    09d243 3a ofin  [ = -1] ["T"]
+09d244 b9 csputprint
+    09d245 04 oimmp  ["
+09d249 bf cnumput
+    09d24a 38 oeval
+    09d24b 00 oimmb  0x20
+    09d24d 40 opushacc
+    09d24e 12 odirb  0x52
+    09d250 5e omul
+    09d251 00 oimmb  0x0a
+    09d253 56 oadd
+    09d254 36 opile
+    09d255 3a ofin  [ = 32]
+    09d256 02 oimmw  0x00c8
+    09d259 00 oimmb  0x3e
+    09d25b 00 oimmb  0x63
+    09d255 3a ofin  [ = 42]
+    09d255 3a ofin  [ = 52]
+    09d255 3a ofin  [ = 62]
+    09d255 3a ofin  [ = 72]
+    09d255 3a ofin  [ = 82]
+    09d255 3a ofin  [ = 92]
+    09d255 3a ofin  [ = 102]
+    09d255 3a ofin  [ = 112]
+    09d255 3a ofin  [ = 122]
+    09d255 3a ofin  [ = 132]
+    09d255 3a ofin  [ = 142]
+    09d255 3a ofin  [ = 152]
+    09d255 3a ofin  [ = 162]
+    09d255 3a ofin  [ = 172]
+    09d255 3a ofin  [ = 182]
+    09d255 3a ofin  [ = 192]
+    09d255 3a ofin  [ = 202]
+    09d255 3a ofin  [ = 212]
+    09d255 3a ofin  [ = 222]
+    09d255 3a ofin  [ = 232]
+09d25d b9 csputprint
+    09d25e 04 oimmp  ["<"]
+09d261 b9 csputprint
+    09d262 04 oimmp  ["
+09d266 0a cjmp24  0x004b 0x00 [jmp dn +0x00004b]
+09d26a 50 cerasall
+09d26b 1f ceval
+    09d26c 38 oeval
+    09d26d 12 odirb  0x4c
+    09d26f 4a oegal
+    09d270 00 oimmb  0x7e
+    09d272 3a ofin  [ = 0]
+09d273 14 cbz24  0x000c 0x00 [d7==0 => jmp dn +0x00000c]
+09d283 bf cnumput
+    09d284 00 oimmb  0x16
+    09d286 02 oimmw  0x00c8
+    09d289 00 oimmb  0x3e
+    09d28b 12 odirb  0x52
+09d28d b9 csputprint
+    09d28e 38 oeval
+    09d28f 16 odirp  0x5e
+    09d291 96 ospushacc
+    09d292 12 odirb  0x52
+    09d294 58 osub
+    09d295 00 oimmb  0x14
+    09d297 40 opushacc
+    09d298 00 oimmb  0x15
+    09d29a 80 omid
+    09d29b 3a ofin  [ = -1] [" IMPOSSIBLE - NOT TIR"]
+    09d29b 3a ofin  [ = -1] ["IMPOSSIBLE - NOT TIRE"]
+    09d29b 3a ofin  [ = -1] ["MPOSSIBLE - NOT TIRED"]
+09d29c b9 csputprint
+    09d29d 04 oimmp  ["
+09d2a1 bf cnumput
+    09d2a2 02 oimmw  0x00e8
+    09d2a5 02 oimmw  0x00c8
+    09d2a8 00 oimmb  0x3e
+    09d2aa 00 oimmb  0x63
+09d2ac b9 csputprint
+    09d2ad 04 oimmp  ["<"]
+09d2b0 b9 csputprint
+    09d2b1 04 oimmp  ["
+09d2b5 42 cstop
+09d2b6 20 cadd
+    09d2b7 00 oimmb  0x01
+    09d2b9 12 adirb  0x52
+09d2bb 1f ceval
+    09d2bc 38 oeval
+    09d2bd 12 odirb  0x52
+    09d2bf 40 opushacc
+    09d2c0 16 odirp  0x5e
+    09d2c2 82 olen
+    09d2c3 58 osub
+    09d2c4 00 oimmb  0x01
+    09d2c6 4e oinfeg
+    09d2c7 36 opile
+    09d2c8 3a ofin  [ = -1]
+    09d2c8 3a ofin  [ = 0]
+09d2c9 16 cbnz16  0xff41 [d7<>0 => jmp up -0x00bf]
+09d2cc 42 cstop
+09d2cd 1f ceval
+    09d2ce 38 oeval
+    09d2cf 12 odirb  0x52
+    09d2d1 54 osup
+    09d2d2 00 oimmb  0x15
+    09d2d4 3a ofin  [ = -1]
+09d2d5 14 cbz24  [d7<>0 => no jmp +3]
+09d2d9 1e cstore
+    09d2da 02 oimmw  0x00e8
+    09d2dd 14 sdirw  0x56
+09d2df 0a cjmp24  0x000f 0x00 [jmp dn +0x00000f]
+09d2f2 11 cret
+09d6a9 2f cswitch2
+    09d6aa 12 odirb  0x4d 0x2d 0xffff 0x00a9
+09d75e 1e cstore
+    09d75f 04 oimmp
+    09d779 16 sdirp  0x5e
+09d77b 0a cjmp24  0x06d2 0x00 [jmp dn +0x0006d2]
+09de51 11 cret

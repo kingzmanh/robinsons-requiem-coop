@@ -1,0 +1,283 @@
+ROBINSON'S REQUIEM
+This manual and the software it describes may not be reproduced, in whole or in
+part, in any form whatsoever, without the written permission of Prism Leisure
+Corporation PLC, except for making a backup copy for archive purposes.
+Prism Leisure Corporation PLC
+Unit I, Baird Road,
+Enfield, Middlesex
+EN1 1SJ
+England
+Copyright of Simarils.  All rights reserved.  Robinson's Requiem and Simarils are
+registered trademarks of Simarils Software.
+2
+SUMMARY
+The action unfolds in the middle of the twenty-sec ond century, at a time when the Earth and some of its
+colonised planets are already over-populated.
+Robinson is the nickname given to members of AWE - Alien World Exploration - a military body whose task it
+is to explore totally unknown planets.
+Recruited from the best military academies, Robinson candidates have to take an Officer-Enlightener course.
+At the end of this training, the best of them go through a strict selection test which indicates their aptitude for
+surviving extreme conditions.  Very few are selected to AWE's Holy of Holies; about twenty people of each sex
+per intake. They are issued with a white booklet on admission.
+The headquarters of AWE is situated on the monastery station of Levattelow. Robinsons must have no contact
+with the outside world and their contract last for five years. During those five years they undertake the exploration
+of as yet unknown planets in order to ascertain whether living conditions are suitable for colonisation. At the
+end of their mandate, large public demonstrations are organised to celebrate the return of these modern heroes
+who are promised a golden retirement on Earth. This festival is called Robinson's Requiem because it
+commemorates the end of their lives as Robinsons and their return to civilian life.
+That is the official version.
+The reality is very different. The secret intelligence agency SI (Scientific Intelligence) has issued orders that
+certain Robinsons will not be returning.
+In the course of their numerous missions, some Robinsons come into contact with unknown viruses. To avoid
+all risk of contamination, SI has chooses to banish them. These sacrifices are not made in vain, because they
+enable the symptoms of these new diseases to be studied in the hope of conquering them and then being able
+to colonise the planets when they are free of these plagues. A handful of other agents - you included - have
+discovered what is going on, and the SI are onto you.  For your last mission before the Robinson's Requiem,
+you are sent on a mission to a wild planet not listed in official documents. This planet has magnetic shields
+and, on approaching it, the Robinsons lose all control of their ship. Most of them manage to eject themselves
+before the ship crashes, thus finding themselves prisoners in a hostile environment.  The surveillance of this
+planet is entrusted to druids which also have the task of collecting all the information necessary on their
+prisoners' state of health.  Placed in this extreme survival situation, they nevertheless do not always behave
+like old comrades... but are determined to quit this nightmare planet and return to dear old planet Earth.
+So where do you come in ?
+The year is 2163. You are an experienced Robinson and have received your last mission, to go and explore the
+planet Zarathustra...
+ERGONOMICS
+Mouse
+The game is operated entirely by mouse. The left-hand button is used to select, the right-hand button to cancel
+the current operation and exit from the panels or menus selected.
+Movement Panel
+To walk, click on the directional arrows with your left mouse button.
+To run, click with the right mouse button.
+To crawl, click the left and right mouse buttons together.3
+Keyboard Short-Cuts
+These enable you to carry out certain operations quickly :
+Keys 4 to 9 of the numeric key-pad emulate movements in the picture (move forward, move back, turn around,
+step sideways).
+By combining these keys with the left-hand SHIFT key, movements can be made at a run. With the CONTROL
+key you can advance at a crawl. For everything concerning movement, refer to the <movement panel> further
+on.
+The <+> and <-> keys raise and lower the head.
+The Fl to F10 function keys activate the game icons (see further on).
+The <SHIFT> key used on its own replaces the left-hand mouse button. The ESC (or ESCAPE) key replaces
+the right-hand mouse button.
+Joystick
+This can be used to move in different directions. The shoot button then replaces the left-hand mouse button.
+Pause Key
+Press the <P> key. To resume playing, touch any key.
+To Quit The Game
+To quit the game, press <CONTROL> <X>.
+To Bypass The Presentation Page
+Press the <ESC> key.
+After The Presentation
+At the start, you will be offered a choice of languages. Click on the flag corresponding to the language you
+want.  The screen will then show a menu. It offers you various options for the game (accompanied by a written
+commentary in a panel), or the chance to load previously saved games (see Actions and Computer chapters).
+There are technical options and playing options:
+1 - The technical options:
+a) Music ON/OFF - Sound ON/OFF
+b) Levels of detail in the game - 2
+c) Size of screen - 2
+Depending on the level of detail and the screen size, the game proceeds faster or slower on the screen.
+2 - The playing options: These concern the choice of 3 levels of difficulty, taking into consideration the weather,
+diseases and upsets (flu, sunstroke, etc.) To select or de-select these options, click on the corresponding
+boxes. You are offered an optimum configuration by default, depending on your computer. Your configuration
+will be saved automatically.4
+To start the game, click on START.
+DESCRIPTION OF THE SCREEN
+0 : 3D screen
+The view is subjective : it is what you see - you, the player, placed in this three-dimensional universe - through
+your own eyes, so you will never be visible in the picture.  You can act directly on the 3D screen by clicking on
+an object to pick up or on an inanimate character to frisk. The item selected must be quite close to you, of
+course.  You cannot place just any object into the picture. To place an object, you must use the USE icon. This
+icon will enable you to carry out other actions in the 3D screen too (see further on).
+1 : The text screen
+This is the screen on which the texts of your Sesame computer are displayed: description of objects, information
+on your state of health, prohibition messages, etc.  In most versions of the game, it also gives you a simultaneous
+translation of the conversations you have with other characters, on a window superimposed on the object panel
+(see further on). Click once to dismiss this window.
+2 : Game icons
+There are 10 action icons: examine the MAP, consult the COMPUTER, use an object (USE), MANUFACTURE,
+DRESS, GIVE TREATMENT, EAT, SLEEP, FIGHT and take an INVENTORY. When you select an icon, all the
+objects concerning that action appear in the objects panel (zone 3).  For example, if you click on the EAT icon,
+all the food is shown and you simply have to choose the things you want.  The INVENTORY icon shows you all
+the objects you possess. By clicking on the right-hand button, the action icon selected is cancelled and the
+objects disappear from the panel. The following pages give a detailed description of all these actions.
+3 : Object Panel
+This displays all the objects available by the action icon selected. The small figures at the bottom right of the
+boxes show the number of objects you have (if you only have one, no figure will be shown). For some objects,
+the graphic changes according to their condition (flask more or less full, torch more or less consumed, etc.). If
+you point to an object, a frame is displayed and the name of the object appears on the text screen (zone 1).
+5
+4 : Arrows
+When all the objects cannot be shown in the picture at once because they are too numerous, these arrows
+enable you to scroll the object panel to the right and left.
+5 : Management window of object panel
+The function of this window varies, according to which game icon is selected:
+1 - It can be a dustbin for discarding objects in the case of an inventory (see (Inventory) ;
+2 - It can validate combinations of objects if the MANUFACTURE action icon is selected (see Manufacture) ;
+3 - In other cases, it is used to move objects on the panel click on that window, then select the object to be
+moved, then validate it on the place where you want it to be on the panel. You can use the scroll arrows; if
+you click on the right-hand mouse button, the object will place itself in the last box in the panel. To cancel
+this mode, click the window.
+6 : The compass
+The centre of the compass indicates the direction in which you are facing.
+7 : The state of health screen
+This screen displays your current state of health. There are nine different states which bring about greater or
+smaller efforts and can make your heart-rate and temperature vary.
+1 - WALK : This is the most usual mode. It is the one selected by default.
+2 - RUN : You cannot run indefinitely or you will exhaust yourself and your pulse-rate can rise very high.
+The screen will automatically return to WALK, mode when you are too tired. It is impossible
+to run backwards!...
+3 - CRAWL : This mode allows you to approach characters discreetly without being noticed too soon.
+Movements are made more slowly.
+4 - LIMP : If you have a fracture, or a leg amputated, the screen displays this mode which prevents you
+from running.
+5 - SWIM : Like running, swimming requires a considerable effort from the body. Be careful not to venture
+too far... The water temperature is not the same everywhere. Swimming in icy water without
+special protection can kill you.
+6 - NAVIGATE : To use a raft, just put yourself on it. This situation will end as soon as you touch land, the raft
+then remaining at the water's edge.
+7 - FISHING : An activity which can be more or less productive and which lasts one or two hours (on the
+game clock).
+8 - FAINT : Fainting occurs after a violent effort, a fall in blood pressure or when pain is too great. Loss of
+consciousness does not usually last very long. When you recover consciousness, the pain
+will be more bearable and your blood-pressure will rise again.
+9 - SLEEP : See further on in the chapter on descriptions of the action icons.
+8 : The movement panel
+The arrows at the top right and left will enable you to turn. Rotation is accelerated when you hold the key down.
+The central top arrow enables you to advance and the bottom one enables you to retreat. Lastly, the two arrows
+at the sides will enable you to move sideways.6
+9 : Head movement
+These two icons enable you to raise and lower your head. If you click on them with the left-hand button the
+head will resume its normal position when you move. If you use the right-hand button, the icon will stay down
+and your head will be held in that position when you move. To return it to the upright position, re-select the icon
+with the left-hand button.
+ACTIONS
+There are ten action icons - in the order they are displayed on the screen, from right to left and from top to
+bottom:
+The map
+Sesame, your mini-computer, is equipped with Gyrosoft, a true space reconnaissance software program.
+Thus, a map of the area appears as you move. If there are other Sesames in the area belonging to other
+characters, these are detected and shown on the plan. To quit the map, click on the right-hand button or select
+the icon at the bottom left.
+The computer
+The Sesame. You will find the detailed manual for this mini-computer in the White Booklet.  Note the three
+control keys in the middle of the computer which, from top to bottom respectively, concern saving the game,
+restarting previously saved games and re-starting the game. To save or resume the game, you can select
+directly from a menu the name of one of the last five games saved. If you choose the OTHER, option, you must
+type the exact name of your saved game.
+If you are playing on hard disk, the games saved are recorded directly into your sub-directory. On diskette,
+follow the instructions shown on the screen : you must insert a previously formatted diskette. You can save as
+often as you like.
+To exit from the computer, click on the right-hand button or select the icon at bottom left.
+Use
+The USE icon enables you to carry out certain specific actions if you possess the corresponding objects.
+These actions can follow different procedures :
+1 - Put an object into the screen: For example, click on the snare, then place it directly on the 3D screen. This
+object will become operational in the picture. You can take it back if you want to by clicking on it.
+2 - Make use of on-screen object:  For example, by selecting the knife, then validating it on a tree, you can
+pick up branches which you must place in the object panel. The result varies according to the scenery: this
+same knife on a plant would have given you leaves. Another example : to fill your flask, you must validate
+it on an expanse of water.
+3 - Setting off a particular action: To make water boil and disinfect it, validate the flask on a fire (this will not put
+out the fire), or use a disinfection tablet.
+The LIGHT A FIRE icon appears if you have branches and something to light them with : match, flaming torch,
+other fire nearby. A match should not be used unless there really is no other solution. You will obtain the same
+result by clicking directly on the MATCH icon. If the terrain permits, the fire will appear a few yards in front of
+you and will burn one unit of wood.
+If you have a torch, this is accessible in the object panel. As for LIGHT A FIRE, you must have some matches7
+or a fire nearby in order to light it. If you click on the lit torch, it will light, and the icon will change into a lighted
+torch. To put it out, click again on this new icon. The total number of lit or unlit torches can be displayed using
+the INVENTORY icon (see further on).
+A torch has a certain life-span ; the flame changes size according to how long it has left to burn. If you have
+other torches, a REPLACE LIT TORCH, icon is accessible. This enables you to obtain a new torch without
+using a match. The old torch is then destroyed.  Note that, of course, rain will put out all sorts of fires... There
+can only be one TORCH icon, lit or unlit.
+Manufacture
+To design an object, you must assemble several others. The procedure is intuitive : select the objects to be
+combined from the object panel, then click on the OK icon.  If the combination works, you will obtain a new
+object which you can place in the panel. The active icon will then be the action corresponding to this new
+object.  If the combination is invalid, the object selection panels will disappear. To de-select an object, click on
+it again.
+You can create an object by adding several others to it (these basic objects will disappear after the new object
+is created).
+For example:
+CORD + BRANCH = BOW
+You can also use products, for example:
+SYRINGE + FLASK OF MORPHINE = MORPHINE INJECTION or again, you can work an object. For example:
+NEEDLE AND THREAD + ANIMAL SKIN = GARMENT.
+For these tailoring operations, the amount of skin you have will determine what garment you obtain. As a
+priority, you will be offered the garments you do not yet own, from the largest to the smallest.
+Dress
+When the game begins, you are dressed in a Robinson outfit.  Throughout the game, you can make yourself
+other clothes (see above).  By clicking on the DRESS icon, your character appears in a panel covering the
+action icons in the clothes he is wearing. This in no way prevents you from continuing to move through the
+picture. To put on clothes, select an outfit, place it where it should be on the character and click. To remove a
+garment, select it on the character and then place it in the object panel, or click on the right hand mouse
+button. Some garments can be covered - thus, you cannot take off your pullover before you have taken off your
+jacket.
+Warning ! If you remove the Sesame computer, it will no longer be available when you select its icon.
+Garments have different functions : protecting against cold or damp, or protecting a part of the body.  The top
+left-hand key enables you to undress quickly, which is useful when moving from a cold area to a hot one
+(leaving a cave and entering the desert). To make the panel disappear, click on the top right-hand key, or click
+on the right-hand mouse button, or hit <ESC>.
+Give Treatment
+As for the DRESS action, a panel with your character is displayed over the icon table. You can exit from this
+mode by clicking on the key (top right).
+All outward injuries appear on the body. Most of the objects used for medical treatment come from the Robinson
+medical kit which you do not possess at the outset. You will find a detailed description of this kit in the White8
+Booklet. Ergonomics vary according to the type of object used. Some act directly, by clicking on them
+(medicines), others have to be placed on (or removed from) the character (bandage, splint, tourniquet), and
+lastly, some are used by validating them precisely on the part of the body concerned (disinfectant, injection,
+needle for suturing, knife for amputating). The latter items should be used with caution. You will find all the
+necessary advice in the White Booklet.
+The key at top left enables you to access the skeletal scanner. All infectious diseases are displayed there in
+red, or by frames. If one of these indicators is flashing it means the situation is very serious. Act quickly.  You
+can obtain a medical diagnosis on any part of the skeleton by clicking on it.
+To return to the body panel, re-select the key (top left).
+Eat
+Your food and water requirements are indicated on your Sesamecomputer. You can also check your weight on
+it, which is a revealing indicator. To eat and drink, just select the item you want. You will then consume one unit
+of that item.
+You will find your food in the natural surroundings. But beware because it is not always edible (consider
+purifying your water) and can lead to digestive upsets or other reactions (after taking drugs or alcohol).  If you
+want to eat cooked food, you simply need to be close to a fire.  You will find more advice on the whole of this
+chapter in the White Booklet.
+Sleep
+This action is not always possible. If you are too agitated or worried, in great pain or not at all tired you will not
+be able to fall asleep. You can use the tranquillisers and sleeping pills which you will find in your medical kit,
+when you obtain it. However, you cannot have two sleeping bouts one after the other! Conversely, if you are
+extremely sleepy, you may fall asleep against your will...
+How long you sleep for will depend on how tired you are and the outside context (day/night, climate). Time will
+pass more quickly while you are asleep... Sometimes disturbed by strange dreams. Consult the White Booklet
+which stresses the benefits of sleep.
+Fight
+There are many weapons available in the game, obtainable either by finding them or making them.  If you have
+no weapons, you can always fight with your fists. Click on the FIST icon.
+There are different types of weapons:
+1 - Hand to hand weapons (knives, torch) : you have to be quite close to your adversary to use them. The
+consequences vary, depending on which weapon you have chosen.
+2 - Direct throwing weapons (spear, etc.) : select it and the weapon will fly straight ahead. You can even pick
+it up again where it landed!
+3 - Aiming weapons (bow and arrow, laser, etc.) : at your choice, you can select the weapon (bow) or the
+projectile used (arrow). The mouse pointer then disappears from the screen and the weapon appears in the
+foreground. You direct your weapon with the mouse, up, down, right and left. You can thus aim at your
+adversaries, even from very far off or in difficult corners.
+When using the bow, you will revert to normal mode after each shot and must re-select that icon if you want to
+shoot again, as you have to take another arrow out of your bag.
+For lasers, the weapon stays permanently in the picture. You can thus fire several successive shots. To exit
+from this FIGHT mode, click on the right-hand mouse button.9
+Each shot consumes one unit of the projectile used. If you are hit during a fight, you lose control of your
+weapon and must re-select it to use it again.
+Each weapon has its specific characteristics (power, speed, aim, range, rarity, etc.). It is up to you to use the
+right one at the right time!
+Inventory
+This icon gives access to all the objects in the bag. If you point the mouse at one of them, the usual description
+message will appear as well as the weight of the object. This can be highly useful when your bag is too heavy
+and is over-tiring you. You can then destroy objects. To do so, click on the DUSTBIN icon in the object panel,
+then on the object to be destroyed. If you click with the left-hand mouse button, a single unit will be destroyed,
+whereas with the right-hand button, everything will be removed, making the object icon disappear.
+To cancel the DESTRUCTION mode, re-select the DUSTBIN icon or exit from the INVENTORY icon.
+A destroyed object cannot be recovered : it is lost forever. Be cautious when you use this option. Preferably,
+only destroy items which are easy to find again in the surroundings (wood, meat, etc.).

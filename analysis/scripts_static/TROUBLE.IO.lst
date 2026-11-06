@@ -1,0 +1,66 @@
+; TROUBLE.IO: 51 instructions, 308/2000 bytes, entries ['0x18']
+  000018: cstore oimmb[0x01] sdirw[0x4e]
+  00001d: cswitch2 odirb[0x4c] base -1 0->0x0032 1->0x003a 2->0x004e 3->0x0042 4->0x004a
+  00002e: cjmp24 -> 0x004e
+L000032:
+  000032: cjsr24 -> 0x0061
+  000036: cjmp24 -> 0x004e
+L00003a:
+  00003a: cjsr24 -> 0x0082
+  00003e: cjmp24 -> 0x004e
+L000042:
+  000042: cjsr24 -> 0x00ae
+  000046: cjmp24 -> 0x004e
+L00004a:
+  00004a: cjmp24 -> 0x00f0
+L00004e:
+  00004e: cexit 
+L000061:
+  000061: cjsr24 -> 0x00bf
+  000065: cstop 
+  000066: ceval (omainw[0x19e0] oinf[oimmb[0x32]] opushacc omainw[0x1932] osup[oimmw[0x1004]] oand[opile])
+  000079: cbz8 -> 0x0061
+  00007b: cstore oimmb[0x00] smainb[0x1a01]
+  000081: cret 
+L000082:
+  000082: cjsr24 -> 0x00bf
+  000086: cstop 
+  000087: ceval (omainw[0x19dc] oinf[oimmw[0x01f4]] opushacc omainw[0x1942] osup[oimmw[0xc568]] oand[opile] opushacc omainw[0x192a] oinfeg[oimmw[0x019a]] oand[opile])
+  0000a5: cbz8 -> 0x0082
+  0000a7: cstore oimmb[0x00] smainb[0x1a02]
+  0000ad: cret 
+L0000ae:
+  0000ae: cjsr24 -> 0x00bf
+  0000b2: cstop 
+  0000b3: ceval (omainb[0x1954] oegal[oimmb[0x00]])
+  0000bc: cbz8 -> 0x00ae
+  0000be: cret 
+L0000bf:
+  0000bf: ceval (oimmb[0x05] ornd oegal[oimmb[0x00]])
+  0000c8: cbz24 -> 0x00ef
+  0000cc: ceval (omainw[0x0e8a] oegal[oimmb[0x00]] opushacc omainw[0x0e8a] osup[oimmb[0x02]] oor[opile])
+  0000de: cbz24 -> 0x00ef
+  0000e2: clive 0x000b sdirw[0x58]
+  0000e7: cstore oimmb[0x05] shimb[0x0058,0x004c]
+L0000ef:
+  0000ef: cret 
+L0000f0:
+  0000f0: cclock oimmb[0x03]
+  0000f3: cordspr oimmb[0xff]
+  0000f6: ceval omainb[0x3bc1]
+  0000fa: cbz24 -> 0x011d
+  0000fe: cstore (oimmb[0x3a] opushacc oimmw[0x008b] ornd oadd[opile]) sdirw[0x54]
+  00010c: cstore (oimmb[0x6c] opushacc oimmb[0x39] ornd oadd[opile]) sdirw[0x56]
+  000119: cjmp24 -> 0x0138
+L00011d:
+  00011d: cstore (oimmb[0x0a] opushacc oimmw[0x00ec] ornd oadd[opile]) sdirw[0x54]
+  00012b: cstore (oimmb[0x52] opushacc oimmb[0x6c] ornd oadd[opile]) sdirw[0x56]
+L000138:
+  000138: cstore oimmb[0x00] sdirb[0x52]
+L00013d:
+  00013d: cputnat odirw[0x54] oimmb[0x00] odirw[0x56] (oimmb[0x00] oadd[odirb[0x52]]) oimmb[0x00]
+  00014d: cstop 
+  00014e: cadd oimmb[0x01] adirb[0x52]
+  000153: ceval (odirb[0x52] oinfeg[oimmb[0x02]])
+  00015b: cbnz8 -> 0x013d
+  00015d: cexit 

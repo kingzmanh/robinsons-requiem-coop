@@ -1,0 +1,18 @@
+# coop PoC: two player records, swapped at a VM safe point
+1000 key F2
+2500 shot p1_computer
+3000 key Escape
+4000 player 1
+4300 pokew 1938 250
+4600 pokew 1942 10
+5000 key F2
+6500 shot p2_computer
+7000 key Escape
+8000 player 0
+9000 key F2
+10500 shot p1_again
+11000 key Escape
+12000 player 1
+13000 key F2
+14500 shot p2_again
+15000 quit

@@ -1,0 +1,174 @@
+; caporal.IO: 37 distinct executed instructions (runtime coverage only)
+06db77 1e cstore
+    06db78 72 oscan
+    06db79 12 sdirb  0x52
+06db7b 32 cstart24  0x001d 0x00
+06db7f 66 cscanclr
+06db80 42 cstop
+06db96 42 cstop
+06db97 1f ceval
+    06db98 00 oimmb  0x00
+06db9a 12 cbz8  0xfa [d7==0 => jmp up -0x06]
+06db9c 1e cstore
+    06db9d 00 oimmb  0x02
+    06db9f 12 sdirb  0x52
+06dba1 49 cputnat
+    06dba2 02 oimmw  0x0134
+    06dba5 02 oimmw  0x00c8
+    06dba8 00 oimmb  0x38
+    06dbaa 00 oimmb  0x08
+    06dbac 00 oimmb  0x07
+06dbae 42 cstop
+06dbaf 2f cswitch2
+    06dbb0 1e omainb  0x184c 0x0a 0x0001 0x0061
+    06dbb0 1e omainb  0x184c 0x0a 0x0001 0x0052
+06dc17 49 cputnat
+    06dc18 02 oimmw  0x0134
+    06dc1b 02 oimmw  0x00c8
+    06dc1e 00 oimmb  0x38
+    06dc20 00 oimmb  0x03
+    06dc22 00 oimmb  0x07
+06dc24 0a cjmp24  0x004c 0x00 [jmp dn +0x00004c]
+06dc28 49 cputnat
+    06dc29 02 oimmw  0x0134
+    06dc2c 02 oimmw  0x00c8
+    06dc2f 00 oimmb  0x38
+    06dc31 00 oimmb  0x04
+    06dc33 00 oimmb  0x07
+06dc35 0a cjmp24  0x003b 0x00 [jmp dn +0x00003b]
+06dc74 42 cstop
+06dc75 2c cloop16  0xff29
+    06dc78 12 adirb  0x52 [loop jmp up -0x0000d7]
+    06dc78 12 adirb  0x52
+06dc7a 11 cret
+06dc7f 1f ceval
+    06dc80 1e omainb  0x3c15
+06dc83 14 cbz24  0x0012 0x00 [d7==0 => jmp dn +0x000012]
+06dc99 1e cstore
+    06dc9a 2c ohimw  0x005c 0x0028
+    06dc9f 14 sdirw  0x5a
+06dca1 1f ceval
+    06dca2 38 oeval
+    06dca3 14 odirw  0x54
+    06dca5 4c odiff
+    06dca6 14 odirw  0x5a
+    06dca8 3a ofin  [ = 0]
+    06dca8 3a ofin  [ = -1]
+06dca9 14 cbz24  0x00d5 0x00 [d7==0 => jmp dn +0x0000d5]
+06dcad 1e cstore
+    06dcae 14 odirw  0x5a
+    06dcb0 14 sdirw  0x54
+06dcb2 1e cstore
+    06dcb3 14 odirw  0x54
+    06dcb5 14 sdirw  0x56
+06dcb7 1e cstore
+    06dcb8 38 oeval
+    06dcb9 14 odirw  0x56
+    06dcbb 60 oneg
+    06dcbc 3a ofin  [ = 66]
+    06dcbd 14 sdirw  0x56
+    06dcbc 3a ofin  [ = 75]
+    06dcbc 3a ofin  [ = 84]
+    06dcbc 3a ofin  [ = 93]
+    06dcbc 3a ofin  [ = 102]
+    06dcbc 3a ofin  [ = 111]
+    06dcbc 3a ofin  [ = 120]
+    06dcbc 3a ofin  [ = 114]
+    06dcbc 3a ofin  [ = 105]
+    06dcbc 3a ofin  [ = 96]
+    06dcbc 3a ofin  [ = 87]
+06dcbf 1f ceval
+    06dcc0 38 oeval
+    06dcc1 14 odirw  0x56
+    06dcc3 52 oinf
+    06dcc4 00 oimmb  0x00
+    06dcc6 3a ofin  [ = 0]
+06dcc7 14 cbz24  0x0006 0x00 [d7==0 => jmp dn +0x000006]
+06dcd1 1f ceval
+    06dcd2 38 oeval
+    06dcd3 14 odirw  0x56
+    06dcd5 52 oinf
+    06dcd6 00 oimmb  0x24
+    06dcd8 3a ofin  [ = 0]
+06dcd9 14 cbz24  0x0009 0x00 [d7==0 => jmp dn +0x000009]
+06dce6 1e cstore
+    06dce7 38 oeval
+    06dce8 14 odirw  0x56
+    06dcea 58 osub
+    06dceb 00 oimmb  0x24
+    06dced 5c odiv
+    06dcee 00 oimmb  0x48
+    06dcf0 3a ofin  [ = 0]
+    06dcf1 12 sdirb  0x53
+    06dcf0 3a ofin  [ = 1]
+06dcf3 2f cswitch2
+    06dcf4 12 odirb  0x53 0x04 0x0000 0x003f
+    06dcf4 12 odirb  0x53 0x04 0x0000 0x0059
+06dd3a 1e cstore
+    06dd3b 38 oeval
+    06dd3c 14 odirw  0x56
+    06dd3e 40 opushacc
+    06dd3f 12 odirb  0x53
+    06dd41 56 oadd
+    06dd42 00 oimmb  0x01
+    06dd44 5e omul
+    06dd45 00 oimmb  0x48
+    06dd47 58 osub
+    06dd48 36 opile
+    06dd49 5c odiv
+    06dd4a 00 oimmb  0x02
+    06dd4c 56 oadd
+    06dd4d 00 oimmb  0x01
+    06dd4f 3a ofin  [ = -2]
+    06dd50 14 sdirw  0x58
+    06dd4f 3a ofin  [ = 2]
+    06dd4f 3a ofin  [ = 7]
+    06dd4f 3a ofin  [ = 11]
+    06dd4f 3a ofin  [ = 16]
+    06dd4f 3a ofin  [ = 17]
+    06dd4f 3a ofin  [ = 13]
+    06dd4f 3a ofin  [ = 8]
+06dd52 0a cjmp24  0x0015 0x00 [jmp dn +0x000015]
+06dd56 1e cstore
+    06dd57 38 oeval
+    06dd58 14 odirw  0x56
+    06dd5a 40 opushacc
+    06dd5b 12 odirb  0x53
+    06dd5d 56 oadd
+    06dd5e 00 oimmb  0x01
+    06dd60 5e omul
+    06dd61 00 oimmb  0x48
+    06dd63 58 osub
+    06dd64 36 opile
+    06dd65 5c odiv
+    06dd66 00 oimmb  0x02
+    06dd68 3a ofin  [ = -16]
+    06dd69 14 sdirw  0x58
+    06dd68 3a ofin  [ = -12]
+    06dd68 3a ofin  [ = -15]
+06dd6b 49 cputnat
+    06dd6c 38 oeval
+    06dd6d 02 oimmw  0x0113
+    06dd70 58 osub
+    06dd71 14 odirw  0x58
+    06dd73 3a ofin  [ = 277]
+    06dd74 02 oimmw  0x00d7
+    06dd77 00 oimmb  0x37
+    06dd79 38 oeval
+    06dd7a 00 oimmb  0x09
+    06dd7c 56 oadd
+    06dd7d 12 odirb  0x53
+    06dd7f 3a ofin  [ = 9]
+    06dd80 00 oimmb  0x00
+    06dd73 3a ofin  [ = 273]
+    06dd73 3a ofin  [ = 268]
+    06dd73 3a ofin  [ = 264]
+    06dd73 3a ofin  [ = 259]
+    06dd73 3a ofin  [ = 291]
+    06dd7f 3a ofin  [ = 10]
+    06dd73 3a ofin  [ = 287]
+    06dd73 3a ofin  [ = 290]
+    06dd73 3a ofin  [ = 258]
+    06dd73 3a ofin  [ = 262]
+    06dd73 3a ofin  [ = 267]
+06dd82 42 cstop

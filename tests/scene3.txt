@@ -1,0 +1,81 @@
+# scene3: broad coverage for -d disassembly
+200 dument start
+500 mark walk
+600 click 288 170 l 3000
+4000 click 304 170 l 1200
+5500 click 288 170 r 2000
+8000 click 272 170 l 800
+9500 mark icon_F1
+9600 key F1
+11000 shot F1
+11700 click 160 60
+12100 shot F1_click
+12500 key Escape
+13100 key Escape
+13700 mark icon_F2
+13800 key F2
+15200 shot F2
+15900 click 160 60
+16300 shot F2_click
+16700 key Escape
+17300 key Escape
+17900 mark icon_F3
+18000 key F3
+19400 shot F3
+20100 click 160 60
+20500 shot F3_click
+20900 key Escape
+21500 key Escape
+22100 mark icon_F4
+22200 key F4
+23600 shot F4
+24300 click 160 60
+24700 shot F4_click
+25100 key Escape
+25700 key Escape
+26300 mark icon_F5
+26400 key F5
+27800 shot F5
+28500 click 160 60
+28900 shot F5_click
+29300 key Escape
+29900 key Escape
+30500 mark icon_F6
+30600 key F6
+32000 shot F6
+32700 click 160 60
+33100 shot F6_click
+33500 key Escape
+34100 key Escape
+34700 mark icon_F7
+34800 key F7
+36200 shot F7
+36900 click 160 60
+37300 shot F7_click
+37700 key Escape
+38300 key Escape
+38900 mark icon_F8
+39000 key F8
+40400 shot F8
+41100 click 160 60
+41500 shot F8_click
+41900 key Escape
+42500 key Escape
+43100 mark icon_F9
+43200 key F9
+44600 shot F9
+45300 click 160 60
+45700 shot F9_click
+46100 key Escape
+46700 key Escape
+47300 mark icon_F10
+47400 key F10
+48800 shot F10
+49500 click 160 60
+49900 shot F10_click
+50300 key Escape
+50900 key Escape
+51500 mark walk2
+51600 click 288 170 l 4000
+56000 dument end
+56500 quit

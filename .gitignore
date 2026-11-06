@@ -1,0 +1,13 @@
+# game data and big generated outputs stay out of the repo
+game/
+build/
+reference/
+engine/
+original/
+analysis/ghidra_project/
+analysis/ghidra_in/*.bin
+analysis/ghidra_in/*.exe
+analysis/scripts_unpacked/
+analysis/graph_*/src/
+analysis/graph_merged.json
+*.state

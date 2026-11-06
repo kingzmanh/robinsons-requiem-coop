@@ -1,0 +1,34 @@
+; INTRO6.IO: 25 instructions, 154/424912 bytes, entries ['0x18']
+  000018: cfilm oimmb[0x00] oimmb[0x00] oimmb[0x04] sdirw[0x52]
+L000021:
+  000021: crunfilm oimmb[0x01] sdirw[0x54] sdirw[0x56]
+  000028: cswitch1 odirw[0x54] 0xf->0x0040 0x2d->0x0051 0x4b->0x0062 0x69->0x0073
+  00003c: cjmp24 -> 0x0080
+L000040:
+  000040: clive 0x006b sdirw[0x5e]
+  000045: cstore oimmb[0x04] shimb[0x005e,0x004d]
+  00004d: cjmp24 -> 0x0080
+L000051:
+  000051: clive 0x006b sdirw[0x5e]
+  000056: cstore oimmb[0x05] shimb[0x005e,0x004d]
+  00005e: cjmp24 -> 0x0080
+L000062:
+  000062: clive 0x006b sdirw[0x5e]
+  000067: cstore oimmb[0x06] shimb[0x005e,0x004d]
+  00006f: cjmp24 -> 0x0080
+L000073:
+  000073: clive 0x006b sdirw[0x5e]
+  000078: cstore oimmb[0x07] shimb[0x005e,0x004d]
+L000080:
+  000080: cmouse sdirw[0x58] sdirw[0x5a] sdirw[0x5c]
+  000087: ceval (oinkey odiff[oimmb[0x00]] opushacc odirw[0x5c] odiff[oimmb[0x00]] oor[opile])
+  000096: cbz24 -> 0x009e
+  00009a: cjmp24 -> 0x00ab
+L00009e:
+  00009e: cstop 
+  00009f: ceval (odirw[0x56] oegal[oimmw[0x8004]])
+  0000a8: cbz16 -> 0x0021
+L0000ab:
+  0000ab: cstore oimmb[0x63] sdirb[0x4d]
+  0000b0: csleep 
+  0000b1: cexit 

@@ -1,0 +1,56 @@
+; WHISTLE.IO: 45 instructions, 216/31880 bytes, entries ['0x18']
+  000018: ceval (omainb[0x184c] oegal[oimmb[0x01]] opushacc omainb[0x184c] oegal[oimmb[0x02]] oor[opile])
+  00002a: cbz24 -> 0x002f
+  00002e: cexit 
+L00002f:
+  00002f: cdelsound 
+  000030: cstop 
+  000031: cdelmusic oimmb[0x00]
+  000034: cstop 
+  000035: cjsr24 -> 0x005f
+  000039: cswitch2 odirb[0x4d] base -1 0->0x004a 1->0x0052 2->0x005a
+  000046: cjmp24 -> 0x005e
+L00004a:
+  00004a: cjsr24 -> 0x0087
+  00004e: cjmp24 -> 0x005e
+L000052:
+  000052: cjsr24 -> 0x00aa
+  000056: cjmp24 -> 0x005e
+L00005a:
+  00005a: cjsr24 -> 0x00cd
+L00005e:
+  00005e: cexit 
+L00005f:
+  00005f: cstore oimmb[0x02] sdirw[0x58]
+  000064: cstore oimmb[0x00] sdirw[0x5a]
+L000069:
+  000069: cinstru odirw[0x5a] odirw[0x58] oimmb[0x00]
+  000070: cadd oimmb[0x01] adirw[0x5a]
+  000075: ceval (odirw[0x5a] oinfeg[oimmb[0x1f]])
+  00007d: cbnz8 -> 0x0069
+  00007f: cinstru oimmb[0x00] odirw[0x58] oimmb[0x00]
+  000086: cret 
+L000087:
+  000087: cquality oimmb[0x01]
+  00008a: cstore oimmb[0x20] sdirw[0x54]
+  00008f: cstore oimmb[0x7f] sdirw[0x52]
+  000094: cjsr8 -> 0x005f
+  000096: cstore oimmb[0x00] sdirw[0x5e]
+  00009b: cmusic odirw[0x5e] odirw[0x52] odirw[0x54] oimmb[0x01] oimmb[0xff] oimmw[0x00c8]
+  0000a9: cret 
+L0000aa:
+  0000aa: cquality oimmb[0x01]
+  0000ad: cstore oimmb[0x20] sdirw[0x54]
+  0000b2: cstore oimmb[0x7f] sdirw[0x52]
+  0000b7: cjsr8 -> 0x005f
+  0000b9: cstore oimmb[0x01] sdirw[0x5e]
+  0000be: cmusic odirw[0x5e] odirw[0x52] odirw[0x54] oimmb[0x01] oimmb[0xff] oimmw[0x00c8]
+  0000cc: cret 
+L0000cd:
+  0000cd: cquality oimmb[0x01]
+  0000d0: cstore oimmb[0x20] sdirw[0x54]
+  0000d5: cstore oimmb[0x7f] sdirw[0x52]
+  0000da: cjsr8 -> 0x005f
+  0000dc: cstore oimmb[0x03] sdirw[0x5e]
+  0000e1: cmusic odirw[0x5e] odirw[0x52] odirw[0x54] oimmb[0x01] oimmb[0xff] oimmw[0x00c8]
+  0000ef: cret 

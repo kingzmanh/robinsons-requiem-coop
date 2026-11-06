@@ -1,0 +1,30 @@
+; FEU.IO: 25 instructions, 129/34384 bytes, entries ['0x18', '0x1c']
+  000018: cjmp24 -> 0x0033
+  00001c: cstore oscan sdirw[0x58]
+  000020: ceval (odirw[0x58] oegal[oimmw[0x8001]] oor[oimmw[0x8000]])
+  00002d: cbz24 -> 0x0032
+  000031: cscanclr 
+L000032:
+  000032: cstop 
+L000033:
+  000033: cinteron 
+  000034: cscanon 
+  000035: casleepon 
+  000036: cscreen 0x0152
+  000039: clinking oimmb[0x00]
+  00003c: creducing oimmb[0x01] oimmb[0x01]
+  000041: cstore oimmb[0xfe] sdirw[0x50]
+  000046: cset (odirb[0x4c] osub[oimmb[0x01]] opushacc oimmb[0x00] omainti[0x3c1e]) (odirb[0x4c] osub[oimmb[0x01]] opushacc oimmb[0x01] omainti[0x3c1e]) (odirb[0x4c] osub[oimmb[0x01]] opushacc oimmb[0x02] omainti[0x3c1e])
+  00006e: clive 0x0051 sdirw[0x54]
+  000073: cclock oimmb[0x0a]
+L000076:
+  000076: cstore oimmb[0x00] sdirb[0x52]
+L00007b:
+  00007b: cput (oimmb[0x05] oadd[odirb[0x52]])
+  000083: cstop 
+  000084: cadd oimmb[0x01] adirb[0x52]
+  000089: ceval (odirb[0x52] oinfeg[oimmb[0x04]])
+  000091: cbnz8 -> 0x007b
+  000093: ceval oimmb[0x00]
+  000096: cbz8 -> 0x0076
+  000098: cexit 

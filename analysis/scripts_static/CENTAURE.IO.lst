@@ -1,0 +1,329 @@
+; CENTAURE.IO: 257 instructions, 1750/179024 bytes, entries ['0x18', '0x6d1', '0x1c']
+  000018: cjmp24 -> 0x0073
+  00001c: cstore oscan sdirw[0x58]
+  000020: ceval (odirw[0x58] oegal[oimmw[0x8001]] opushacc odirw[0x58] oegal[oimmw[0x8000]] oor[opile])
+  000032: cbz24 -> 0x003b
+  000036: cscanclr 
+  000037: cjmp24 -> 0x0072
+L00003b:
+  00003b: csub oscan (odirw[0x5e] opushacc oimmb[0x00]) amainti[0x1a9e]
+  000047: cscanclr 
+  000048: ceval (odirw[0x5e] opushacc oimmb[0x00] omainti[0x1a9e] oinfeg[oimmb[0x00]])
+  000056: cbz24 -> 0x0062
+  00005a: cstart24 -> 0x04fd
+  00005e: cjmp24 -> 0x0072
+L000062:
+  000062: ceval (odirb[0x63] oegal[oimmb[0x00]])
+  00006a: cbz24 -> 0x0072
+  00006e: cstart24 -> 0x057a
+L000072:
+  000072: cstop 
+L000073:
+  000073: ceval (odirb[0x4d] oinf[oimmb[0x00]])
+  00007b: cbz24 -> 0x0093
+  00007f: cstore (oimmb[0x78] opushacc odirb[0x4d] oabs osub[oimmb[0x01]] oadd[opile]) sdirw[0x5e]
+  00008f: cjmp24 -> 0x0098
+L000093:
+  000093: cstore odirb[0x4d] sdirw[0x5e]
+L000098:
+  000098: cscreen 0x0152
+  00009b: clinking oimmb[0x00]
+  00009e: cset (odirw[0x5e] opushacc oimmb[0x06] omainti[0x1a9e]) (odirw[0x5e] opushacc oimmb[0x07] omainti[0x1a9e]) (odirw[0x5e] opushacc oimmb[0x08] omainti[0x1a9e])
+  0000bd: cclock oimmb[0x0a]
+  0000c0: creducing oimmb[0x20] oimmb[0x01]
+  0000c5: ceval (odirw[0x5e] opushacc oimmb[0x00] omainti[0x1a9e] oinf[oimmb[0x92]])
+  0000d3: cbz24 -> 0x0135
+  0000d7: cswitch1 odirw[0x5e] 0x2a->0x0120 0x2b->0x0120 0x2c->0x0120 0x2d->0x0127 0x2e->0x0127 0x2f->0x0127 0x30->0x0120 0x31->0x0127 0x9c->0x0127 0x9d->0x0127 0x9e->0x0127 0x9f->0x0120 0xa0->0x0120 0xa1->0x0120 0xa2->0x0120 0xa3->0x0120
+  00011c: cjmp24 -> 0x012a
+L000120:
+  000120: cput oimmb[0x2d]
+  000123: cjmp24 -> 0x012a
+L000127:
+  000127: cput oimmb[0x28]
+L00012a:
+  00012a: casleepoff 
+  00012b: cscanoff 
+  00012c: cinteroff 
+  00012d: cjmp24 -> 0x056d
+L000135:
+  000135: ceval (odirw[0x5e] opushacc oimmb[0x00] omainti[0x1a9e] oinfeg[oimmb[0x00]])
+  000143: cbz24 -> 0x0148
+  000147: cexit 
+L000148:
+  000148: cforme oimmb[0x00]
+  00014b: cinteron 
+  00014c: cscanon 
+  00014d: casleepon 
+L00014e:
+  00014e: cswitch1 odirw[0x5e] 0x2a->0x0196 0x2b->0x0196 0x2c->0x0196 0x2d->0x019e 0x2e->0x019e 0x2f->0x019e 0x30->0x0196 0x31->0x01a6 0x9c->0x019e 0x9d->0x019e 0x9e->0x019e 0x9f->0x0196 0xa0->0x0196 0xa1->0x0196 0xa2->0x0196 0xa3->0x0196
+  000192: cjmp24 -> 0x01aa
+L000196:
+  000196: cstart24 -> 0x01af
+  00019a: cjmp24 -> 0x01aa
+L00019e:
+  00019e: cstart24 -> 0x02b9
+  0001a2: cjmp24 -> 0x01aa
+L0001a6:
+  0001a6: cstart24 -> 0x0485
+L0001aa:
+  0001aa: ceval oimmb[0x00]
+  0001ad: cbz8 -> 0x014e
+L0001af:
+  0001af: cput oimmb[0x2e]
+  0001b2: cstop 
+L0001b3:
+  0001b3: cneartyp oimmw[0x0460] 0x000f sdirw[0x52]
+  0001bb: ceval (odirw[0x52] odiff[oimmb[0xff]])
+  0001c3: cbz24 -> 0x01cf
+  0001c7: cjsr24 -> 0x01d5
+  0001cb: cjmp24 -> 0x01d0
+L0001cf:
+  0001cf: cstop 
+L0001d0:
+  0001d0: ceval oimmb[0x00]
+  0001d3: cbz8 -> 0x01b3
+L0001d5:
+  0001d5: caim ohimw[0x0052,0x0000] ohimw[0x0052,0x0008] odirw[0x10] oimmw[0x0168] sdirw[0x18] sdirw[0x28] sdirw[0x56]
+  0001eb: ceval (odirw[0x56] oinf[oimmw[0x01e0]])
+  0001f4: cbz24 -> 0x0200
+  0001f8: cjsr24 -> 0x0202
+  0001fc: cjmp24 -> 0x0201
+L000200:
+  000200: cstop 
+L000201:
+  000201: cret 
+L000202:
+  000202: cstore (oimmb[0x06] ornd osub[omainb[0x3bbe]]) sdirb[0x60]
+  00020e: ceval (odirb[0x60] oegal[oimmb[0x01]] opushacc omainb[0x184c] odiff[oimmb[0x02]] oand[opile])
+  00021f: cbz24 -> 0x02b7
+  000223: cstore oimmb[0x01] sdirb[0x63]
+  000228: cstore oimmb[0x00] sdirb[0x61]
+L00022d:
+  00022d: cput (oimmb[0x2e] oadd[odirb[0x61]])
+  000235: cstop 
+  000236: cadd oimmb[0x01] adirb[0x61]
+  00023b: ceval (odirb[0x61] oinfeg[oimmb[0x05]])
+  000243: cbnz8 -> 0x022d
+  000245: csound oimmb[0x01] oimmb[0x32] oimmb[0x7f] oimmb[0x01] oimmb[0x06]
+  000250: caim ohimw[0x0052,0x0000] ohimw[0x0052,0x0008] odirw[0x10] oimmw[0x0168] sdirw[0x18] sdirw[0x28] sdirw[0x56]
+  000266: clive 0x0018 sdirw[0x54]
+  00026b: cstore (odirw[0x10] oadd[oimmb[0x1e]]) shimw[0x0054,0x0010]
+  000278: cstore ohimw[0x0052,0x0000] shimw[0x0054,0x0018]
+  000283: cstore ohimw[0x0052,0x0008] shimw[0x0054,0x0020]
+  00028e: cstore (ohimw[0x0052,0x0010] oadd[oimmb[0x1e]]) shimw[0x0054,0x0028]
+  00029e: cstore oimmb[0x02] shimb[0x0054,0x004c]
+  0002a6: cstore oimmb[0x01] shimb[0x0054,0x004d]
+  0002ae: cstore oimmb[0x00] sdirb[0x63]
+  0002b3: cjmp24 -> 0x02b8
+L0002b7:
+  0002b7: cstop 
+L0002b8:
+  0002b8: cret 
+L0002b9:
+  0002b9: cput oimmb[0x1a]
+L0002bc:
+  0002bc: cneartyp oimmw[0x0460] 0x000f sdirw[0x52]
+  0002c4: ceval (odirw[0x52] odiff[oimmb[0xff]])
+  0002cc: cbz24 -> 0x02d8
+  0002d0: cjsr24 -> 0x02de
+  0002d4: cjmp24 -> 0x02d9
+L0002d8:
+  0002d8: cstop 
+L0002d9:
+  0002d9: ceval oimmb[0x00]
+  0002dc: cbz8 -> 0x02bc
+L0002de:
+  0002de: caim ohimw[0x0052,0x0000] ohimw[0x0052,0x0008] odirw[0x10] oimmw[0x0168] sdirw[0x18] sdirw[0x28] sdirw[0x56]
+  0002f4: ceval (odirw[0x56] oinf[oimmw[0x0280]])
+  0002fd: cbz24 -> 0x0309
+  000301: cjsr24 -> 0x030b
+  000305: cjmp24 -> 0x030a
+L000309:
+  000309: cstop 
+L00030a:
+  00030a: cret 
+L00030b:
+  00030b: cstore oimmb[0x10] sdirb[0x38]
+  000310: cstore oimmb[0x00] sdirb[0x34]
+  000315: cstore oimmb[0x00] sdirb[0x3c]
+L00031a:
+  00031a: caim ohimw[0x0052,0x0000] ohimw[0x0052,0x0008] odirw[0x10] oimmw[0x0168] sdirw[0x18] sdirw[0x28] sdirw[0x56]
+  000330: cavtstmov oimmb[0x01] sdirw[0x54]
+  000335: ceval (odirw[0x54] oegal[oimmb[0xff]])
+  00033d: cbz24 -> 0x0368
+  000341: cwalkmap 0x0e5e oimmb[0x04] oimmb[0x00] oimmb[0x00] smainw[0x1a92]
+  00034f: ceval (omainw[0x1a92] osupeg[oimmb[0x04]])
+  000358: cbz24 -> 0x0360
+  00035c: cjmp24 -> 0x0432
+L000360:
+  000360: cjsr24 -> 0x0433
+  000364: cjmp24 -> 0x042c
+L000368:
+  000368: cstore (oimmb[0x05] ornd osub[omainb[0x3bbe]]) sdirb[0x60]
+  000374: ceval (odirb[0x60] oegal[oimmb[0x01]] opushacc omainb[0x184c] odiff[oimmb[0x02]] oand[opile])
+  000385: cbz24 -> 0x042b
+  000389: cstore oimmb[0x01] sdirb[0x63]
+  00038e: cstore oimmb[0x00] sdirb[0x61]
+L000393:
+  000393: cput (oimmb[0x22] oadd[odirb[0x61]])
+  00039b: ceval (odirw[0x5e] oegal[oimmb[0x31]])
+  0003a3: cbz24 -> 0x03b7
+  0003a7: cputnat oimmb[0x00] oimmb[0x00] oimmb[0x00] (oimmb[0x36] oadd[odirb[0x61]]) oimmb[0xfe]
+L0003b7:
+  0003b7: cstop 
+  0003b8: cadd oimmb[0x01] adirb[0x61]
+  0003bd: ceval (odirb[0x61] oinfeg[oimmb[0x04]])
+  0003c5: cbnz8 -> 0x0393
+  0003c7: csound oimmb[0x02] oimmb[0x32] oimmb[0x7f] oimmb[0x01] oimmb[0x06]
+  0003d2: cavtstmov oimmb[0x01] sdirw[0x54]
+  0003d7: ceval (odirw[0x54] odiff[oimmb[0xff]])
+  0003df: cbz24 -> 0x0422
+  0003e3: cstore (oimmb[0x02] ornd) sdirb[0x60]
+  0003eb: cswitch2 odirb[0x60] base 0 0->0x03fa 1->0x0410
+  0003f6: cjmp24 -> 0x0422
+L0003fa:
+  0003fa: csend odirw[0x54] oimmb[0x01] oimmb[0x07] (oimmb[0x01] opushacc oimmb[0x04] ornd oadd[opile])
+  00040c: cjmp24 -> 0x0422
+L000410:
+  000410: csend odirw[0x54] oimmb[0x01] oimmb[0x07] (oimmb[0x0a] opushacc oimmb[0x02] ornd oadd[opile])
+L000422:
+  000422: cstore oimmb[0x00] sdirb[0x63]
+  000427: cjmp24 -> 0x042c
+L00042b:
+  00042b: cstop 
+L00042c:
+  00042c: ceval oimmb[0x00]
+  00042f: cbz16 -> 0x031a
+L000432:
+  000432: cret 
+L000433:
+  000433: ceval (odirw[0x5e] oegal[oimmb[0x31]])
+  00043b: cbz24 -> 0x044a
+  00043f: cputnat oimmb[0x00] oimmb[0x00] oimmb[0x00] oimmb[0x36] oimmb[0xfe]
+L00044a:
+  00044a: cput (oimmb[0x1a] oadd[odirb[0x62]])
+  000452: ceval (odirw[0x5e] oegal[oimmb[0x31]])
+  00045a: cbz24 -> 0x046e
+  00045e: cputnat oimmb[0x00] oimmb[0x00] oimmb[0x00] (oimmb[0x3f] oadd[odirb[0x62]]) oimmb[0xfe]
+L00046e:
+  00046e: cadd oimmb[0x01] adirb[0x62]
+  000473: ceval (odirb[0x62] osup[oimmb[0x07]])
+  00047b: cbz24 -> 0x0484
+  00047f: cstore oimmb[0x00] sdirb[0x62]
+L000484:
+  000484: cstopret 
+L000485:
+  000485: cput oimmb[0x1a]
+  000488: cputnat oimmb[0x00] oimmb[0x00] oimmb[0x00] oimmb[0x36] oimmb[0xfe]
+L000493:
+  000493: cneartyp oimmw[0x0460] 0x000f sdirw[0x52]
+  00049b: ceval (odirw[0x52] odiff[oimmb[0xff]])
+  0004a3: cbz24 -> 0x04af
+  0004a7: cjsr24 -> 0x04b5
+  0004ab: cjmp24 -> 0x04b0
+L0004af:
+  0004af: cstop 
+L0004b0:
+  0004b0: ceval oimmb[0x00]
+  0004b3: cbz8 -> 0x0493
+L0004b5:
+  0004b5: caim ohimw[0x0052,0x0000] ohimw[0x0052,0x0008] odirw[0x10] oimmw[0x0168] sdirw[0x18] sdirw[0x28] sdirw[0x56]
+  0004cb: ceval (oimmb[0x2d] opushacc oimmb[0x00] omainti[0x1a9e] oinfeg[oimmb[0x00]] opushacc oimmb[0x2e] opushacc oimmb[0x00] omainti[0x1a9e] oinfeg[oimmb[0x00]] oand[opile] opushacc oimmb[0x2f] opushacc oimmb[0x00] omainti[0x1a9e] oinfeg[oimmb[0x00]] oand[opile])
+  0004f5: cbz24 -> 0x04fc
+  0004f9: cjsr16 -> 0x030b
+L0004fc:
+  0004fc: cstopret 
+L0004fd:
+  0004fd: cerasen oimmb[0xfe]
+  000500: cinteroff 
+  000501: cscanoff 
+  000502: casleepoff 
+  000503: cswitch1 odirw[0x5e] 0x2a->0x054c 0x2b->0x054c 0x2c->0x054c 0x2d->0x055c 0x2e->0x055c 0x2f->0x055c 0x30->0x054c 0x31->0x055c 0x9c->0x055c 0x9d->0x055c 0x9e->0x055c 0x9f->0x054c 0xa0->0x054c 0xa1->0x054c 0xa2->0x054c 0xa3->0x054c
+  000548: cjmp24 -> 0x056d
+L00054c:
+  00054c: cput oimmb[0x2b]
+  00054f: cstop 
+  000550: cput oimmb[0x2c]
+  000553: cstop 
+  000554: cput oimmb[0x2d]
+  000557: cstop 
+  000558: cjmp24 -> 0x056d
+L00055c:
+  00055c: cput oimmb[0x27]
+  00055f: cstop 
+  000560: cput oimmb[0x28]
+  000563: cstop 
+  000564: cstore oimmb[0x17] sdirw[0x5a]
+  000569: cjsr24 -> 0x0634
+L00056d:
+  00056d: cstore oimmb[0xff] sdirw[0x50]
+  000572: cdelforme 
+L000573:
+  000573: csleep 
+  000574: ceval oimmb[0x00]
+  000577: cbz8 -> 0x0573
+  000579: cexit 
+L00057a:
+  00057a: cstore oimmb[0x01] sdirb[0x63]
+  00057f: csound oimmb[0x00] oimmb[0x32] oimmb[0x7f] oimmb[0x01] (oimmb[0x05] opushacc oimmb[0x02] ornd oadd[opile])
+  000592: cswitch1 odirw[0x5e] 0x2a->0x05be 0x2b->0x05be 0x2c->0x05be 0x30->0x05be 0x9f->0x05be 0xa0->0x05be 0xa1->0x05be 0xa2->0x05be 0xa3->0x05be
+  0005ba: cjmp24 -> 0x05c5
+L0005be:
+  0005be: cjmp16 -> 0x04fd
+L0005c5:
+  0005c5: ceval (odirw[0x5e] oegal[oimmb[0x31]])
+  0005cd: cbz24 -> 0x0611
+  0005d1: cput oimmb[0x29]
+  0005d4: cputnat oimmb[0x00] oimmb[0x00] oimmb[0x00] oimmb[0x3d] oimmb[0xfe]
+  0005df: cstop 
+  0005e0: cput oimmb[0x2a]
+  0005e3: cputnat oimmb[0x00] oimmb[0x00] oimmb[0x00] oimmb[0x3e] oimmb[0xfe]
+  0005ee: cstop 
+  0005ef: cput oimmb[0x29]
+  0005f2: cputnat oimmb[0x00] oimmb[0x00] oimmb[0x00] oimmb[0x3d] oimmb[0xfe]
+  0005fd: cstop 
+  0005fe: cput oimmb[0x1a]
+  000601: cputnat oimmb[0x00] oimmb[0x00] oimmb[0x00] oimmb[0x36] oimmb[0xfe]
+  00060c: cstop 
+  00060d: cjmp24 -> 0x061f
+L000611:
+  000611: cput oimmb[0x29]
+  000614: cstop 
+  000615: cput oimmb[0x2a]
+  000618: cstop 
+  000619: cput oimmb[0x29]
+  00061c: cput oimmb[0x1a]
+L00061f:
+  00061f: cstore oimmb[0x00] sdirb[0x63]
+  000624: ceval (odirw[0x5e] oegal[oimmb[0x31]])
+  00062c: cbz24 -> 0x0633
+  000630: cjsr16 -> 0x030b
+L000633:
+  000633: cstopret 
+L000634:
+  000634: cstore oimmb[0x00] sdirw[0x5c]
+L000639:
+  000639: ceval (odirw[0x5c] opushacc oimmb[0x00] omainti[0x28b6] oegal[oimmb[0x00]])
+  000647: cbz24 -> 0x064f
+  00064b: cjmp24 -> 0x066b
+L00064f:
+  00064f: cadd oimmb[0x01] adirw[0x5c]
+  000654: ceval (odirw[0x5c] oinfeg[omainb[0x2d66]])
+  00065d: cbnz8 -> 0x0639
+  00065f: cadd oimmb[0x01] amainb[0x2d66]
+  000665: cstore omainb[0x2d66] sdirw[0x5c]
+L00066b:
+  00066b: cstore odirw[0x5a] (odirw[0x5c] opushacc oimmb[0x00]) smainti[0x28b6]
+  000678: cstore omainb[0x184d] (odirw[0x5c] opushacc oimmb[0x01]) smainti[0x28b6]
+  000686: cstore oimmb[0x00] (odirw[0x5c] opushacc oimmb[0x02]) smainti[0x28b6]
+  000693: cstore (odirw[0x00] oadd[oimmb[0x10]]) (odirw[0x5c] opushacc oimmb[0x03]) smainti[0x28b6]
+  0006a5: cstore odirw[0x08] (odirw[0x5c] opushacc oimmb[0x04]) smainti[0x28b6]
+  0006b2: cstore odirw[0x10] (odirw[0x5c] opushacc oimmb[0x05]) smainti[0x28b6]
+  0006bf: clive 0x0017 sdirw[0x52]
+  0006c4: cstore odirw[0x5c] shimb[0x0052,0x004d]
+  0006cc: cret 
+  0006d1: cstore odirw[0x00] (odirw[0x5e] opushacc oimmb[0x06]) smainti[0x1a9e]
+  0006de: cstore odirw[0x08] (odirw[0x5e] opushacc oimmb[0x07]) smainti[0x1a9e]
+  0006eb: cstore odirw[0x10] (odirw[0x5e] opushacc oimmb[0x08]) smainti[0x1a9e]
+  0006f8: cstop 
+  0006f9: cexit 

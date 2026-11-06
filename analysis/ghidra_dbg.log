@@ -1,0 +1,123 @@
+INFO  Using log config file: jar:file:/C:/Users/Msi/Tools/ghidra_12.1.4_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: C:\Users\Msi\AppData\Roaming\ghidra\ghidra_12.1.4_PUBLIC\application.log (LoggingInitialization)  
+INFO  Loading user preferences: C:\Users\Msi\AppData\Roaming\ghidra\ghidra_12.1.4_PUBLIC\preferences (Preferences)  
+INFO  Loading previous preferences: C:\Users\Msi\AppData\Roaming\ghidra\ghidra_12.1.2_PUBLIC\preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (568 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (DefaultSSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: SHA1PRNG (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (DefaultTrustManagerFactory)  
+INFO  Headless startup complete (3197 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 93 extension points (46 false positives) (ClassSearcher)  
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldOffset has been called by org.apache.felix.framework.util.SecureAction (file:/C:/Users/Msi/Tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/Base/lib/org.apache.felix.framework-7.0.5.jar)
+WARNING: Please consider reporting this to the maintainers of class org.apache.felix.framework.util.SecureAction
+WARNING: sun.misc.Unsafe::staticFieldOffset will be removed in a future release
+INFO  HEADLESS Script Paths:
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\SwiftDemangler\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Processors\Atmel\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\SystemEmulation\ghidra_scripts
+    E:\Games Source code\Games\our port projects\Robinson's Requiem -Coop\tools\ghidra
+    C:\Users\Msi\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Extensions\ghidra-emotionengine-reloaded\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\GnuDemangler\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\FunctionID\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Debug\Debugger\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\Decompiler\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Processors\8051\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Processors\DATA\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\WildcardAssembler\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\VersionTracking\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Debug\Debugger-rmi-trace\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\DecompilerDependent\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Processors\PIC\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\BytePatterns\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\PDB\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\PyGhidra\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\FileFormats\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\MicrosoftCodeAnalyzer\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\BSim\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Processors\JVM\ghidra_scripts
+    C:\Users\Msi\Tools\ghidra_12.1.4_PUBLIC\Ghidra\Features\Base\ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Creating project: C:\Users\Msi\Tools\rrq_coop\analysis\ghidra_project\rrq (HeadlessAnalyzer)  
+INFO  Creating project: C:\Users\Msi\Tools\rrq_coop\analysis\ghidra_project\rrq (DefaultProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: C:\Users\Msi\Tools\rrq_coop\analysis\ghidra_project\rrq (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///E:/Games Source code/Games/our port projects/Robinson's Requiem -Coop/analysis/ghidra_in/rrq_dbg.bin (HeadlessAnalyzer)  
+INFO  Successfully applied "-loader-baseAddr" to "Base Address" (old: "null", new: "0") (ProgramLoader)  
+INFO  Using Loader: Raw Binary (ProgramLoader)  
+INFO  Using Language/Compiler: x86:LE:32:default:windows (ProgramLoader)  
+INFO  Using Library Search Path: [., C:\WINDOWS\SysWOW64, C:\Program Files\BellSoft\LibericaJDK-25\bin, C:\WINDOWS\Sun\Java\bin, C:\WINDOWS\system32, C:\WINDOWS, C:\Users\Msi\bin, C:\Program Files\Git\mingw64\bin, C:\Program Files\Git\usr\local\bin, C:\Program Files\Git\usr\bin, C:\Program Files\Common Files\Oracle\Java\javapath, E:\Oculus\Support\oculus-runtime, C:\Program Files (x86)\Razer Chroma SDK\bin, C:\Program Files\Razer Chroma SDK\bin, C:\Program Files (x86)\Razer\ChromaBroadcast\bin, C:\Program Files\Razer\ChromaBroadcast\bin, C:\WINDOWS\System32\Wbem, C:\WINDOWS\System32\WindowsPowerShell\v1.0, C:\WINDOWS\System32\OpenSSH, C:\Program Files\dotnet, C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps, C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR, C:\Program Files\nodejs, C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common, C:\Program Files\Git\cmd, C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit, C:\Program Files\GitHub CLI, C:\Program Files (x86)\cloudflared, C:\Users\Msi\AppData\Local\Programs\Python\Python310\Scripts, C:\Users\Msi\AppData\Local\Programs\Python\Python310, C:\Users\Msi\AppData\Local\Programs\Python\Launcher, C:\Users\Msi\AppData\Local\Microsoft\WindowsApps, C:\PATH_PROGRAMMS, C:\Users\Msi\.dotnet\tools, C:\Users\Msi\AppData\Local\Programs\Microsoft VS Code\bin, C:\Users\Msi\AppData\Roaming\npm, C:\Users\Msi\AppData\Local\frFFxRwruMlSCbtjpXtG, C:\Users\Msi\AppData\Local\Microsoft\WinGet\Packages\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\mingw64\bin, C:\Users\Msi\AppData\Local\Microsoft\WinGet\Links, C:\Users\Msi\AppData\Local\Microsoft\WinGet\Packages\yt-dlp.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-N-124716-g054dffd133-win64-gpl\bin, C:\Users\Msi\AppData\Local\Programs\Python\Python312, C:\Program Files\Git\usr\bin\vendor_perl, C:\Program Files\Git\usr\bin\core_perl] (ProgramLoader)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: RRQSetup.java 'C:\Users\Msi\Tools\rrq_coop\analysis\ghidra_in\names_dbg.json' '1465f' '14660'  (HeadlessAnalyzer)  
+INFO  SCRIPT: E:\Games Source code\Games\our port projects\Robinson's Requiem -Coop\tools\ghidra\RRQSetup.java (HeadlessAnalyzer)  
+ERROR Failed to create function at 00010bd6 since its body contains referring thunk at 00010bd0 (CreateFunctionCmd)  
+ERROR Failed to create function at 00010bd4 since its body contains referring thunk at 00010bd0 (CreateFunctionCmd)  
+ERROR Failed to create function at 00010bd2 since its body contains referring thunk at 00010bd0 (CreateFunctionCmd)  
+ERROR Failed to create function at 00010d05 since its body contains referring thunk at 00010cfb (CreateFunctionCmd)  
+ERROR Failed to create function at 00010d03 since its body contains referring thunk at 00010cfb (CreateFunctionCmd)  
+ERROR Failed to create function at 00010d01 since its body contains referring thunk at 00010cfb (CreateFunctionCmd)  
+ERROR Failed to create function at 00010cff since its body contains referring thunk at 00010cfb (CreateFunctionCmd)  
+ERROR Failed to create function at 00010cfd since its body contains referring thunk at 00010cfb (CreateFunctionCmd)  
+ERROR Failed to create function at 00010d6f since its body contains referring thunk at 00010d69 (CreateFunctionCmd)  
+ERROR Failed to create function at 00010d6d since its body contains referring thunk at 00010d69 (CreateFunctionCmd)  
+ERROR Failed to create function at 00010d6b since its body contains referring thunk at 00010d69 (CreateFunctionCmd)  
+INFO  RRQSetup.java> RRQSetup: labels 4092 functions 2656 (GhidraScript)  
+INFO  ANALYZING all memory and code: file:///E:/Games Source code/Games/our port projects/Robinson's Requiem -Coop/analysis/ghidra_in/rrq_dbg.bin (HeadlessAnalyzer)  
+WARN  Decompiling 00009857: Unable to read bytes at ram:98800000 (DecompileCallback)  
+WARN  Decompiling 00009857: Unable to read bytes at ram:98800000 (DecompileCallback)  
+WARN  Decompiling 00009857: Unable to read bytes at ram:98800000 (DecompileCallback)  
+INFO  Packed database cache: C:\Users\Msi\AppData\Local\ghidra\packed-db-cache (PackedDatabaseCache)  
+INFO  Applied data type archive: generic_clib (ApplyDataArchiveAnalyzer)  
+INFO  -----------------------------------------------------
+    ASCII Strings                              0.282 secs
+    Apply Data Archives                        0.182 secs
+    Call Convention ID                         2.322 secs
+    Call-Fixup Installer                       0.028 secs
+    Create Address Tables                      0.016 secs
+    Create Address Tables - One Time           0.048 secs
+    Create Function                            0.019 secs
+    Data Reference                             0.001 secs
+    Decompiler Switch Analysis                 2.516 secs
+    Disassemble                                0.000 secs
+    Disassemble Entry Points                   0.041 secs
+    Disassemble Entry Points - One Time        0.001 secs
+    Embedded Media                             0.003 secs
+    External Entry References                  0.000 secs
+    Function ID                                0.417 secs
+    Function Start Pre Search                  0.021 secs
+    Function Start Search                      0.014 secs
+    Function Start Search After Code           0.003 secs
+    Function Start Search After Data           0.001 secs
+    Non-Returning Functions - Discovered       0.261 secs
+    Reference                                  0.025 secs
+    Shared Return Calls                        0.115 secs
+    Stack                                      0.552 secs
+    Subroutine References                      0.043 secs
+    Subroutine References - One Time           0.000 secs
+    X86 Function Callee Purge                  0.078 secs
+    x86 Constant Reference Analyzer            0.841 secs
+-----------------------------------------------------
+     Total Time   7 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///E:/Games Source code/Games/our port projects/Robinson's Requiem -Coop/analysis/ghidra_in/rrq_dbg.bin (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: RRQExport.java 'C:\Users\Msi\Tools\rrq_coop\analysis\ghidra_out' 'dbg'  (HeadlessAnalyzer)  
+INFO  SCRIPT: E:\Games Source code\Games\our port projects\Robinson's Requiem -Coop\tools\ghidra\RRQExport.java (HeadlessAnalyzer)  
+WARN  Decompiling 0000984e: Unable to read bytes at ram:98800000 (DecompileCallback)  
+WARN  Decompiling 0000984e: Unable to read bytes at ram:98800000 (DecompileCallback)  
+WARN  Decompiling 0000984e: Unable to read bytes at ram:98800000 (DecompileCallback)  
+WARN  Decompiling 00009854: Unable to read bytes at ram:98800000 (DecompileCallback)  
+WARN  Decompiling 00009854: Unable to read bytes at ram:98800000 (DecompileCallback)  
+WARN  Decompiling 00009854: Unable to read bytes at ram:98800000 (DecompileCallback)  
+WARN  Decompiling 00009857: Unable to read bytes at ram:98800000 (DecompileCallback)  
+WARN  Decompiling 00009857: Unable to read bytes at ram:98800000 (DecompileCallback)  
+WARN  Decompiling 00009857: Unable to read bytes at ram:98800000 (DecompileCallback)  
+INFO  RRQExport.java> RRQExport: 2688 functions -> C:\Users\Msi\Tools\rrq_coop\analysis\ghidra_out (GhidraScript)  
+INFO  ANALYZING changes made by post scripts: file:///E:/Games Source code/Games/our port projects/Robinson's Requiem -Coop/analysis/ghidra_in/rrq_dbg.bin (HeadlessAnalyzer)  
+INFO  REPORT: Post-analysis succeeded for file: file:///E:/Games Source code/Games/our port projects/Robinson's Requiem -Coop/analysis/ghidra_in/rrq_dbg.bin (HeadlessAnalyzer)  
+INFO  /rrq_dbg.bin: file created (Msi) (LocalFileSystem)  
+INFO  REPORT: Save succeeded for: /rrq_dbg.bin (rrq:/rrq_dbg.bin) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

@@ -1,0 +1,105 @@
+; SJUNGLE.IO: 75 instructions, 638/63392 bytes, entries ['0x18']
+  000018: cstore omainb[0x1922] sdirb[0x54]
+  00001e: cswitch2 odirb[0x4d] base 0 0->0x002e 1->0x0041 2->0x0054
+  00002a: cjmp24 -> 0x0063
+L00002e:
+  00002e: csound oimmb[0x03] oimmb[0xf6] oimmb[0x7f] oimmb[0xff] oimmb[0x0a]
+  000039: cjsr24 -> 0x0182
+  00003d: cjmp24 -> 0x0063
+L000041:
+  000041: csound oimmb[0x10] oimmb[0xf6] oimmb[0x7f] oimmb[0xff] oimmb[0x0a]
+  00004c: cjsr24 -> 0x0064
+  000050: cjmp24 -> 0x0063
+L000054:
+  000054: csound oimmb[0x03] oimmb[0xf6] oimmb[0x7f] oimmb[0xff] oimmb[0x0a]
+  00005f: cjsr24 -> 0x0239
+L000063:
+  000063: cexit 
+L000064:
+  000064: cstore (oimmb[0x13] ornd) sdirb[0x53]
+  00006c: cswitch2 odirb[0x53] base -2 0->0x0096 1->0x0161 2->0x00ad 3->0x0161 4->0x00c4 5->0x0161 6->0x00db 7->0x0161 8->0x00f2 9->0x0161 10->0x0109 11->0x0161 12->0x0120 13->0x0137 14->0x0161 15->0x014e
+  000092: cjmp24 -> 0x0161
+L000096:
+  000096: csound oimmb[0x05] oimmb[0x0a] oimmb[0x7f] (oimmb[0x01] opushacc oimmb[0x02] ornd oadd[opile]) oimmb[0x05]
+  0000a9: cjmp24 -> 0x0161
+L0000ad:
+  0000ad: csound oimmb[0x06] oimmb[0x0c] oimmb[0x7f] (oimmb[0x01] opushacc oimmb[0x02] ornd oadd[opile]) oimmb[0x08]
+  0000c0: cjmp24 -> 0x0161
+L0000c4:
+  0000c4: csound oimmb[0x07] oimmb[0x0e] oimmb[0x7f] (oimmb[0x01] opushacc oimmb[0x02] ornd oadd[opile]) oimmb[0x08]
+  0000d7: cjmp24 -> 0x0161
+L0000db:
+  0000db: csound oimmb[0x08] oimmb[0x10] oimmb[0x7f] (oimmb[0x01] opushacc oimmb[0x02] ornd oadd[opile]) oimmb[0x08]
+  0000ee: cjmp24 -> 0x0161
+L0000f2:
+  0000f2: csound oimmb[0x0e] oimmb[0x12] oimmb[0x7f] (oimmb[0x01] opushacc oimmb[0x02] ornd oadd[opile]) oimmb[0x0a]
+  000105: cjmp24 -> 0x0161
+L000109:
+  000109: csound oimmb[0x0f] oimmb[0x14] oimmb[0x7f] (oimmb[0x01] opushacc oimmb[0x02] ornd oadd[opile]) oimmb[0x0a]
+  00011c: cjmp24 -> 0x0161
+L000120:
+  000120: csound oimmb[0x0a] oimmb[0x16] oimmb[0x7f] (oimmb[0x01] opushacc oimmb[0x02] ornd oadd[opile]) oimmb[0x0a]
+  000133: cjmp24 -> 0x0161
+L000137:
+  000137: csound oimmb[0x01] oimmb[0x18] oimmb[0x7f] (oimmb[0x01] opushacc oimmb[0x02] ornd oadd[opile]) oimmb[0x08]
+  00014a: cjmp24 -> 0x0161
+L00014e:
+  00014e: csound oimmb[0x0c] oimmb[0x1a] oimmb[0x7f] oimmb[0x01] (oimmb[0x08] opushacc oimmb[0x03] ornd osub[opile])
+L000161:
+  000161: cstop 
+  000162: ceval (omainb[0x1922] odiff[odirb[0x54]])
+  00016b: cbz8 -> 0x0161
+  00016d: cstore omainb[0x1922] sdirb[0x54]
+  000173: ceval omainw[0x194a]
+  000177: cbz24 -> 0x017f
+  00017b: cjsr24 -> 0x0239
+L00017f:
+  00017f: cjmp16 -> 0x0064
+L000182:
+  000182: cstore (oimmb[0x0f] ornd) sdirb[0x53]
+  00018a: cswitch2 odirb[0x53] base -2 0->0x01aa 1->0x0218 2->0x01c1 3->0x0218 4->0x01d8 5->0x0218 6->0x01e7 7->0x0218 8->0x01f6 9->0x0218 10->0x0205
+  0001a6: cjmp24 -> 0x0218
+L0001aa:
+  0001aa: csound oimmb[0x00] oimmb[0x0a] oimmb[0x7f] oimmb[0x01] (oimmb[0x05] opushacc oimmb[0x03] ornd oadd[opile])
+  0001bd: cjmp24 -> 0x0218
+L0001c1:
+  0001c1: csound oimmb[0x02] oimmb[0x0c] oimmb[0x7f] oimmb[0x01] (oimmb[0x08] opushacc oimmb[0x02] ornd osub[opile])
+  0001d4: cjmp24 -> 0x0218
+L0001d8:
+  0001d8: csound oimmb[0x04] oimmb[0x0e] oimmb[0x7f] oimmb[0x01] oimmb[0x05]
+  0001e3: cjmp24 -> 0x0218
+L0001e7:
+  0001e7: csound oimmb[0x09] oimmb[0x10] oimmb[0x7f] oimmb[0x01] oimmb[0x05]
+  0001f2: cjmp24 -> 0x0218
+L0001f6:
+  0001f6: csound oimmb[0x0b] oimmb[0x12] oimmb[0x7f] oimmb[0x01] oimmb[0x0a]
+  000201: cjmp24 -> 0x0218
+L000205:
+  000205: csound oimmb[0x0c] oimmb[0x14] oimmb[0x7f] oimmb[0x01] (oimmb[0x08] opushacc oimmb[0x03] ornd osub[opile])
+L000218:
+  000218: cstop 
+  000219: ceval (omainb[0x1922] odiff[odirb[0x54]])
+  000222: cbz8 -> 0x0218
+  000224: cstore omainb[0x1922] sdirb[0x54]
+  00022a: ceval omainw[0x194a]
+  00022e: cbz24 -> 0x0236
+  000232: cjsr24 -> 0x0239
+L000236:
+  000236: cjmp16 -> 0x0182
+L000239:
+  000239: cstore (oimmb[0x28] ornd) sdirb[0x53]
+  000241: cswitch2 odirb[0x53] base -24 0->0x0256 1->0x0278 2->0x0278 3->0x0278 4->0x0265
+  000252: cjmp24 -> 0x0278
+L000256:
+  000256: csound oimmb[0x0d] oimmb[0x0a] oimmb[0x7f] oimmb[0x01] oimmb[0x08]
+  000261: cjmp24 -> 0x0278
+L000265:
+  000265: csound oimmb[0x01] oimmb[0x0c] oimmb[0x7f] (oimmb[0x01] opushacc oimmb[0x02] ornd oadd[opile]) oimmb[0x08]
+L000278:
+  000278: cstop 
+  000279: ceval (omainb[0x1922] odiff[odirb[0x54]])
+  000282: cbz8 -> 0x0278
+  000284: cstore omainb[0x1922] sdirb[0x54]
+  00028a: ceval (omainw[0x194a] oegal[oimmb[0x00]])
+  000293: cbz8 -> 0x0239
+  000295: cret 

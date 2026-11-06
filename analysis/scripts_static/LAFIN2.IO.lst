@@ -1,0 +1,17 @@
+; LAFIN2.IO: 14 instructions, 77/266024 bytes, entries ['0x18']
+  000018: clive 0x006a sdirw[0x5e]
+  00001d: cstore oimmb[0x64] shimb[0x005e,0x004d]
+  000025: cfilm oimmb[0x00] oimmb[0x00] oimmb[0x05] sdirw[0x52]
+L00002e:
+  00002e: crunfilm oimmb[0x01] sdirw[0x54] sdirw[0x56]
+  000035: ceval (odirw[0x54] oegal[oimmb[0x57]])
+  00003d: cbz24 -> 0x004e
+  000041: clive 0x006a sdirw[0x5e]
+  000046: cstore oimmb[0x65] shimb[0x005e,0x004d]
+L00004e:
+  00004e: cstop 
+  00004f: ceval (odirw[0x54] opushacc odirw[0x52] osub[oimmb[0x01]] osupeg[opile])
+  00005c: cbz8 -> 0x002e
+  00005e: cstore oimmb[0x63] sdirb[0x4d]
+  000063: csleep 
+  000064: cexit 

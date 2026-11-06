@@ -1,0 +1,5 @@
+; SKYDES.IO: 4 instructions, 12/42808 bytes, entries ['0x18']
+  000018: cscreen 0x0152
+  00001b: cscsky oimmb[0x01] oimmb[0x01] oimmb[0x00]
+  000022: csleep 
+  000023: cexit 

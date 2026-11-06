@@ -1,0 +1,566 @@
+{
+ "sig": "NB05",
+ "dir": [
+  [
+   "Module",
+   1,
+   133847,
+   31
+  ],
+  [
+   "Module",
+   2,
+   133879,
+   36
+  ],
+  [
+   "Module",
+   3,
+   133915,
+   28
+  ],
+  [
+   "Module",
+   4,
+   133943,
+   30
+  ],
+  [
+   "Module",
+   5,
+   133975,
+   26
+  ],
+  [
+   "Module",
+   6,
+   134003,
+   29
+  ],
+  [
+   "Module",
+   7,
+   134035,
+   34
+  ],
+  [
+   "Module",
+   8,
+   134071,
+   33
+  ],
+  [
+   "Module",
+   9,
+   134107,
+   40
+  ],
+  [
+   "Module",
+   10,
+   134147,
+   39
+  ],
+  [
+   "Module",
+   11,
+   134187,
+   32
+  ],
+  [
+   "Module",
+   12,
+   134219,
+   20
+  ],
+  [
+   "Module",
+   13,
+   134239,
+   35
+  ],
+  [
+   "Module",
+   14,
+   134275,
+   34
+  ],
+  [
+   "Module",
+   15,
+   134311,
+   30
+  ],
+  [
+   "Module",
+   16,
+   134343,
+   36
+  ],
+  [
+   "Module",
+   17,
+   134379,
+   32
+  ],
+  [
+   "PublicSym",
+   1,
+   134411,
+   470
+  ],
+  [
+   "Types",
+   2,
+   134883,
+   28
+  ],
+  [
+   "PublicSym",
+   2,
+   134911,
+   397
+  ],
+  [
+   "Symbols",
+   2,
+   135311,
+   629
+  ],
+  [
+   "SrcModule",
+   2,
+   135943,
+   928
+  ],
+  [
+   "Types",
+   3,
+   136871,
+   51
+  ],
+  [
+   "PublicSym",
+   3,
+   136923,
+   46
+  ],
+  [
+   "Symbols",
+   3,
+   136971,
+   139
+  ],
+  [
+   "SrcModule",
+   3,
+   137111,
+   68
+  ],
+  [
+   "PublicSym",
+   4,
+   137179,
+   6666
+  ],
+  [
+   "PublicSym",
+   5,
+   143847,
+   67813
+  ],
+  [
+   "PublicSym",
+   6,
+   211663,
+   228
+  ],
+  [
+   "PublicSym",
+   7,
+   211891,
+   22
+  ],
+  [
+   "PublicSym",
+   8,
+   211915,
+   397
+  ],
+  [
+   "PublicSym",
+   9,
+   212315,
+   180
+  ],
+  [
+   "PublicSym",
+   10,
+   212495,
+   22
+  ],
+  [
+   "PublicSym",
+   11,
+   212519,
+   114
+  ],
+  [
+   "PublicSym",
+   12,
+   212635,
+   68
+  ],
+  [
+   "PublicSym",
+   13,
+   212703,
+   110
+  ],
+  [
+   "PublicSym",
+   14,
+   212815,
+   56
+  ],
+  [
+   "PublicSym",
+   15,
+   212871,
+   324
+  ],
+  [
+   "PublicSym",
+   16,
+   213195,
+   24
+  ],
+  [
+   "PublicSym",
+   17,
+   213219,
+   492
+  ],
+  [
+   "Libraries",
+   0,
+   213711,
+   13
+  ],
+  [
+   "SegMap",
+   65535,
+   213727,
+   364
+  ],
+  [
+   "SegName",
+   65535,
+   214091,
+   221
+  ]
+ ],
+ "modules": {
+  "1": {
+   "name": "bin\\cx.OBJ",
+   "segs": [
+    {
+     "seg": 2,
+     "off": 0,
+     "cb": 3
+    }
+   ]
+  },
+  "2": {
+   "name": "bin\\x32init.OBJ",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 756,
+     "cb": 484
+    }
+   ]
+  },
+  "3": {
+   "name": "min.OBJ",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 1240,
+     "cb": 22
+    }
+   ]
+  },
+  "4": {
+   "name": "setup.OBJ",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 1264,
+     "cb": 5101
+    }
+   ]
+  },
+  "5": {
+   "name": "n.OBJ",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 6368,
+     "cb": 75260
+    }
+   ]
+  },
+  "6": {
+   "name": "x386.asm",
+   "segs": [
+    {
+     "seg": 2,
+     "off": 144,
+     "cb": 15116
+    }
+   ]
+  },
+  "7": {
+   "name": "..\\malloc.ASM",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 81672,
+     "cb": 5
+    }
+   ]
+  },
+  "8": {
+   "name": "..\\cinit.ASM",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 81680,
+     "cb": 106
+    }
+   ]
+  },
+  "9": {
+   "name": "..\\..\\clib\\fclose.c",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 81788,
+     "cb": 210
+    }
+   ]
+  },
+  "10": {
+   "name": "..\\..\\clib\\stack.c",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 0,
+     "cb": 0
+    }
+   ]
+  },
+  "11": {
+   "name": "funcs32.asm",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 82000,
+     "cb": 202
+    }
+   ]
+  },
+  "12": {
+   "name": "options.ASM",
+   "segs": []
+  },
+  "13": {
+   "name": "..\\nmalloc.ASM",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 82204,
+     "cb": 309
+    }
+   ]
+  },
+  "14": {
+   "name": "..\\sys_pl.asm",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 82516,
+     "cb": 22
+    }
+   ]
+  },
+  "15": {
+   "name": "..\\io.ASM",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 82540,
+     "cb": 659
+    }
+   ]
+  },
+  "16": {
+   "name": "..\\coreleft.ASM",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 83200,
+     "cb": 5
+    }
+   ]
+  },
+  "17": {
+   "name": "funcs32.asm",
+   "segs": [
+    {
+     "seg": 3,
+     "off": 83208,
+     "cb": 343
+    }
+   ]
+  }
+ },
+ "symbols": [
+  {
+   "kind": "proc",
+   "seg": 1062,
+   "off": 756,
+   "len": 254,
+   "name": "nit_x32",
+   "mod": 2
+  },
+  {
+   "kind": "proc",
+   "seg": 1062,
+   "off": 1240,
+   "len": 22,
+   "name": "in",
+   "mod": 3
+  },
+  {
+   "kind": "ldata",
+   "seg": 1062,
+   "off": 83684,
+   "name": "gdtlimit",
+   "mod": 2
+  },
+  {
+   "kind": "ldata",
+   "seg": 1062,
+   "off": 83686,
+   "name": "gdtbase",
+   "mod": 2
+  },
+  {
+   "kind": "ldata",
+   "seg": 1062,
+   "off": 83690,
+   "name": "valseg",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83692,
+   "name": "basecs",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83696,
+   "name": "baseds",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83700,
+   "name": "basees",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83704,
+   "name": "basefs",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83708,
+   "name": "basegs",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83712,
+   "name": "segcs",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83714,
+   "name": "segds",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83716,
+   "name": "segss",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83718,
+   "name": "seges",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83720,
+   "name": "segfs",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83722,
+   "name": "seggs",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83724,
+   "name": "basebios",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83728,
+   "name": "basevideo",
+   "mod": 2
+  },
+  {
+   "kind": "gdata",
+   "seg": 1062,
+   "off": 83732,
+   "name": "command",
+   "mod": 3
+  }
+ ]
+}

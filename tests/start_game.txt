@@ -1,0 +1,11 @@
+# Boot to English, skip intro, press Start
+42500 move 107 140
+43000 click 107 140
+47000 key Escape
++3000 key Escape
++3000 key Escape
+57000 move 172 166
+57500 click 172 166
+62000 key Escape
++4000 key Escape
++4000 key Escape
