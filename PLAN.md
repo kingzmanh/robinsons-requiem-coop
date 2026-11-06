@@ -56,10 +56,25 @@ Co-op is added **inside the interpreter**, not by rewriting the scripts:
 - Add **main-variable write tracing**: which script/entity writes each main variable. Play test scenes (eat, drink, get hurt, pick up and drop, sleep, change area, talk) and classify every main variable as WORLD or PLAYER → `analysis/player_vars.tsv`.
 - Find the hero entity script, the inventory data structures (`OBJET.IO`, `BODY.IO`, `HEROS.IO`, `ROBINSON.IO`) and the UI screens.
 
-**Phase 2 – Two player records, one machine**
-- Player-context data structure, swap scheduler, second hero entity.
-- Separate input routing (P1/P2 devices).
-- Local split-screen debug view.
+**Phase 1 results (2026-11-07, done while the user was away)**
+- **The engine runs the game natively**, hidden and muted. Verified in one run: boot → Silmarils logo → language flags → intro (skippable) → main menu → Start → gameplay in the jungle. All 10 action icons open (map, computer, use, manufacture, dress, treatment, eat, sleep, fight, inventory). Walking, turning and running work via the movement pad. Engine savestates work (`tests/ingame_start.state` loads straight into gameplay in 3 s).
+- **Test harness** in our engine fork (`engine/src/sys/rrq_harness.c`): `RRQ_HIDDEN`, `RRQ_INPUT` (timed keys/clicks/moves/shots/marks/savestate/quit), `RRQ_SHOTDIR`, `RRQ_SHOT_EVERY`, `RRQ_QUIT_MS`. Test scripts are in `tests/`, and `tools/sheet.py` makes contact sheets.
+- **Tracing** (`engine/src/rrq_trace.c`): `RRQ_TRACE_MAIN` logs every main-variable change per entity slice. `dument` lists live entities. The `-d` runtime disassembly now prints script-relative offsets.
+- **Static ALIS disassembler** (`tools/alisdis/`): operand specs come from the engine's C handlers plus v3.1 overrides. **All 3,630 executed instructions in the boot + gameplay traces decode identically** (`validate.py`). Result: 38,810 instructions in 124 scripts, 13 decode errors. Outputs: `analysis/scripts_static/*.lst`, `mainvars.tsv` (who reads/writes each main variable), `dims.tsv` (table layouts), `fileblocks.tsv`.
+- **Live entities in the jungle:** MAIN, souris (mouse/UI), **heros (the hero entity)**, **yoda (player controller: actions, icons, inventory logic)**, **time (body simulation + clock/weather)**, caporal, 4 zone scripts, 3 doors, 2 planes, human, 2 tigers, eagle, wolf, 7 ob3d objects.
+- **The savegame = the full game state**: the save routine in `BARATINE.IO` writes 100 single main variables + 21 main blocks (52.5 KB). `tools/state_map.py` → `analysis/save_state_map.tsv`.
+- **Inventory found:** main table `0x0f3e` = slots × [object type, quantity, weight, state]. Bag load `SAC 0x1938` = Σ weight × qty. `0x1744` maps the panel slots onto inventory entries.
+- **First classification** (`tools/classify_vars.py` → `analysis/player_vars.tsv`): PLAYER ≈ 2.5 KB (body tables, illness, wounds, body stats, inventory, equipment flags, movement/head, position copy), WORLD ≈ 50 KB (creatures `0x1a9e`, NPCs `0x28b6`, fires, weather/daylight, story flags, map tables), UI ≈ 0.3 KB.
+- **Proof of concept, two player records** (`engine/src/rrq_coop.c` + generated `rrq_player_ranges.h`, 42 ranges / 2,755 bytes): switching the active player at a VM safe point swaps the record. The game's own computer screen showed P1 bag 04.8 kg → P2 02.5 kg → P1 04.8 kg again → P2 02.5 kg, while the world clock kept running for both (`tests/coop_poc.txt`, `build/runs/poc/cmp.png`).
+- Entity creation is one engine routine (`clivin`: script id → new entity + its own variable block), so a second hero entity can be spawned from C.
+
+**Phase 2 – Two player records, one machine (design from Phase 1 facts)**
+- Per-entity owner: heros/yoda/time/souris/objet/body/map/ordi instances belong to a player; everything else is world. The scheduler swaps in the owner's record before each slice. World entities run in the nearest/target player's context.
+- `time.IO` mixes player needs with world weather and clock. It runs once per player, and only the first run keeps its WORLD writes (the others are rolled back).
+- Spawn P2's heros (+ yoda/time/souris) instances. Make `cfindtyp`/`cneartyp` for the hero type return the active player's hero.
+- Input routing: the input opcodes (`cmouse`, `oinkey`, `ojoy`, …) return the owner player's devices.
+- Second view: render the 3D view a second time with P2's camera into its own buffer. Show it local split-screen first.
+- Remaining checks: the `0x1a08` counter, `0x195e`/`0x19e8`/`0x3ae2`/`0x3af2` tables, the 40 KB `0x3c92` and 4 KB `0x39ac` tables (descriptors pointing at allocated memory), and dialogue/trade flags. Tracing actions in real play will confirm them.
 
 **Phase 3 – Interaction**
 - P2 visible as an entity in the 3D world, and monster targeting per player.
