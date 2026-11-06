@@ -11,3 +11,6 @@ void rrq_coop_slice_begin(void);
 void rrq_coop_request_p2view(const char *name);
 int  rrq_coop_owner(unsigned int vram);
 void rrq_coop_before_draw(void);
+void rrq_coop_after_draw(void);
+int  rrq_coop_split(void);
+int  rrq_coop_p2_frame(unsigned int *dst, int w, int h);

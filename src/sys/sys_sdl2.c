@@ -44,6 +44,7 @@
 #include "utils.h"
 #include "video.h"
 #include "rrq_harness.h"
+#include "../rrq_coop.h"
 
 #include "emu2149.h"
 #include "math.h"
@@ -174,7 +175,8 @@ void sys_init(sPlatform *pl, int fullscreen, int mutesound)
     
     printf("  Video initialization...\n");
     rrq_harness_init();
-    window = SDL_CreateWindow(kProgName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width * scale_x, height * scale_y, SDL_WINDOW_RESIZABLE | fullscreen * SDL_WINDOW_FULLSCREEN_DESKTOP | (rrq_harness_hidden() ? SDL_WINDOW_HIDDEN : 0));
+    int sw = rrq_coop_split() ? 2 : 1;   // rrq-coop split screen: P1 | P2 side by side
+    window = SDL_CreateWindow(kProgName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width * scale_x * sw, height * scale_y, SDL_WINDOW_RESIZABLE | fullscreen * SDL_WINDOW_FULLSCREEN_DESKTOP | (rrq_harness_hidden() ? SDL_WINDOW_HIDDEN : 0));
     if (window == NULL)
     {
         fprintf(stderr, "   Could not create %.0fx%.0f window: %s\n", (width * scale_x), (height * scale_y), SDL_GetError());
@@ -191,12 +193,12 @@ void sys_init(sPlatform *pl, int fullscreen, int mutesound)
     
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderSetScale(renderer, scale, scale);
-    SDL_RenderSetLogicalSize(renderer, width, height * aspect_ratio);
+    SDL_RenderSetLogicalSize(renderer, width * sw, height * aspect_ratio);
     
     pixels = malloc(width * height * sizeof(*pixels));
     memset(pixels, 0, width * height * sizeof(*pixels));
     
-    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, width, height);
+    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, width * sw, height);
     if (texture == NULL)
     {
         fprintf(stderr, "   Could not create texture: %s\n", SDL_GetError());
@@ -812,8 +814,27 @@ void sys_render(pixelbuf_t buffer)
         }
     }
 
-    rrq_harness_after_render(pixels, width, height);
-    SDL_UpdateTexture(texture, NULL, pixels, width * sizeof(*pixels));
+    if (rrq_coop_split())
+    {
+        // compose P1 (left) | P2 (right); P2's frame comes from the VM thread's second draw
+        static u32 *spix, *p2pix; static int scap;
+        int n = width * height;
+        if (scap < n) { free(spix); free(p2pix); spix = malloc((size_t)n * 8); p2pix = malloc((size_t)n * 4); scap = n; }
+        int have2 = rrq_coop_p2_frame(p2pix, width, height);
+        for (int y = 0; y < height; y++)
+        {
+            memcpy(spix + (size_t)y * width * 2, pixels + (size_t)y * width, width * 4);
+            if (have2) memcpy(spix + (size_t)y * width * 2 + width, p2pix + (size_t)y * width, width * 4);
+            else memset(spix + (size_t)y * width * 2 + width, 0, width * 4);
+        }
+        rrq_harness_after_render(spix, width * 2, height);
+        SDL_UpdateTexture(texture, NULL, spix, width * 2 * sizeof(*pixels));
+    }
+    else
+    {
+        rrq_harness_after_render(pixels, width, height);
+        SDL_UpdateTexture(texture, NULL, pixels, width * sizeof(*pixels));
+    }
     
     // clear & render
     SDL_RenderClear(renderer);

@@ -209,6 +209,87 @@ static void p2view(const char *name)
     fflush(stdout);
 }
 
+// ---- per-frame P2 render (split screen) ----
+// After the local frame is drawn, snapshot the render-relevant state, draw again with P2's
+// record (P2 camera), keep P2's pixels, and restore. The game state stays exactly as before.
+#include "screen.h"
+extern const u32 kSpriteMemSize;
+static int split_mode = -1;
+static u32 *p2frame;
+static u16 p2w, p2h;
+static SDL_mutex *p2lock;
+static u8 *snap_mem, *snap_sprite, *snap_phys, *snap_log;
+static sAlisVM snap_alis;
+static sImage snap_image;
+static sScreen snap_screen;
+int rrq_in_p2_draw;
+
+int rrq_coop_split(void)
+{
+    if (split_mode < 0) { const char *e = getenv("RRQ_SPLIT"); split_mode = e && *e && *e != '0'; }
+    return split_mode;
+}
+
+// Copies P2's last frame (ARGB) into dst (w*h); returns 0 if none yet.
+int rrq_coop_p2_frame(u32 *dst, int w, int h)
+{
+    if (!p2frame || !p2lock) return 0;
+    SDL_LockMutex(p2lock);
+    int ok = p2w == w && p2h == h;
+    if (ok) memcpy(dst, p2frame, (size_t)w * h * 4);
+    SDL_UnlockMutex(p2lock);
+    return ok;
+}
+
+static int have_p2_hero(void)
+{
+    for (int i = 0; i < nowned; i++)
+        if (owned_player[i] == 1) return 1;
+    return 0;
+}
+
+void rrq_coop_after_draw(void)
+{
+    if (!rrq_coop_split() || !have_p2_hero() || rrq_in_p2_draw) return;
+    u32 ram = alis.platform.ram_sz, fb = (u32)alis.platform.width * alis.platform.height;
+    if (!snap_mem)
+    {
+        snap_mem = malloc(ram); snap_sprite = malloc(kSpriteMemSize);
+        snap_phys = malloc(fb); snap_log = malloc(fb);
+        p2lock = SDL_CreateMutex();
+    }
+    // snapshot
+    snap_alis = alis; snap_image = image; snap_screen = screen;
+    memcpy(snap_mem, alis.mem, ram);
+    memcpy(snap_sprite, image.spritemem, kSpriteMemSize);
+    memcpy(snap_phys, image.physic, fb);
+    if (image.logic != image.physic) memcpy(snap_log, image.logic, fb);
+    pixelbuf_t savedpb = host.pixelbuf;
+    int was = active;
+
+    rrq_coop_switch_quiet(1);
+    rrq_in_p2_draw = 1;
+    draw();
+    rrq_in_p2_draw = 0;
+
+    pixelbuf_t *b = &host.pixelbuf;
+    SDL_LockMutex(p2lock);
+    if (p2w != b->w || p2h != b->h) { free(p2frame); p2frame = malloc((size_t)b->w * b->h * 4); p2w = b->w; p2h = b->h; }
+    for (int i = 0; i < b->w * b->h; i++)
+        p2frame[i] = b->rgb ? b->rgb[i] : (b->palette[b->data[i]] | 0xff000000u);
+    SDL_UnlockMutex(p2lock);
+
+    // restore (the main script's memory comes back with P1's record in it)
+    u8 *mem = alis.mem;
+    memcpy(mem, snap_mem, ram);
+    alis = snap_alis; image = snap_image; screen = snap_screen;
+    memcpy(image.spritemem, snap_sprite, kSpriteMemSize);
+    memcpy(image.physic, snap_phys, fb);
+    if (image.logic != image.physic) memcpy(image.logic, snap_log, fb);
+    host.pixelbuf = savedpb;
+    active = was;
+}
+
 void rrq_coop_service(void)
 {
     if (req_view_flag) { req_view_flag = 0; p2view(req_view); }

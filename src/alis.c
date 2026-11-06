@@ -1615,6 +1615,7 @@ void alis_main_V2(void)
             ALIS_SET_SCRIPT(ENTSCR(alis.varD5));
             rrq_coop_before_draw();
             draw();
+            rrq_coop_after_draw();
 #ifdef ALIS_DSP_MIXER
             dsp_mixer_poll();
 #if defined(__atarist__) || defined(__TOS__)
@@ -1721,6 +1722,7 @@ void alis_main_V3(void)
             ALIS_SET_SCRIPT(ENTSCR(alis.varD5));
             rrq_coop_before_draw();
             draw();
+            rrq_coop_after_draw();
 #ifdef ALIS_DSP_MIXER
             dsp_mixer_poll();
 #if defined(__atarist__) || defined(__TOS__)
