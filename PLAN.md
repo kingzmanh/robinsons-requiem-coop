@@ -76,6 +76,22 @@ Co-op is added **inside the interpreter**, not by rewriting the scripts:
 - **P2's view captured** (`p2view` = save state → P2 record + camera → `draw()` → BMP → restore). P1 sees the palm trees and P2 sees the hill they walked to (`analysis/poc_p1_p2_views.png`, `tests/p2_view.txt`).
 - Next: spawn P2's yoda/souris/time instances (P2's own HUD, actions and body simulation) and route P2's input devices to the slices P2 owns. Render P2's frame every tick without the savestate round-trip: snapshot only the render state (sprite list, `image`, screen structs), or give P2 its own screen set. Then show split-screen.
 
+**Status 2026-11-07 morning: Phases 2–4 core done and tested (hidden, muted, localhost)**
+- **Player 2 entities**: hero, yoda (controller), souris (mouse/UI) and time (body simulation, with its world writes rolled back) are spawned automatically once gameplay has a hero, and recreated after a level change or load.
+- **Per-player input** (`engine/src/sys/rrq_input.c`): virtual devices. The VM reads the device of the player whose entity is running. W/A/S/D movement (option `--nowasd`).
+- **World entities run in the nearest player's context**: animals target the nearest hero (`cneartyp`) and now hurt that player. `cfindtyp hero` = the context player's hero. A tiger was seen walking to P2.
+- **Each player sees the other**: avatar puppet = human.IO walk frames + attached upper part, depth-scaled, at the other player's position (`analysis/p1_sees_p2.png`).
+- **Own view per player**: the 3D camera fields are part of the player record. Player 2's frame is drawn every tick from P2's record (snapshot → draw → restore). Local split-screen: `--split`.
+- **Online co-op** (`engine/src/rrq_net.c`), deterministic lockstep over TCP:
+  - Join-in-progress: the client connects in the background. Once the host is in the game, the host saves and sends its full engine state (5 MB), the client loads it, and lockstep starts.
+  - Per-frame input exchange with delay (3 frames). The host also sends timer ticks, so time runs identically, plus a session RNG seed.
+  - Checksums every 30 frames. **0 differing bytes between the two PCs' full state after 120–150 frames**, with both players moving, debug and release builds.
+  - The client shows P2's view (`analysis/online_coop_first.png`).
+  - Tested from a cold boot: the host goes through the menus while the client waits, then the session syncs.
+- **Co-op saves**: the in-game save also writes `<name>.SAV.p2` (P2 record + hero position); loading restores it. Tested save → load.
+- **Play build**: `play/` holds `RRQ-Coop.exe` (Release), `SDL2.dll`, `Host Co-op.bat`, `Join Co-op.bat`, `Play Solo.bat` and `README.txt`. Data comes from `..\game`.
+- Not yet verified: item pickup by P2 into P2's inventory (no pickup reproduced in tests yet), NPC dialogues started by P2, a real two-PC test over LAN/internet, automatic resync after a desync, a local second-player gamepad, and the installer (Phase 5).
+
 **Phase 2 – Two player records, one machine (design from Phase 1 facts)**
 - Per-entity owner: heros/yoda/time/souris/objet/body/map/ordi instances belong to a player; everything else is world. The scheduler swaps in the owner's record before each slice. World entities run in the nearest/target player's context.
 - `time.IO` mixes player needs with world weather and clock. It runs once per player, and only the first run keeps its WORLD writes (the others are rolled back).
