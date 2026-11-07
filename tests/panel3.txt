@@ -1,0 +1,9 @@
+800 coopstart
+2600 p2key F2 300
+3000 shot t1
+3500 shot t2
+4000 shot t3
+4500 shot t4
+5000 shot t5
+6000 shot t6
+6200 quit

@@ -1,0 +1,6 @@
+3000 click 304 170 l 1500
+8000 key F2 300
+9800 shot host_open
+11000 key F2 300
+12000 dument host_end
+16000 quit

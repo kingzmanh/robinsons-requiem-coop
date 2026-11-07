@@ -1,0 +1,9 @@
+800 coopstart
+2600 p2key F2 300
+4500 shot p2open
+4600 key W 1500
+6500 shot p1walk
+6600 dument mid
+7000 key F2 300
+9000 shot both
+9200 quit

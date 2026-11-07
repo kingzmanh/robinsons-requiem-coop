@@ -1,0 +1,8 @@
+800 coopstart
+2600 p2key F1 300
+4500 shot m1
+4700 key W 1200
+6500 shot m2
+6600 key F1 300
+8500 shot m3
+8800 quit

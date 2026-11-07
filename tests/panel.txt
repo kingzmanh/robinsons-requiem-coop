@@ -1,0 +1,7 @@
+800 coopstart
+2500 dument before
+2600 key F2 300
+4500 dument after_f2
+4600 dumpspr
+4700 shot f2
+5000 quit
