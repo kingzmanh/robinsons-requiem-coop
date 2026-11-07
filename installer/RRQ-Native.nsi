@@ -1,7 +1,7 @@
-; Robinson's Requiem Co-op - installer (NSIS 3, Modern UI 2)
+; Robinson's Requiem Native - installer (NSIS 3, Modern UI 2)
 ; Build: installer/build.sh (stages the files into installer/stage and runs makensis)
 ;
-; Ships only the mod. On the player's PC it copies the game files from their own copy of the
+; Ships only our program. On the player's PC it copies the game files from their own copy of the
 ; game (GOG or any other version) and makes the program icon from that game's art.
 
 Unicode true
@@ -12,13 +12,13 @@ Unicode true
 !ifndef VERSION
   !define VERSION "0.1.0"
 !endif
-!define APPNAME   "Robinson's Requiem Co-op"
-!define APPKEY    "RRQ-Coop"
+!define APPNAME   "Robinson's Requiem Native"
+!define APPKEY    "RRQ-Native"
 !define UNINSTKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPKEY}"
 !define STAGE     "stage"
 
 Name "${APPNAME}"
-OutFile "..\release\RRQ-Coop-Setup-${VERSION}.exe"
+OutFile "..\release\RRQ-Native-Setup-${VERSION}.exe"
 InstallDir "$LOCALAPPDATA\Programs\${APPKEY}"
 InstallDirRegKey HKCU "Software\${APPKEY}" "InstallDir"
 RequestExecutionLevel user
@@ -30,7 +30,7 @@ VIAddVersionKey "ProductName" "${APPNAME}"
 VIAddVersionKey "FileDescription" "${APPNAME} installer"
 VIAddVersionKey "FileVersion" "${VERSION}"
 VIAddVersionKey "ProductVersion" "${VERSION}"
-VIAddVersionKey "LegalCopyright" "Fan mod. Robinson's Requiem (c) Silmarils."
+VIAddVersionKey "LegalCopyright" "Fan project. Robinson's Requiem (c) Silmarils."
 
 Var GameDir
 Var StartMenuDir
@@ -38,7 +38,7 @@ Var Args
 
 !define MUI_ABORTWARNING
 !define MUI_WELCOMEPAGE_TITLE "${APPNAME}"
-!define MUI_WELCOMEPAGE_TEXT "Online co-op for Robinson's Requiem, running natively on Windows.$\r$\n$\r$\nYou need your own copy of the game (GOG or any other version). Setup copies the game files from it, so nothing from the game is in this download.$\r$\n$\r$\nClick Next to continue."
+!define MUI_WELCOMEPAGE_TEXT "Robinson's Requiem running natively on Windows (no DOSBox): play alone, or online co-op with a friend.$\r$\n$\r$\nYou need your own copy of the game (GOG or any other version). Setup copies the game files from it, so nothing from the game is in this download.$\r$\n$\r$\nClick Next to continue."
 !insertmacro MUI_PAGE_WELCOME
 
 ; --- where the game is
@@ -53,8 +53,8 @@ Var Args
 
 ; --- where the mod goes
 !define MUI_PAGE_HEADER_TEXT "Install location"
-!define MUI_PAGE_HEADER_SUBTEXT "Where the co-op mod and its copy of the game files go (about 330 MB)."
-!define MUI_DIRECTORYPAGE_TEXT_TOP "The co-op mod, its copy of the game files and your co-op saves go into this folder."
+!define MUI_PAGE_HEADER_SUBTEXT "Where the game and its copy of the game files go (about 330 MB)."
+!define MUI_DIRECTORYPAGE_TEXT_TOP "The program, its copy of the game files and your saves go into this folder."
 !insertmacro MUI_PAGE_DIRECTORY
 
 !define MUI_COMPONENTSPAGE_NODESC
@@ -122,11 +122,11 @@ Function OpenStartMenu
 FunctionEnd
 
 ; ---------------------------------------------------------------------------------------------
-Section "!Co-op mod" SecMain
+Section "!Robinson's Requiem Native" SecMain
   SectionIn RO
   AddSize 330000
   SetOutPath "$INSTDIR"
-  File "${STAGE}\RRQ-Coop.exe"
+  File "${STAGE}\RRQ.exe"
   File "${STAGE}\SDL2.dll"
   File "${STAGE}\README.txt"
   File "${STAGE}\LICENSE-alis.txt"
@@ -140,22 +140,23 @@ Section "!Co-op mod" SecMain
   CopyFiles /SILENT "$GameDir\START.EXE" "$INSTDIR\game"
   CopyFiles /SILENT "$GameDir\START.STP" "$INSTDIR\game"
   CopyFiles /SILENT "$GameDir\S.TST" "$INSTDIR\game"
+  Delete "$INSTDIR\game\unins*.dat"     ; GOG's uninstaller data matches *.DAT, it is not a game file
   ${IfNot} ${FileExists} "$INSTDIR\game\MAIN.IO"
     MessageBox MB_ICONSTOP "Copying the game files failed."
     Abort
   ${EndIf}
 
   ; the program icon, made from the game's own art (the options menu's hero). A temporary copy
-  ; of the program does it, so it can write the icon into the installed RRQ-Coop.exe.
+  ; of the program does it, so it can write the icon into the installed RRQ.exe.
   DetailPrint "Making the program icon from your game (about 20 seconds) ..."
   InitPluginsDir
-  CopyFiles /SILENT "$INSTDIR\RRQ-Coop.exe" "$PLUGINSDIR\rrq-icon.exe"
+  CopyFiles /SILENT "$INSTDIR\RRQ.exe" "$PLUGINSDIR\rrq-icon.exe"
   CopyFiles /SILENT "$INSTDIR\SDL2.dll" "$PLUGINSDIR\SDL2.dll"
   SetOutPath "$PLUGINSDIR"
-  nsExec::Exec '"$PLUGINSDIR\rrq-icon.exe" --make-icon "$INSTDIR\RRQ-Coop.ico" --icon-exe "$INSTDIR\RRQ-Coop.exe" "$INSTDIR\game"'
+  nsExec::Exec '"$PLUGINSDIR\rrq-icon.exe" --make-icon "$INSTDIR\RRQ.ico" --icon-exe "$INSTDIR\RRQ.exe" "$INSTDIR\game"'
   Pop $0
   SetOutPath "$INSTDIR"
-  ${If} ${FileExists} "$INSTDIR\RRQ-Coop.ico"
+  ${If} ${FileExists} "$INSTDIR\RRQ.ico"
     DetailPrint "Icon done."
   ${Else}
     DetailPrint "Could not make the icon (the program keeps its default icon)."
@@ -167,10 +168,10 @@ Section "!Co-op mod" SecMain
   WriteRegStr HKCU "Software\${APPKEY}" "GameSource" "$GameDir"
   WriteRegStr HKCU "${UNINSTKEY}" "DisplayName" "${APPNAME}"
   WriteRegStr HKCU "${UNINSTKEY}" "DisplayVersion" "${VERSION}"
-  WriteRegStr HKCU "${UNINSTKEY}" "Publisher" "Robinson's Requiem Co-op mod"
+  WriteRegStr HKCU "${UNINSTKEY}" "Publisher" "Robinson's Requiem Native (fan project)"
   WriteRegStr HKCU "${UNINSTKEY}" "InstallLocation" "$INSTDIR"
   WriteRegStr HKCU "${UNINSTKEY}" "UninstallString" '"$INSTDIR\Uninstall.exe"'
-  WriteRegStr HKCU "${UNINSTKEY}" "DisplayIcon" "$INSTDIR\RRQ-Coop.exe"
+  WriteRegStr HKCU "${UNINSTKEY}" "DisplayIcon" "$INSTDIR\RRQ.exe"
   WriteRegDWORD HKCU "${UNINSTKEY}" "NoModify" 1
   WriteRegDWORD HKCU "${UNINSTKEY}" "NoRepair" 1
   ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
@@ -188,32 +189,33 @@ Section "-Shortcuts" SecShortcuts
   ${EndIf}
   ; Join asks for the host's address in a small console, then starts the game without it
   FileOpen $0 "$INSTDIR\Join Co-op.bat" w
-  FileWrite $0 '@echo off$\r$\ncd /d "%~dp0"$\r$\ntitle Join Robinson$\'s Requiem Co-op$\r$\necho Join a co-op game. Type the host$\'s IP address (add :port if the host uses another port than 27531).$\r$\nset /p HOSTIP=Host IP address: $\r$\nif "%HOSTIP%"=="" exit /b$\r$\nstart "" "%~dp0RRQ-Coop.exe" $Args--join %HOSTIP% "%~dp0game"$\r$\n'
+  FileWrite $0 '@echo off$\r$\ncd /d "%~dp0"$\r$\ntitle Join a Robinson$\'s Requiem Native co-op game$\r$\necho Join a co-op game. Type the host$\'s IP address (add :port if the host uses another port than 27531).$\r$\nset /p HOSTIP=Host IP address: $\r$\nif "%HOSTIP%"=="" exit /b$\r$\nstart "" "%~dp0RRQ.exe" $Args--join %HOSTIP% "%~dp0game"$\r$\n'
   FileClose $0
 
-  StrCpy $1 "$INSTDIR\RRQ-Coop.exe"
-  ${If} ${FileExists} "$INSTDIR\RRQ-Coop.ico"
-    StrCpy $1 "$INSTDIR\RRQ-Coop.ico"
+  StrCpy $1 "$INSTDIR\RRQ.exe"
+  ${If} ${FileExists} "$INSTDIR\RRQ.ico"
+    StrCpy $1 "$INSTDIR\RRQ.ico"
   ${EndIf}
   SetOutPath "$INSTDIR"
   !insertmacro MUI_STARTMENU_WRITE_BEGIN StartMenu
     CreateDirectory "$SMPROGRAMS\$StartMenuDir"
-    CreateShortcut "$SMPROGRAMS\$StartMenuDir\Host Co-op.lnk" "$INSTDIR\RRQ-Coop.exe" '$Args--host "$INSTDIR\game"' "$1" 0
+    CreateShortcut "$SMPROGRAMS\$StartMenuDir\Host Co-op.lnk" "$INSTDIR\RRQ.exe" '$Args--host "$INSTDIR\game"' "$1" 0
     CreateShortcut "$SMPROGRAMS\$StartMenuDir\Join Co-op.lnk" "$INSTDIR\Join Co-op.bat" "" "$1" 0
-    CreateShortcut "$SMPROGRAMS\$StartMenuDir\Play Solo.lnk" "$INSTDIR\RRQ-Coop.exe" '$Args"$INSTDIR\game"' "$1" 0
+    CreateShortcut "$SMPROGRAMS\$StartMenuDir\Play.lnk" "$INSTDIR\RRQ.exe" '$Args"$INSTDIR\game"' "$1" 0
     CreateShortcut "$SMPROGRAMS\$StartMenuDir\Read Me.lnk" "$INSTDIR\README.txt"
     CreateShortcut "$SMPROGRAMS\$StartMenuDir\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
   !insertmacro MUI_STARTMENU_WRITE_END
 SectionEnd
 
-Section "Desktop shortcuts (Host / Join)" SecDesktop
-  StrCpy $1 "$INSTDIR\RRQ-Coop.exe"
-  ${If} ${FileExists} "$INSTDIR\RRQ-Coop.ico"
-    StrCpy $1 "$INSTDIR\RRQ-Coop.ico"
+Section "Desktop shortcuts (Play, Host Co-op, Join Co-op)" SecDesktop
+  StrCpy $1 "$INSTDIR\RRQ.exe"
+  ${If} ${FileExists} "$INSTDIR\RRQ.ico"
+    StrCpy $1 "$INSTDIR\RRQ.ico"
   ${EndIf}
   SetOutPath "$INSTDIR"
-  CreateShortcut "$DESKTOP\RRQ Co-op - Host.lnk" "$INSTDIR\RRQ-Coop.exe" '$Args--host "$INSTDIR\game"' "$1" 0
-  CreateShortcut "$DESKTOP\RRQ Co-op - Join.lnk" "$INSTDIR\Join Co-op.bat" "" "$1" 0
+  CreateShortcut "$DESKTOP\${APPNAME}.lnk" "$INSTDIR\RRQ.exe" '$Args"$INSTDIR\game"' "$1" 0
+  CreateShortcut "$DESKTOP\RRQ Native - Host Co-op.lnk" "$INSTDIR\RRQ.exe" '$Args--host "$INSTDIR\game"' "$1" 0
+  CreateShortcut "$DESKTOP\RRQ Native - Join Co-op.lnk" "$INSTDIR\Join Co-op.bat" "" "$1" 0
   WriteRegDWORD HKCU "Software\${APPKEY}" "DesktopShortcuts" 1
 SectionEnd
 
@@ -226,12 +228,13 @@ Section "Uninstall"
   !insertmacro MUI_STARTMENU_GETFOLDER StartMenu $StartMenuDir
   Delete "$SMPROGRAMS\$StartMenuDir\*.lnk"
   RMDir "$SMPROGRAMS\$StartMenuDir"
-  Delete "$DESKTOP\RRQ Co-op - Host.lnk"
-  Delete "$DESKTOP\RRQ Co-op - Join.lnk"
+  Delete "$DESKTOP\${APPNAME}.lnk"
+  Delete "$DESKTOP\RRQ Native - Host Co-op.lnk"
+  Delete "$DESKTOP\RRQ Native - Join Co-op.lnk"
 
-  Delete "$INSTDIR\RRQ-Coop.exe"
+  Delete "$INSTDIR\RRQ.exe"
   Delete "$INSTDIR\SDL2.dll"
-  Delete "$INSTDIR\RRQ-Coop.ico"
+  Delete "$INSTDIR\RRQ.ico"
   Delete "$INSTDIR\README.txt"
   Delete "$INSTDIR\LICENSE-alis.txt"
   Delete "$INSTDIR\LICENSE-SDL2.txt"

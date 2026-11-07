@@ -5,7 +5,7 @@ include(CTest)
 enable_testing()
 
 # Comment "set..." to disable output to console for alis on Windows
-# rrq-coop: RRQ_GUI=ON builds a normal Windows program (no console window); output goes to rrq-coop.log
+# rrq-coop: RRQ_GUI=ON builds a normal Windows program (no console window); output goes to rrq.log
 option(RRQ_GUI "Windows GUI subsystem (no console window)" OFF)
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     if (RRQ_GUI)
@@ -125,7 +125,7 @@ list(APPEND alis_SOURCES
 # Icon for Windows
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
    # rrq-coop: RRQ_ICON = an .ico made from the player's own game art (tools/icon/make_icon.py)
-   set(RRQ_ICON "" CACHE FILEPATH "Icon for RRQ-Coop.exe (made from the game's art on this PC)")
+   set(RRQ_ICON "" CACHE FILEPATH "Icon for RRQ.exe (made from the game's art on this PC)")
    if (RRQ_ICON AND EXISTS "${RRQ_ICON}")
        file(TO_CMAKE_PATH "${RRQ_ICON}" RRQ_ICON_P)
        file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/rrq_icon.rc "IDI_ICON1 ICON DISCARDABLE \"${RRQ_ICON_P}\"\n")

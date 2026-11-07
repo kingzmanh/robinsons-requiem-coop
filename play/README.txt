@@ -1,4 +1,4 @@
-Robinson's Requiem - Co-op (test build)
+Robinson's Requiem Native (test build folder)
 =======================================
 
 Both players need this folder and the game folder next to it (..\game = a copy of the

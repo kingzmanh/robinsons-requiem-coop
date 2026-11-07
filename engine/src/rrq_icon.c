@@ -1,6 +1,6 @@
 // rrq-coop: build the program icon from the player's own copy of the game (run by the installer).
 //
-//   RRQ-Coop.exe --make-icon <out.ico> [--icon-exe <exe to patch>] <data_path>
+//   RRQ.exe --make-icon <out.ico> [--icon-exe <exe to patch>] <data_path>
 //
 // Runs hidden and muted, skips the intro (Escape / the language screen), waits until the options
 // menu is on screen, cuts the hero out of it and writes a multi-size .ico. With --icon-exe the icon

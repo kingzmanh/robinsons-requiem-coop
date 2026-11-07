@@ -1,6 +1,6 @@
-"""Build the RRQ-Coop.exe icon from the game's own art, on the player's PC.
+"""Build the RRQ.exe icon from the game's own art, on the player's PC.
 
-Input: a 320x200 screenshot of the game's options menu (taken by RRQ-Coop.exe itself, see
+Input: a 320x200 screenshot of the game's options menu (taken by RRQ.exe itself, see
 make_icon.bat). Output: a multi-size .ico (16..256) of the hero from that menu.
 No game art is shipped with the mod; this runs where the game is installed.
 """

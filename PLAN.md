@@ -92,7 +92,7 @@ Co-op is added **inside the interpreter**, not by rewriting the scripts:
   - The client shows P2's view (`analysis/online_coop_first.png`).
   - Tested from a cold boot: the host goes through the menus while the client waits, then the session syncs.
 - **Co-op saves**: the in-game save also writes `<name>.SAV.p2` (P2 record + hero position); loading restores it. Tested save → load.
-- **Play build**: `play/` holds `RRQ-Coop.exe` (Release), `SDL2.dll`, `Host Co-op.bat`, `Join Co-op.bat`, `Play Solo.bat` and `README.txt`. Data comes from `..\game`.
+- **Play build**: `play/` holds `RRQ.exe` (Release), `SDL2.dll`, `Host Co-op.bat`, `Join Co-op.bat`, `Play Solo.bat` and `README.txt`. Data comes from `..\game`.
 - **Interaction routing**: a world entity that receives a message from a player's entity (click/use/trade) runs in that player's context for about 3 s. Otherwise it follows the nearest player.
 - **Automatic resync**: a checksum mismatch is flagged in the frame stream. Both PCs drain the in-flight packets, the host re-sends its state plus the co-op tables (captured at the moment of the save), and lockstep restarts. Tested with a forced corruption: it recovers and stays in sync, but it currently needs a second round once.
 - Not yet verified: an actual item pickup by P2 (in tests the first click only "identifies" an object), NPC dialogues started by P2, and a real two-PC test over LAN/internet. Still to do: a local second-player gamepad, the installer (Phase 5), and why the first resync round leaves a small camera offset.
@@ -154,11 +154,11 @@ Gotchas: Ghidra project paths and REA junctions — Ghidra rejects the apostroph
 
 
 ## Installer (done, v0.1.0)
-- `installer/build.sh [version]` -> `release/RRQ-Coop-Setup-<version>.exe` (NSIS from MSYS2, 1.4 MB). Ships only the mod
-  (RRQ-Coop.exe with the default icon, SDL2.dll, README, licenses). Per-user install (no admin) to %LOCALAPPDATA%\Programs\RRQ-Coop.
+- `installer/build.sh [version]` -> `release/RRQ-Native-Setup-<version>.exe` (NSIS from MSYS2, 1.4 MB). Ships only the mod
+  (RRQ.exe with the default icon, SDL2.dll, README, licenses). Per-user install (no admin) to %LOCALAPPDATA%\Programs\RRQ-Coop.
 - On the player's PC: finds the game (GOG registry, Steam guesses, usual folders, or browse; must contain MAIN.IO/YODA.IO/HEROS.IO),
   copies *.IO, *.DAT, START.EXE/STP, S.TST into <install>\game, then a temp copy of the exe runs
-  `--make-icon` (about 20 s, hidden, muted) to build RRQ-Coop.ico from the options-menu hero and patch it into RRQ-Coop.exe.
+  `--make-icon` (about 20 s, hidden, muted) to build RRQ-Coop.ico from the options-menu hero and patch it into RRQ.exe.
 - Start menu: Host Co-op, Join Co-op (bat asks for the IP), Play Solo, Read Me, Uninstall; optional desktop Host/Join; optional fullscreen (-f).
 - Uninstall removes the program and the copied game files, keeps saves (*.SAV, *.SAV.p2).
 - Tested: silent install/upgrade/uninstall, installed exe online (0 desyncs, equal timeclock).
