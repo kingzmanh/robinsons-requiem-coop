@@ -184,6 +184,11 @@ static void avatar_update(void)
     if (!avatar) return;
     sAlisScriptLive *t = hero_of(avatar_target);
     u32 av = avatar->vram_org;
+    // snapshot the avatar's previous position/angle first: updtcoord() then moves AND turns its
+    // sprites by the difference (it only re-angles sprites when the angle changed since savecoord)
+    sAlisScriptLive *saved = alis.script;
+    ALIS_SET_SCRIPT(avatar);
+    savecoord(av);
     if (t)
     {
         memcpy(alis.mem + av, alis.mem + t->vram_org, 0x18);   // x, y, z (+fractions)
@@ -198,9 +203,6 @@ static void avatar_update(void)
     }
     { const char *dz = getenv("RRQ_AVATAR_DZ"); if (dz) xwrite16(av + 0x10, (s16)xread16(av + 0x10) + atoi(dz)); }
     xwrite8(av - 4, 0);
-    sAlisScriptLive *saved = alis.script;
-    ALIS_SET_SCRIPT(avatar);
-    savecoord(av);                 // sprite world position comes from image.oldc* (set per entity)
     alis.flagmain = 0;
     image.invert_x = 0;
     image.depx = image.depy = image.depz = 0;
@@ -223,6 +225,16 @@ static void avatar_update(void)
     else
         put(avatar_res);
     updtcoord(av);
+    // putin() rewrites the sprite's angle field and updtcoord() only restores it on frames where the
+    // angle changed, so set the facing of every avatar sprite from the player's heading each frame
+    {
+        u16 wcaz = xread16(av + ALIS_SCR_WCAZ);
+        for (sSprite *sp = SPRITE_VAR(get_0x18_unknown(av)); sp != NULL; sp = SPRITE_VAR(sp->to_next))
+        {
+            u32 want = (sp->sprite_0x28 & 0xFFFF) | ((u32)wcaz << 16);
+            if (sp->sprite_0x28 != want) { sp->sprite_0x28 = want; if (sp->state == 0) sp->state = 2; }
+        }
+    }
     ALIS_SET_SCRIPT(saved);
 }
 
@@ -245,6 +257,12 @@ sAlisScriptLive *rrq_coop_spawn(const char *name)
         memcpy(next + 0x00, prev + 0x00, 4); memcpy(next + 0x08, prev + 0x08, 4); memcpy(next + 0x10, prev + 0x10, 4);
         memcpy(next + 0x18, prev + 0x18, 0x34 - 0x18);
         memcpy(next + 0x40, prev + 0x40, 2); memcpy(next + 0x44, prev + 0x44, 2); memcpy(next + 0x48, prev + 0x48, 2);
+        // inherited context, as clivin does (screen id etc.): yoda draws its HUD into the screen
+        // it inherits, without it every put() is dropped
+        *(s16 *)(next - 0x28) = *(s16 *)(prev - 0x0e);
+        *(s16 *)(next - 0x16) = *(s16 *)(prev - 0x16);
+        *(s16 *)(next - 0x22) = *(s16 *)(prev - 0x22);
+        *(s16 *)(next - 0x2a) = *(s16 *)(next - 0x0e);
         printf("[coop] spawned %s vram=%06x (parent %06x)\n", name, e->vram_org, parent->vram_org);
     }
     ALIS_SET_SCRIPT(saved);
@@ -350,6 +368,36 @@ void rrq_coop_dump(const char *tag)
     }
     printf("[coop] world: day clock 0x3bec=%d main 0x1a08=%d timeclock=%u\n", (s16)xread16(alis.basemain + 0x3bec), (s16)xread16(alis.basemain + 0x1a08), alis.timeclock);
     fflush(stdout);
+}
+
+// ---- per-player HUD: both players' controller/mouse entities draw into the same HUD screen.
+// Each view hides the other player's sprites by moving them far off-screen for that draw.
+static const char *hud_scripts[] = { "yoda.IO", "souris.IO", "heros.IO", "time.IO", "caporal.IO" };
+static int is_player_entity(sAlisScriptLive *e, int p)
+{
+    if (!e || !e->name) return 0;
+    int named = 0;
+    for (u32 k = 0; k < sizeof hud_scripts / sizeof hud_scripts[0]; k++) if (!strcasecmp(e->name, hud_scripts[k])) named = 1;
+    if (!named) return 0;
+    int owner = -1;
+    for (int i = 0; i < nowned; i++) if (owned_vram[i] == e->vram_org) { owner = owned_player[i]; break; }
+    return p == 1 ? owner == 1 : owner < 0;     // player 1's are the game's original instances
+}
+
+static void hide_hud(int p, int hide)
+{
+    if (!nowned) return;
+    s16 d = hide ? 8000 : -8000;
+    for (int i = 0; i < MAX_SCRIPTS; i++)
+    {
+        sAlisScriptLive *e = alis.live_scripts[i];
+        if (!is_player_entity(e, p)) continue;
+        for (sSprite *sp = SPRITE_VAR(get_0x18_unknown(e->vram_org)); sp != NULL; sp = SPRITE_VAR(sp->to_next))
+        {
+            sp->depx += d;
+            if (sp->state == 0) sp->state = 2;
+        }
+    }
 }
 
 // Called right before the frame is composed: the displayed view is the local player's.
@@ -488,6 +536,25 @@ static int is_live(sAlisScriptLive *e)
 // at the first gameplay frame, and again after a level change or a loaded save killed them.
 static int auto_start;
 void rrq_coop_set_auto(int on) { auto_start = on; }
+// The compass (caporal.IO) is one world entity that reads the hero it finds; P2 gets its own instance,
+// which finds P2's hero through rrq_coop_fix_herolist. Respawned whenever the game recreates P1's.
+static void ensure_compass(void)
+{
+    if (!hero_of(1)) return;
+    int p1 = 0, p2 = 0;
+    for (int k = 0; k < MAX_SCRIPTS; k++)
+    {
+        sAlisScriptLive *e = alis.live_scripts[k];
+        if (!e || !e->name || strcasecmp(e->name, "caporal.IO")) continue;
+        int o = -1;
+        for (int i = 0; i < nowned; i++) if (owned_vram[i] == e->vram_org) { o = owned_player[i]; break; }
+        if (o == 1) p2 = 1; else p1 = 1;
+    }
+    if (!p1 || p2) return;
+    sAlisScriptLive *c = rrq_coop_spawn("caporal.IO");
+    if (c) { rrq_coop_set_owner(c->vram_org, 1); rrq_coop_set_rollback(c->vram_org); }
+}
+
 static void maintain(void)
 {
     for (int i = 0; i < nowned; i++)
@@ -505,6 +572,7 @@ static void maintain(void)
     if (avatar && !is_live(avatar)) avatar = NULL;
     if (npcav && !is_live(npcav)) npcav = NULL;
     if ((auto_start || rrq_net_active()) && hero_of(0) && !hero_of(1)) rrq_coop_start();
+    ensure_compass();
     apply_pending_p2();
 }
 
@@ -515,6 +583,7 @@ void rrq_coop_before_draw(void)
     if (nowned && active != 0) rrq_coop_switch_quiet(0);
     rrq_input_select(0);
     avatar_update();
+    hide_hud(1, 1);
 }
 
 // World entities (NPCs, animals, objects) act on the nearest player: they run with that player's
@@ -559,19 +628,29 @@ static int context_for(u32 vram)
     return (dx1 * dx1 + dy1 * dy1) < (dx0 * dx0 + dy0 * dy0) ? 1 : 0;
 }
 
-// cfindtyp results: a hero found for an entity running in player p's context becomes player p's hero.
+// cfindtyp results: when an entity running in player 2's context looks up one of player 1's own
+// entities (hero, yoda, souris, time), it gets player 2's instance of that script instead.
+static int owner_of_vram(u32 vram)
+{
+    for (int i = 0; i < nowned; i++) if (owned_vram[i] == vram) return owned_player[i];
+    return -1;
+}
 void rrq_coop_fix_herolist(s16 *tab, int n)
 {
     if (!nowned || active == 0) return;
-    sAlisScriptLive *h0 = hero_of(0), *h1 = hero_of(1);
-    if (!h0 || !h1) return;
-    s16 id0 = -1, id1 = -1;
-    for (int i = 0; i < MAX_SCRIPTS; i++)
+    for (int t = 0; t < n; t++)
     {
-        if (alis.live_scripts[i] == h0) id0 = (s16)(i * ENT_STRIDE);
-        if (alis.live_scripts[i] == h1) id1 = (s16)(i * ENT_STRIDE);
+        int slot = tab[t] / ENT_STRIDE;
+        if (slot < 0 || slot >= MAX_SCRIPTS) continue;
+        sAlisScriptLive *e = alis.live_scripts[slot];
+        if (!e || !e->name || owner_of_vram(e->vram_org) >= 0) continue;   // already P2's, or world
+        for (int i = 0; i < MAX_SCRIPTS; i++)
+        {
+            sAlisScriptLive *c = alis.live_scripts[i];
+            if (c && c->name && c != e && !strcasecmp(c->name, e->name) && owner_of_vram(c->vram_org) == active)
+            { tab[t] = (s16)(i * ENT_STRIDE); break; }
+        }
     }
-    for (int i = 0; i < n; i++) if (tab[i] == id0) tab[i] = id1;
 }
 
 // Called by alis_loop before an entity slice runs (VM thread).
@@ -682,6 +761,7 @@ static int have_p2_hero(void)
 
 void rrq_coop_after_draw(void)
 {
+    hide_hud(1, 0);
     if (getenv("RRQ_NO_P2PASS")) return;   // test switch
     if (p2pass_skip > 0) { p2pass_skip--; return; }
     if (!(rrq_coop_split() || rrq_net_local_player() == 1) || !have_p2_hero() || rrq_in_p2_draw) return;
@@ -715,6 +795,7 @@ void rrq_coop_after_draw(void)
     int was = active;
 
     rrq_coop_switch_quiet(1);
+    hide_hud(0, 1);
     avatar_target = 0;            // in P2's view the avatar is P1
     avatar_freeze = 1;
     avatar_update();

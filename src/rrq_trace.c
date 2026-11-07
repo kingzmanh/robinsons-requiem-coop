@@ -6,6 +6,7 @@
 #include "rrq_trace.h"
 #include "alis.h"
 #include "mem.h"
+#include "image.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -99,5 +100,20 @@ void rrq_trace_dump_entities(const char *tag)
         n++;
     }
     printf("[rrq] ent %s total=%d\n", tag, n);
+    fflush(stdout);
+}
+
+// List every entity's sprites (screen position, state) to find who draws what.
+void rrq_trace_dump_sprites(void)
+{
+    for (int i = 0; i < MAX_SCRIPTS; i++)
+    {
+        sAlisScriptLive *e = alis.live_scripts[i];
+        if (!e || !e->name) continue;
+        int n = 0;
+        for (sSprite *sp = SPRITE_VAR(get_0x18_unknown(e->vram_org)); sp != NULL && n < 40; sp = SPRITE_VAR(sp->to_next), n++)
+            printf("[rrq] spr %-12s vram=%06x screen=%04x depx=%d depy=%d depz=%d state=%d\n", e->name, e->vram_org,
+                   get_0x16_screen_id(e->vram_org), sp->depx, sp->depy, sp->depz, sp->state);
+    }
     fflush(stdout);
 }

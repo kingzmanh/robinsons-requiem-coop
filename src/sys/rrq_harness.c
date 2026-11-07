@@ -135,6 +135,7 @@ void rrq_harness_tick(void)
         else if (!strcmp(e->cmd, "savestate")) alis.state = eAlisStateSave;
         else if (!strcmp(e->cmd, "loadstate")) alis.state = eAlisStateLoad;
         else if (!strcmp(e->cmd, "mark")) { printf("[rrq] mark t=%u %s\n", t, e->a); fflush(stdout); rrq_trace_mark(e->a); }
+        else if (!strcmp(e->cmd, "dumpspr")) rrq_trace_dump_sprites();
         else if (!strcmp(e->cmd, "dumpctx")) rrq_trace_dump_context(e->a);
         else if (!strcmp(e->cmd, "dument")) rrq_trace_dump_entities(e->a[0] ? e->a : "-");
         else if (!strcmp(e->cmd, "spawn")) { char nm[32] = {0}, fl[8] = {0}; int ow = 0; sscanf(e->a, "%31s %d %7s", nm, &ow, fl); rrq_coop_request_spawn(nm, ow | (!strcmp(fl, "rb") ? 0x100 : 0)); }
