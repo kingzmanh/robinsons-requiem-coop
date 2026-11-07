@@ -8,10 +8,10 @@ ONLINE CO-OP (2 PCs)
   Player 1 (host):  run "Host Co-op.bat". Start a new game or load one as usual.
   Player 2:         run "Join Co-op.bat" and type the host's IP address.
   As soon as the host is in the game, player 2 gets the host's game state and appears
-  next to player 1 with his own character: own health/body, illnesses, hunger/thirst,
+  next to player 1 with their own character: own health/body, illnesses, hunger/thirst,
   inventory and equipment. Each PC shows its own player's view.
 
-  Over the internet the host must forward TCP port 27531 to his PC (or use a LAN/VPN
+  Over the internet the host must forward TCP port 27531 to their PC (or use a LAN/VPN
   tool such as ZeroTier, Tailscale or Radmin VPN and join with that IP).
   Options: --delay <frames> (input delay, default 3; raise it for slow connections).
 
