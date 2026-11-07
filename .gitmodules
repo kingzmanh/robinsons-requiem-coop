@@ -1,4 +1,0 @@
-[submodule "engine"]
-	path = engine
-	url = https://github.com/kingzmanh/robinsons-requiem-coop-engine.git
-	branch = rrq-coop
