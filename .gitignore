@@ -21,3 +21,4 @@ local/
 installer/stage/
 release/
 __pycache__/
+engine/src/version.h
