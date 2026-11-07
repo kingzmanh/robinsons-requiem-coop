@@ -240,6 +240,7 @@ static void avatar_update(void)
 
 // Create a second instance of a loaded script as a new entity, inheriting position etc. from the
 // first live instance of the same script (what clivin does when a script spawns a child).
+static int spawning;     // rrq_coop_spawn clones are not UI children
 sAlisScriptLive *rrq_coop_spawn(const char *name)
 {
     sAlisScriptData *prog = NULL;
@@ -249,7 +250,9 @@ sAlisScriptLive *rrq_coop_spawn(const char *name)
     if (!prog || !parent) { printf("[coop] spawn %s: not loaded / no parent\n", name); return NULL; }
     sAlisScriptLive *saved = alis.script;
     ALIS_SET_SCRIPT(parent);
+    spawning = 1;
     sAlisScriptLive *e = script_live(prog);
+    spawning = 0;
     if (e)
     {
         u8 *prev = alis.mem + parent->vram_org, *next = alis.mem + e->vram_org;
@@ -326,6 +329,8 @@ static void rb_begin(void)
 static void npcav_pin(void);
 void rrq_coop_slice_end(void)
 {
+    rrq_pal_world_end();
+    rrq_pal_select(0);
     if (npcav && alis.script == npcav) npcav_pin();
     if (!rb_armed) return;
     rb_armed = 0;
@@ -373,9 +378,48 @@ void rrq_coop_dump(const char *tag)
 // ---- per-player HUD: both players' controller/mouse entities draw into the same HUD screen.
 // Each view hides the other player's sprites by moving them far off-screen for that draw.
 static const char *hud_scripts[] = { "yoda.IO", "souris.IO", "heros.IO", "time.IO", "caporal.IO" };
+// UI entities a player's entities started (computer, map, inventory panels...): they draw into the
+// shared HUD screen, so they belong to that player: they run in that player's context and are only
+// shown in that player's view.
+#define RRQ_MAX_UI 64
+static u32 ui_vram[RRQ_MAX_UI];
+static u8 ui_player[RRQ_MAX_UI];
+static int nui;
+static int ui_owner(u32 vram)
+{
+    for (int i = 0; i < nui; i++) if (ui_vram[i] == vram) return ui_player[i];
+    return -1;
+}
+static int is_player_entity(sAlisScriptLive *e, int p);
+void rrq_coop_entity_started(void *child_, void *parent_)
+{
+    sAlisScriptLive *child = child_, *parent = parent_;
+    if (!child) return;
+    // a new entity can reuse a dead one's memory: drop whatever the tables said about that address
+    u32 v = child->vram_org;
+    for (int i = 0; i < nui; i++) if (ui_vram[i] == v) { ui_vram[i] = ui_vram[--nui]; ui_player[i] = ui_player[nui]; i--; }
+    for (int i = 0; i < nowned; i++) if (owned_vram[i] == v) { owned_vram[i] = owned_vram[--nowned]; owned_player[i] = owned_player[nowned]; i--; }
+    for (int i = 0; i < nrb; i++) if (rb_vram[i] == v) { rb_vram[i] = rb_vram[--nrb]; i--; }
+    if (!nowned || spawning || !parent) return;
+    if (get_0x16_screen_id(child->vram_org) == 0x0152) return;      // world things (3D view) stay shared
+    int p = is_player_entity(parent, 1) ? 1 : is_player_entity(parent, 0) ? 0 : -1;
+    if (p < 0) return;
+    int k = nui;
+    for (int i = 0; i < nui; i++) if (ui_vram[i] == child->vram_org) { k = i; break; }
+    if (k == nui) { if (nui >= RRQ_MAX_UI) return; nui++; }
+    ui_vram[k] = child->vram_org; ui_player[k] = (u8)p;
+    if (p == 1)
+    {
+        rrq_coop_set_owner(child->vram_org, 1);
+        if (is_rb(parent->vram_org)) rrq_coop_set_rollback(child->vram_org);
+    }
+}
+
 static int is_player_entity(sAlisScriptLive *e, int p)
 {
     if (!e || !e->name) return 0;
+    int u = ui_owner(e->vram_org);
+    if (u >= 0) return u == p;
     int named = 0;
     for (u32 k = 0; k < sizeof hud_scripts / sizeof hud_scripts[0]; k++) if (!strcasecmp(e->name, hud_scripts[k])) named = 1;
     if (!named) return 0;
@@ -423,7 +467,8 @@ int rrq_coop_has_hero(void) { return hero_of(0) != NULL; }
 // ---- co-op tables for an online resync (not part of the engine savestate) ----
 typedef struct { u32 magic, store_size, nowned, nrb, avatar_vram; int active; int have[RRQ_MAX_PLAYERS];
                  u32 owned_vram[RRQ_MAX_OWNED]; u8 owned_player[RRQ_MAX_OWNED]; u32 rb_vram[RRQ_MAX_OWNED]; u16 avatar_res;
-                 u32 an_lastpos[2]; int an_frame[2], an_tick[2]; } coop_blob_hdr;
+                 u32 an_lastpos[2]; int an_frame[2], an_tick[2];
+                 u32 nui, ui_vram[RRQ_MAX_UI]; u8 ui_player[RRQ_MAX_UI]; } coop_blob_hdr;
 
 u32 rrq_coop_export(u8 **out)
 {
@@ -437,6 +482,7 @@ u32 rrq_coop_export(u8 **out)
     for (int p = 0; p < RRQ_MAX_PLAYERS; p++) h->have[p] = have[p];
     memcpy(h->owned_vram, owned_vram, sizeof owned_vram); memcpy(h->owned_player, owned_player, sizeof owned_player);
     memcpy(h->rb_vram, rb_vram, sizeof rb_vram);
+    h->nui = nui; memcpy(h->ui_vram, ui_vram, sizeof ui_vram); memcpy(h->ui_player, ui_player, sizeof ui_player);
     memcpy(h->an_lastpos, lastpos, sizeof lastpos); memcpy(h->an_frame, aframe, sizeof aframe); memcpy(h->an_tick, atick, sizeof atick);
     for (int p = 0; p < RRQ_MAX_PLAYERS; p++) memcpy(b + sizeof *h + p * store_size, store[p], store_size);
     *out = b;
@@ -452,12 +498,14 @@ void rrq_coop_import(const u8 *b, u32 n)
     for (int p = 0; p < RRQ_MAX_PLAYERS; p++) have[p] = h->have[p];
     memcpy(owned_vram, h->owned_vram, sizeof owned_vram); memcpy(owned_player, h->owned_player, sizeof owned_player);
     memcpy(rb_vram, h->rb_vram, sizeof rb_vram);
+    nui = h->nui; memcpy(ui_vram, h->ui_vram, sizeof ui_vram); memcpy(ui_player, h->ui_player, sizeof ui_player);
     memcpy(lastpos, h->an_lastpos, sizeof lastpos); memcpy(aframe, h->an_frame, sizeof aframe); memcpy(atick, h->an_tick, sizeof atick);
     for (int p = 0; p < RRQ_MAX_PLAYERS; p++) memcpy(store[p], b + sizeof *h + p * store_size, store_size);
     avatar = NULL; npcav = NULL;
     for (int i = 0; i < MAX_SCRIPTS; i++)
         if (h->avatar_vram && alis.live_scripts[i] && alis.live_scripts[i]->vram_org == h->avatar_vram) avatar = alis.live_scripts[i];
     avatar_res = h->avatar_res;
+    rrq_pal_reset();
     printf("[coop] co-op tables imported (%u owned entities, avatar %s)\n", nowned, avatar ? "yes" : "no");
     fflush(stdout);
 }
@@ -569,6 +617,12 @@ static void maintain(void)
         for (int k = 0; k < MAX_SCRIPTS; k++) if (alis.live_scripts[k] && alis.live_scripts[k]->vram_org == rb_vram[i]) { live = 1; break; }
         if (!live) { rb_vram[i] = rb_vram[nrb - 1]; nrb--; i--; }
     }
+    for (int i = 0; i < nui; i++)
+    {
+        int live = 0;
+        for (int k = 0; k < MAX_SCRIPTS; k++) if (alis.live_scripts[k] && alis.live_scripts[k]->vram_org == ui_vram[i]) { live = 1; break; }
+        if (!live) { ui_vram[i] = ui_vram[--nui]; ui_player[i] = ui_player[nui]; i--; }
+    }
     if (avatar && !is_live(avatar)) avatar = NULL;
     if (npcav && !is_live(npcav)) npcav = NULL;
     if ((auto_start || rrq_net_active()) && hero_of(0) && !hero_of(1)) rrq_coop_start();
@@ -582,6 +636,7 @@ void rrq_coop_before_draw(void)
     maintain();
     if (nowned && active != 0) rrq_coop_switch_quiet(0);
     rrq_input_select(0);
+    rrq_pal_select(0);
     avatar_update();
     hide_hud(1, 1);
 }
@@ -661,6 +716,9 @@ void rrq_coop_slice_begin(void)
     if (p != active) rrq_coop_switch_quiet(p);
     rrq_input_select(p);
     rb_begin();
+    // palette: a player's own entities work on that player's palette, world entities on both
+    if (is_player_entity(alis.script, 1)) rrq_pal_select(1);
+    else { rrq_pal_select(0); if (!is_player_entity(alis.script, 0)) rrq_pal_world_begin(); }
     if (p == 1 && drive_val >= 0)
         xwrite8(alis.basemain + 0x1a8f, (u8)drive_val);   // DRDEP: what P2's yoda would write
 }
@@ -759,9 +817,24 @@ static int have_p2_hero(void)
     return 0;
 }
 
+// The window shows the local frame with the palette it was drawn with: P2's entities swap their own
+// palette in while they run, which must not leak into what is on screen.
+static u32 disp_pal[256];
+static int disp_pal_ok;
+void sys_lock_renderer(void);
+void sys_unlock_renderer(void);
+const u32 *rrq_coop_display_palette(void) { return disp_pal_ok && nowned ? disp_pal : NULL; }
+
 void rrq_coop_after_draw(void)
 {
     hide_hud(1, 0);
+    if (nowned)
+    {
+        sys_lock_renderer();
+        memcpy(disp_pal, image.mpalet, sizeof disp_pal);
+        disp_pal_ok = 1;
+        sys_unlock_renderer();
+    }
     if (getenv("RRQ_NO_P2PASS")) return;   // test switch
     if (p2pass_skip > 0) { p2pass_skip--; return; }
     if (!(rrq_coop_split() || rrq_net_local_player() == 1) || !have_p2_hero() || rrq_in_p2_draw) return;
@@ -795,6 +868,7 @@ void rrq_coop_after_draw(void)
     int was = active;
 
     rrq_coop_switch_quiet(1);
+    rrq_pal_select(1);
     hide_hud(0, 1);
     avatar_target = 0;            // in P2's view the avatar is P1
     avatar_freeze = 1;
@@ -817,6 +891,7 @@ void rrq_coop_after_draw(void)
     for (int i = 0; i < b->w * b->h; i++)
         p2frame[i] = b->rgb ? b->rgb[i] : (b->palette[src[i]] | 0xff000000u);
     SDL_UnlockMutex(p2lock);
+    rrq_pal_select(0);
 
     // restore (the main script's memory comes back with P1's record in it)
     u8 *mem = alis.mem;

@@ -1254,6 +1254,7 @@ void clivin(void)
             *(s16 *)(next - 0x22) = *(s16 *)(prev_vram - 0x22);
             *(s16 *)(next - 0x2a) = *(s16 *)(next - 0xe);
         }
+        rrq_coop_entity_started(script, alis.script);   // rrq-coop: panels belong to the player who opened them
 
         // NOTE: just to show already running scripts
         

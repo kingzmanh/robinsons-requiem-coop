@@ -488,13 +488,15 @@ void restorepal(s16 mode, s32 duration)
 
 enum { DPAL_NONE, DPAL_C16, DPAL_BUNNY, DPAL_ISHAR, DPAL_B32 };
 
-static struct {
+typedef struct {
     u8 tpal[768], mpal[768], sav1[768], sav2[768];
     u8 step, reload, skip;
     s8 counter;
     volatile u8 ftopal, lock;
     u32 acc;
-} dpal;
+} dpal_t;
+static dpal_t dpal;
+static int pal_cur;
 
 // Colorado: 16 colours, no fades. Bunny Bricks / Ishar 1, 2 (Transarctica assumed): the
 // 16-bit driver. RRQ / Ishar 3: the 32-bit driver. Other PC games keep the generic path.
@@ -729,6 +731,7 @@ void dos_pal_reset(void)
 
 void dos_cpalette(s16 idx, u8 *res)
 {
+    if (getenv("RRQ_PALTRACE")) printf("[pal] %s %s cur=%d t=%u\n", __func__, alis.script && alis.script->name ? alis.script->name : "?", pal_cur, alis.timeclock);
     int fam = dos_pal_family();
     if (idx < 0)
     {
@@ -751,6 +754,7 @@ void dos_cpalette(s16 idx, u8 *res)
 
 void dos_ctopalet(s16 idx, s16 dur, u8 *res)
 {
+    if (getenv("RRQ_PALTRACE")) printf("[pal] %s %s cur=%d t=%u\n", __func__, alis.script && alis.script->name ? alis.script->name : "?", pal_cur, alis.timeclock);
     int fam = dos_pal_family();
     if (fam == DPAL_BUNNY || fam == DPAL_C16)
     {
@@ -775,6 +779,7 @@ void dos_ctopalet(s16 idx, s16 dur, u8 *res)
 
 void dos_ctoblack(s16 dur)
 {
+    if (getenv("RRQ_PALTRACE")) printf("[pal] %s %s cur=%d t=%u\n", __func__, alis.script && alis.script->name ? alis.script->name : "?", pal_cur, alis.timeclock);
     if (dos_pal_family() == DPAL_C16)
     {
         memset(dpal.tpal, 0, sizeof(dpal.tpal));
@@ -836,6 +841,7 @@ void dos_cdefcolor(s16 idx, u16 val)
 
 void dos_csavepal(s16 idx)
 {
+    if (getenv("RRQ_PALTRACE")) printf("[pal] %s %s cur=%d t=%u\n", __func__, alis.script && alis.script->name ? alis.script->name : "?", pal_cur, alis.timeclock);
     int fam = dos_pal_family();
     if (fam != DPAL_ISHAR && fam != DPAL_B32)
         return;
@@ -853,6 +859,7 @@ void dos_csavepal(s16 idx)
 // 0xFE resource drawn with put: unreachable in the originals (their path crashes); set it now.
 void dos_putin_palette(u8 *res)
 {
+    if (getenv("RRQ_PALTRACE")) printf("[pal] %s %s cur=%d t=%u\n", __func__, alis.script && alis.script->name ? alis.script->name : "?", pal_cur, alis.timeclock);
     dpal.counter = dpal.reload = 0;
     dpal_topalette(res, 0);
 }
@@ -912,13 +919,98 @@ static void dpal_tick(void)
     dpal_chase();
 }
 
+// ---- rrq-coop: one palette per player view ----
+// The live palette (dpal + image palettes) is the one being worked on; the other player's palette is
+// kept in pal_other. A player's own entities (HUD, computer/map panels) change only their player's
+// palette; world entities change both (the change is copied over at the end of their slice).
+#include <SDL2/SDL.h>
+typedef struct { dpal_t d; u32 svpalet[256], svpalet2[256], tpalet[256], mpalet[256]; } palstate_t;
+static palstate_t pal_other, pal_world_snap;
+static int pal_other_valid, pal_world_armed;
+static SDL_mutex *pal_mx;
+static void pal_lock(void) { if (!pal_mx) pal_mx = SDL_CreateMutex(); SDL_LockMutex(pal_mx); }
+static void pal_unlock(void) { SDL_UnlockMutex(pal_mx); }
+static void pal_get(palstate_t *p)
+{
+    p->d = dpal;
+    memcpy(p->svpalet, image.svpalet, sizeof p->svpalet); memcpy(p->svpalet2, image.svpalet2, sizeof p->svpalet2);
+    memcpy(p->tpalet, image.tpalet, sizeof p->tpalet); memcpy(p->mpalet, image.mpalet, sizeof p->mpalet);
+}
+static void pal_put(const palstate_t *p)
+{
+    dpal = p->d;
+    memcpy(image.svpalet, p->svpalet, sizeof p->svpalet); memcpy(image.svpalet2, p->svpalet2, sizeof p->svpalet2);
+    memcpy(image.tpalet, p->tpalet, sizeof p->tpalet); memcpy(image.mpalet, p->mpalet, sizeof p->mpalet);
+}
+static void pal_swap(void)
+{
+    static palstate_t t;
+    pal_get(&t); pal_put(&pal_other); pal_other = t;
+}
+void rrq_pal_reset(void) { pal_lock(); pal_other_valid = 0; pal_cur = 0; pal_unlock(); }
+void rrq_pal_select(int p)
+{
+    if (!dos_pal_active() || p == pal_cur) return;
+    pal_lock();
+    if (!pal_other_valid) { pal_get(&pal_other); pal_other_valid = 1; }
+    pal_swap();
+    pal_cur = p;
+    pal_unlock();
+}
+void rrq_pal_world_begin(void)
+{
+    pal_world_armed = 0;
+    if (!pal_other_valid || pal_cur != 0) return;
+    pal_get(&pal_world_snap);
+    pal_world_armed = 1;
+}
+static void pal_copy_changed(u8 *dst, const u8 *was, const u8 *now, u32 n)
+{
+    for (u32 i = 0; i < n; i++) if (was[i] != now[i]) dst[i] = now[i];
+}
+void rrq_pal_world_end(void)
+{
+    if (!pal_world_armed) return;
+    pal_world_armed = 0;
+    pal_lock();
+    static palstate_t now;
+    pal_get(&now);
+    const palstate_t *w = &pal_world_snap;
+    if (getenv("RRQ_PALTRACE") && memcmp(&w->d.tpal, &now.d.tpal, 768))
+        printf("[pal] world change by %s at %u\n", alis.script && alis.script->name ? alis.script->name : "?", alis.timeclock);
+    pal_copy_changed(pal_other.d.tpal, w->d.tpal, now.d.tpal, 768);
+    pal_copy_changed(pal_other.d.sav1, w->d.sav1, now.d.sav1, 768);
+    pal_copy_changed(pal_other.d.sav2, w->d.sav2, now.d.sav2, 768);
+    pal_copy_changed((u8 *)pal_other.tpalet, (const u8 *)w->tpalet, (const u8 *)now.tpalet, sizeof now.tpalet);
+    pal_copy_changed((u8 *)pal_other.svpalet, (const u8 *)w->svpalet, (const u8 *)now.svpalet, sizeof now.svpalet);
+    pal_copy_changed((u8 *)pal_other.svpalet2, (const u8 *)w->svpalet2, (const u8 *)now.svpalet2, sizeof now.svpalet2);
+    // immediate palette sets (not the fade steps the timer made meanwhile)
+    if (memcmp(w->d.mpal, now.d.mpal, 768) && !memcmp(now.d.mpal, now.d.tpal, 768))
+    {
+        pal_copy_changed(pal_other.d.mpal, w->d.mpal, now.d.mpal, 768);
+        pal_copy_changed((u8 *)pal_other.mpalet, (const u8 *)w->mpalet, (const u8 *)now.mpalet, sizeof now.mpalet);
+    }
+    if (now.d.ftopal != w->d.ftopal && now.d.ftopal) pal_other.d.ftopal = now.d.ftopal;
+    if (now.d.step != w->d.step) pal_other.d.step = now.d.step;
+    if (now.d.reload != w->d.reload) pal_other.d.reload = now.d.reload;
+    pal_unlock();
+}
+
 // Called from itroutine; fade steps follow the pace rate (the DOS originals: VGA refresh).
-void dos_pal_tick(void)
+static void dos_pal_tick1(void)
 {
     u32 hz = sys_timeclock_hz ? sys_timeclock_hz : 60;
     for (dpal.acc += sys_pace_hz(); dpal.acc >= hz; dpal.acc -= hz)
         if (dpal.ftopal)
             dpal_tick();
+}
+void dos_pal_tick(void)
+{
+    if (!pal_other_valid) { dos_pal_tick1(); return; }
+    pal_lock();
+    dos_pal_tick1();
+    pal_swap(); dos_pal_tick1(); pal_swap();   // the other view's fades run too
+    pal_unlock();
 }
 
 // After a save state load: rebuild the 6-bit state from the restored host palettes.

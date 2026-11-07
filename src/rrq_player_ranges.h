@@ -2,6 +2,7 @@
 // Main-variable ranges that belong to one player. Offsets are basemain-relative.
 #pragma once
 static const unsigned short rrq_player_ranges[][2] = {
+    {0x0152, 0x0153},   // 3D view screen state byte: open/closed (the map and some panels close it for their player only)
     {0x01b2, 0x01e4},   // 3D view screen 0x0152: camera follow target + offsets/angles (+0x60..+0x91)
     {0x0e82, 0x0e8b},
     {0x0e92, 0x0eac},

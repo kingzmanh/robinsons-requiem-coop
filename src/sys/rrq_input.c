@@ -42,6 +42,12 @@ void rrq_input_select(int p)
     cur = p;
 }
 
+// a key press for player p: the active player's latch is the live global one
+void rrq_input_set_latch(int p, SDL_Keysym ks)
+{
+    if ((p & 1) == cur) button = ks; else dev[p & 1].latch = ks;
+}
+
 mouse_t *rrq_input_mouse(void) { return virt(cur) ? &dev[cur].m : &mouse; }
 
 const u8 *rrq_input_keys(const u8 *real) { return virt(cur) ? dev[cur].keys : real; }

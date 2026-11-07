@@ -220,7 +220,11 @@ static void apply(int player, const pkt_t *p)
     if (p->rbc) d->m.rb_clicked = 1;
     memset(d->keys, 0, sizeof d->keys);
     for (int i = 0; i < p->nheld && i < MAXHELD; i++) if (p->held[i] < SDL_NUM_SCANCODES) d->keys[p->held[i]] = 1;
-    if (p->key_sym) { d->latch.sym = p->key_sym; d->latch.scancode = (SDL_Scancode)p->key_sc; d->latch.mod = 0; }
+    if (p->key_sym)
+    {
+        SDL_Keysym ks = {0}; ks.sym = p->key_sym; ks.scancode = (SDL_Scancode)p->key_sc;
+        rrq_input_set_latch(player, ks);
+    }
 }
 
 static void store_remote(const pkt_t *p)

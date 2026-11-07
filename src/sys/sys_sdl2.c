@@ -581,6 +581,10 @@ void sys_render(pixelbuf_t buffer)
 {
     dirty_len = 0;
     SDL_SemWait(render_sem);
+    {
+        const unsigned int *dp = rrq_coop_display_palette();   // rrq-coop: the palette the local frame was drawn with
+        if (dp) buffer.palette = (u32 *)dp;
+    }
 
     // v6 runtime resolution switch
     if (buffer.w != width || buffer.h != height)

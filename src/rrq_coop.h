@@ -26,3 +26,9 @@ void rrq_coop_set_auto(int on);
 void rrq_coop_file_opened(const char *path, unsigned mode);
 void rrq_coop_file_closed(void);
 void rrq_coop_note_message(unsigned int vram);
+void rrq_coop_entity_started(void *child, void *parent);   // cstart hook (VM thread)
+void rrq_pal_select(int p);    // image.c: per-player palettes
+void rrq_pal_reset(void);
+const unsigned int *rrq_coop_display_palette(void);
+void rrq_pal_world_begin(void);
+void rrq_pal_world_end(void);
