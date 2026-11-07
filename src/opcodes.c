@@ -4406,6 +4406,7 @@ static void csend(void)
             break;
 
         s32 vram = xread32(alis.atent + entry);
+        rrq_coop_note_message(vram);   // rrq-coop: the receiver acts for the sender's player
         if (vram == 0)
             break;
 
@@ -7030,6 +7031,7 @@ static void csinput(void)
 
 void sendmess(u32 vram, u16 idx)
 {
+    rrq_coop_note_message(vram);
     if ((get_0x24_scan_inter(vram) & 1) == 0)
     {
         s16 val = get_0x1c_scan_clr(vram) + 2;

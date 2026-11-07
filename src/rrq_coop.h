@@ -25,3 +25,4 @@ void rrq_coop_fix_herolist(short *tab, int n);
 void rrq_coop_set_auto(int on);
 void rrq_coop_file_opened(const char *path, unsigned mode);
 void rrq_coop_file_closed(void);
+void rrq_coop_note_message(unsigned int vram);

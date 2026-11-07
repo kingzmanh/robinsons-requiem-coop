@@ -521,11 +521,35 @@ void rrq_coop_before_draw(void)
 // record active, so e.g. a tiger's bite wounds the player it attacked (cneartyp already picks
 // the nearest hero). Entities without a position (MAIN, zone, UI scripts) stay with player 1.
 static sAlisScriptLive *hero_of(int player);
+
+// interaction: a world entity that just received a message from a player's entity (a click, a
+// "use", a trade...) runs in that player's context for a while, whoever stands closer
+#define RRQ_MAX_INTERACT 16
+static u32 inter_vram[RRQ_MAX_INTERACT], inter_until[RRQ_MAX_INTERACT];
+static u8 inter_player[RRQ_MAX_INTERACT];
+void rrq_coop_note_message(u32 vram)
+{
+    if (!nowned || !alis.script) return;
+    int from = -1;
+    for (int i = 0; i < nowned; i++) if (owned_vram[i] == alis.script->vram_org) { from = owned_player[i]; break; }
+    if (from < 0) return;                       // world-to-world messages keep the nearest rule
+    int slot = 0;
+    for (int i = 0; i < RRQ_MAX_INTERACT; i++)
+    {
+        if (inter_vram[i] == vram) { slot = i; break; }
+        if (inter_until[i] < inter_until[slot]) slot = i;
+    }
+    inter_vram[slot] = vram; inter_player[slot] = (u8)from;
+    inter_until[slot] = alis.timeclock + 60 * 3;   // ~3 s of game time
+}
+
 static int context_for(u32 vram)
 {
     int o = -1;
     for (int i = 0; i < nowned; i++) if (owned_vram[i] == vram) { o = owned_player[i]; break; }
     if (o >= 0) return o;
+    for (int i = 0; i < RRQ_MAX_INTERACT; i++)
+        if (inter_vram[i] == vram && alis.timeclock < inter_until[i]) return inter_player[i];
     s16 x = (s16)xread16(vram), y = (s16)xread16(vram + 8);
     if (!x && !y) return 0;
     sAlisScriptLive *h0 = hero_of(0), *h1 = hero_of(1);
