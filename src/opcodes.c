@@ -4875,6 +4875,7 @@ static void cfopen(void)
     }
 
     afopen((char *)path, mode);
+    rrq_coop_file_opened((char *)path, mode);   // rrq-coop: player 2 save sidecar
     if(alis.fp == NULL)
     {
         alis_error(ALIS_ERR_FOPEN, path);
@@ -4884,6 +4885,7 @@ static void cfopen(void)
 // Codopname no. 114 opcode 0x71 cfclose
 static void cfclose(void)
 {
+    rrq_coop_file_closed();
     if(sys_fclose(alis.fp) < 0)
     {
         alis_error(ALIS_ERR_FCLOSE);

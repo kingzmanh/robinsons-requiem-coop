@@ -367,6 +367,68 @@ void rrq_coop_start(void)
 
 int rrq_coop_has_hero(void) { return hero_of(0) != NULL; }
 
+// ---- co-op saves: <name>.SAV.p2 holds player 2's record + hero position next to the game's save ----
+#define P2SAVE_MAGIC 0x32505252u   // "RRP2"
+static char sav_path[700];
+static unsigned sav_mode;
+static int sav_open;
+static u8 *pending_rec;            // record loaded from a sidecar, applied once P2 exists again
+static u8 pending_pos[0x30];
+
+void rrq_coop_file_opened(const char *path, unsigned mode)
+{
+    size_t n = strlen(path);
+    sav_open = n > 4 && !strcasecmp(path + n - 4, ".SAV");
+    if (sav_open) { snprintf(sav_path, sizeof sav_path, "%s.p2", path); sav_mode = mode; }
+}
+
+void rrq_coop_file_closed(void)
+{
+    if (!sav_open) return;
+    sav_open = 0;
+    ensure();
+    int writing = (sav_mode & 0x0100) != 0;   // 0x02xx/0x03xx = create/write, 0x00xx = read
+    if (writing)
+    {
+        sAlisScriptLive *h = hero_of(1);
+        if (!h || !have[1]) { remove(sav_path); return; }
+        if (active == 1) copy_out(store[1]);
+        FILE *f = fopen(sav_path, "wb");
+        if (!f) return;
+        u32 hdr[2] = { P2SAVE_MAGIC, store_size };
+        fwrite(hdr, sizeof hdr, 1, f);
+        fwrite(store[1], 1, store_size, f);
+        fwrite(alis.mem + h->vram_org, 1, 0x30, f);
+        fclose(f);
+        printf("[coop] saved player 2 -> %s\n", sav_path); fflush(stdout);
+    }
+    else
+    {
+        FILE *f = fopen(sav_path, "rb");
+        if (!f) { printf("[coop] %s: no player 2 data, player 2 starts fresh\n", sav_path); fflush(stdout); return; }
+        u32 hdr[2] = {0};
+        if (fread(hdr, sizeof hdr, 1, f) == 1 && hdr[0] == P2SAVE_MAGIC && hdr[1] == store_size)
+        {
+            free(pending_rec); pending_rec = malloc(store_size);
+            if (fread(pending_rec, 1, store_size, f) != store_size || fread(pending_pos, 1, 0x30, f) != 0x30) { free(pending_rec); pending_rec = NULL; }
+            else { printf("[coop] loaded player 2 from %s\n", sav_path); fflush(stdout); }
+        }
+        fclose(f);
+    }
+}
+
+static void apply_pending_p2(void)
+{
+    sAlisScriptLive *h = hero_of(1);
+    if (!pending_rec || !h) return;
+    memcpy(store[1], pending_rec, store_size);
+    have[1] = 1;
+    if (active == 1) copy_in(store[1]);
+    memcpy(alis.mem + h->vram_org, pending_pos, 0x30);
+    free(pending_rec); pending_rec = NULL;
+    printf("[coop] player 2 restored from save\n"); fflush(stdout);
+}
+
 static int is_live(sAlisScriptLive *e)
 {
     if (!e) return 0;
@@ -396,6 +458,7 @@ static void maintain(void)
     if (avatar && !is_live(avatar)) avatar = NULL;
     if (npcav && !is_live(npcav)) npcav = NULL;
     if ((auto_start || rrq_net_active()) && hero_of(0) && !hero_of(1)) rrq_coop_start();
+    apply_pending_p2();
 }
 
 void rrq_coop_before_draw(void)
