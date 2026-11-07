@@ -1,0 +1,15 @@
+800 coopstart
+1500 p2click 288 170 l 2500
+4500 setpos 1 5000 2000 0
+6000 dumprec before_save
+6500 key F2
+8000 move 122 38
+8200 click 122 38
+9500 key c
+9700 key o
+9900 key o
+10100 key p
+10300 key 1
+10600 key Return
+13000 shot saved
+13500 quit

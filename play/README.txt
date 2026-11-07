@@ -21,6 +21,7 @@ CONTROLS
   (turn off with --nowasd). F1-F10 = the action icons, Esc = cancel / right button.
 
 KNOWN LIMITS (test build)
-  - Saving: the in-game save stores player 1; player 2 starts fresh after loading.
+  - Saving: the in-game save (computer icon) also writes <name>.SAV.p2 with player 2;
+    loading that save restores player 2 (position, body, inventory). Old saves: P2 starts fresh.
   - Player 2 is drawn as a soldier figure from the game's own graphics.
   - Cutscenes/videos are shared (both see them).

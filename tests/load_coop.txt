@@ -1,0 +1,12 @@
+800 coopstart
+2000 setpos 1 4000 1000 50
+3000 dument before_load
+3500 key F2
+5000 move 122 19
+5200 click 122 19
+6500 move 118 143
+6700 click 118 143
+12000 dument after_load
+12200 dumprec after_load
+12500 shot loaded
+13000 quit
