@@ -69,6 +69,7 @@ void __attribute__((format(printf,1,2))) dbglog(const char *fmt, ...)
 // #include "SDL2/SDL.h"
 // int main(int argc, char *argv[]) (exactly like this)
 
+#include "rrq_icon.h"
 int disalis = DEBUG_SCRIPT;
 int authormode = 0;
 
@@ -155,6 +156,7 @@ int main(int argc, char *argv[])
         char logp[64];
         snprintf(logp, sizeof logp, "rrq-coop.log");
         for (int c = 1; c < argc; c++) if (!strcmp(argv[c], "--join")) snprintf(logp, sizeof logp, "rrq-coop-p2.log");
+        for (int c = 1; c < argc; c++) if (!strcmp(argv[c], "--make-icon")) snprintf(logp, sizeof logp, "rrq-icon.log");
         freopen(logp, "w", stdout);
         freopen(logp, "a", stderr);
         setvbuf(stdout, NULL, _IOLBF, 0);
@@ -179,6 +181,7 @@ int main(int argc, char *argv[])
 #endif
 
         const char *path = NULL;
+        const char *icon_out = NULL, *icon_exe = NULL;   // rrq-coop: --make-icon (installer)
 
         for (int c = 1; c < argc; c++)
         {
@@ -212,6 +215,14 @@ int main(int argc, char *argv[])
             {
                 char v[160]; snprintf(v, sizeof v, "RRQ_NET=join:%s", argv[++c]);
                 putenv(strdup(v));
+            }
+            else if (strcmp(cmd, "--make-icon") == 0 && c + 1 < argc)
+            {
+                icon_out = argv[++c];
+            }
+            else if (strcmp(cmd, "--icon-exe") == 0 && c + 1 < argc)
+            {
+                icon_exe = argv[++c];
             }
             else if (strcmp(cmd, "--split") == 0)
             {
@@ -345,6 +356,13 @@ int main(int argc, char *argv[])
         {
             usage();
             return 0;
+        }
+
+        if (icon_out)
+        {
+            rrq_icon_setup(icon_out, icon_exe);
+            mutesound = 1;
+            fullscreen = 0;
         }
 
         // No path on the command line — fall back to the directory the

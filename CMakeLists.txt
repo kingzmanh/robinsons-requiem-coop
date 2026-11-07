@@ -87,6 +87,7 @@ list(APPEND alis_SOURCES
     ${CMAKE_CURRENT_LIST_DIR}/src/rrq_trace.c
     ${CMAKE_CURRENT_LIST_DIR}/src/rrq_coop.c
     ${CMAKE_CURRENT_LIST_DIR}/src/rrq_net.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/rrq_icon.c
     ${CMAKE_CURRENT_LIST_DIR}/src/audio/audio.c
     ${CMAKE_CURRENT_LIST_DIR}/src/audio/music_v0.c
     ${CMAKE_CURRENT_LIST_DIR}/src/audio/music_v1.c

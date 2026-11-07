@@ -13,6 +13,7 @@
 #include "rrq_coop.h"
 #include "rrq_input.h"
 #include "../rrq_net.h"
+#include "../rrq_icon.h"
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -107,6 +108,17 @@ void rrq_harness_tick(void)
 {
     if (!active) return;
     u32 t = SDL_GetTicks() - t0;
+    // --make-icon: skip the intro and the language screen until the options menu is up
+    if (rrq_icon_mode() && !rrq_icon_menu_seen())
+    {
+        static u32 next_drive = 1000;
+        if (t >= next_drive)
+        {
+            if ((next_drive / 500) & 1) { m_override = 1; mx = 107; my = 140; mlb = 1; mlbc = 1; lb_release = t + 100; }
+            else { button.sym = SDLK_ESCAPE; button.scancode = SDL_SCANCODE_ESCAPE; button.mod = 0; keys[SDL_SCANCODE_ESCAPE] = 1; key_release[SDL_SCANCODE_ESCAPE] = t + 100; }
+            next_drive += 500;
+        }
+    }
     for (int k = 0; k < SDL_NUM_SCANCODES; k++)
         if (keys[k] && t >= key_release[k]) keys[k] = 0;
     if (mlb && t >= lb_release) mlb = 0;

@@ -24,6 +24,7 @@
 #define ALIS_VM_CORE
 #include "rrq_trace.h"
 #include "rrq_coop.h"
+#include "rrq_icon.h"
 #include "rrq_net.h"
 #include "alis.h"
 #include "alis_private.h"
@@ -1620,6 +1621,7 @@ void alis_main_V2(void)
             rrq_coop_before_draw();
             draw();
             rrq_coop_after_draw();
+            rrq_icon_after_draw();
 #ifdef ALIS_DSP_MIXER
             dsp_mixer_poll();
 #if defined(__atarist__) || defined(__TOS__)
@@ -1729,6 +1731,7 @@ void alis_main_V3(void)
             rrq_coop_before_draw();
             draw();
             rrq_coop_after_draw();
+            rrq_icon_after_draw();
 #ifdef ALIS_DSP_MIXER
             dsp_mixer_poll();
 #if defined(__atarist__) || defined(__TOS__)

@@ -81,7 +81,10 @@ void rrq_net_after_load(void)
 {
     if (pending_blob) { rrq_coop_import(pending_blob, pending_blob_n); free(pending_blob); pending_blob = NULL; rrq_coop_skip_p2pass(2); }
 }
-int rrq_net_frame_timer(void) { return lockstep || fake(); }
+// From the moment the start state is (re)loaded until the lockstep runs, the timer only counts (and
+// those counts are dropped): a direct tick in that window would start this PC one tick ahead.
+static volatile int freeze_timer;
+int rrq_net_frame_timer(void) { return lockstep || freeze_timer || fake(); }
 static int local_player;            // stays set after a disconnect, so each PC keeps its own view
 int rrq_net_local_player(void) { return local_player; }
 
@@ -272,6 +275,7 @@ void rrq_net_frame(void)
                 char tmp[620]; snprintf(tmp, sizeof tmp, "%s.tmp", path);
                 FILE *f = fopen(tmp, "wb"); if (f) { fwrite(buf, 1, n, f); fclose(f); }
                 remove(path); rename(tmp, path);
+                freeze_timer = 1;
                 alis.state = eAlisStateLoad;
                 printf("[net] received host start state (%u bytes)\n", n); fflush(stdout);
             }
@@ -296,12 +300,14 @@ void rrq_net_frame(void)
                 free(buf);
                 printf("[net] sent start state (%u bytes)\n", n); fflush(stdout);
                 // the host already ran one pass past the saved state; it reloads so both start equal
+                freeze_timer = 1;
                 alis.state = eAlisStateLoad;
                 return;
             }
         }
         started = 3;
         lockstep = 1;
+        freeze_timer = 0;
         frame = 0; last_remote_frame = 0; want_resync = 0;
         rrq_input_reset();
         memset(have_local, 0, sizeof have_local); memset(have_remote, 0, sizeof have_remote);
@@ -361,13 +367,13 @@ void rrq_net_frame(void)
     lp.cs_frame = pending_cs_frame; lp.cs = pending_cs; pending_cs_frame = 0;
     if (want_resync) lp.flags |= 1;
     local_q[f % RING] = lp; have_local[f % RING] = 1;
-    if (send_all(&lp, sizeof lp)) { printf("[net] connection lost\n"); mode = 0; lockstep = 0; closesocket(sock); sock = INVALID_SOCKET; return; }
+    if (send_all(&lp, sizeof lp)) { printf("[net] connection lost\n"); mode = 0; lockstep = 0; freeze_timer = 0; closesocket(sock); sock = INVALID_SOCKET; return; }
     // wait for the remote input of this frame
     int s = frame % RING;
     while (!(have_remote[s] && remote_q[s].frame == frame))
     {
         pkt_t rp;
-        if (recv_all(&rp, sizeof rp)) { printf("[net] connection lost\n"); fflush(stdout); mode = 0; lockstep = 0; closesocket(sock); sock = INVALID_SOCKET; return; }
+        if (recv_all(&rp, sizeof rp)) { printf("[net] connection lost\n"); fflush(stdout); mode = 0; lockstep = 0; freeze_timer = 0; closesocket(sock); sock = INVALID_SOCKET; return; }
         store_remote(&rp);
     }
     const pkt_t *mine = &local_q[s], *theirs = &remote_q[s];
@@ -386,11 +392,11 @@ void rrq_net_frame(void)
         while (last_remote_frame < frame - 1 + (u32)delay)
         {
             pkt_t rp;
-            if (recv_all(&rp, sizeof rp)) { mode = 0; lockstep = 0; closesocket(sock); sock = INVALID_SOCKET; return; }
+            if (recv_all(&rp, sizeof rp)) { mode = 0; lockstep = 0; freeze_timer = 0; closesocket(sock); sock = INVALID_SOCKET; return; }
             last_remote_frame = rp.frame;
         }
         printf("[net] resync at frame %u\n", frame); fflush(stdout);
-        lockstep = 0;
+        lockstep = 0; freeze_timer = 0;
         started = 0;
     }
 }

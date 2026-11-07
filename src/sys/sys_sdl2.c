@@ -177,7 +177,7 @@ void sys_init(sPlatform *pl, int fullscreen, int mutesound)
     printf("  Video initialization...\n");
     rrq_harness_init();
     int sw = rrq_coop_split() ? 2 : 1;   // rrq-coop split screen: P1 | P2 side by side
-    window = SDL_CreateWindow(kProgName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width * scale_x * sw, height * scale_y, SDL_WINDOW_RESIZABLE | fullscreen * SDL_WINDOW_FULLSCREEN_DESKTOP | (rrq_harness_hidden() ? SDL_WINDOW_HIDDEN : 0));
+    window = SDL_CreateWindow(alis.platform.uid == EGameRobinsonsRequiem0 || alis.platform.uid == EGameRobinsonsRequiem1 ? "Robinson's Requiem Co-op" : kProgName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width * scale_x * sw, height * scale_y, SDL_WINDOW_RESIZABLE | fullscreen * SDL_WINDOW_FULLSCREEN_DESKTOP | (rrq_harness_hidden() ? SDL_WINDOW_HIDDEN : 0));
     if (window == NULL)
     {
         fprintf(stderr, "   Could not create %.0fx%.0f window: %s\n", (width * scale_x), (height * scale_y), SDL_GetError());
