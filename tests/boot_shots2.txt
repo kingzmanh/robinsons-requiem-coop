@@ -1,0 +1,9 @@
+42500 move 107 140
+43000 click 107 140
+47000 key Escape
+50000 key Escape
+53000 key Escape
+56000 key Escape
+59000 key Escape
+62000 key Escape
+80000 quit

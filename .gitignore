@@ -18,3 +18,4 @@ analysis/manual.txt
 play/*.exe
 play/*.dll
 play/*.log
+local/
