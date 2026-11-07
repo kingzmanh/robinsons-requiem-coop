@@ -90,7 +90,9 @@ Co-op is added **inside the interpreter**, not by rewriting the scripts:
   - Tested from a cold boot: the host goes through the menus while the client waits, then the session syncs.
 - **Co-op saves**: the in-game save also writes `<name>.SAV.p2` (P2 record + hero position); loading restores it. Tested save → load.
 - **Play build**: `play/` holds `RRQ-Coop.exe` (Release), `SDL2.dll`, `Host Co-op.bat`, `Join Co-op.bat`, `Play Solo.bat` and `README.txt`. Data comes from `..\game`.
-- Not yet verified: item pickup by P2 into P2's inventory (no pickup reproduced in tests yet), NPC dialogues started by P2, a real two-PC test over LAN/internet, automatic resync after a desync, a local second-player gamepad, and the installer (Phase 5).
+- **Interaction routing**: a world entity that receives a message from a player's entity (click/use/trade) runs in that player's context for about 3 s. Otherwise it follows the nearest player.
+- **Automatic resync**: a checksum mismatch is flagged in the frame stream. Both PCs drain the in-flight packets, the host re-sends its state plus the co-op tables (captured at the moment of the save), and lockstep restarts. Tested with a forced corruption: it recovers and stays in sync, but it currently needs a second round once.
+- Not yet verified: an actual item pickup by P2 (in tests the first click only "identifies" an object), NPC dialogues started by P2, and a real two-PC test over LAN/internet. Still to do: a local second-player gamepad, the installer (Phase 5), and why the first resync round leaves a small camera offset.
 
 **Phase 2 – Two player records, one machine (design from Phase 1 facts)**
 - Per-entity owner: heros/yoda/time/souris/objet/body/map/ordi instances belong to a player; everything else is world. The scheduler swaps in the owner's record before each slice. World entities run in the nearest/target player's context.

@@ -1,0 +1,13 @@
+500 setpos 0 1368 2996 0
+1600 mark click1
+1700 move 130 104
+1900 click 130 104
+3500 mark click2
+3600 click 130 104
+5000 shot c1
+5200 mark click3
+5300 click 130 104
+6800 shot c2
+7000 key F10
+8500 shot c3
+9000 quit
