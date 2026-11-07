@@ -497,6 +497,10 @@ void rrq_coop_after_draw(void)
     avatar_target = 0;            // in P2's view the avatar is P1
     avatar_update();
     avatar_target = 1;
+    // full redraw: the screens normally repaint only what changed since the last (P1) frame
+    image.fremap = 1;
+    for (u16 sc = screen.ptscreen; sc; sc = xread16(alis.basemain + sc + 0x5c))
+        set_scr_state(sc, (s8)(get_scr_state(sc) | 0x80));
     rrq_in_p2_draw = 1;
     draw();
     rrq_in_p2_draw = 0;
@@ -504,8 +508,10 @@ void rrq_coop_after_draw(void)
     pixelbuf_t *b = &host.pixelbuf;
     SDL_LockMutex(p2lock);
     if (p2w != b->w || p2h != b->h) { free(p2frame); p2frame = malloc((size_t)b->w * b->h * 4); p2w = b->w; p2h = b->h; }
+    // read the freshly drawn page directly (host.pixelbuf.data is only re-pointed when insid == 0)
+    const u8 *src = image.physic ? image.physic : b->data;
     for (int i = 0; i < b->w * b->h; i++)
-        p2frame[i] = b->rgb ? b->rgb[i] : (b->palette[b->data[i]] | 0xff000000u);
+        p2frame[i] = b->rgb ? b->rgb[i] : (b->palette[src[i]] | 0xff000000u);
     SDL_UnlockMutex(p2lock);
 
     // restore (the main script's memory comes back with P1's record in it)
@@ -524,8 +530,12 @@ void rrq_coop_after_draw(void)
 static char req_dump[32]; static volatile int req_dump_flag;
 void rrq_coop_request_dump(const char *t) { snprintf(req_dump, sizeof req_dump, "%s", t); req_dump_flag = 1; }
 
+static volatile int req_start;
+void rrq_coop_request_start(void) { req_start = 1; }
+
 void rrq_coop_service(void)
 {
+    if (req_start) { req_start = 0; rrq_coop_start(); }
     if (req_dump_flag) { req_dump_flag = 0; rrq_coop_dump(req_dump); }
     if (req_avatar_flag) { req_avatar_flag = 0; avatar_create(req_avatar, req_avatar_res); }
     if (req_npcav_flag) { req_npcav_flag = 0; npcav_create(req_npcav); }

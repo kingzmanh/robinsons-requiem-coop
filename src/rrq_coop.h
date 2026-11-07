@@ -19,3 +19,4 @@ void rrq_coop_request_dump(const char *t);
 void rrq_coop_request_avatar(const char *script, int res, int dx, int dy);
 void rrq_coop_request_npcavatar(const char *script);
 void rrq_coop_start(void);
+void rrq_coop_request_start(void);

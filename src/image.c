@@ -4714,11 +4714,11 @@ void v6ips_measure(void)
 // rrq-coop: online play runs the timer's effects at frame boundaries (rrq_net_frame), so both
 // PCs advance time identically; the SDL timer thread then only counts ticks.
 void itroutine_body(void);
-int rrq_net_active(void);
+int rrq_net_frame_timer(void);
 void rrq_net_timer_tick(void);
 u32 itroutine(u32 interval, void *param)
 {
-    if (rrq_net_active()) rrq_net_timer_tick();
+    if (rrq_net_frame_timer()) rrq_net_timer_tick();
     else itroutine_body();
     return alis.platform.is_little_endian ? 17 : 20;
 }

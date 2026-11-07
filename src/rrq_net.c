@@ -51,8 +51,12 @@ static s32 lkey_sym; static u16 lkey_sc;
 static u32 my_cs[RING], my_cs_frame[RING];
 static int started;
 
+static int fake_timer = -1;   // RRQ_FAKE_NET_TIMER=1: local test of the frame-driven timer
+static int fake(void) { if (fake_timer < 0) { const char *e = getenv("RRQ_FAKE_NET_TIMER"); fake_timer = e && *e == '1'; } return fake_timer; }
 int rrq_net_active(void) { return mode != 0; }
-int rrq_net_local_player(void) { return mode == 2 ? 1 : 0; }
+int rrq_net_frame_timer(void) { return mode != 0 || fake(); }
+static int local_player;            // stays set after a disconnect, so each PC keeps its own view
+int rrq_net_local_player(void) { return local_player; }
 
 static int send_all(const void *b, int n)
 {
@@ -118,6 +122,7 @@ void rrq_net_init(void)
     }
     int one = 1; setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char *)&one, sizeof one);
     srand(seed);
+    local_player = mode == 2 ? 1 : 0;
     printf("[net] connected as player %d, input delay %d frames, seed %08x\n", mode == 1 ? 1 : 2, delay, seed);
     fflush(stdout);
 }
@@ -201,25 +206,20 @@ void rrq_net_frame(void)
 {
     static int tried;
     if (!tried) { tried = 1; rrq_net_init(); }
+    if (!mode && fake()) { int t = SDL_AtomicSet(&pending_ticks, 0); for (int i = 0; i < t && i < 60; i++) itroutine_body(); return; }
     if (!mode || sock == INVALID_SOCKET) return;
-    if (!started)
+    if (started < 3)
     {
-        started = 1;
-        // join: the host's complete engine state goes to the client, so both start identical
+        // join, using the engine's own save/load (done at the top of the VM loop):
+        //  host:   frame A request save -> frame B send the file
+        //  client: frame A receive the file, request load -> frame B
+        //  both:   frame B (state identical) start co-op and the lockstep
         char path[600];
         snprintf(path, sizeof path, "%salis.state", alis.platform.path);
-        if (mode == 1)
+        if (started == 0)
         {
-            alis_save_state();
-            FILE *f = fopen(path, "rb");
-            u32 n = 0; u8 *buf = NULL;
-            if (f) { fseek(f, 0, SEEK_END); n = (u32)ftell(f); rewind(f); buf = malloc(n); fread(buf, 1, n, f); fclose(f); }
-            send_all(&n, 4); if (n) send_all(buf, (int)n);
-            free(buf);
-            printf("[net] sent start state (%u bytes)\n", n); fflush(stdout);
-        }
-        else
-        {
+            started = 1;
+            if (mode == 1) { alis.state = eAlisStateSave; return; }
             u32 n = 0;
             recv_all(&n, 4);
             u8 *buf = malloc(n ? n : 1);
@@ -228,11 +228,29 @@ void rrq_net_frame(void)
                 char tmp[620]; snprintf(tmp, sizeof tmp, "%s.tmp", path);
                 FILE *f = fopen(tmp, "wb"); if (f) { fwrite(buf, 1, n, f); fclose(f); }
                 remove(path); rename(tmp, path);
-                alis_load_state();
-                printf("[net] loaded host start state (%u bytes)\n", n); fflush(stdout);
+                alis.state = eAlisStateLoad;
+                printf("[net] received host start state (%u bytes)\n", n); fflush(stdout);
             }
             free(buf);
+            return;
         }
+        if (started == 1)
+        {
+            started = 2;
+            if (mode == 1)
+            {
+                FILE *f = fopen(path, "rb");
+                u32 n = 0; u8 *buf = NULL;
+                if (f) { fseek(f, 0, SEEK_END); n = (u32)ftell(f); rewind(f); buf = malloc(n); fread(buf, 1, n, f); fclose(f); }
+                send_all(&n, 4); if (n) send_all(buf, (int)n);
+                free(buf);
+                printf("[net] sent start state (%u bytes)\n", n); fflush(stdout);
+                // the host already ran one pass past the saved state; it reloads so both start equal
+                alis.state = eAlisStateLoad;
+                return;
+            }
+        }
+        started = 3;
         SDL_AtomicSet(&pending_ticks, 0);
         rrq_coop_start();
         // pre-fill the first `delay` frames with empty input on both sides
@@ -242,6 +260,7 @@ void rrq_net_frame(void)
             local_q[f % RING] = z; have_local[f % RING] = 1;
             remote_q[f % RING] = z; have_remote[f % RING] = 1;
         }
+        printf("[net] lockstep running\n"); fflush(stdout);
     }
     {   // diagnostics: RRQ_NET_DUMP=<frame> writes main memory + all entity variables
         static int dumpf = -2;

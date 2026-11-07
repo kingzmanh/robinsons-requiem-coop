@@ -819,13 +819,14 @@ void sys_render(pixelbuf_t buffer)
         }
     }
 
-    if (rrq_net_local_player() == 1)
+    if (rrq_net_local_player() == 1 && !rrq_coop_split())
     {
         // online client: show player 2's own view (drawn every frame by rrq_coop_after_draw)
         static u32 *cpix; static int ccap;
         int n = width * height;
         if (ccap < n) { free(cpix); cpix = malloc((size_t)n * 4); ccap = n; }
-        if (!rrq_coop_p2_frame(cpix, width, height)) memcpy(cpix, pixels, (size_t)n * 4);
+        int got = rrq_coop_p2_frame(cpix, width, height);
+        if (!got) memcpy(cpix, pixels, (size_t)n * 4);
         rrq_harness_after_render(cpix, width, height);
         SDL_UpdateTexture(texture, NULL, cpix, width * sizeof(*pixels));
     }
