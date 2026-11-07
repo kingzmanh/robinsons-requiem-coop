@@ -1,0 +1,10 @@
+800 coopstart
+2600 p2key F2 300
+4500 p2click 128 60 l 200
+6000 shot p2new
+6200 p2click 125 18 l 200
+7700 shot p2load
+8000 key F2 300
+9800 click 128 60 l 200
+11300 shot p1new
+11600 quit

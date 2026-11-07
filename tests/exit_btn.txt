@@ -1,0 +1,5 @@
+800 coopstart
+2600 key F2 300
+4500 click 48 113 l 200
+6500 shot exit1
+7000 quit

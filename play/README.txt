@@ -26,3 +26,5 @@ KNOWN LIMITS (test build)
     loading that save restores player 2 (position, body, inventory). Old saves: P2 starts fresh.
   - Player 2 is drawn as a soldier figure from the game's own graphics.
   - Cutscenes/videos are shared (both see them).
+
+Only the host can LOAD a save or start a NEW game (on the computer screen, F2).

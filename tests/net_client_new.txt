@@ -1,0 +1,7 @@
+2000 click 288 170 l 3000
+5000 key F2 300
+7000 click 128 60 l 200
+7500 key Y 200
+8500 shot client_new
+9500 dument client_end
+13000 quit
