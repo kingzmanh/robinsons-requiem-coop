@@ -1,6 +1,6 @@
 <p align="center"><img src="media/icon.png" width="96" alt="icon"></p>
 
-# Robinson's Requiem Native
+# Robinson's Requiem: Win Native + Online Co-op
 
 *Robinson's Requiem* (Silmarils, 1994) running **natively on Windows**: no DOSBox, no emulator.
 Play it **alone**, or **online co-op** with a friend on another PC. In co-op, each player has their **own character**:
