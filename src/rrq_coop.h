@@ -20,3 +20,5 @@ void rrq_coop_request_avatar(const char *script, int res, int dx, int dy);
 void rrq_coop_request_npcavatar(const char *script);
 void rrq_coop_start(void);
 void rrq_coop_request_start(void);
+void rrq_coop_request_setpos(int p, int x, int y, int a);
+void rrq_coop_fix_herolist(short *tab, int n);

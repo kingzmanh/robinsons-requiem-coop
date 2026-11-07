@@ -141,6 +141,7 @@ void rrq_harness_tick(void)
         else if (!strcmp(e->cmd, "avatar")) { char nm[32] = {0}; int r = 0, dx = 0, dy = 0; sscanf(e->a, "%31s %d %d %d", nm, &r, &dx, &dy); rrq_coop_request_avatar(nm, r, dx, dy); }
         else if (!strcmp(e->cmd, "npcavatar")) rrq_coop_request_npcavatar(e->a);
         else if (!strcmp(e->cmd, "coopstart")) rrq_coop_request_start();
+        else if (!strcmp(e->cmd, "setpos")) { int pl = 0, x = 0, y = 0, a = 0; sscanf(e->a, "%d %d %d %d", &pl, &x, &y, &a); rrq_coop_request_setpos(pl, x, y, a); }
         else if (!strcmp(e->cmd, "dumprec")) rrq_coop_request_dump(e->a);
         else if (!strcmp(e->cmd, "p2key"))
         {

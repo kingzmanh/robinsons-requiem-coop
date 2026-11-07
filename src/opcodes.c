@@ -22,6 +22,7 @@
 // VM-core translation unit: opt into hot-state register pinning (see alis.h).
 #define ALIS_VM_CORE
 #include "alis.h"
+#include "rrq_coop.h"
 #include "audio.h"
 #include "alis_private.h"
 #include "channel.h"
@@ -6045,6 +6046,7 @@ static void cfindtyp(void)
     }
     while (entidx != 0);
     
+    rrq_coop_fix_herolist(alis.tablent, tabidx);   // rrq-coop: "the hero" = the context player's hero
     alis.tablent[tabidx] = ENTLIST_END;
     alis.fallent = 0;
     crstent();

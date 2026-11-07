@@ -373,11 +373,44 @@ void rrq_coop_before_draw(void)
     avatar_update();
 }
 
+// World entities (NPCs, animals, objects) act on the nearest player: they run with that player's
+// record active, so e.g. a tiger's bite wounds the player it attacked (cneartyp already picks
+// the nearest hero). Entities without a position (MAIN, zone, UI scripts) stay with player 1.
+static sAlisScriptLive *hero_of(int player);
+static int context_for(u32 vram)
+{
+    int o = -1;
+    for (int i = 0; i < nowned; i++) if (owned_vram[i] == vram) { o = owned_player[i]; break; }
+    if (o >= 0) return o;
+    s16 x = (s16)xread16(vram), y = (s16)xread16(vram + 8);
+    if (!x && !y) return 0;
+    sAlisScriptLive *h0 = hero_of(0), *h1 = hero_of(1);
+    if (!h0 || !h1) return 0;
+    s32 dx0 = x - (s16)xread16(h0->vram_org), dy0 = y - (s16)xread16(h0->vram_org + 8);
+    s32 dx1 = x - (s16)xread16(h1->vram_org), dy1 = y - (s16)xread16(h1->vram_org + 8);
+    return (dx1 * dx1 + dy1 * dy1) < (dx0 * dx0 + dy0 * dy0) ? 1 : 0;
+}
+
+// cfindtyp results: a hero found for an entity running in player p's context becomes player p's hero.
+void rrq_coop_fix_herolist(s16 *tab, int n)
+{
+    if (!nowned || active == 0) return;
+    sAlisScriptLive *h0 = hero_of(0), *h1 = hero_of(1);
+    if (!h0 || !h1) return;
+    s16 id0 = -1, id1 = -1;
+    for (int i = 0; i < MAX_SCRIPTS; i++)
+    {
+        if (alis.live_scripts[i] == h0) id0 = (s16)(i * ENT_STRIDE);
+        if (alis.live_scripts[i] == h1) id1 = (s16)(i * ENT_STRIDE);
+    }
+    for (int i = 0; i < n; i++) if (tab[i] == id0) tab[i] = id1;
+}
+
 // Called by alis_loop before an entity slice runs (VM thread).
 void rrq_coop_slice_begin(void)
 {
     if (!nowned || !alis.script) return;
-    int p = rrq_coop_owner(alis.script->vram_org);
+    int p = context_for(alis.script->vram_org);
     if (p != active) rrq_coop_switch_quiet(p);
     rrq_input_select(p);
     rb_begin();
@@ -533,8 +566,17 @@ void rrq_coop_request_dump(const char *t) { snprintf(req_dump, sizeof req_dump, 
 static volatile int req_start;
 void rrq_coop_request_start(void) { req_start = 1; }
 
+static volatile int req_pos_flag, req_pos_p, req_pos_x, req_pos_y, req_pos_a;
+void rrq_coop_request_setpos(int p, int x, int y, int a) { req_pos_p = p; req_pos_x = x; req_pos_y = y; req_pos_a = a; req_pos_flag = 1; }
+
 void rrq_coop_service(void)
 {
+    if (req_pos_flag)
+    {
+        req_pos_flag = 0;
+        sAlisScriptLive *h = hero_of(req_pos_p);
+        if (h) { xwrite16(h->vram_org, (s16)req_pos_x); xwrite16(h->vram_org + 8, (s16)req_pos_y); xwrite16(h->vram_org + 0x28, (s16)req_pos_a); printf("[coop] P%d hero -> (%d,%d) ang %d\n", req_pos_p + 1, req_pos_x, req_pos_y, req_pos_a); fflush(stdout); }
+    }
     if (req_start) { req_start = 0; rrq_coop_start(); }
     if (req_dump_flag) { req_dump_flag = 0; rrq_coop_dump(req_dump); }
     if (req_avatar_flag) { req_avatar_flag = 0; avatar_create(req_avatar, req_avatar_res); }
