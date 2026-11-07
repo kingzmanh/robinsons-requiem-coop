@@ -1,0 +1,5 @@
+800 coopstart
+1000 dument a
+1500 p2key W 2500
+4500 dument b
+4600 quit

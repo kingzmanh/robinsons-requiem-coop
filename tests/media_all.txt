@@ -1,0 +1,10 @@
+800 coopstart
+1500 setpos 1 4700 1751 117
+3500 shot together
+3800 p2key F1 300
+6000 shot map
+6300 p2key F1 300
+7500 key F2 300
+7600 p2key F2 300
+9800 shot computers
+10000 quit

@@ -1,0 +1,6 @@
+800 coopstart
+1500 setpos 1 4870 1836 117
+3500 shot f1
+3700 setpos 1 4800 1800 117
+5500 shot f2
+5700 quit

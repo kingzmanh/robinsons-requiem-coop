@@ -1,0 +1,6 @@
+800 coopstart
+1500 setpos 1 4700 1751 117
+3000 key F2 300
+3100 p2key F2 300
+8000 shot computers
+8200 quit

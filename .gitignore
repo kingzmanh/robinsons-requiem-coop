@@ -2,7 +2,6 @@
 game/
 build/
 reference/
-engine/
 original/
 analysis/ghidra_project/
 analysis/ghidra_in/*.bin
@@ -21,3 +20,4 @@ play/*.log
 local/
 installer/stage/
 release/
+__pycache__/
