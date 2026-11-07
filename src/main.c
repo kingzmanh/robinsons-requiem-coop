@@ -149,6 +149,17 @@ void usage(void)
 
 int main(int argc, char *argv[])
 {
+#if defined(RRQ_GUI) && defined(_WIN32)
+    // no console: keep the messages in a log file next to the program (one per player when two run)
+    {
+        char logp[64];
+        snprintf(logp, sizeof logp, "rrq-coop.log");
+        for (int c = 1; c < argc; c++) if (!strcmp(argv[c], "--join")) snprintf(logp, sizeof logp, "rrq-coop-p2.log");
+        freopen(logp, "w", stdout);
+        freopen(logp, "a", stderr);
+        setvbuf(stdout, NULL, _IOLBF, 0);
+    }
+#endif
     u8 result = 0;
 
     {

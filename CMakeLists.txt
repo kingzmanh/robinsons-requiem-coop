@@ -5,8 +5,15 @@ include(CTest)
 enable_testing()
 
 # Comment "set..." to disable output to console for alis on Windows
+# rrq-coop: RRQ_GUI=ON builds a normal Windows program (no console window); output goes to rrq-coop.log
+option(RRQ_GUI "Windows GUI subsystem (no console window)" OFF)
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mconsole")
+    if (RRQ_GUI)
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows")
+        add_compile_definitions(RRQ_GUI=1)
+    else()
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mconsole")
+    endif()
 endif()
 
 # SDL2
