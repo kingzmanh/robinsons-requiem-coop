@@ -1,0 +1,3 @@
+800 coopstart
+4000 dumpctx yoda.IO
+4500 quit

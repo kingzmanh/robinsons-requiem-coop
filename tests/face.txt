@@ -1,0 +1,13 @@
+800 coopstart
+1500 p2click 288 170 l 3500
+5500 shot a0
+5600 p2key D 700
+7000 shot a1
+7100 p2key D 700
+8500 shot a2
+8600 p2key D 700
+10000 shot a3
+10100 p2key D 700
+11500 shot a4
+11600 dument end
+12000 quit

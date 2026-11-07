@@ -81,6 +81,7 @@ Co-op is added **inside the interpreter**, not by rewriting the scripts:
 - **Per-player input** (`engine/src/sys/rrq_input.c`): virtual devices. The VM reads the device of the player whose entity is running. W/A/S/D movement (option `--nowasd`).
 - **World entities run in the nearest player's context**: animals target the nearest hero (`cneartyp`) and now hurt that player. `cfindtyp hero` = the context player's hero. A tiger was seen walking to P2.
 - **Each player sees the other**: avatar puppet = human.IO walk frames + attached upper part, depth-scaled, at the other player's position (`analysis/p1_sees_p2.png`).
+- **Avatar faces the right way** (sprite angle forced from the player's heading every frame) and **P2 has its own HUD and compass**: P2's yoda/caporal instances inherit the HUD screen, each view hides the other player's HUD sprites (`analysis/p2_own_compass.png`: P1 stays NE, P2 turns to SE). Online sync check still 0 differing bytes.
 - **Own view per player**: the 3D camera fields are part of the player record. Player 2's frame is drawn every tick from P2's record (snapshot → draw → restore). Local split-screen: `--split`.
 - **Online co-op** (`engine/src/rrq_net.c`), deterministic lockstep over TCP:
   - Join-in-progress: the client connects in the background. Once the host is in the game, the host saves and sends its full engine state (5 MB), the client loads it, and lockstep starts.
