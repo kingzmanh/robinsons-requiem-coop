@@ -1735,7 +1735,9 @@ u32 sys_free_bytes(const char *path, u32 cap)
     return n < cap ? (u32)n : cap;
 }
 
-// rrq-coop: W/A/S/D move like the arrows / numpad (RRQ_WASD=0 turns it off)
+// rrq-coop: W/S forward/back, A/D turn, Q/E sidestep (RRQ_WASD=0 turns it off).
+// The game turns on up+left / up+right (numpad 7/9) and sidesteps on left/right, so A/D send
+// up+left / up+right and Q/E send left/right.
 int rrq_wasd(void) { static int v = -1; if (v < 0) { const char *e = getenv("RRQ_WASD"); v = !(e && *e == '0'); } return v; }
 
 mouse_t sys_get_mouse(void)
@@ -2241,16 +2243,16 @@ static u8 sys_joy_compose(int with_mouse_fire, int with_keys)
         if (keys[SDLK_RIGHT] || keys[SDLK_KP6] || keys[SDLK_KP9] || keys[SDLK_KP3])
             a |= 0x08;
 #else
-        if ((rrq_wasd() && keys[SDL_SCANCODE_W]) || keys[SDL_SCANCODE_UP]    || keys[SDL_SCANCODE_KP_8] || keys[SDL_SCANCODE_KP_7] || keys[SDL_SCANCODE_KP_9])
+        if ((rrq_wasd() && (keys[SDL_SCANCODE_W] || keys[SDL_SCANCODE_A] || keys[SDL_SCANCODE_D])) || keys[SDL_SCANCODE_UP]    || keys[SDL_SCANCODE_KP_8] || keys[SDL_SCANCODE_KP_7] || keys[SDL_SCANCODE_KP_9])
             a |= 0x01;
         
         if ((rrq_wasd() && keys[SDL_SCANCODE_S]) || keys[SDL_SCANCODE_DOWN]  || keys[SDL_SCANCODE_KP_2] || keys[SDL_SCANCODE_KP_1] || keys[SDL_SCANCODE_KP_3])
             a |= 0x02;
         
-        if ((rrq_wasd() && keys[SDL_SCANCODE_A]) || keys[SDL_SCANCODE_LEFT]  || keys[SDL_SCANCODE_KP_4] || keys[SDL_SCANCODE_KP_7] || keys[SDL_SCANCODE_KP_1])
+        if ((rrq_wasd() && (keys[SDL_SCANCODE_A] || keys[SDL_SCANCODE_Q])) || keys[SDL_SCANCODE_LEFT]  || keys[SDL_SCANCODE_KP_4] || keys[SDL_SCANCODE_KP_7] || keys[SDL_SCANCODE_KP_1])
             a |= 0x04;
         
-        if ((rrq_wasd() && keys[SDL_SCANCODE_D]) || keys[SDL_SCANCODE_RIGHT] || keys[SDL_SCANCODE_KP_6] || keys[SDL_SCANCODE_KP_9] || keys[SDL_SCANCODE_KP_3])
+        if ((rrq_wasd() && (keys[SDL_SCANCODE_D] || keys[SDL_SCANCODE_E])) || keys[SDL_SCANCODE_RIGHT] || keys[SDL_SCANCODE_KP_6] || keys[SDL_SCANCODE_KP_9] || keys[SDL_SCANCODE_KP_3])
             a |= 0x08;
 #endif
     }
