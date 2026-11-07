@@ -19,3 +19,5 @@ play/*.exe
 play/*.dll
 play/*.log
 local/
+installer/stage/
+release/

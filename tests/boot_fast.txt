@@ -1,0 +1,26 @@
+1000 key Escape 100
+1500 click 107 140 l 100
+2000 key Escape 100
+2500 click 107 140 l 100
+3000 key Escape 100
+3500 click 107 140 l 100
+4000 key Escape 100
+4500 click 107 140 l 100
+5000 key Escape 100
+5500 click 107 140 l 100
+6000 key Escape 100
+6500 click 107 140 l 100
+7000 key Escape 100
+7500 click 107 140 l 100
+8000 key Escape 100
+8500 click 107 140 l 100
+9000 key Escape 100
+9500 click 107 140 l 100
+10000 key Escape 100
+10500 click 107 140 l 100
+11000 key Escape 100
+11500 click 107 140 l 100
+12000 key Escape 100
+12500 click 107 140 l 100
+16000 dument menu
+16500 quit

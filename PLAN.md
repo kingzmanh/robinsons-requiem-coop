@@ -151,3 +151,15 @@ Co-op is added **inside the interpreter**, not by rewriting the scripts:
 | `analysis/hero_vars_debugscreen.tsv` | 71 hero state variables → addresses |
 
 Gotchas: Ghidra project paths and REA junctions — Ghidra rejects the apostrophe in the folder name, so use the junction `C:\Users\Msi\Tools\rrq_coop`. REA rejects junctions, so use the real `E:\…` path. REA on Windows is read-only, so names reach it through the PE export table. Build with MSYS2 mingw64 (`C:\msys64\mingw64\bin` first on PATH) and the junction path.
+
+
+## Installer (done, v0.1.0)
+- `installer/build.sh [version]` -> `release/RRQ-Coop-Setup-<version>.exe` (NSIS from MSYS2, 1.4 MB). Ships only the mod
+  (RRQ-Coop.exe with the default icon, SDL2.dll, README, licenses). Per-user install (no admin) to %LOCALAPPDATA%\Programs\RRQ-Coop.
+- On the player's PC: finds the game (GOG registry, Steam guesses, usual folders, or browse; must contain MAIN.IO/YODA.IO/HEROS.IO),
+  copies *.IO, *.DAT, START.EXE/STP, S.TST into <install>\game, then a temp copy of the exe runs
+  `--make-icon` (about 20 s, hidden, muted) to build RRQ-Coop.ico from the options-menu hero and patch it into RRQ-Coop.exe.
+- Start menu: Host Co-op, Join Co-op (bat asks for the IP), Play Solo, Read Me, Uninstall; optional desktop Host/Join; optional fullscreen (-f).
+- Uninstall removes the program and the copied game files, keeps saves (*.SAV, *.SAV.p2).
+- Tested: silent install/upgrade/uninstall, installed exe online (0 desyncs, equal timeclock).
+- Known: after a forced desync the resync still needs 2 rounds (recovers).
