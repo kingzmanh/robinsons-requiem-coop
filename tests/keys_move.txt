@@ -1,0 +1,14 @@
+500 dument start
+1000 key W 2000
+3500 dument after_W
+4000 key D 1500
+6000 dument after_D
+6500 key A 1500
+8500 dument after_A
+9000 key E 1500
+11000 dument after_E
+11500 key Q 1500
+13500 dument after_Q
+14000 key S 1500
+16000 dument after_S
+16500 quit

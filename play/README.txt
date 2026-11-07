@@ -17,8 +17,9 @@ ONLINE CO-OP (2 PCs)
 
 CONTROLS
   Mouse as in the original (click the arrows to walk, right click to run).
-  Numpad 4-9 move/turn, Shift = run, Ctrl = crawl.  W/A/S/D also move/turn
-  (turn off with --nowasd). F1-F10 = the action icons, Esc = cancel / right button.
+  W/S = forward/back, A/D = turn left/right, Q/E = sidestep left/right
+  (turn off with --nowasd).  Numpad 4-9 and the arrow keys work as in the original.
+  Shift = run, Ctrl = crawl. F1-F10 = the action icons, Esc = cancel / right button.
 
 KNOWN LIMITS (test build)
   - Saving: the in-game save (computer icon) also writes <name>.SAV.p2 with player 2;
