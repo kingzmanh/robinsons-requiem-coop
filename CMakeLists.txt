@@ -123,8 +123,16 @@ list(APPEND alis_SOURCES
 
 # Icon for Windows
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-   list(APPEND alis_SOURCES
-       ${CMAKE_CURRENT_LIST_DIR}/src/icons/alis.rc)
+   # rrq-coop: RRQ_ICON = an .ico made from the player's own game art (tools/icon/make_icon.py)
+   set(RRQ_ICON "" CACHE FILEPATH "Icon for RRQ-Coop.exe (made from the game's art on this PC)")
+   if (RRQ_ICON AND EXISTS "${RRQ_ICON}")
+       file(TO_CMAKE_PATH "${RRQ_ICON}" RRQ_ICON_P)
+       file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/rrq_icon.rc "IDI_ICON1 ICON DISCARDABLE \"${RRQ_ICON_P}\"\n")
+       list(APPEND alis_SOURCES ${CMAKE_CURRENT_BINARY_DIR}/rrq_icon.rc)
+   else()
+       list(APPEND alis_SOURCES
+           ${CMAKE_CURRENT_LIST_DIR}/src/icons/alis.rc)
+   endif()
 endif()
 
 add_executable(${PROJECT_NAME} ${alis_SOURCES})
