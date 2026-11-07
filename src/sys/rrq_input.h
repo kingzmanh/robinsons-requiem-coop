@@ -20,3 +20,4 @@ void rrq_input_p2_tick(u32 now);
 void rrq_input_p2_key(SDL_Keycode kc, u32 now, u32 hold);
 void rrq_input_p2_move(int x, int y);
 void rrq_input_p2_click(int x, int y, int right, u32 now, u32 hold);
+void rrq_input_reset(void);

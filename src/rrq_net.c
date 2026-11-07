@@ -36,7 +36,7 @@ typedef struct {
     u8 nheld, pad;
     u16 held[MAXHELD];
     u16 ticks;        // host: timer ticks to run before this frame
-    u16 pad2;
+    u16 flags;        // bit 0: resync requested (a checksum mismatch was seen)
     u32 cs_frame, cs; // checksum report (cs_frame = 0: none)
 } pkt_t;
 
@@ -51,13 +51,36 @@ static SDL_mutex *klock;
 static s32 lkey_sym; static u16 lkey_sc;
 static u32 my_cs[RING], my_cs_frame[RING];
 static int started;
+static int want_resync;            // set when a desync is detected; sent with the next packet
+static u32 last_remote_frame;
+
 
 static int fake_timer = -1;   // RRQ_FAKE_NET_TIMER=1: local test of the frame-driven timer
 static int fake(void) { if (fake_timer < 0) { const char *e = getenv("RRQ_FAKE_NET_TIMER"); fake_timer = e && *e == '1'; } return fake_timer; }
+static u8 *pending_blob; static u32 pending_blob_n;
+u32 rrq_coop_export(u8 **out);
+void rrq_coop_import(const u8 *b, u32 n);
 static volatile int conn_ready;     // connection + hello done (background thread)
 static int lockstep;                 // lockstep running: inputs/time come from the session
 static u32 session_seed;
 int rrq_net_active(void) { return lockstep; }
+static u8 *host_blob; static u32 host_blob_n;
+void rrq_coop_switch_quiet(int p);
+void rrq_coop_skip_p2pass(int n);
+// right before the engine saves (host, during a sync): main memory gets player 1's record and the
+// co-op tables are captured at exactly this point, so state + tables always match
+void rrq_net_before_save(void)
+{
+    if (mode != 1 || started != 1) return;
+    rrq_coop_switch_quiet(0);
+    free(host_blob); host_blob = NULL;
+    host_blob_n = rrq_coop_export(&host_blob);
+}
+// right after the engine loaded the host's state: take over the host's co-op tables too
+void rrq_net_after_load(void)
+{
+    if (pending_blob) { rrq_coop_import(pending_blob, pending_blob_n); free(pending_blob); pending_blob = NULL; rrq_coop_skip_p2pass(2); }
+}
 int rrq_net_frame_timer(void) { return lockstep || fake(); }
 static int local_player;            // stays set after a disconnect, so each PC keeps its own view
 int rrq_net_local_player(void) { return local_player; }
@@ -203,12 +226,12 @@ static void apply(int player, const pkt_t *p)
 static void store_remote(const pkt_t *p)
 {
     int s = p->frame % RING;
-    remote_q[s] = *p; have_remote[s] = 1;
+    remote_q[s] = *p; have_remote[s] = 1; last_remote_frame = p->frame;
     if (p->cs_frame)
     {
         int c = p->cs_frame % RING;
         if (my_cs_frame[c] == p->cs_frame && my_cs[c] != p->cs)
-            printf("[net] DESYNC at frame %u: local %08x remote %08x\n", p->cs_frame, my_cs[c], p->cs);
+            { printf("[net] DESYNC at frame %u: local %08x remote %08x - resyncing\n", p->cs_frame, my_cs[c], p->cs); want_resync = 1; }
         else if (my_cs_frame[c] == p->cs_frame && (p->cs_frame % 600) == 0)
             printf("[net] in sync at frame %u (%08x)\n", p->cs_frame, p->cs);
         fflush(stdout);
@@ -249,6 +272,9 @@ void rrq_net_frame(void)
                 printf("[net] received host start state (%u bytes)\n", n); fflush(stdout);
             }
             free(buf);
+            u32 bn = 0; recv_all(&bn, 4);
+            free(pending_blob); pending_blob = NULL; pending_blob_n = 0;
+            if (bn && bn < (64u << 20)) { pending_blob = malloc(bn); if (recv_all(pending_blob, (int)bn) == 0) pending_blob_n = bn; }
             return;
         }
         if (started == 1)
@@ -260,6 +286,9 @@ void rrq_net_frame(void)
                 u32 n = 0; u8 *buf = NULL;
                 if (f) { fseek(f, 0, SEEK_END); n = (u32)ftell(f); rewind(f); buf = malloc(n); fread(buf, 1, n, f); fclose(f); }
                 send_all(&n, 4); if (n) send_all(buf, (int)n);
+                send_all(&host_blob_n, 4); if (host_blob_n) send_all(host_blob, (int)host_blob_n);
+                // the host reloads the same state and the same tables
+                free(pending_blob); pending_blob = host_blob; pending_blob_n = host_blob_n; host_blob = NULL; host_blob_n = 0;
                 free(buf);
                 printf("[net] sent start state (%u bytes)\n", n); fflush(stdout);
                 // the host already ran one pass past the saved state; it reloads so both start equal
@@ -269,6 +298,11 @@ void rrq_net_frame(void)
         }
         started = 3;
         lockstep = 1;
+        frame = 0; last_remote_frame = 0; want_resync = 0;
+        rrq_input_reset();
+        memset(have_local, 0, sizeof have_local); memset(have_remote, 0, sizeof have_remote);
+        memset(my_cs_frame, 0, sizeof my_cs_frame);
+        rrq_net_after_load();
         srand(session_seed);
         SDL_AtomicSet(&pending_ticks, 0);
         // player 2's entities are created by rrq_coop's maintain() once gameplay has a hero
@@ -287,7 +321,7 @@ void rrq_net_frame(void)
         if ((int)frame == dumpf)
         {
             char path[600]; const char *dir = getenv("RRQ_SHOTDIR");
-            snprintf(path, sizeof path, "%s/netdump_%u.bin", dir ? dir : ".", frame);
+            static int dumpn; snprintf(path, sizeof path, "%s/netdump_%u_%d.bin", dir ? dir : ".", frame, dumpn++);
             FILE *f = fopen(path, "wb");
             if (f)
             {
@@ -306,6 +340,11 @@ void rrq_net_frame(void)
             }
         }
     }
+    {
+        static int fd = -2;
+        if (fd == -2) { const char *e = getenv("RRQ_NET_FORCE_DESYNC"); fd = e ? atoi(e) : -1; }
+        if (mode == 2 && (int)frame == fd && lockstep) { alis.mem[alis.basemain + 0x2000] ^= 0x5a; fd = -1; printf("[net] test: forced a desync at frame %u\n", frame); fflush(stdout); }
+    }
     // checksum of the state after frame-1 (reported with the next packet)
     if (frame && (frame % 30) == 0)
     {
@@ -316,6 +355,7 @@ void rrq_net_frame(void)
     u32 f = frame + delay;
     pkt_t lp; capture(&lp, f);
     lp.cs_frame = pending_cs_frame; lp.cs = pending_cs; pending_cs_frame = 0;
+    if (want_resync) lp.flags |= 1;
     local_q[f % RING] = lp; have_local[f % RING] = 1;
     if (send_all(&lp, sizeof lp)) { printf("[net] connection lost\n"); mode = 0; lockstep = 0; closesocket(sock); sock = INVALID_SOCKET; return; }
     // wait for the remote input of this frame
@@ -332,6 +372,21 @@ void rrq_net_frame(void)
     for (int t = 0; t < p1->ticks; t++) itroutine_body();
     apply(0, p1);
     apply(1, p2);
+    int resync = (p1->flags | p2->flags) & 1;
     have_remote[s] = 0; have_local[s] = 0;
     frame++;
+    if (resync)
+    {
+        // both sides decide this on the same frame. Drain the remote packets already in flight
+        // (up to frame + delay) so the stream is clean, then redo the join sync from the host.
+        while (last_remote_frame < frame - 1 + (u32)delay)
+        {
+            pkt_t rp;
+            if (recv_all(&rp, sizeof rp)) { mode = 0; lockstep = 0; closesocket(sock); sock = INVALID_SOCKET; return; }
+            last_remote_frame = rp.frame;
+        }
+        printf("[net] resync at frame %u\n", frame); fflush(stdout);
+        lockstep = 0;
+        started = 0;
+    }
 }

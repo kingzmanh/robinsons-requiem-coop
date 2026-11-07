@@ -21,6 +21,14 @@ static u32 vkey_release[SDL_NUM_SCANCODES];
 static u32 vlb_release, vrb_release;
 
 int rrq_input_player(void) { return cur; }
+
+// lockstep (re)start: both PCs must begin with identical input state
+void rrq_input_reset(void)
+{
+    memset(dev, 0, sizeof dev);
+    memset(&button, 0, sizeof button);
+    cur = 0;
+}
 rrq_dev_t *rrq_input_dev(int p) { return &dev[p & 1]; }
 
 static int virt(int p) { return p == 1 || rrq_net_active(); }

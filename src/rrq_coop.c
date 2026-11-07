@@ -175,7 +175,9 @@ static void npcav_pin(void)
     memcpy(alis.mem + av + 0x18, alis.mem + h + 0x18, 0x18);
 }
 
-static int avatar_target = 1;     // which player's hero the avatar stands in for (the other player)
+static u32 lastpos[2]; static int aframe[2], atick[2];   // avatar walk animation per view
+static int avatar_target = 1;
+static int avatar_freeze;      // P2 view pass: draw the avatar without advancing its animation     // which player's hero the avatar stands in for (the other player)
 static void avatar_update(void)
 {
     npcav_pin();
@@ -204,10 +206,13 @@ static void avatar_update(void)
     image.depx = image.depy = image.depz = 0;
     image.numelem = 0;
     // body: walking frames 20/28/36/44 (as human.IO), upper part attached as element -2
-    static u32 lastpos; static int frame, tick;
+    // walk animation: one state per view (the target player), advanced only by the main frame,
+    // so the extra P2 view pass on one PC cannot change what both PCs draw/compute next
+    int vi = avatar_target & 1;
     u32 posnow = (u32)xread16(av) ^ ((u32)xread16(av + 8) << 16);
-    if (posnow != lastpos && (++tick & 3) == 0) frame = (frame + 1) & 3;
-    lastpos = posnow;
+    if (!avatar_freeze && posnow != lastpos[vi] && (++atick[vi] & 3) == 0) aframe[vi] = (aframe[vi] + 1) & 3;
+    if (!avatar_freeze) lastpos[vi] = posnow;
+    int frame = aframe[vi];
     if (avatar_res >= 1000)
     {
         put((u16)(20 + 8 * frame));
@@ -360,12 +365,54 @@ void rrq_coop_start(void)
     }
     sAlisScriptLive *t = rrq_coop_spawn("time.IO");
     if (t) { rrq_coop_set_owner(t->vram_org, 1); rrq_coop_set_rollback(t->vram_org); }
-    if (!avatar) avatar_create("human.IO", 1116);
+    if (!avatar && !getenv("RRQ_NO_AVATAR")) avatar_create("human.IO", 1116);
     printf("[coop] co-op started: P2 has hero/yoda/souris/time + avatar\n");
     fflush(stdout);
 }
 
 int rrq_coop_has_hero(void) { return hero_of(0) != NULL; }
+
+// ---- co-op tables for an online resync (not part of the engine savestate) ----
+typedef struct { u32 magic, store_size, nowned, nrb, avatar_vram; int active; int have[RRQ_MAX_PLAYERS];
+                 u32 owned_vram[RRQ_MAX_OWNED]; u8 owned_player[RRQ_MAX_OWNED]; u32 rb_vram[RRQ_MAX_OWNED]; u16 avatar_res;
+                 u32 an_lastpos[2]; int an_frame[2], an_tick[2]; } coop_blob_hdr;
+
+u32 rrq_coop_export(u8 **out)
+{
+    ensure();
+    copy_out(store[active]);
+    u32 n = sizeof(coop_blob_hdr) + RRQ_MAX_PLAYERS * store_size;
+    u8 *b = calloc(1, n);
+    coop_blob_hdr *h = (coop_blob_hdr *)b;
+    h->magic = 0x43505252u; h->store_size = store_size; h->nowned = nowned; h->nrb = nrb;
+    h->avatar_vram = avatar ? avatar->vram_org : 0; h->avatar_res = avatar_res; h->active = active;
+    for (int p = 0; p < RRQ_MAX_PLAYERS; p++) h->have[p] = have[p];
+    memcpy(h->owned_vram, owned_vram, sizeof owned_vram); memcpy(h->owned_player, owned_player, sizeof owned_player);
+    memcpy(h->rb_vram, rb_vram, sizeof rb_vram);
+    memcpy(h->an_lastpos, lastpos, sizeof lastpos); memcpy(h->an_frame, aframe, sizeof aframe); memcpy(h->an_tick, atick, sizeof atick);
+    for (int p = 0; p < RRQ_MAX_PLAYERS; p++) memcpy(b + sizeof *h + p * store_size, store[p], store_size);
+    *out = b;
+    return n;
+}
+
+void rrq_coop_import(const u8 *b, u32 n)
+{
+    ensure();
+    const coop_blob_hdr *h = (const coop_blob_hdr *)b;
+    if (n < sizeof *h || h->magic != 0x43505252u || h->store_size != store_size) return;
+    nowned = h->nowned; nrb = h->nrb; active = h->active;
+    for (int p = 0; p < RRQ_MAX_PLAYERS; p++) have[p] = h->have[p];
+    memcpy(owned_vram, h->owned_vram, sizeof owned_vram); memcpy(owned_player, h->owned_player, sizeof owned_player);
+    memcpy(rb_vram, h->rb_vram, sizeof rb_vram);
+    memcpy(lastpos, h->an_lastpos, sizeof lastpos); memcpy(aframe, h->an_frame, sizeof aframe); memcpy(atick, h->an_tick, sizeof atick);
+    for (int p = 0; p < RRQ_MAX_PLAYERS; p++) memcpy(store[p], b + sizeof *h + p * store_size, store_size);
+    avatar = NULL; npcav = NULL;
+    for (int i = 0; i < MAX_SCRIPTS; i++)
+        if (h->avatar_vram && alis.live_scripts[i] && alis.live_scripts[i]->vram_org == h->avatar_vram) avatar = alis.live_scripts[i];
+    avatar_res = h->avatar_res;
+    printf("[coop] co-op tables imported (%u owned entities, avatar %s)\n", nowned, avatar ? "yes" : "no");
+    fflush(stdout);
+}
 
 // ---- co-op saves: <name>.SAV.p2 holds player 2's record + hero position next to the game's save ----
 #define P2SAVE_MAGIC 0x32505252u   // "RRP2"
@@ -574,11 +621,16 @@ static int split_mode = -1;
 static u32 *p2frame;
 static u16 p2w, p2h;
 static SDL_mutex *p2lock;
-static u8 *snap_mem, *snap_sprite, *snap_phys, *snap_log;
+static u8 *snap_mem, *snap_sprite, *snap_phys, *snap_log, *snap_bg, *snap_depth;
+static u32 *snap_terr;
+static u32 snap_bg_n, snap_terr_n;
+extern u32 image_buf_cap;
 static sAlisVM snap_alis;
 static sImage snap_image;
 static sScreen snap_screen;
 int rrq_in_p2_draw;
+static int p2pass_skip;
+void rrq_coop_skip_p2pass(int n) { p2pass_skip = n; }
 
 int rrq_coop_split(void)
 {
@@ -606,6 +658,8 @@ static int have_p2_hero(void)
 
 void rrq_coop_after_draw(void)
 {
+    if (getenv("RRQ_NO_P2PASS")) return;   // test switch
+    if (p2pass_skip > 0) { p2pass_skip--; return; }
     if (!(rrq_coop_split() || rrq_net_local_player() == 1) || !have_p2_hero() || rrq_in_p2_draw) return;
     u32 ram = alis.platform.ram_sz, fb = (u32)alis.platform.width * alis.platform.height;
     if (!snap_mem)
@@ -620,12 +674,27 @@ void rrq_coop_after_draw(void)
     memcpy(snap_sprite, image.spritemem, kSpriteMemSize);
     memcpy(snap_phys, image.physic, fb);
     if (image.logic != image.physic) memcpy(snap_log, image.logic, fb);
+    // host-side render caches the next frame (and pixel picking) build on
+    if (image.bgcache_alloc)
+    {
+        if (snap_bg_n != image_buf_cap) { free(snap_bg); snap_bg = malloc(image_buf_cap); snap_bg_n = image_buf_cap; }
+        memcpy(snap_bg, image.bgcache_alloc, image_buf_cap);
+    }
+    u32 tn = image.terrgba ? (u32)image.terrgbaw * (image.terrgbah + 9) : 0;
+    if (tn)
+    {
+        if (snap_terr_n != tn) { free(snap_terr); free(snap_depth); snap_terr = malloc(tn * 4); snap_depth = malloc(tn); snap_terr_n = tn; }
+        memcpy(snap_terr, image.terrgba, tn * 4);
+        if (image.depthbuf) memcpy(snap_depth, image.depthbuf, tn);
+    }
     pixelbuf_t savedpb = host.pixelbuf;
     int was = active;
 
     rrq_coop_switch_quiet(1);
     avatar_target = 0;            // in P2's view the avatar is P1
+    avatar_freeze = 1;
     avatar_update();
+    avatar_freeze = 0;
     avatar_target = 1;
     // full redraw: the screens normally repaint only what changed since the last (P1) frame
     image.fremap = 1;
@@ -653,6 +722,8 @@ void rrq_coop_after_draw(void)
     memcpy(image.spritemem, snap_sprite, kSpriteMemSize);
     memcpy(image.physic, snap_phys, fb);
     if (image.logic != image.physic) memcpy(image.logic, snap_log, fb);
+    if (image.bgcache_alloc && snap_bg_n == image_buf_cap) memcpy(image.bgcache_alloc, snap_bg, image_buf_cap);
+    if (tn && image.terrgba) { memcpy(image.terrgba, snap_terr, tn * 4); if (image.depthbuf) memcpy(image.depthbuf, snap_depth, tn); }
     host.pixelbuf = savedpb;
     active = was;
 }

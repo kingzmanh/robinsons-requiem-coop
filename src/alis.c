@@ -24,6 +24,7 @@
 #define ALIS_VM_CORE
 #include "rrq_trace.h"
 #include "rrq_coop.h"
+#include "rrq_net.h"
 #include "alis.h"
 #include "alis_private.h"
 #include "audio.h"
@@ -1528,12 +1529,14 @@ void alis_main_V2(void)
         rrq_coop_service();
         if (alis.state == eAlisStateSave)
         {
+            rrq_net_before_save();  // rrq-coop: capture the co-op tables at the same moment
             alis_save_state();
             alis.state = eAlisStateRunning;
         }
         else if (alis.state == eAlisStateLoad)
         {
             alis_load_state();
+            rrq_net_after_load();   // rrq-coop: apply the host's co-op tables before anything runs
             alis.state = eAlisStateRunning;
         }
         
@@ -1638,12 +1641,14 @@ void alis_main_V3(void)
         rrq_coop_service();
         if (alis.state == eAlisStateSave)
         {
+            rrq_net_before_save();  // rrq-coop: capture the co-op tables at the same moment
             alis_save_state();
             alis.state = eAlisStateRunning;
         }
         else if (alis.state == eAlisStateLoad)
         {
             alis_load_state();
+            rrq_net_after_load();   // rrq-coop: apply the host's co-op tables before anything runs
             alis.state = eAlisStateRunning;
         }
 
@@ -1746,12 +1751,14 @@ void alis_main_V6(void)
         rrq_coop_service();
         if (alis.state == eAlisStateSave)
         {
+            rrq_net_before_save();  // rrq-coop: capture the co-op tables at the same moment
             alis_save_state();
             alis.state = eAlisStateRunning;
         }
         else if (alis.state == eAlisStateLoad)
         {
             alis_load_state();
+            rrq_net_after_load();   // rrq-coop: apply the host's co-op tables before anything runs
             alis.state = eAlisStateRunning;
         }
 
