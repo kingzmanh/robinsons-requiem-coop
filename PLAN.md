@@ -162,4 +162,4 @@ Gotchas: Ghidra project paths and REA junctions — Ghidra rejects the apostroph
 - Start menu: Host Co-op, Join Co-op (bat asks for the IP), Play Solo, Read Me, Uninstall; optional desktop Host/Join; optional fullscreen (-f).
 - Uninstall removes the program and the copied game files, keeps saves (*.SAV, *.SAV.p2).
 - Tested: silent install/upgrade/uninstall, installed exe online (0 desyncs, equal timeclock).
-- Known: after a forced desync the resync still needs 2 rounds (recovers).
+- Resync after a desync now succeeds in one round (the pass right after the state load read the real local input; fixed).
