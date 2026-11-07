@@ -1,0 +1,11 @@
+800 coopstart
+2000 setpos 1 760 3150 -150
+2500 dumprec start
+3000 shot t0
+8000 shot t1
+12000 dumprec t12
+14000 shot t2
+20000 shot t3
+24000 dumprec t24
+24500 dument end
+25000 quit

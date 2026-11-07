@@ -1,0 +1,2 @@
+1000 dument all
+1500 quit

@@ -1,0 +1,9 @@
+800 spawn heros.IO 1
+900 spawn yoda.IO 1
+1000 spawn souris.IO 1
+1500 pokew 1936 0
+1600 dumprec start
+20000 dumprec t20
+40000 dumprec t40
+40500 dument end
+41000 quit

@@ -1,0 +1,12 @@
+500 setpos 0 4928 2928 0
+1500 mark click_item
+1600 move 205 75
+1800 click 205 75
+3500 shot k1
+4000 mark click_carcass
+4100 move 110 90
+4300 click 110 90
+6000 shot k2
+6500 key F10
+8000 shot k3
+8500 quit

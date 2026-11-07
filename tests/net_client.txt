@@ -1,0 +1,4 @@
+2000 click 288 170 l 3000
+5500 dument client_end
+5700 shot client_view
+9000 quit

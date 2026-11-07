@@ -1,0 +1,5 @@
+1000 avatar human.IO 1116 900 450
+2000 dumpctx human.IO
+2100 dumpctx tigre.IO
+2200 dumpctx heros.IO
+2500 quit

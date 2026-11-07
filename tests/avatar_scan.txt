@@ -1,0 +1,122 @@
+1000 avatar human.IO 0 300 150
+1300 avatar human.IO 0 300 150
+1550 shot hum_000
+1600 avatar human.IO 1 300 150
+1850 shot hum_001
+1900 avatar human.IO 2 300 150
+2150 shot hum_002
+2200 avatar human.IO 3 300 150
+2450 shot hum_003
+2500 avatar human.IO 4 300 150
+2750 shot hum_004
+2800 avatar human.IO 5 300 150
+3050 shot hum_005
+3100 avatar human.IO 6 300 150
+3350 shot hum_006
+3400 avatar human.IO 7 300 150
+3650 shot hum_007
+3700 avatar human.IO 8 300 150
+3950 shot hum_008
+4000 avatar human.IO 9 300 150
+4250 shot hum_009
+4300 avatar human.IO 10 300 150
+4550 shot hum_010
+4600 avatar human.IO 11 300 150
+4850 shot hum_011
+4900 avatar human.IO 12 300 150
+5150 shot hum_012
+5200 avatar human.IO 13 300 150
+5450 shot hum_013
+5500 avatar human.IO 14 300 150
+5750 shot hum_014
+5800 avatar human.IO 15 300 150
+6050 shot hum_015
+6100 avatar human.IO 16 300 150
+6350 shot hum_016
+6400 avatar human.IO 17 300 150
+6650 shot hum_017
+6700 avatar human.IO 18 300 150
+6950 shot hum_018
+7000 avatar human.IO 19 300 150
+7250 shot hum_019
+7300 avatar human.IO 20 300 150
+7550 shot hum_020
+7600 avatar human.IO 21 300 150
+7850 shot hum_021
+7900 avatar human.IO 22 300 150
+8150 shot hum_022
+8200 avatar human.IO 23 300 150
+8450 shot hum_023
+8500 avatar human.IO 24 300 150
+8750 shot hum_024
+8800 avatar human.IO 25 300 150
+9050 shot hum_025
+9100 avatar human.IO 26 300 150
+9350 shot hum_026
+9400 avatar human.IO 27 300 150
+9650 shot hum_027
+9700 avatar human.IO 28 300 150
+9950 shot hum_028
+10000 avatar human.IO 29 300 150
+10250 shot hum_029
+10300 avatar human.IO 30 300 150
+10550 shot hum_030
+10600 avatar human.IO 31 300 150
+10850 shot hum_031
+10900 avatar human.IO 32 300 150
+11150 shot hum_032
+11200 avatar human.IO 33 300 150
+11450 shot hum_033
+11500 avatar human.IO 34 300 150
+11750 shot hum_034
+11800 avatar human.IO 35 300 150
+12050 shot hum_035
+12100 avatar human.IO 36 300 150
+12350 shot hum_036
+12400 avatar human.IO 37 300 150
+12650 shot hum_037
+12700 avatar human.IO 38 300 150
+12950 shot hum_038
+13000 avatar human.IO 39 300 150
+13250 shot hum_039
+13300 avatar human.IO 40 300 150
+13550 shot hum_040
+13600 avatar human.IO 41 300 150
+13850 shot hum_041
+13900 avatar human.IO 42 300 150
+14150 shot hum_042
+14200 avatar human.IO 43 300 150
+14450 shot hum_043
+14500 avatar human.IO 44 300 150
+14750 shot hum_044
+14800 avatar human.IO 45 300 150
+15050 shot hum_045
+15100 avatar human.IO 46 300 150
+15350 shot hum_046
+15400 avatar human.IO 47 300 150
+15650 shot hum_047
+15700 avatar human.IO 48 300 150
+15950 shot hum_048
+16000 avatar human.IO 49 300 150
+16250 shot hum_049
+16300 avatar human.IO 50 300 150
+16550 shot hum_050
+16600 avatar human.IO 51 300 150
+16850 shot hum_051
+16900 avatar human.IO 52 300 150
+17150 shot hum_052
+17200 avatar human.IO 53 300 150
+17450 shot hum_053
+17500 avatar human.IO 54 300 150
+17750 shot hum_054
+17800 avatar human.IO 55 300 150
+18050 shot hum_055
+18100 avatar human.IO 56 300 150
+18350 shot hum_056
+18400 avatar human.IO 57 300 150
+18650 shot hum_057
+18700 avatar human.IO 58 300 150
+18950 shot hum_058
+19000 avatar human.IO 59 300 150
+19250 shot hum_059
+19500 quit

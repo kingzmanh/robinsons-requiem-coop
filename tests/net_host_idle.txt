@@ -1,0 +1,3 @@
+8000 dument host_end
+8500 shot host_view
+9500 quit

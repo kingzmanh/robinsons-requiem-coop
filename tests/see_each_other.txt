@@ -1,0 +1,12 @@
+800 spawn heros.IO 1
+900 spawn yoda.IO 1
+1000 spawn souris.IO 1
+1100 spawn time.IO 1 rb
+1200 avatar human.IO 1116
+2000 p2click 288 170 l 3500
+3500 shot a1
+5800 shot a2
+6000 p2click 304 170 l 2600
+9000 shot a3
+9500 dument end
+10000 quit

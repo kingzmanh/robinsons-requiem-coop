@@ -1,0 +1,5 @@
+500 setpos 0 4928 2928 0
+1500 shot c1
+1600 setpos 0 4928 2958 0
+2600 shot c2
+2700 quit

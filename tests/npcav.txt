@@ -1,0 +1,9 @@
+1000 npcavatar human.IO
+1200 avatar human.IO 0 400 200
+1300 shot n0
+2500 shot n1
+2600 avatar human.IO 0 800 400
+4000 shot n2
+4100 avatar human.IO 0 1400 700
+5500 shot n3
+6000 quit

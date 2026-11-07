@@ -1,0 +1,4 @@
+1000 coopstart
+2000 p2click 288 170 l 3500
+6000 shot a2
+6500 quit

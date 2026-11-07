@@ -1,0 +1,4 @@
+3000 click 304 170 l 1500
+7000 dument host_end
+7200 shot host_view
+12000 quit

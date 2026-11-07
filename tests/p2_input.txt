@@ -1,0 +1,13 @@
+# P2 drives its own hero through its own yoda/souris with its own (virtual) mouse
+800 spawn heros.IO 1
+900 spawn yoda.IO 1
+1000 spawn souris.IO 1
+1500 dument spawned
+2000 p2move 288 170
+2500 p2click 288 170 l 3000
+6000 dument after_p2_click
+6500 click 304 170 l 1200
+8500 dument after_p1_turn
+9000 shot p1
+9200 p2view p2
+10000 quit

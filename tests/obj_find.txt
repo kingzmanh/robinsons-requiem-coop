@@ -1,0 +1,9 @@
+500 setpos 0 5768 1552 -90
+1500 shot o1
+1600 setpos 0 5868 1552 -90
+2600 shot o2
+2700 setpos 0 4928 2808 0
+3700 shot o3
+3800 setpos 0 3232 2264 0
+4800 shot o4
+5000 quit

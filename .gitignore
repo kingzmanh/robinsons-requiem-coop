@@ -15,3 +15,5 @@ analysis/ghidra_out/
 analysis/scripts_static/*.lst
 analysis/scripts_dis/
 analysis/manual.txt
+play/*.exe
+play/*.dll

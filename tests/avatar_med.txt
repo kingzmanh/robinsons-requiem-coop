@@ -1,0 +1,258 @@
+1000 avatar human.IO 0 600 300
+1300 avatar human.IO 0 600 300
+1500 shot med_000
+1550 avatar human.IO 1 600 300
+1750 shot med_001
+1800 avatar human.IO 2 600 300
+2000 shot med_002
+2050 avatar human.IO 3 600 300
+2250 shot med_003
+2300 avatar human.IO 4 600 300
+2500 shot med_004
+2550 avatar human.IO 5 600 300
+2750 shot med_005
+2800 avatar human.IO 6 600 300
+3000 shot med_006
+3050 avatar human.IO 7 600 300
+3250 shot med_007
+3300 avatar human.IO 8 600 300
+3500 shot med_008
+3550 avatar human.IO 9 600 300
+3750 shot med_009
+3800 avatar human.IO 10 600 300
+4000 shot med_010
+4050 avatar human.IO 11 600 300
+4250 shot med_011
+4300 avatar human.IO 12 600 300
+4500 shot med_012
+4550 avatar human.IO 13 600 300
+4750 shot med_013
+4800 avatar human.IO 14 600 300
+5000 shot med_014
+5050 avatar human.IO 15 600 300
+5250 shot med_015
+5300 avatar human.IO 16 600 300
+5500 shot med_016
+5550 avatar human.IO 17 600 300
+5750 shot med_017
+5800 avatar human.IO 18 600 300
+6000 shot med_018
+6050 avatar human.IO 19 600 300
+6250 shot med_019
+6300 avatar human.IO 20 600 300
+6500 shot med_020
+6550 avatar human.IO 21 600 300
+6750 shot med_021
+6800 avatar human.IO 22 600 300
+7000 shot med_022
+7050 avatar human.IO 23 600 300
+7250 shot med_023
+7300 avatar human.IO 24 600 300
+7500 shot med_024
+7550 avatar human.IO 25 600 300
+7750 shot med_025
+7800 avatar human.IO 26 600 300
+8000 shot med_026
+8050 avatar human.IO 27 600 300
+8250 shot med_027
+8300 avatar human.IO 28 600 300
+8500 shot med_028
+8550 avatar human.IO 29 600 300
+8750 shot med_029
+8800 avatar human.IO 30 600 300
+9000 shot med_030
+9050 avatar human.IO 31 600 300
+9250 shot med_031
+9300 avatar human.IO 32 600 300
+9500 shot med_032
+9550 avatar human.IO 33 600 300
+9750 shot med_033
+9800 avatar human.IO 34 600 300
+10000 shot med_034
+10050 avatar human.IO 35 600 300
+10250 shot med_035
+10300 avatar human.IO 36 600 300
+10500 shot med_036
+10550 avatar human.IO 37 600 300
+10750 shot med_037
+10800 avatar human.IO 38 600 300
+11000 shot med_038
+11050 avatar human.IO 39 600 300
+11250 shot med_039
+11300 avatar human.IO 40 600 300
+11500 shot med_040
+11550 avatar human.IO 41 600 300
+11750 shot med_041
+11800 avatar human.IO 42 600 300
+12000 shot med_042
+12050 avatar human.IO 43 600 300
+12250 shot med_043
+12300 avatar human.IO 44 600 300
+12500 shot med_044
+12550 avatar human.IO 45 600 300
+12750 shot med_045
+12800 avatar human.IO 46 600 300
+13000 shot med_046
+13050 avatar human.IO 47 600 300
+13250 shot med_047
+13300 avatar human.IO 48 600 300
+13500 shot med_048
+13550 avatar human.IO 49 600 300
+13750 shot med_049
+13800 avatar human.IO 50 600 300
+14000 shot med_050
+14050 avatar human.IO 51 600 300
+14250 shot med_051
+14300 avatar human.IO 52 600 300
+14500 shot med_052
+14550 avatar human.IO 53 600 300
+14750 shot med_053
+14800 avatar human.IO 54 600 300
+15000 shot med_054
+15050 avatar human.IO 55 600 300
+15250 shot med_055
+15300 avatar human.IO 56 600 300
+15500 shot med_056
+15550 avatar human.IO 57 600 300
+15750 shot med_057
+15800 avatar human.IO 58 600 300
+16000 shot med_058
+16050 avatar human.IO 59 600 300
+16250 shot med_059
+16300 avatar human.IO 60 600 300
+16500 shot med_060
+16550 avatar human.IO 61 600 300
+16750 shot med_061
+16800 avatar human.IO 62 600 300
+17000 shot med_062
+17050 avatar human.IO 63 600 300
+17250 shot med_063
+17300 avatar human.IO 64 600 300
+17500 shot med_064
+17550 avatar human.IO 65 600 300
+17750 shot med_065
+17800 avatar human.IO 66 600 300
+18000 shot med_066
+18050 avatar human.IO 67 600 300
+18250 shot med_067
+18300 avatar human.IO 68 600 300
+18500 shot med_068
+18550 avatar human.IO 69 600 300
+18750 shot med_069
+18800 avatar human.IO 70 600 300
+19000 shot med_070
+19050 avatar human.IO 71 600 300
+19250 shot med_071
+19300 avatar human.IO 72 600 300
+19500 shot med_072
+19550 avatar human.IO 73 600 300
+19750 shot med_073
+19800 avatar human.IO 74 600 300
+20000 shot med_074
+20050 avatar human.IO 75 600 300
+20250 shot med_075
+20300 avatar human.IO 76 600 300
+20500 shot med_076
+20550 avatar human.IO 77 600 300
+20750 shot med_077
+20800 avatar human.IO 78 600 300
+21000 shot med_078
+21050 avatar human.IO 79 600 300
+21250 shot med_079
+21300 avatar human.IO 80 600 300
+21500 shot med_080
+21550 avatar human.IO 81 600 300
+21750 shot med_081
+21800 avatar human.IO 82 600 300
+22000 shot med_082
+22050 avatar human.IO 83 600 300
+22250 shot med_083
+22300 avatar human.IO 84 600 300
+22500 shot med_084
+22550 avatar human.IO 85 600 300
+22750 shot med_085
+22800 avatar human.IO 86 600 300
+23000 shot med_086
+23050 avatar human.IO 87 600 300
+23250 shot med_087
+23300 avatar human.IO 88 600 300
+23500 shot med_088
+23550 avatar human.IO 89 600 300
+23750 shot med_089
+23800 avatar human.IO 90 600 300
+24000 shot med_090
+24050 avatar human.IO 91 600 300
+24250 shot med_091
+24300 avatar human.IO 92 600 300
+24500 shot med_092
+24550 avatar human.IO 93 600 300
+24750 shot med_093
+24800 avatar human.IO 94 600 300
+25000 shot med_094
+25050 avatar human.IO 95 600 300
+25250 shot med_095
+25300 avatar human.IO 96 600 300
+25500 shot med_096
+25550 avatar human.IO 97 600 300
+25750 shot med_097
+25800 avatar human.IO 98 600 300
+26000 shot med_098
+26050 avatar human.IO 99 600 300
+26250 shot med_099
+26300 avatar human.IO 100 600 300
+26500 shot med_100
+26550 avatar human.IO 101 600 300
+26750 shot med_101
+26800 avatar human.IO 102 600 300
+27000 shot med_102
+27050 avatar human.IO 103 600 300
+27250 shot med_103
+27300 avatar human.IO 104 600 300
+27500 shot med_104
+27550 avatar human.IO 105 600 300
+27750 shot med_105
+27800 avatar human.IO 106 600 300
+28000 shot med_106
+28050 avatar human.IO 107 600 300
+28250 shot med_107
+28300 avatar human.IO 108 600 300
+28500 shot med_108
+28550 avatar human.IO 109 600 300
+28750 shot med_109
+28800 avatar human.IO 110 600 300
+29000 shot med_110
+29050 avatar human.IO 111 600 300
+29250 shot med_111
+29300 avatar human.IO 112 600 300
+29500 shot med_112
+29550 avatar human.IO 113 600 300
+29750 shot med_113
+29800 avatar human.IO 114 600 300
+30000 shot med_114
+30050 avatar human.IO 115 600 300
+30250 shot med_115
+30300 avatar human.IO 116 600 300
+30500 shot med_116
+30550 avatar human.IO 117 600 300
+30750 shot med_117
+30800 avatar human.IO 118 600 300
+31000 shot med_118
+31050 avatar human.IO 119 600 300
+31250 shot med_119
+31300 avatar human.IO 120 600 300
+31500 shot med_120
+31550 avatar human.IO 121 600 300
+31750 shot med_121
+31800 avatar human.IO 122 600 300
+32000 shot med_122
+32050 avatar human.IO 123 600 300
+32250 shot med_123
+32300 avatar human.IO 124 600 300
+32500 shot med_124
+32550 avatar human.IO 125 600 300
+32750 shot med_125
+32800 avatar human.IO 126 600 300
+33000 shot med_126
+33050 avatar human.IO 127 600 300
+33250 shot med_127
+33500 quit

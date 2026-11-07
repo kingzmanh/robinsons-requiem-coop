@@ -1,0 +1,9 @@
+1000 avatar human.IO 1116 300 150
+1700 shot d0300
+1900 avatar human.IO 1116 600 300
+2600 shot d0600
+2800 avatar human.IO 1116 1000 500
+3500 shot d1000
+3700 avatar human.IO 1116 1500 750
+4400 shot d1500
+4800 quit

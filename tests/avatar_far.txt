@@ -1,0 +1,54 @@
+1000 avatar human.IO 0 1800 900
+1300 avatar human.IO 0 1800 900
+1550 shot far_000
+1600 avatar human.IO 1 1800 900
+1850 shot far_001
+1900 avatar human.IO 2 1800 900
+2150 shot far_002
+2200 avatar human.IO 3 1800 900
+2450 shot far_003
+2500 avatar human.IO 4 1800 900
+2750 shot far_004
+2800 avatar human.IO 5 1800 900
+3050 shot far_005
+3100 avatar human.IO 6 1800 900
+3350 shot far_006
+3400 avatar human.IO 7 1800 900
+3650 shot far_007
+3700 avatar human.IO 8 1800 900
+3950 shot far_008
+4000 avatar human.IO 9 1800 900
+4250 shot far_009
+4300 avatar human.IO 16 1800 900
+4550 shot far_016
+4600 avatar human.IO 24 1800 900
+4850 shot far_024
+4900 avatar human.IO 29 1800 900
+5150 shot far_029
+5200 avatar human.IO 37 1800 900
+5450 shot far_037
+5500 avatar human.IO 40 1800 900
+5750 shot far_040
+5800 avatar human.IO 42 1800 900
+6050 shot far_042
+6100 avatar human.IO 44 1800 900
+6350 shot far_044
+6400 avatar human.IO 60 1800 900
+6650 shot far_060
+6700 avatar human.IO 61 1800 900
+6950 shot far_061
+7000 avatar human.IO 62 1800 900
+7250 shot far_062
+7300 avatar human.IO 63 1800 900
+7550 shot far_063
+7600 avatar human.IO 64 1800 900
+7850 shot far_064
+7900 avatar human.IO 70 1800 900
+8150 shot far_070
+8200 avatar human.IO 80 1800 900
+8450 shot far_080
+8500 avatar human.IO 90 1800 900
+8750 shot far_090
+8800 avatar human.IO 100 1800 900
+9050 shot far_100
+9300 quit

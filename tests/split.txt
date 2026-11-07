@@ -1,0 +1,9 @@
+# split-screen: P1 left, P2 right
+800 spawn heros.IO 1
+900 spawn yoda.IO 1
+1000 spawn souris.IO 1
+2000 p2click 288 170 l 4000
+3000 click 304 170 l 2000
+6500 p2click 272 170 l 1500
+8500 dument end
+9000 quit

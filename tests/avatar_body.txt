@@ -1,0 +1,11 @@
+1000 avatar human.IO 1116 900 450
+2000 shot a_1116
+2300 avatar human.IO 1064 900 450
+3300 shot a_1064
+3600 avatar human.IO 1163 900 450
+4600 shot a_1163
+4900 avatar human.IO 1215 900 450
+5900 shot a_1215
+6200 avatar human.IO 1262 900 450
+7200 shot a_1262
+7500 quit
