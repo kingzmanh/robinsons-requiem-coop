@@ -1,0 +1,314 @@
+ALIS: Silmarils game engine re-implementation
+Todo list
+
+####################################################
+ Started 2024-01-25
+ Updated 2024-11-24
+
+ - not solved/not implemented
+ + solved/implemented
+ x original game bug
+ addition date: deletion date
+####################################################
+
+####################################################
+   0. Known system issues:
+####################################################
+
+2024-10-12: Windows: Unicode in filenames is not supported when compiling under Windows (MinGW). Running games is not affected by this issue, but a folder with game files must have a supported character set in its name. This problem does not apply when compiling under Cygwin.
+
+2024-10-24: Windows/MinGW: There is no support for ANSI colors (ANSI escape codes) in the console. Windows before version 10 has no native support (ANSICON and similar utilities can solve this problem). Windows 10 has native support, but it must be specifically enabled with ENABLE_VIRTUAL_TERMINAL_PROCESSING in SetConsoleMode(handle, mode).
+
+####################################################
+   1. General list:
+####################################################
+
+- 2024-02-19: NOTE: Silmarils are drawing UI and game window to separate logic screens. On 4 bit platforms we can easily use separate palettes for each screen to have true 32 color versions
+
+- 2024-03-03: NOTE: script loading is wastly faster on all current platforms, some loadings screens are never displayed or just breafly flash on the screen. We can delay loading for some of those scripts to make it behave more like original.
+
+- 2024-01-25: cbackstar
+
+- 2024-01-25: cstarring
+
++ 2024-01-25: 2024-02-05: cfopen, report failure to open file but don't exit
+
++ 2024-02-14: 2024-02-18: update mouse cursor whenever palette changes
+
++ 2024-03-06: 2024-03-09: use platform resolution instead of hardcoded 320 x 200
+
++ 2024-09-22: 2024-10-04: SDL2: SDL_OpenAudio may return an unsupported configuration. Conversion required. Github Issue #11.
+
++ 2024-09-28: 2024-10-13: Debug/Reports: A runtime Disalis (analog of disassembler for Alis script) for Alis VM (command line option -d). Pull requests #20, #22, #29, #40.
+
+- 2024-09-28: Debug/Reports: Built-in Disalis of Alis script files.
+
+- 2024-10-11: Capturing screenshots. There are several possible implementations here, depending on the task for which the screenshot is taken. Capturing a texture, surface or window. On Mac/Windows with or without window title and border. With or without a cursor. All of these options may be needed for different user tasks.
+
+- 2024-10-11: Improvement: GET_PTR() preprocessor function or macro to replace 'alis.mem + offset' in code to avoid crashing when executing a broken script if it tries to access unallocated memory.
+
+- 2024-10-12: Debug/Reports: Built-in util to unpack Alis script files (unpack mode). Based on and is an updated and reworked version of silm-depack util by Maestun (https://github.com/maestun/silm-depack). Pull requests #29. [In work by Cosmicore].
+
+- 2024-10-13: Debug/Reports: Built-in util to extract resources (text, audio, sample, music, image and video resources) from Alis script files (extract/resource mode). Based on and is an updated and reworked version of silm-extract by Skruug (https://github.com/skruug/silm-extract). Two extraction options: in the original internal Silmarils audio, image and video formats (raw data) and in converted form (bmp, wav, etc.). Commits #0584d10, #497c7f6, #674ac4d, #3e4e101.
+
+- 2024-10-14: Debug/Reports: Built-in util to extract doc-check words. [In work by Cosmicore].
+
+- 2024-10-14: Debug/Reports: Built-in util to convert Alis script files between BE and LE platforms.
+
+- 2024-10-14: Debug/Reports: Built-in util to pack non-packed or unpacked Alis script files. Supported both RLE and LZ like compression methods: old (A0, 80 & 81, C0 & C1), new BYTE60 (PB60, A1), and new WORD60 (PW60, A1) methods. BE and LE platforms.
+
+- 2024-10-15: Improvement: In the course of the project work and analyzing bytecode of scripts of various games it was possible to discover that games on the Alis engine have a built-in developer (or author) mode for debugging during development, sometimes with its own user interface (the most interesting example is Robinson's Requiem menu). The execution of the main script practically starts by detecting whether the system is in developer mode. Although this mode is not cut out of the scripts, it is impossible to enable it on the usual interpreters distributed with the games, because they do not contain the necessary code for activation. It is planned to enable it via the command line (option -a). To access the non-graphical interface of the mode it is necessary to implement the text mode. [In work by Cosmicore].
+
+- 2024-10-15: Debug/Reports: Built-in util to analyze files and output a report (at least about compression type for searching neccessary examples; the algorithm for detecting the files responsible for doc-check is also good for this option) (option -i).
+
++ 2024-10-17: 2024-01-11: Bug: cbeq8, cbeq16, cbeq24 and cbne8, cbne16, cbne24 perform a jump in the opposite direction from the claimed one. Pull request #40.
+
+# Savestates
+- 2024-10-23: Use LE when storing savestate and convert it if loading on BE machines.
+- 2024-10-25: Incompatible savestates made on alis compiled on different compilers (CYGWIN and MinGW etc.) due different sizes of some variables and structures (timeval). If the save is done on a different version of alis, the load may not work either, since new variables may have been added to the main structure of the virtual machine (sAlisVM alis) or old variables may have been deleted. Pull requests #35.
+- 2024-10-25: Turn off the music and sound when the save state is going to load, otherwise the old sound that was playing before loading continues to play after loading.
+
+- 2024-11-04: YM2149 emulation is imprecise. Sounds in general are slighly off, low frequency sounds like steps are not played at all. Try to replace it with something else.
+
++ 2024-11-21: 2024-11-21: Activating cheat modes usually requires pressing several buttons at the same time (for example, for Le Fetiche Maya during a car ride, one can press Left Shift + Right Shift + B to immediately end the ride and get to the village). Apparently, we have to test why some combinations don't work for us. Pull request #40.
+
+####################################################
+  2. Games list
+####################################################
+
+Manhattan Dealers / Operation: Cleanstreets
+
+- 2024-07-18: add support for original drawing
+- 2024-11-04: the game does not run
+
+####################################################
+
+Mad Show
+
++ 2024-03-03: 2024-07-16: DOS: can't unpack main script
++ 2024-07-16: 2024-07-18: DOS: some audio not playing properly ->
+- 2024-07-18: DOS: music playback not yet implemented
+- 2024-11-04: DOS: broken graphics in: Mad Show (Es) (1988)(Silmarils) [Action], Mad Show (Fr) (1988)(Silmarils) [Action].
+              Works: Mad Show (1989)(Gainstar Software Ltd.) [Action]
+
+####################################################
+
+Targhan
+
++ 2024-03-03: 2024-03-06: MAC: main script is not properly executed
++ 2024-03-03: 2024-03-06: MAC: add support for 2 bit graphics
++ 2024-03-03: 2024-03-06: AMIGA: can't unpack 'enmort.co'
++ 2024-03-03: 2024-03-06: AMIGA: crash when accessing samples in 'gen.co'
++ 2024-03-03: 2024-03-09: After executing targhan script no other clive is called ->
++ 2024-03-09: 2024-06-18: ATARI: after executing targhan script no other clive is called
++ 2024-03-09: 2024-06-18: ATARI/AMIGA: health bar not updated (wee need to add support for direct drawing rectangles/lines/etc)
++ 2024-06-18: 2024-07-16: MAC: manual check is not displayed properly
++ 2024-06-18: 2024-10-01: MAC: music playback not yet implemented
+- 2024-10-01: DOS: broken graphics in: [h1] (1989)(Gainstar Software Ltd.) [Action, Adventure], Targhan (Es) (1989)(Silmarils) [Action, Adventure].
+
+####################################################
+
+Windsurf Willy
+
++ 2024-03-03: 2024-03-09: AMIGA: infinite loop while decompressing 'awpres.co'
+
+####################################################
+
+Le Fetiche Maya /  Maya
+
++ 2024-01-25: 2024-03-03: sidebar not displayed
++ 2024-01-25: 2024-03-06: AMIGA: crash in script decompression
+- 2024-06-26: DOS: something is wrong with getting scaled sprites (road section)
+- 2024-07-21: DOS: music playback not yet implemented
+- 2024-11-16: DOS: palette issues during loading (title screen etc.)
+- 2024-11-16: Game crashes and doesn't draw text in dialog after road section before entering village.
+- 2024-11-18: ATARI: crash on loading CHAMBRE.AO (samples) in script_init() (PC host).
+
+####################################################
+
+Colorado
+
+- 2024-01-25: palette flickering after saving at camp fire
++ 2024-01-25: 2024-02-05: flickering player sprite after enterin canoe
++ 2024-01-25: 2024-03-03: drawing broken in river section
+- 2024-06-26: DOS: something is wrong with getting scaled sprites (river section)
+- 2024-07-21: DOS: music playback not yet implemented
+- 2024-11-04: DOS: warning: absent cautobase (to check)
+
+####################################################
+
+Starblade
+
+- 2024-10-04: DOS: The game title screen is not showing.
+- 2024-10-11: DOS: Enemy bullets fly in the opposite direction from the player (the shooter shoots forward, but bullets fly out from behind and fly backwards).
+
+####################################################
+
+Crystals of Arborea
+
++ 2024-01-25: 2024-02-05: parts of scene stop redrawing after showing map/entering combat, etc
+- 2024-01-25: DOS: intro animation doesn't scale falling crystals
+- 2024-11-04: DOS: [FATAL] ABSENT (pnul): NULL code pointer called
+- 2024-11-04: DOS/Spanish: [WARNING] IN_DEVEL: ohimti [FATAL] SIGSEGV: Invalid memory access (segmentation fault).
+
+####################################################
+
+Metal Mutant
+
++ 2024-10-02: 2024-10-04: There is no restriction "["PROGRESS BLOCKED"] ["ZONE STILL INFESTED"]" (apolo.io) on leaving the location when jumping. The player can pass through locations without killing enemies.
+
+####################################################
+
+Boston Bomb Club
+
+####################################################
+
+Xyphoes Fantasy
+
+- 2024-11-04: the game does not run
+
+####################################################
+
+Killing Fist
+
+- 2024-11-04: the game does not run
+
+####################################################
+
+Storm Master
+
+x 2024-09-28: Game bug: if the player tried to load a save file and refused to do so by pressing Esc, then when starting a new game the script will not be able to load the INIT.FIC file and initialize variables from it (money = 0, etc.).
+x 2024-09-28: Game bug: when entering load name, previous name is not cleared. So if we load 12345.sav and than try to load abc.sav it fail, because game attempt to load abc45.sav.
+
+####################################################
+
+Ishar: Legend of the Fortress
+
++ 2024-02-19: 2024-06-19: BG music plays after every second map segment load
++ 2024-06-26: 2024-11-05: screen corrupted after hitting 'cscmov()'
+    (setting xyz 0, or not setting it at all seams to solve the issue)
++ 2024-10-05: 2024-10-08: AMIGA/AGA: wrong palette in language selection menu. Github Issue #23.
+- 2024-10-08: DOS: Palette problem in fade-out/fade-in effects (logo screen -> title screen); (language selection screen -> authors screen). Github Issue #24.
++ 2024-11-03: 2024-11-05: AMIGA/AGA: Snoring effect in tavern doesn't stop after sleeping. Github Issue #38.
+x 2024-02-14: Game bug: when entering load name, previous name is not cleared. So if we load 12345.sav and than try to load abc.sav it fail, because game attempt to load abc45.sav.
+x 2024-10-26: Game bug: aproaching lake town from north along the hedge shows lake town building right on the hedge. 
+
+####################################################
+
+Bunny Bricks
+
++ 2024-01-25: 2024-02-05: ATARI: wrong palette in menu
+
+####################################################
+
+Transarctica / Arctic Baron
+
++ 2024-02-12: 2024-06-18: wrong background color in map
+- 2024-10-17: DOS Russian (EU multilanguage): crash before start menu. See NOTES for details. [In work by Cosmicore].
+- 2024-10-17: DOS Russian (EU multilanguage): Russian letters in the embedded font from main.io are not displayed. See NOTES for details. [In work by Cosmicore].
+- 2024-10-17: DOS: no music in game
+- 2024-11-04: DOS: long pause before logo appears
+- 2024-11-21: DOS: wrong colors (dark instead of color) on global map when cheat code is activated
+
+####################################################
+
+Ishar 2: Messengers of Doom
+
+- 2024-01-25: DOS: implement FM instruments
++ 2024-02-10: 2024-02-19: FIX drawing/or palette in 256 colors
++ 2024-02-14: 2024-06-19: BG music plays after every second map segment load
++ 2024-06-19: 2024-07-17: wrong transparency in shop signs in 8 bit colors
+
+####################################################
+
+Ishar 3: The Seven Gates of Infinity
+
++ 2024-01-25: 2024-02-05: fville sometimes don't call cpalette for time of day change
++ 2024-01-25: 2024-02-05: enemies don't attack
++ 2024-01-25: 2024-02-19: ATARI/AMIGA: leaving shop updates all active palettes (it shouldn't affetct linepalette)
++ 2024-01-25: 2024-02-10: DOS version don't start properly
++ 2024-02-05: 2024-02-18: crash when reading note in fron of Mather Fudius house -> crash when reading scrolls ->
++ 2024-02-18: 2024-02-19: drawing bug when reading scrolls
++ 2024-02-05: 2024-02-07: crash when leaving tavern with Erkh Moltus
++ 2024-02-07: 2024-02-10: Add support for CD video
++ 2024-02-10: 2024-02-12: FIX drawing/or palette in 256 colors
+x 2024-01-25: Game bug: giving money to officer to get city pass don't work
+    2024-02-14: we are picking wrong entity when clicking on part of sprite that is in the same position as some soldier in the background.
+- 2024-09-27: DOS: text output in Chinese (Big5) and Korean (Johab) for Taiwanese/Korean versions of the game not yet implemented
+
+####################################################
+
+Robinson's Requiem
+
++ 2024-01-25: cavtstmov. [In work by Skruug].
++ 2024-01-25: caim. [In work by Skruug].
++ 2024-01-25: catstmap. [In work by Skruug].
++ 2024-01-25: cchartmap. [In work by Skruug].
++ 2024-01-25: cviewmat. [In work by Skruug].
++ 2024-09-24: 2024-10-01: Atari ST missing chip music in intro
+- 2024-09-27: DOS: text output in Chinese (Big5) for Taiwanese version of the game not yet implemented
+- 2024-10-04: DOS CD version: Menu music is broken.
++ 2024-10-04: DOS CD version: No voice over the video.
+- 2024-10-04: CD version: (Improvement) Enabling subtitles for voice video-mode in game (as in Spanish EU multilanguage version).
+- 2024-11-01: DOS: From time to time. Broken palette on opening (first video), restores itself on the second video. It seems that this problem can appear on any video if the intros are skipped. Same thing in DOSBox.
+- 2024-11-01: DOS: If skipping the opening clips (by spacebar or escape) and not going to the credits screen with music, sometimes the video sound continues to play until the start menu, or even continues to play there (e.g. bird sound).
+- 2024-11-04: 3DO: Detection. The game does not run
+- 2024-11-04: JAGUAR: Detection. The game does not run
+
+####################################################
+
+Manual Viewer
+
+- 2024-10-29: Detection. Pull requests #37. [In work by Cosmicore].
+- 2024-11-04: the viewer does not run
+
+####################################################
+
+Deus
+
+- 2024-10-29: Detection. Pull requests #37. [In work by Cosmicore].
+- 2024-11-04: the game does not run
+
+####################################################
+
+Time Warriors
+
+- 2024-10-29: Detection. Pull requests #37. [In work by Cosmicore].
+- 2024-11-04: the game does not run
+
+####################################################
+
+Asghan: The Dragon Slayer
+
+- 2024-10-29: Detection. Pull requests #37. [In work by Cosmicore].
+- 2024-11-04: the game does not run
+
+####################################################
+
+Tournament of Warriors
+
+- 2024-10-29: Detection. Pull requests #37. [In work by Cosmicore].
+- 2024-11-04: the game does not run
+
+####################################################
+
+Arabian Nights
+
+- 2024-10-29: Detection. Pull requests #37. [In work by Cosmicore].
+- 2024-11-04: the game does not run
+
+####################################################
+
+Les Visiteurs: La Relique de Sainte Rolande
+
+- 2024-10-29: Detection. Pull requests #37. [In work by Cosmicore].
+- 2024-11-04: the game does not run
+
+####################################################
+
+Inspector Gadget: Mad Robots Invasion
+
+- 2024-10-29: Detection. Pull requests #37. [In work by Cosmicore].
+- 2024-11-04: the game does not run
+
+####################################################

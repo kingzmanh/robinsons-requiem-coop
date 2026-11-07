@@ -1,0 +1,34 @@
+// rrq-coop core: per-player main-variable records (see rrq_coop.c).
+#pragma once
+int  rrq_coop_active_player(void);
+void rrq_coop_switch(int p);                 // VM thread only
+void rrq_coop_request_player(int p);         // any thread; applied by rrq_coop_service
+void rrq_coop_request_poke(int off, int val, int is_word);
+void rrq_coop_service(void);                 // VM thread, scheduler safe point
+void rrq_coop_request_spawn(const char *name, int owner);
+void rrq_coop_request_drive(int v);
+void rrq_coop_slice_begin(void);
+void rrq_coop_request_p2view(const char *name);
+int  rrq_coop_owner(unsigned int vram);
+void rrq_coop_before_draw(void);
+void rrq_coop_after_draw(void);
+int  rrq_coop_split(void);
+int  rrq_coop_p2_frame(unsigned int *dst, int w, int h);
+void rrq_coop_slice_end(void);
+void rrq_coop_request_dump(const char *t);
+void rrq_coop_request_avatar(const char *script, int res, int dx, int dy);
+void rrq_coop_request_npcavatar(const char *script);
+void rrq_coop_start(void);
+void rrq_coop_request_start(void);
+void rrq_coop_request_setpos(int p, int x, int y, int a);
+void rrq_coop_fix_herolist(short *tab, int n);
+void rrq_coop_set_auto(int on);
+void rrq_coop_file_opened(const char *path, unsigned mode);
+void rrq_coop_file_closed(void);
+void rrq_coop_note_message(unsigned int vram);
+void rrq_coop_entity_started(void *child, void *parent);   // cstart hook (VM thread)
+void rrq_pal_select(int p);    // image.c: per-player palettes
+void rrq_pal_reset(void);
+const unsigned int *rrq_coop_display_palette(void);
+void rrq_pal_world_begin(void);
+void rrq_pal_world_end(void);

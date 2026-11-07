@@ -1,0 +1,1086 @@
+//
+// Copyright 2023 Olivier Huguenot, Vadim Kindl
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy 
+// of this software and associated documentation files (the “Software”), 
+// to deal in the Software without restriction, including without limitation 
+// the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+// and/or sell copies of the Software, and to permit persons to whom the 
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in 
+// all copies or substantial portions of the Software.
+// THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, 
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+// OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+#include "config.h"
+
+#if ALIS_SDL_VER == 2
+
+#if defined(_MSC_VER)
+# include "SDL.h"
+# include "SDL_thread.h"
+#elif __has_include(<SDL.h>)
+# include <SDL.h>
+# include <SDL_thread.h>
+#else
+# include <SDL2/SDL.h>
+# include <SDL2/SDL_thread.h>
+#endif
+
+#include "sys.h"
+#include "alis.h"
+#include "audio.h"
+#include "channel.h"
+#include "image.h"
+#include "mem.h"
+#include "platform.h"
+#include "utils.h"
+#include "video.h"
+#include "rrq_harness.h"
+#include "../rrq_coop.h"
+#include "../rrq_net.h"
+
+#include "emu2149.h"
+#include "math.h"
+
+// 0 No interpolation
+// 1 cubic
+// 2 hermite
+// 3 hermite_4pt_3ox
+
+#define ALIS_SND_INTERPOLATE_TYPE 1
+
+const u32               k_event_ticks = (1000000 / 120);  // poll keyboard 120 times per second
+const u32               k_frame_ticks = (1000000 / 50);   // 50 fps screen update
+
+extern u8               shift;
+extern mouse_t          mouse;
+
+extern SDL_Renderer    *renderer;
+extern SDL_Window      *window;
+extern SDL_Texture     *texture;
+extern SDL_Cursor      *cursor;
+
+extern SDL_Keysym      button;
+extern SDL_Event       event;
+
+extern SDL_sem         *render_sem;
+extern SDL_TimerID     timer_id;
+
+extern SDL_AudioSpec   *audio_spec;
+
+extern bool            dirty_mouse;
+extern float           scale;
+extern int             opt_scale;
+extern float           aspect_ratio;
+extern float           scale_x;
+extern float           scale_y;
+extern u32             width;
+extern u32             height;
+
+extern int             audio_id;
+
+extern u8              *vgalogic_df;
+
+extern u8              failure;
+
+extern u32             poll_ticks;
+extern struct timeval   frame_time;
+extern struct timeval   loop_time;
+
+extern u32             isr_step;
+extern u32             isr_counter;
+
+u32                   *pixels;
+
+void sys_audio_callback_S16MSB(void *userdata, u8 *stream, s32 len);
+void sys_audio_callback_S8(void *userdata, u8 *stream, s32 len);
+
+// ============================================================================
+#pragma mark - SDL2 System init
+// ============================================================================
+
+u32 sys_ticks(void) { return SDL_GetTicks(); }
+void sys_delay(u32 ms) { SDL_Delay(ms); }
+u8 *sys_get_framebuffer(int index) { (void)index; return NULL; }  // VM mallocs the render buffers
+
+// Savestate load: wait out and block the audio callback
+void sys_isr_pause(int on)
+{
+    if (audio_id <= 0)
+        return;
+    
+    if (on)
+    {
+        SDL_LockAudioDevice(audio_id);
+    }
+    else
+    {
+        SDL_UnlockAudioDevice(audio_id);
+    }
+}
+
+void sys_init(sPlatform *pl, int fullscreen, int mutesound)
+{
+
+    width = pl->width;
+    height = pl->height;
+
+    // CLI override (--sN). 0 = use existing default (scale=2).
+    if (opt_scale >= 1 && opt_scale <= 4)
+        scale = (float)opt_scale;
+
+    scale_x = scale;
+    scale_y = scale * aspect_ratio;
+    
+    printf("  SDL initialization...\n");
+    if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO|SDL_INIT_JOYSTICK)<0)
+    {
+        fprintf(stderr, "   Unable to initialize SDL: %s\n", SDL_GetError());
+        exit(-1);
+    }
+
+    extern SDL_Joystick *sys_joy_handle;
+    extern SDL_JoystickID sys_joy_instance_id;
+    SDL_JoystickEventState(SDL_ENABLE);
+    if (SDL_NumJoysticks() > 0)
+    {
+        sys_joy_handle = SDL_JoystickOpen(0);
+        if (sys_joy_handle)
+        {
+            sys_joy_instance_id = SDL_JoystickInstanceID(sys_joy_handle);
+            printf("  Joystick: %s\n", SDL_JoystickName(sys_joy_handle));
+        }
+    }
+    
+    {
+        u32 timer_ms = alis.platform.is_little_endian ? 17 : 20;
+        timer_id = SDL_AddTimer(timer_ms, itroutine, NULL);
+        if (!timer_id)
+        {
+            fprintf(stderr, "   Could not create timer: %s\n", SDL_GetError());
+            exit(-1);
+        }
+
+        // 17ms → ~58.82 Hz, 20ms → 50 Hz. video.c uses this to keep FLI
+        // speech rate and frame pacing locked together.
+        sys_timeclock_hz = 1000 / timer_ms;
+    }
+    
+    printf("  Video initialization...\n");
+    rrq_harness_init();
+    int sw = rrq_coop_split() ? 2 : 1;   // rrq-coop split screen: P1 | P2 side by side
+    window = SDL_CreateWindow(alis.platform.uid == EGameRobinsonsRequiem0 || alis.platform.uid == EGameRobinsonsRequiem1 ? "Robinson's Requiem Co-op" : kProgName, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width * scale_x * sw, height * scale_y, SDL_WINDOW_RESIZABLE | fullscreen * SDL_WINDOW_FULLSCREEN_DESKTOP | (rrq_harness_hidden() ? SDL_WINDOW_HIDDEN : 0));
+    if (window == NULL)
+    {
+        fprintf(stderr, "   Could not create %.0fx%.0f window: %s\n", (width * scale_x), (height * scale_y), SDL_GetError());
+        exit(-1);
+    }
+    
+    renderer = SDL_CreateRenderer(window, -1, 0);
+    if (renderer == NULL)
+    {
+        fprintf(stderr, "   Could not create renderer: %s\n", SDL_GetError());
+        SDL_DestroyWindow(window);
+        exit(-1);
+    }
+    
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderSetScale(renderer, scale, scale);
+    SDL_RenderSetLogicalSize(renderer, width * sw, height * aspect_ratio);
+    
+    pixels = malloc(width * height * sizeof(*pixels));
+    memset(pixels, 0, width * height * sizeof(*pixels));
+    
+    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, width * sw, height);
+    if (texture == NULL)
+    {
+        fprintf(stderr, "   Could not create texture: %s\n", SDL_GetError());
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        exit(-1);
+    }
+
+    image.pal_format = EPalARGB;  // SDL2 uses ARGB8888 textures
+    
+    SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_NONE);
+    
+    cursor = NULL;
+    dirty_mouse = 0;
+    
+    printf("  Audio initialization...\n");
+    audio_spec = (SDL_AudioSpec *)malloc(sizeof(SDL_AudioSpec));
+    
+    SDL_AudioSpec *desired_spec = (SDL_AudioSpec *)malloc(sizeof(SDL_AudioSpec));
+    
+    SDL_zero(*desired_spec);
+    desired_spec->freq = 44100;
+    desired_spec->format = AUDIO_S16;
+    desired_spec->channels = 2;
+    desired_spec->samples = desired_spec->freq / 50; // 20 ms
+    desired_spec->callback = sys_audio_callback_S16MSB;
+    desired_spec->userdata = NULL;
+    desired_spec->size = desired_spec->samples * 2 * 2;
+    
+    if ((audio_id = SDL_OpenAudioDevice(NULL, 0, desired_spec, audio_spec, 0)) <= 0 )
+    {
+        fprintf(stderr, "   Could not open audio: %s\n", SDL_GetError());
+        exit(-1);
+    }
+    
+    // Extended information on obtained audio for tests and reports
+    printf("  Opened audio device id %d successfully:\n", audio_id);
+    printf("    Frequency:  %d\n", audio_spec->freq);
+    printf("    Format:     0x%04x => %d bits per sample\n", audio_spec->format, (int) SDL_AUDIO_BITSIZE(audio_spec->format));
+    printf("    Channels:   %d\n", audio_spec->channels);
+    printf("    Samples:    %d\n", audio_spec->samples);
+    printf("    Silence:    %d\n", audio_spec->silence);
+    printf("    Padding:    %d\n", audio_spec->padding);
+    printf("    Size:       %d\n", audio_spec->size);
+    
+    free(desired_spec);
+    
+    audio.host_freq = audio_spec->freq;
+    audio.host_format = audio_spec->format;
+
+    sys_init_psg();
+
+    // DOS games ticked their audio engine on a 60 Hz PIT; Atari/Amiga
+    // games on a 50 Hz PAL VBL. See sys.h.
+    sys_sfx_tick_hz = alis.platform.is_little_endian ? 60 : 50;
+
+    isr_step = (sys_sfx_tick_hz * 65536UL) / (u32)audio_spec->freq;
+    isr_counter = 0x10000;
+    
+    SDL_PauseAudioDevice(audio_id, mutesound);
+    
+    render_sem = SDL_CreateSemaphore(1);
+    if (render_sem == NULL)
+    {
+        fprintf(stderr, "   Could not create semaphore: %s\n", SDL_GetError());
+        exit(-1);
+    };
+    
+    poll_ticks = SDL_GetTicks();
+    gettimeofday(&frame_time, NULL);
+    gettimeofday(&loop_time, NULL);
+}
+
+void sys_init_timers(void)
+{
+    
+    poll_ticks = SDL_GetTicks();
+    gettimeofday(&frame_time, NULL);
+    gettimeofday(&loop_time, NULL);
+}
+
+void sys_sleep_until(struct timeval *start, s32 len)
+{
+    struct timeval now;
+    gettimeofday(&now, NULL);
+    
+    s64 wait = len - ((s64)(now.tv_sec * 1000000LL + now.tv_usec) - (s64)(start->tv_sec * 1000000LL + start->tv_usec));
+    if (wait > 0 && wait <= len)
+        usleep((u32)wait);
+    
+    gettimeofday(&now, NULL);
+    *start = now;
+}
+
+void sys_sleep_interactive(s32 *loop, s32 intr)
+{
+    if (intr > 0)
+    {
+        *loop *= 1000;
+        intr *= 1000;
+        
+        struct timeval now, prev;
+        gettimeofday(&prev, NULL);
+        
+        while (*loop > intr || (*loop > 0 && io_inkey() == 0))
+        {
+            usleep(k_event_ticks);
+            
+            gettimeofday(&now, NULL);
+            *loop -= ((now.tv_sec * 1000000LL) + now.tv_usec) - ((prev.tv_sec * 1000000LL) + prev.tv_usec);
+            prev = now;
+        }
+        
+        *loop = 0;
+    }
+}
+
+void sys_delay_loop(void)
+{
+    sys_sleep_until(&loop_time, 4000);
+}
+
+void sys_delay_frame(void)
+{
+    sys_sleep_until(&frame_time, k_frame_ticks * 50 / sys_pace_hz() * alis.ctiming);
+}
+
+void sys_sleep_until_music_stops(void)
+{
+    if (SDL_GetAudioDeviceStatus(audio_id) != SDL_AUDIO_PLAYING)
+        return;
+    
+    audio.working = 1;
+
+    for (int count = 0; count < 100 && audio.muflag; count++)
+        usleep(10000);
+
+    audio.muflag = 0;
+    audio.musicId = 0xffff;
+
+    for (int count = 0; count < 100 && audio.working; count++)
+        usleep(10000);
+}
+
+// ============================================================================
+#pragma mark - SDL2 Main system loop
+// ============================================================================
+
+u8 sys_start(void)
+{
+
+    if (failure)
+        return -1;
+
+    alis.state = eAlisStateRunning;
+
+    SDL_Thread *thread = SDL_CreateThread(alis_thread, "ALIS", (void *)NULL);
+    if (thread == NULL)
+    {
+        printf("Could not create thread! %s\n", SDL_GetError());
+        return 1;
+    }
+    
+    while (alis.state && !failure)
+    {
+        // wait so image is drawn and keyboard is polled at 120 fps
+        usleep(k_event_ticks);
+        sys_poll_event();
+    }
+
+    signals_info(failure);
+    if (!failure)
+    {
+        ALIS_DEBUG(EDebugInfo, "Waiting for the VM kernel thread to finish...\n");
+        SDL_WaitThread(thread, NULL);
+    }
+    else
+    {
+        ALIS_DEBUG(EDebugSystem, "Ignoring the crashed VM kernel thread...\n");
+    }
+
+    return 0;
+}
+
+void sys_poll_event(void)
+{
+    
+    rrq_harness_tick();
+    sys_render(host.pixelbuf);
+    
+    // update mouse position
+    SDL_GetMouseState(&mouse.x, &mouse.y);
+
+    float newx, newy;
+    SDL_RenderWindowToLogical(renderer, mouse.x, mouse.y, &newx, &newy);
+
+    // map logical coords back to GAME pixel coords
+    int lw = 0, lh = 0;
+    SDL_RenderGetLogicalSize(renderer, &lw, &lh);
+    mouse.x = newx;
+    mouse.y = (lh > 0) ? newy * (float)height / (float)lh : newy / aspect_ratio;
+    {
+        int hx, hy, hlb, hrb, hlbc = 0, hrbc = 0;
+        if (rrq_harness_mouse(&hx, &hy, &hlb, &hrb, &hlbc, &hrbc))
+        {
+            mouse.x = hx; mouse.y = hy; mouse.lb = hlb; mouse.rb = hrb;
+            if (hlbc) mouse.lb_clicked = 1;
+            if (hrbc) mouse.rb_clicked = 1;
+        }
+    }
+
+    // Drain the event queue; quick clicks latch in mouse.lb_clicked / rb_clicked.
+    while (SDL_PollEvent(&event))
+    {
+        switch (event.type)
+        {
+
+            case SDL_MOUSEBUTTONDOWN:
+            {
+                if (event.button.button == SDL_BUTTON_LEFT)
+                {
+                    mouse.lb = 1;
+                    mouse.lb_clicked = 1;
+                }
+
+                if (event.button.button == SDL_BUTTON_RIGHT)
+                {
+                    mouse.rb = 1;
+                    mouse.rb_clicked = 1;
+                }
+
+                break;
+            }
+
+            case SDL_MOUSEBUTTONUP:
+            {
+                if (event.button.button == SDL_BUTTON_LEFT)
+                    mouse.lb = 0;
+                if (event.button.button == SDL_BUTTON_RIGHT)
+                    mouse.rb = 0;
+                break;
+            }
+
+            case SDL_QUIT:
+            {
+                printf("\n");
+                ALIS_DEBUG(EDebugSystem, "SDL2: Quit.\n");
+                ALIS_DEBUG(EDebugSystem, "A STOP signal has been sent to the VM queue...\n");
+                alis.state = eAlisStateStopped;
+                break;
+            }
+
+            case SDL_KEYUP:
+            {
+                if (sys_pad3do_click(event.key.keysym.sym, 0))
+                {
+                    break;
+                }
+
+                switch (event.key.keysym.sym)
+                {
+                    case SDLK_LALT:
+                        printf("\n");
+                        ALIS_DEBUG(EDebugSystem, "INTERRUPT: User debug label.\n");
+                        break;
+
+                    case SDLK_F9:
+                    {
+                        static int wav_recording = 0;
+                        if (!wav_recording)
+                        {
+                            sys_wav_export_start("alis_music.wav");
+                            wav_recording = 1;
+                        }
+                        else
+                        {
+                            sys_wav_export_stop();
+                            wav_recording = 0;
+                        }
+
+                        break;
+                    }
+
+                    case SDLK_F11:
+                        alis.state = eAlisStateSave;
+                        break;
+
+                    case SDLK_F12:
+                        alis.state = eAlisStateLoad;
+                        break;
+                        
+                    default:
+                        break;
+                }
+
+                break;
+            }
+
+            case SDL_KEYDOWN:
+            {
+                if (sys_pad3do_click(event.key.keysym.sym, 1) || event.key.keysym.sym == SDLK_F11 || event.key.keysym.sym == SDLK_F12)
+                {
+                    break;
+                }
+
+                if (event.key.keysym.sym == SDLK_PAUSE)
+                {
+                    printf("\n");
+                    ALIS_DEBUG(EDebugSystem, "INTERRUPT: Quit by user request.\n");
+                    ALIS_DEBUG(EDebugSystem, "A STOP signal has been sent to the VM queue...\n");
+                    alis.state = eAlisStateStopped;
+                }
+                else if (rrq_net_active())
+                {
+                    rrq_net_local_key(event.key.keysym.sym, (u16)event.key.keysym.scancode);   // online: goes into the lockstep stream
+                }
+                else
+                {
+                    button = event.key.keysym;
+                }
+
+                break;
+            }
+
+            case SDL_WINDOWEVENT:
+            {
+                if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+                {
+                    SDL_RenderGetScale(renderer, &scale_x, &scale_y);
+                    scale_y *= aspect_ratio;
+
+                    dirty_mouse = true;
+                }
+
+                break;
+            }
+
+            case SDL_JOYDEVICEADDED:
+            {
+                extern SDL_Joystick *sys_joy_handle;
+                extern SDL_JoystickID sys_joy_instance_id;
+                if (sys_joy_handle == NULL)
+                {
+                    sys_joy_handle = SDL_JoystickOpen(event.jdevice.which);
+                    if (sys_joy_handle)
+                    {
+                        sys_joy_instance_id = SDL_JoystickInstanceID(sys_joy_handle);
+                        ALIS_DEBUG(EDebugInfo, "Joystick connected: %s\n",
+                                   SDL_JoystickName(sys_joy_handle));
+                    }
+                }
+
+                break;
+            }
+
+            case SDL_JOYDEVICEREMOVED:
+            {
+                extern SDL_Joystick *sys_joy_handle;
+                extern SDL_JoystickID sys_joy_instance_id;
+                if (sys_joy_handle && event.jdevice.which == sys_joy_instance_id)
+                {
+                    SDL_JoystickClose(sys_joy_handle);
+                    sys_joy_handle = NULL;
+                    sys_joy_instance_id = -1;
+                    ALIS_DEBUG(EDebugInfo, "Joystick disconnected\n");
+                }
+
+                break;
+            }
+        };
+    }   // end of SDL_PollEvent drain loop
+}
+
+// ============================================================================
+#pragma mark - SDL2 RENDER
+// ============================================================================
+
+void sys_render(pixelbuf_t buffer)
+{
+    dirty_len = 0;
+    SDL_SemWait(render_sem);
+    {
+        const unsigned int *dp = rrq_coop_display_palette();   // rrq-coop: the palette the local frame was drawn with
+        if (dp) buffer.palette = (u32 *)dp;
+    }
+
+    // v6 runtime resolution switch
+    if (buffer.w != width || buffer.h != height)
+    {
+        width = buffer.w;
+        height = buffer.h;
+
+        free(pixels);
+        pixels = malloc((size_t)width * (size_t)height * sizeof(*pixels));
+        memset(pixels, 0, (size_t)width * (size_t)height * sizeof(*pixels));
+
+        if (texture)
+            SDL_DestroyTexture(texture);
+        
+        texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, width, height);
+        SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_NONE);
+        SDL_RenderSetLogicalSize(renderer, width, (width * 3) / 4);
+    }
+
+    if (dirty_mouse)
+    {
+        dirty_mouse = false;
+        sys_dirty_mouse();
+    }
+
+    if (buffer.rgb)
+    {
+        memcpy(pixels, buffer.rgb, (size_t)buffer.w * buffer.h * sizeof(*pixels));
+    }
+    else if (bfilm.type == eAlisVideoHAM6)
+    {
+        u8 *bitmap = vgalogic_df + 0xa0;
+    
+        // Amiga HAM bitplanes
+        
+        // Use raw RGB palette saved by fls_pal
+        u8 (*ham_pal)[3] = bfilm.ham_pal;
+
+        u32 px = 0;
+        u32 planesize = (buffer.w * buffer.h) >> 3;
+
+        s32 index;
+        s32 control;
+
+        u8 r = 0;
+        u8 g = 0;
+        u8 b = 0;
+
+        u8 *c0 = bitmap;
+        u8 *c1 = c0 + planesize;
+        u8 *c2 = c1 + planesize;
+        u8 *c3 = c2 + planesize;
+        u8 *c4 = c3 + planesize;
+        u8 *c5 = c4 + planesize;
+
+        for (s32 y = 0; y < buffer.h; y++)
+        {
+            for (s32 x = 0; x < buffer.w; x+=8, c0++, c1++, c2++, c3++, c4++, c5++)
+            {
+                for (s32 bit = 7; bit >= 0; bit--, px++)
+                {
+                    index = (((*c0 >> bit) & 1) | ((*c1 >> bit) & 1) << 1 | ((*c2 >> bit) & 1) << 2 | ((*c3 >> bit) & 1) << 3) << 2;
+                    control = ((*c4 >> bit) & 1) << 0 | ((*c5 >> bit) & 1) << 1;
+                    switch (control)
+                    {
+                        case 0:
+                            r = ham_pal[index >> 2][0];
+                            g = ham_pal[index >> 2][1];
+                            b = ham_pal[index >> 2][2];
+                            break;
+                        case 1:
+                            b = index << 2;
+                            break;
+                        case 2:
+                            r = index << 2;
+                            break;
+                        case 3:
+                            g = index << 2;
+                            break;
+                    }
+
+                    pixels[px] = (u32)(0xff000000 + (r << 16) + (g << 8) + (b << 0));
+                }
+            }
+        }
+    }
+    else if (bfilm.type == eAlisVideoS512)
+    {
+        u8 *bitmap = vgalogic_df + 0xa0;
+        
+        // Atari ST Spectrum 512 bitplanes
+        
+        u16 curpal[32];
+        memcpy(curpal, vgalogic_df + 32000, 32);
+        
+        u16 *palette = (u16 *)(vgalogic_df + 32000 + 32);
+        
+        int palcntr = 0;
+        
+        u32 px = 0;
+        u32 at = 0;
+        
+        s32 palidx, mask;
+        u8 *rawcolor;
+        
+        for (int y = 0; y < buffer.h; y++, palette += 16)
+        {
+            palcntr = 408;
+            
+            for (int x = 0; x < 10; x++, at+=8)
+            {
+                for (int i = at; i < at + 2; i++)
+                {
+                    for (int rot = 7; rot >= 0; rot--, palcntr+=102, px++)
+                    {
+                        palidx = palcntr >> 10;
+                        curpal[palidx] = palette[palidx];
+                        mask = 1 << rot;
+                        rawcolor = (u8 *)&(curpal[((bitmap[i + 0] & mask) >> rot) | (((bitmap[i + 2] & mask) >> rot) << 1) | (((bitmap[i + 4] & mask) >> rot) << 2) | (((bitmap[i + 6] & mask) >> rot) << 3)]);
+                        pixels[px] = (u32)(0xff000000 + (((rawcolor[0] & 0b00000111) << 5) << 16) + (((rawcolor[1] >> 4) << 5) << 8) + (((rawcolor[1] & 0b00000111) << 5) << 0));
+                    }
+                }
+            }
+            
+            palcntr = 510;
+            palette += 16;
+            
+            for (int x = 10; x < 20; x++, at+=8)
+            {
+                for (int i = at; i < at + 2; i++)
+                {
+                    for (int rot = 7; rot >= 0; rot--, palcntr+=102, px++)
+                    {
+                        palidx = palcntr >> 10;
+                        curpal[palidx] = palette[palidx];
+                        mask = 1 << rot;
+                        rawcolor = (u8 *)&(curpal[((bitmap[i + 0] & mask) >> rot) | (((bitmap[i + 2] & mask) >> rot) << 1) | (((bitmap[i + 4] & mask) >> rot) << 2) | (((bitmap[i + 6] & mask) >> rot) << 3)]);
+                        pixels[px] = (u32)(0xff000000 + (((rawcolor[0] & 0b00000111) << 5) << 16) + (((rawcolor[1] >> 4) << 5) << 8) + (((rawcolor[1] & 0b00000111) << 5) << 0));
+                    }
+                }
+            }
+            
+            palette += 16;
+            memcpy(curpal, palette, 32);
+        }
+    }
+    else if (image.emode && image.terrgbarows)
+    {
+        int stride = 2 + (sizeof(u8 *) >> 1);
+        s16 *cur = image.firstpal;
+        s16 *nxt = cur + stride;
+
+        u16 uipaloff = 0;
+        if (image.flinepal)
+        {
+            while (nxt[0] != 0xff && 150 >= nxt[1])
+            {
+                cur = nxt;
+                nxt = cur + stride;
+            }
+            
+            uipaloff = cur[2];
+        }
+        
+        cur = image.firstpal;
+        nxt = cur + stride;
+
+        // Enhanced mode: blit terrgba for terrain area, 8-bit for sprites/sky/UI
+        u8 pal_mask = alis.platform.bpp == 4 ? 0x0F : 0xFF;
+        for (int y = 0; y < buffer.h; y++)
+        {
+            s16 ty = y - image.wlogy1;
+            int base = y * buffer.w;
+            
+            while (nxt[0] != 0xff && y >= nxt[1])
+            {
+                cur = nxt;
+                nxt = cur + stride;
+            }
+
+            u16 paloff = cur[2];
+
+            for (int x = 0; x < buffer.w; x++)
+            {
+                int px = base + x;
+                
+                if (ty >= 0 && ty < image.terrgbah && x < image.terrgbaw && buffer.data[px] == 0xff)
+                {
+                    // Sentinel value 1 = untouched terrain → use RGBA with fog
+                    pixels[px] = image.terrgbarows[ty][x];
+                }
+                else if (ty >= 0 && ty < image.terrgbah && x < image.terrgbaw)
+                {
+                    // Terrain area but overwritten by destofen/sprites → 8-bit palette
+                    int index = buffer.data[px] + paloff;
+                    pixels[px] = buffer.palette[index] | 0xFF000000u;
+                }
+                else
+                {
+                    int index = buffer.data[px] + uipaloff;
+                    pixels[px] = buffer.palette[index] | 0xFF000000u;
+                }
+            }
+        }
+    }
+    else if (image.flinepal)
+    {
+        int stride = 2 + (sizeof(u8 *) >> 1);
+        s16 *cur = image.firstpal;
+        s16 *nxt = cur + stride;
+
+        for (int y = 0; y < buffer.h; y++)
+        {
+            while (nxt[0] != 0xff && y >= nxt[1])
+            {
+                cur = nxt;
+                nxt = cur + stride;
+            }
+
+            u16 paloff = cur[2];
+            int base = y * buffer.w;
+            for (int x = 0; x < buffer.w; x++)
+            {
+                int index = buffer.data[base + x] + paloff;
+                pixels[base + x] = buffer.palette[index] | 0xFF000000u;
+            }
+        }
+    }
+    else
+    {
+        int index;
+        for (int px = 0; px < buffer.w * buffer.h; px++)
+        {
+            index = buffer.data[px];
+            pixels[px] = buffer.palette[index] | 0xFF000000u;
+        }
+    }
+
+    if (rrq_net_local_player() == 1 && !rrq_coop_split())
+    {
+        // online client: show player 2's own view (drawn every frame by rrq_coop_after_draw)
+        static u32 *cpix; static int ccap;
+        int n = width * height;
+        if (ccap < n) { free(cpix); cpix = malloc((size_t)n * 4); ccap = n; }
+        int got = rrq_coop_p2_frame(cpix, width, height);
+        if (!got) memcpy(cpix, pixels, (size_t)n * 4);
+        rrq_harness_after_render(cpix, width, height);
+        SDL_UpdateTexture(texture, NULL, cpix, width * sizeof(*pixels));
+    }
+    else if (rrq_coop_split())
+    {
+        // compose P1 (left) | P2 (right); P2's frame comes from the VM thread's second draw
+        static u32 *spix, *p2pix; static int scap;
+        int n = width * height;
+        if (scap < n) { free(spix); free(p2pix); spix = malloc((size_t)n * 8); p2pix = malloc((size_t)n * 4); scap = n; }
+        int have2 = rrq_coop_p2_frame(p2pix, width, height);
+        for (int y = 0; y < height; y++)
+        {
+            memcpy(spix + (size_t)y * width * 2, pixels + (size_t)y * width, width * 4);
+            if (have2) memcpy(spix + (size_t)y * width * 2 + width, p2pix + (size_t)y * width, width * 4);
+            else memset(spix + (size_t)y * width * 2 + width, 0, width * 4);
+        }
+        rrq_harness_after_render(spix, width * 2, height);
+        SDL_UpdateTexture(texture, NULL, spix, width * 2 * sizeof(*pixels));
+    }
+    else
+    {
+        rrq_harness_after_render(pixels, width, height);
+        SDL_UpdateTexture(texture, NULL, pixels, width * sizeof(*pixels));
+    }
+    
+    // clear & render
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, NULL, NULL);
+    SDL_RenderPresent(renderer);
+    
+    SDL_SemPost(render_sem);
+}
+
+// ============================================================================
+#pragma mark - SDL2 System deinit
+// ============================================================================
+
+void sys_restore_desktop(void) { }   // GEM/desktop handover: native Atari backend only
+
+void sys_deinit(void)
+{
+
+    {
+        extern SDL_Joystick *sys_joy_handle;
+        if (sys_joy_handle)
+        {
+            SDL_JoystickClose(sys_joy_handle);
+            sys_joy_handle = NULL;
+        }
+    }
+
+    SDL_RemoveTimer(timer_id);
+    SDL_PauseAudioDevice(audio_id, 1);
+    SDL_CloseAudioDevice(audio_id);
+    SDL_DestroySemaphore(render_sem);
+    
+    SDL_Delay(20);   // 20ms fail-safe delay to make sure that sound buffer is empty
+
+    sys_deinit_psg();
+
+    free(audio_spec);
+
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+}
+
+// =============================================================================
+#pragma mark - SDL2 SYNC
+// =============================================================================
+
+void sys_lock_renderer(void)
+{
+    
+    SDL_SemWait(render_sem);
+}
+
+void sys_unlock_renderer(void)
+{
+    
+    SDL_SemPost(render_sem);
+}
+
+// =============================================================================
+#pragma mark - SDL2 MOUSE
+// =============================================================================
+
+// Integrated-cursor hooks (used by the native 16bpp backend); no-ops under SDL2.
+void sys_mouse_erase(void)  {}
+void sys_mouse_uncopy(void) {}
+void sys_mouse_draw(void)   {}
+void sys_flip_wait(void)    {}
+
+void sys_dirty_mouse(void)
+{
+
+    // NOTE: engine draws its own software cursor
+    if (alis.platform.version >= 60)
+    {
+        SDL_ShowCursor(SDL_DISABLE);
+        return;
+    }
+
+    if (alis.desmouse == NULL)
+    {
+        SDL_ShowCursor(mouse.enabled);
+        return;
+    }
+    
+    u8 type = alis.desmouse[0];
+    u16 width = read16(alis.desmouse + 2) + 1;
+    u16 height = read16(alis.desmouse + 4) + 1;
+    
+    u32 *pixels = malloc(width * height * sizeof(u32));
+
+    switch (type)
+    {
+        case 0x00:
+        case 0x02:
+        {
+            u32 *palette = host.pixelbuf.palette;
+
+            if (image.flinepal)
+            {
+                s16 *palentry = image.firstpal;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    s16 unk1 = palentry[0];
+                    if (unk1 == 0xff)
+                        break;
+
+                    palette = host.pixelbuf.palette + palentry[2];
+                    palentry += 2 + (sizeof(u8 *) >> 1);
+                }
+            }
+            
+            // ST image
+            
+            u8 color;
+            u8 clear = type == 0 ? 0 : -1;
+            
+            u8 *at = alis.desmouse + 6;
+
+            s32 px = 0;
+            for (s32 h = 0; h < height; h++)
+            {
+                for (s32 w = 0; w < width; w++, px++)
+                {
+                    s16 wh = w / 2;
+                    color = *(at + wh + h * (width / 2));
+                    color = w % 2 == 0 ? ((color & 0b11110000) >> 4) : (color & 0b00001111);
+                    pixels[px] = color == clear ? 0 : (palette[color] | 0xFF000000u);
+                }
+            }
+            
+            break;
+        }
+            
+        case 0x10:
+        case 0x12:
+        {
+            // 4 bit image
+            u8 palidx = alis.desmouse[6];
+            u8 clear = alis.desmouse[0] == 0x10 ? alis.desmouse[7] : -1;
+            u8 *at = alis.desmouse + 8;
+            u8 color;
+
+            s32 px = 0;
+            for (s32 h = 0; h < width; h++)
+            {
+                for (s32 w = 0; w < height; w++, px++)
+                {
+                    s16 wh = w / 2;
+                    color = *(at + wh + h * (width / 2));
+                    color = w % 2 == 0 ? ((color & 0b11110000) >> 4) : (color & 0b00001111);
+                    int index = palidx + color;
+                    pixels[px] = color == clear ? 0 : (host.pixelbuf.palette[index] | 0xFF000000u);
+                }
+            }
+
+            break;
+        }
+
+            
+        case 0x14:
+        case 0x16:
+        {
+            // 8 bit image
+            
+            u8 color;
+
+            // Ishar 1 & 3
+            u8 clear = 0;
+
+            if (alis.platform.uid == EGameIshar_2)
+            {
+                // Ishar 2
+                clear = alis.desmouse[0] == 0x14 ? alis.desmouse[7] : -1;
+            }
+            
+            u8 *at = alis.desmouse + 8;
+
+            for (int px = 0; px < width * height; px++)
+            {
+                color = at[px];
+                pixels[px] = color == clear ? 0 : (host.pixelbuf.palette[color] | 0xFF000000u);
+            }
+
+            break;
+        }
+            
+        default:
+        {
+            break;
+        }
+    };
+    
+    SDL_Surface *surface = SDL_CreateRGBSurfaceFrom(pixels, width, height, 32, width * 4, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+    if (!surface)
+    {
+        printf("Failed to create mouse surface: %s\n", SDL_GetError());
+        return;
+    }
+    
+    SDL_Surface *scaledSurface = SDL_CreateRGBSurface(0, width * scale_x, height * scale_y, surface->format->BitsPerPixel, surface->format->Rmask, surface->format->Gmask, surface->format->Bmask, surface->format->Amask);
+    if (SDL_BlitScaled(surface, NULL, scaledSurface, NULL) < 0)
+    {
+        printf("Failed to scale mouse cursor: %s\n", SDL_GetError());
+
+        SDL_FreeSurface(scaledSurface);
+        scaledSurface = NULL;
+    }
+    else
+    {
+        SDL_FreeSurface(surface);
+
+        surface = scaledSurface;
+        width = surface->w;
+        height = surface->h;
+    }
+    
+    cursor = SDL_CreateColorCursor(surface, 0, 0);
+    
+    SDL_FreeSurface(surface);
+    
+    SDL_SetCursor(cursor);
+    SDL_ShowCursor(mouse.enabled);
+
+    free(pixels);
+}
+
+#endif

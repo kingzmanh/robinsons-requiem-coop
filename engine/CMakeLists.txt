@@ -1,0 +1,177 @@
+cmake_minimum_required(VERSION 3.0.0...3.30.4)
+project(alis)
+
+include(CTest)
+enable_testing()
+
+# Comment "set..." to disable output to console for alis on Windows
+# rrq-coop: RRQ_GUI=ON builds a normal Windows program (no console window); output goes to rrq-coop.log
+option(RRQ_GUI "Windows GUI subsystem (no console window)" OFF)
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    if (RRQ_GUI)
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows")
+        add_compile_definitions(RRQ_GUI=1)
+    else()
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mconsole")
+    endif()
+endif()
+
+# SDL2
+# If SDL2 package is not found and cannot be installed for any reason, a quick fix can be made:
+#    place the devel-version of SDL2 in the src/SDL2 folder (make sure the cmake folder is available
+#    in the package extracted to the src/SDL2 folder). Correct paths in sdl2-config.cmake if neccessary.
+#
+# Example when Cmake for Windows is used and the compiler is Cygwin/MinGW/MinGW UCRT64, arch x86_64:
+# Uncomment the next command (SDL2_MANUAL_SET = 1) and fix the path(s) below in the section between START and END.
+#  set(SDL2_MANUAL_SET "1")
+
+#  set(SDL2_DIR "src/SDL2/cmake")
+
+# START
+if(SDL2_MANUAL_SET)
+if(WIN32)
+    execute_process(
+       COMMAND ${CMAKE_C_COMPILER} -dumpmachine
+       OUTPUT_VARIABLE ALIS_COMP
+    )
+endif()
+
+string(TOLOWER "${CMAKE_C_COMPILER}" UCRT_COMP)
+string(REGEX MATCH "cygwin" CYGWIN_COMP   "${ALIS_COMP}")
+string(REGEX MATCH "mingw"  MINGW_COMP    "${ALIS_COMP}")
+string(REGEX MATCH "msys"   MSYS_COMP     "${ALIS_COMP}")
+string(REGEX MATCH "ucrt64" UCRT_COMP     "${UCRT_COMP}")
+
+if(CYGWIN_COMP)
+   # Devel-version of SDL2 ver.2.30.8 for Cygwin
+   # https://mirrors.evoluso.com/cygwin/x86_64/release/SDL2/libSDL2-devel/
+   set(SDL2_DIR "src/SDL2/libSDL2-devel-2.30.8-1/lib/cmake/SDL2")
+   message(STATUS "CYGWIN => ${ALIS_COMP}")
+   set(ALIS_COMP ${CYGWIN_COMP})
+elseif(MINGW_COMP)
+   # Devel-version of SDL2 ver.2.30.8 for MinGW
+   # https://github.com/libsdl-org/SDL/releases
+   set(SDL2_DIR "src/SDL2/x86_64-w64-mingw32/lib/cmake/SDL2")
+   if(UCRT_COMP)
+      message(STATUS "MINGW (UCRT64) => ${ALIS_COMP}")
+      set(ALIS_COMP ${MINGW_COMP}_${UCRT_COMP})
+   else(UCRT_COMP)
+      message(STATUS "MINGW => ${ALIS_COMP}")
+      set(ALIS_COMP ${MINGW_COMP})
+   endif(UCRT_COMP)
+else()
+   set(SDL2_MANUAL_SET "0")
+endif()
+endif(SDL2_MANUAL_SET)
+# END
+
+find_package(SDL2 REQUIRED)
+
+include_directories(src/emu2149)
+include_directories(src/emu8950)
+include_directories(${SDL2_INCLUDE_DIRS})
+include_directories(src)
+include_directories(src/audio)
+include_directories(src/render)
+include_directories(src/video)
+# add_library()
+
+list(APPEND alis_SOURCES
+    ${CMAKE_CURRENT_LIST_DIR}/src/emu2149/emu2149.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/emu8950/emu8950.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/emu8950/emuadpcm.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/sys/sys.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/sys/sys_sdl2.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/sys/rrq_harness.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/sys/rrq_input.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/rrq_trace.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/rrq_coop.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/rrq_net.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/rrq_icon.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/audio/audio.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/audio/music_v0.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/audio/music_v1.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/audio/music_v2.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/main.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/addnames.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/alis.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/channel.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/debug.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/escnames.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/mem.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/image.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/render/deus3d.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/render/rrq3d.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/render/rrq3d_68k.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/render/rrq3d_dos.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/render/rrq3d_3do.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/video/film3do.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/video/cinepak.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/opcodes.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/opernames.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/patches.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/platform.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/screen.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/video/video.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/video/fli.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/video/fls.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/script.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/storenames.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/unpack.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/utils.c
+#   ${CMAKE_CURRENT_LIST_DIR}/src/font.c
+)
+
+# Icon for Windows
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+   # rrq-coop: RRQ_ICON = an .ico made from the player's own game art (tools/icon/make_icon.py)
+   set(RRQ_ICON "" CACHE FILEPATH "Icon for RRQ-Coop.exe (made from the game's art on this PC)")
+   if (RRQ_ICON AND EXISTS "${RRQ_ICON}")
+       file(TO_CMAKE_PATH "${RRQ_ICON}" RRQ_ICON_P)
+       file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/rrq_icon.rc "IDI_ICON1 ICON DISCARDABLE \"${RRQ_ICON_P}\"\n")
+       list(APPEND alis_SOURCES ${CMAKE_CURRENT_BINARY_DIR}/rrq_icon.rc)
+   else()
+       list(APPEND alis_SOURCES
+           ${CMAKE_CURRENT_LIST_DIR}/src/icons/alis.rc)
+   endif()
+endif()
+
+add_executable(${PROJECT_NAME} ${alis_SOURCES})
+
+# Program version header from git (scripts/gen_version.sh); needs a POSIX sh (Git for Windows has one).
+find_program(ALIS_SH sh)
+if(ALIS_SH)
+    add_custom_target(alis_version ALL
+        COMMAND ${ALIS_SH} ${CMAKE_CURRENT_LIST_DIR}/scripts/gen_version.sh ${CMAKE_CURRENT_LIST_DIR}/src/version.h
+        BYPRODUCTS ${CMAKE_CURRENT_LIST_DIR}/src/version.h)
+    add_dependencies(${PROJECT_NAME} alis_version)
+endif()
+
+target_link_libraries(${PROJECT_NAME} m)
+if(WIN32)
+  target_link_libraries(${PROJECT_NAME} ws2_32)
+endif()
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
+
+if(SDL2_MANUAL_SET)
+  set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME}_${ALIS_COMP})
+else()
+  set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+endif()
+
+# Script disassembler (no SDL) -- sources not in upstream repo; optional (rrq-coop local patch)
+if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/main.c)
+add_executable(alisdis
+    ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/main.c
+    ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/decode.c
+    ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/ops_v6.c
+    ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/tables_v6.c
+    ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/ops_v2.c
+    ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/tables_v2.c
+    ${CMAKE_CURRENT_LIST_DIR}/tools/alisdis/unpack.c)
+endif()
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
+
