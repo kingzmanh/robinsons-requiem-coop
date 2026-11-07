@@ -464,11 +464,17 @@ void rrq_coop_start(void)
 
 int rrq_coop_has_hero(void) { return hero_of(0) != NULL; }
 
+// interaction table (see rrq_coop_note_message): part of the resync blob
+#define RRQ_MAX_INTERACT 16
+static u32 inter_vram[RRQ_MAX_INTERACT], inter_until[RRQ_MAX_INTERACT];
+static u8 inter_player[RRQ_MAX_INTERACT];
+
 // ---- co-op tables for an online resync (not part of the engine savestate) ----
 typedef struct { u32 magic, store_size, nowned, nrb, avatar_vram; int active; int have[RRQ_MAX_PLAYERS];
                  u32 owned_vram[RRQ_MAX_OWNED]; u8 owned_player[RRQ_MAX_OWNED]; u32 rb_vram[RRQ_MAX_OWNED]; u16 avatar_res;
                  u32 an_lastpos[2]; int an_frame[2], an_tick[2];
-                 u32 nui, ui_vram[RRQ_MAX_UI]; u8 ui_player[RRQ_MAX_UI]; } coop_blob_hdr;
+                 u32 nui, ui_vram[RRQ_MAX_UI]; u8 ui_player[RRQ_MAX_UI];
+                 u32 inter_vram[RRQ_MAX_INTERACT], inter_until[RRQ_MAX_INTERACT]; u8 inter_player[RRQ_MAX_INTERACT]; } coop_blob_hdr;
 
 u32 rrq_coop_export(u8 **out)
 {
@@ -483,6 +489,8 @@ u32 rrq_coop_export(u8 **out)
     memcpy(h->owned_vram, owned_vram, sizeof owned_vram); memcpy(h->owned_player, owned_player, sizeof owned_player);
     memcpy(h->rb_vram, rb_vram, sizeof rb_vram);
     h->nui = nui; memcpy(h->ui_vram, ui_vram, sizeof ui_vram); memcpy(h->ui_player, ui_player, sizeof ui_player);
+    memcpy(h->inter_vram, inter_vram, sizeof inter_vram); memcpy(h->inter_until, inter_until, sizeof inter_until);
+    memcpy(h->inter_player, inter_player, sizeof inter_player);
     memcpy(h->an_lastpos, lastpos, sizeof lastpos); memcpy(h->an_frame, aframe, sizeof aframe); memcpy(h->an_tick, atick, sizeof atick);
     for (int p = 0; p < RRQ_MAX_PLAYERS; p++) memcpy(b + sizeof *h + p * store_size, store[p], store_size);
     *out = b;
@@ -499,6 +507,8 @@ void rrq_coop_import(const u8 *b, u32 n)
     memcpy(owned_vram, h->owned_vram, sizeof owned_vram); memcpy(owned_player, h->owned_player, sizeof owned_player);
     memcpy(rb_vram, h->rb_vram, sizeof rb_vram);
     nui = h->nui; memcpy(ui_vram, h->ui_vram, sizeof ui_vram); memcpy(ui_player, h->ui_player, sizeof ui_player);
+    memcpy(inter_vram, h->inter_vram, sizeof inter_vram); memcpy(inter_until, h->inter_until, sizeof inter_until);
+    memcpy(inter_player, h->inter_player, sizeof inter_player);
     memcpy(lastpos, h->an_lastpos, sizeof lastpos); memcpy(aframe, h->an_frame, sizeof aframe); memcpy(atick, h->an_tick, sizeof atick);
     for (int p = 0; p < RRQ_MAX_PLAYERS; p++) memcpy(store[p], b + sizeof *h + p * store_size, store_size);
     avatar = NULL; npcav = NULL;
@@ -648,9 +658,6 @@ static sAlisScriptLive *hero_of(int player);
 
 // interaction: a world entity that just received a message from a player's entity (a click, a
 // "use", a trade...) runs in that player's context for a while, whoever stands closer
-#define RRQ_MAX_INTERACT 16
-static u32 inter_vram[RRQ_MAX_INTERACT], inter_until[RRQ_MAX_INTERACT];
-static u8 inter_player[RRQ_MAX_INTERACT];
 void rrq_coop_note_message(u32 vram)
 {
     if (!nowned || !alis.script) return;

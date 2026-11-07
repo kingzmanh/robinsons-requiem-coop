@@ -63,7 +63,12 @@ void rrq_coop_import(const u8 *b, u32 n);
 static volatile int conn_ready;     // connection + hello done (background thread)
 static int lockstep;                 // lockstep running: inputs/time come from the session
 static u32 session_seed;
-int rrq_net_active(void) { return lockstep; }
+// From the moment the start state is (re)loaded until the lockstep runs, the timer only counts (and
+// those counts are dropped): a direct tick in that window would start this PC one tick ahead.
+// The same window also counts as online for input: the pass that runs right after the load must
+// not read this PC's real mouse/keys (they differ between the PCs).
+static volatile int freeze_timer;
+int rrq_net_active(void) { return lockstep || freeze_timer; }
 static u8 *host_blob; static u32 host_blob_n;
 void rrq_coop_switch_quiet(int p);
 void rrq_coop_skip_p2pass(int n);
@@ -80,10 +85,8 @@ void rrq_net_before_save(void)
 void rrq_net_after_load(void)
 {
     if (pending_blob) { rrq_coop_import(pending_blob, pending_blob_n); free(pending_blob); pending_blob = NULL; rrq_coop_skip_p2pass(2); }
+    if (freeze_timer) rrq_input_reset();   // both PCs run the pass after the load with empty input
 }
-// From the moment the start state is (re)loaded until the lockstep runs, the timer only counts (and
-// those counts are dropped): a direct tick in that window would start this PC one tick ahead.
-static volatile int freeze_timer;
 int rrq_net_frame_timer(void) { return lockstep || freeze_timer || fake(); }
 static int local_player;            // stays set after a disconnect, so each PC keeps its own view
 int rrq_net_local_player(void) { return local_player; }
