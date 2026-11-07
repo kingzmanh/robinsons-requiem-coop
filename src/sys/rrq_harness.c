@@ -12,6 +12,7 @@
 #include "rrq_trace.h"
 #include "rrq_coop.h"
 #include "rrq_input.h"
+#include "../rrq_net.h"
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -120,7 +121,8 @@ void rrq_harness_tick(void)
             SDL_Scancode sc = SDL_GetScancodeFromKey(kc);
             if (kc == SDLK_UNKNOWN) { printf("[rrq] unknown key '%s'\n", e->a); continue; }
             keys[sc] = 1; key_release[sc] = t + e->hold;
-            button.sym = kc; button.scancode = sc; button.mod = 0;
+            if (rrq_net_active()) rrq_net_local_key(kc, (u16)sc);
+            else { button.sym = kc; button.scancode = sc; button.mod = 0; }
         }
         else if (!strcmp(e->cmd, "click"))
         {
@@ -163,6 +165,15 @@ void rrq_harness_tick(void)
         else if (!strcmp(e->cmd, "quit")) { printf("[rrq] quit t=%u\n", t); alis.state = eAlisStateStopped; }
     }
     if (quit_ms && t >= quit_ms && alis.state) { printf("[rrq] RRQ_QUIT_MS reached\n"); alis.state = eAlisStateStopped; }
+}
+
+const u8 *rrq_harness_raw_keys(void)
+{
+    static u8 raw[SDL_NUM_SCANCODES];
+    int n = 0;
+    const u8 *st = SDL_GetKeyboardState(&n);
+    for (int k = 0; k < SDL_NUM_SCANCODES; k++) raw[k] = (k < n ? st[k] : 0) | keys[k];
+    return raw;
 }
 
 const u8 *rrq_get_keyboard_state(int *numkeys)

@@ -79,6 +79,7 @@ list(APPEND alis_SOURCES
     ${CMAKE_CURRENT_LIST_DIR}/src/sys/rrq_input.c
     ${CMAKE_CURRENT_LIST_DIR}/src/rrq_trace.c
     ${CMAKE_CURRENT_LIST_DIR}/src/rrq_coop.c
+    ${CMAKE_CURRENT_LIST_DIR}/src/rrq_net.c
     ${CMAKE_CURRENT_LIST_DIR}/src/audio/audio.c
     ${CMAKE_CURRENT_LIST_DIR}/src/audio/music_v0.c
     ${CMAKE_CURRENT_LIST_DIR}/src/audio/music_v1.c
@@ -131,6 +132,9 @@ if(ALIS_SH)
 endif()
 
 target_link_libraries(${PROJECT_NAME} m)
+if(WIN32)
+  target_link_libraries(${PROJECT_NAME} ws2_32)
+endif()
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
 
 if(SDL2_MANUAL_SET)

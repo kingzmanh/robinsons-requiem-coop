@@ -11,6 +11,7 @@
 #include "script.h"
 #include "image.h"
 #include "sys/rrq_input.h"
+#include "rrq_net.h"
 #include <strings.h>
 #include <stdio.h>
 #include <string.h>
@@ -347,8 +348,26 @@ void rrq_coop_dump(const char *tag)
 }
 
 // Called right before the frame is composed: the displayed view is the local player's.
+void rrq_coop_start(void)
+{
+    // P2's set of player entities: hero, controller (actions/HUD logic), mouse/UI, body simulation
+    if (hero_of(1)) return;
+    static const char *own[] = { "heros.IO", "yoda.IO", "souris.IO" };
+    for (int i = 0; i < 3; i++)
+    {
+        sAlisScriptLive *e = rrq_coop_spawn(own[i]);
+        if (e) rrq_coop_set_owner(e->vram_org, 1);
+    }
+    sAlisScriptLive *t = rrq_coop_spawn("time.IO");
+    if (t) { rrq_coop_set_owner(t->vram_org, 1); rrq_coop_set_rollback(t->vram_org); }
+    avatar_create("human.IO", 1116);
+    printf("[coop] co-op started: P2 has hero/yoda/souris/time + avatar\n");
+    fflush(stdout);
+}
+
 void rrq_coop_before_draw(void)
 {
+    rrq_net_frame();
     if (nowned && active != 0) rrq_coop_switch_quiet(0);
     rrq_input_select(0);
     avatar_update();
@@ -457,7 +476,7 @@ static int have_p2_hero(void)
 
 void rrq_coop_after_draw(void)
 {
-    if (!rrq_coop_split() || !have_p2_hero() || rrq_in_p2_draw) return;
+    if (!(rrq_coop_split() || rrq_net_local_player() == 1) || !have_p2_hero() || rrq_in_p2_draw) return;
     u32 ram = alis.platform.ram_sz, fb = (u32)alis.platform.width * alis.platform.height;
     if (!snap_mem)
     {

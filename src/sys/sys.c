@@ -33,6 +33,8 @@
 #include "utils.h"
 #include "rrq_harness.h"
 #include "rrq_input.h"
+#include "../rrq_net.h"
+int rrq_wasd(void);
 #if !defined(ALIS_USE_NATIVE_ATARI) && ALIS_SDL_VER > 1
 // Harness-held keys are merged into the keyboard state the VM reads.
 # define SDL_GetKeyboardState(n) rrq_get_keyboard_state(n)
@@ -1733,6 +1735,9 @@ u32 sys_free_bytes(const char *path, u32 cap)
     return n < cap ? (u32)n : cap;
 }
 
+// rrq-coop: W/A/S/D move like the arrows / numpad (RRQ_WASD=0 turns it off)
+int rrq_wasd(void) { static int v = -1; if (v < 0) { const char *e = getenv("RRQ_WASD"); v = !(e && *e == '0'); } return v; }
+
 mouse_t sys_get_mouse(void)
 {
     return *rrq_input_mouse();      // rrq-coop: the mouse of the player whose entity is running
@@ -2172,7 +2177,7 @@ static u8 sys_joy_compose(int with_mouse_fire, int with_keys)
 {
     u8 b = 0;
 
-    if (sys_joy_handle)
+    if (sys_joy_handle && !rrq_net_active())   // online: only the lockstep input counts
     {
 #if ALIS_SDL_VER == 1
         SDL_JoystickUpdate();
@@ -2236,16 +2241,16 @@ static u8 sys_joy_compose(int with_mouse_fire, int with_keys)
         if (keys[SDLK_RIGHT] || keys[SDLK_KP6] || keys[SDLK_KP9] || keys[SDLK_KP3])
             a |= 0x08;
 #else
-        if (keys[SDL_SCANCODE_UP]    || keys[SDL_SCANCODE_KP_8] || keys[SDL_SCANCODE_KP_7] || keys[SDL_SCANCODE_KP_9])
+        if ((rrq_wasd() && keys[SDL_SCANCODE_W]) || keys[SDL_SCANCODE_UP]    || keys[SDL_SCANCODE_KP_8] || keys[SDL_SCANCODE_KP_7] || keys[SDL_SCANCODE_KP_9])
             a |= 0x01;
         
-        if (keys[SDL_SCANCODE_DOWN]  || keys[SDL_SCANCODE_KP_2] || keys[SDL_SCANCODE_KP_1] || keys[SDL_SCANCODE_KP_3])
+        if ((rrq_wasd() && keys[SDL_SCANCODE_S]) || keys[SDL_SCANCODE_DOWN]  || keys[SDL_SCANCODE_KP_2] || keys[SDL_SCANCODE_KP_1] || keys[SDL_SCANCODE_KP_3])
             a |= 0x02;
         
-        if (keys[SDL_SCANCODE_LEFT]  || keys[SDL_SCANCODE_KP_4] || keys[SDL_SCANCODE_KP_7] || keys[SDL_SCANCODE_KP_1])
+        if ((rrq_wasd() && keys[SDL_SCANCODE_A]) || keys[SDL_SCANCODE_LEFT]  || keys[SDL_SCANCODE_KP_4] || keys[SDL_SCANCODE_KP_7] || keys[SDL_SCANCODE_KP_1])
             a |= 0x04;
         
-        if (keys[SDL_SCANCODE_RIGHT] || keys[SDL_SCANCODE_KP_6] || keys[SDL_SCANCODE_KP_9] || keys[SDL_SCANCODE_KP_3])
+        if ((rrq_wasd() && keys[SDL_SCANCODE_D]) || keys[SDL_SCANCODE_RIGHT] || keys[SDL_SCANCODE_KP_6] || keys[SDL_SCANCODE_KP_9] || keys[SDL_SCANCODE_KP_3])
             a |= 0x08;
 #endif
     }
@@ -2253,7 +2258,7 @@ static u8 sys_joy_compose(int with_mouse_fire, int with_keys)
     if (with_keys)
         b |= a;
 
-    if (with_mouse_fire && mouse.lb)
+    if (with_mouse_fire && rrq_input_mouse()->lb)
         b |= 0x80;
     
     return b;

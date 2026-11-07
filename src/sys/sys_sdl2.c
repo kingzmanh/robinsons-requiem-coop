@@ -45,6 +45,7 @@
 #include "video.h"
 #include "rrq_harness.h"
 #include "../rrq_coop.h"
+#include "../rrq_net.h"
 
 #include "emu2149.h"
 #include "math.h"
@@ -511,6 +512,10 @@ void sys_poll_event(void)
                     ALIS_DEBUG(EDebugSystem, "A STOP signal has been sent to the VM queue...\n");
                     alis.state = eAlisStateStopped;
                 }
+                else if (rrq_net_active())
+                {
+                    rrq_net_local_key(event.key.keysym.sym, (u16)event.key.keysym.scancode);   // online: goes into the lockstep stream
+                }
                 else
                 {
                     button = event.key.keysym;
@@ -814,7 +819,17 @@ void sys_render(pixelbuf_t buffer)
         }
     }
 
-    if (rrq_coop_split())
+    if (rrq_net_local_player() == 1)
+    {
+        // online client: show player 2's own view (drawn every frame by rrq_coop_after_draw)
+        static u32 *cpix; static int ccap;
+        int n = width * height;
+        if (ccap < n) { free(cpix); cpix = malloc((size_t)n * 4); ccap = n; }
+        if (!rrq_coop_p2_frame(cpix, width, height)) memcpy(cpix, pixels, (size_t)n * 4);
+        rrq_harness_after_render(cpix, width, height);
+        SDL_UpdateTexture(texture, NULL, cpix, width * sizeof(*pixels));
+    }
+    else if (rrq_coop_split())
     {
         // compose P1 (left) | P2 (right); P2's frame comes from the VM thread's second draw
         static u32 *spix, *p2pix; static int scap;

@@ -18,3 +18,4 @@ void rrq_coop_slice_end(void);
 void rrq_coop_request_dump(const char *t);
 void rrq_coop_request_avatar(const char *script, int res, int dx, int dy);
 void rrq_coop_request_npcavatar(const char *script);
+void rrq_coop_start(void);
