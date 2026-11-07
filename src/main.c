@@ -190,6 +190,31 @@ int main(int argc, char *argv[])
             {
                 unpackmode = 1;
             }
+            // rrq-coop: online co-op and options (they set the RRQ_* environment the modules read)
+            else if (strcmp(cmd, "--host") == 0)
+            {
+                char v[64] = "RRQ_NET=host";
+                if (c + 1 < argc && argv[c + 1][0] >= '0' && argv[c + 1][0] <= '9') snprintf(v, sizeof v, "RRQ_NET=host:%s", argv[++c]);
+                putenv(strdup(v));
+            }
+            else if (strcmp(cmd, "--join") == 0 && c + 1 < argc)
+            {
+                char v[160]; snprintf(v, sizeof v, "RRQ_NET=join:%s", argv[++c]);
+                putenv(strdup(v));
+            }
+            else if (strcmp(cmd, "--split") == 0)
+            {
+                putenv("RRQ_SPLIT=1");
+            }
+            else if (strcmp(cmd, "--nowasd") == 0)
+            {
+                putenv("RRQ_WASD=0");
+            }
+            else if (strcmp(cmd, "--delay") == 0 && c + 1 < argc)
+            {
+                char v[64]; snprintf(v, sizeof v, "RRQ_NET_DELAY=%s", argv[++c]);
+                putenv(strdup(v));
+            }
             else if (strcmp(cmd, "-a") == 0)
             {
                 authormode = 1;

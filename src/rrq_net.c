@@ -14,6 +14,7 @@
 #include <ws2tcpip.h>
 #include "rrq_net.h"
 #include "rrq_coop.h"
+int rrq_coop_has_hero(void);
 #include "sys/rrq_input.h"
 #include "alis.h"
 #include "mem.h"
@@ -53,8 +54,11 @@ static int started;
 
 static int fake_timer = -1;   // RRQ_FAKE_NET_TIMER=1: local test of the frame-driven timer
 static int fake(void) { if (fake_timer < 0) { const char *e = getenv("RRQ_FAKE_NET_TIMER"); fake_timer = e && *e == '1'; } return fake_timer; }
-int rrq_net_active(void) { return mode != 0; }
-int rrq_net_frame_timer(void) { return mode != 0 || fake(); }
+static volatile int conn_ready;     // connection + hello done (background thread)
+static int lockstep;                 // lockstep running: inputs/time come from the session
+static u32 session_seed;
+int rrq_net_active(void) { return lockstep; }
+int rrq_net_frame_timer(void) { return lockstep || fake(); }
 static int local_player;            // stays set after a disconnect, so each PC keeps its own view
 int rrq_net_local_player(void) { return local_player; }
 
@@ -72,17 +76,11 @@ static int recv_all(void *b, int n)
     return 0;
 }
 
-void rrq_net_init(void)
+static char net_arg[200];
+static int net_thread(void *unused)
 {
-    const char *e = getenv("RRQ_NET");
-    if (!e || !*e) return;
-    const char *d = getenv("RRQ_NET_DELAY");
-    if (d) delay = atoi(d);
-    if (delay < 1) delay = 1;
-    if (delay > RING / 2) delay = RING / 2;
-    WSADATA w;
-    WSAStartup(MAKEWORD(2, 2), &w);
-    klock = SDL_CreateMutex();
+    (void)unused;
+    const char *e = net_arg;
     int port = 27531;
     char host[128] = "127.0.0.1";
     u32 seed = 0;
@@ -92,7 +90,7 @@ void rrq_net_init(void)
         SOCKET ls = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
         int one = 1; setsockopt(ls, SOL_SOCKET, SO_REUSEADDR, (char *)&one, sizeof one);
         struct sockaddr_in a = {0}; a.sin_family = AF_INET; a.sin_port = htons(port); a.sin_addr.s_addr = INADDR_ANY;
-        if (bind(ls, (struct sockaddr *)&a, sizeof a) || listen(ls, 1)) { printf("[net] cannot listen on %d\n", port); return; }
+        if (bind(ls, (struct sockaddr *)&a, sizeof a) || listen(ls, 1)) { printf("[net] cannot listen on %d\n", port); return 0; }
         printf("[net] hosting on port %d, waiting for player 2...\n", port); fflush(stdout);
         sock = accept(ls, NULL, NULL);
         closesocket(ls);
@@ -112,19 +110,37 @@ void rrq_net_init(void)
         int tries = 0;
         while (connect(sock, (struct sockaddr *)&a, sizeof a) != 0)
         {
-            if (++tries > 300) { printf("[net] cannot connect\n"); return; }
+            if (++tries > 600) { printf("[net] cannot connect\n"); return 0; }
             closesocket(sock); sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP); Sleep(100);
         }
         u32 hello[3];
-        if (recv_all(hello, sizeof hello) || hello[0] != NET_MAGIC) { printf("[net] bad hello\n"); return; }
+        if (recv_all(hello, sizeof hello) || hello[0] != NET_MAGIC) { printf("[net] bad hello\n"); return 0; }
         delay = (int)hello[1]; seed = hello[2];
         mode = 2;
     }
     int one = 1; setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char *)&one, sizeof one);
-    srand(seed);
+    session_seed = seed;
     local_player = mode == 2 ? 1 : 0;
-    printf("[net] connected as player %d, input delay %d frames, seed %08x\n", mode == 1 ? 1 : 2, delay, seed);
+    printf("[net] connected as player %d, input delay %d frames%s\n", mode == 1 ? 1 : 2, delay,
+           mode == 1 ? " - the session starts once you are in the game" : " - waiting for the host to be in the game");
     fflush(stdout);
+    conn_ready = 1;
+    return 0;
+}
+
+void rrq_net_init(void)
+{
+    const char *e = getenv("RRQ_NET");
+    if (!e || !*e) return;
+    snprintf(net_arg, sizeof net_arg, "%s", e);
+    const char *d = getenv("RRQ_NET_DELAY");
+    if (d) delay = atoi(d);
+    if (delay < 1) delay = 1;
+    if (delay > RING / 2) delay = RING / 2;
+    WSADATA w;
+    WSAStartup(MAKEWORD(2, 2), &w);
+    klock = SDL_CreateMutex();
+    SDL_CreateThread(net_thread, "rrq_net", NULL);
 }
 
 // SDL timer thread: in net mode the timer only counts; ticks are applied at frame boundaries.
@@ -207,7 +223,8 @@ void rrq_net_frame(void)
     static int tried;
     if (!tried) { tried = 1; rrq_net_init(); }
     if (!mode && fake()) { int t = SDL_AtomicSet(&pending_ticks, 0); for (int i = 0; i < t && i < 60; i++) itroutine_body(); return; }
-    if (!mode || sock == INVALID_SOCKET) return;
+    if (!conn_ready || sock == INVALID_SOCKET) return;
+    if (!lockstep && mode == 1 && started == 0 && !rrq_coop_has_hero()) return;   // host: wait until in the game
     if (started < 3)
     {
         // join, using the engine's own save/load (done at the top of the VM loop):
@@ -251,8 +268,10 @@ void rrq_net_frame(void)
             }
         }
         started = 3;
+        lockstep = 1;
+        srand(session_seed);
         SDL_AtomicSet(&pending_ticks, 0);
-        rrq_coop_start();
+        // player 2's entities are created by rrq_coop's maintain() once gameplay has a hero
         // pre-fill the first `delay` frames with empty input on both sides
         for (u32 f = 0; f < (u32)delay; f++)
         {
@@ -298,13 +317,13 @@ void rrq_net_frame(void)
     pkt_t lp; capture(&lp, f);
     lp.cs_frame = pending_cs_frame; lp.cs = pending_cs; pending_cs_frame = 0;
     local_q[f % RING] = lp; have_local[f % RING] = 1;
-    if (send_all(&lp, sizeof lp)) { printf("[net] connection lost\n"); mode = 0; return; }
+    if (send_all(&lp, sizeof lp)) { printf("[net] connection lost\n"); mode = 0; lockstep = 0; closesocket(sock); sock = INVALID_SOCKET; return; }
     // wait for the remote input of this frame
     int s = frame % RING;
     while (!(have_remote[s] && remote_q[s].frame == frame))
     {
         pkt_t rp;
-        if (recv_all(&rp, sizeof rp)) { printf("[net] connection lost\n"); fflush(stdout); mode = 0; return; }
+        if (recv_all(&rp, sizeof rp)) { printf("[net] connection lost\n"); fflush(stdout); mode = 0; lockstep = 0; closesocket(sock); sock = INVALID_SOCKET; return; }
         store_remote(&rp);
     }
     const pkt_t *mine = &local_q[s], *theirs = &remote_q[s];

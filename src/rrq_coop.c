@@ -360,14 +360,48 @@ void rrq_coop_start(void)
     }
     sAlisScriptLive *t = rrq_coop_spawn("time.IO");
     if (t) { rrq_coop_set_owner(t->vram_org, 1); rrq_coop_set_rollback(t->vram_org); }
-    avatar_create("human.IO", 1116);
+    if (!avatar) avatar_create("human.IO", 1116);
     printf("[coop] co-op started: P2 has hero/yoda/souris/time + avatar\n");
     fflush(stdout);
+}
+
+int rrq_coop_has_hero(void) { return hero_of(0) != NULL; }
+
+static int is_live(sAlisScriptLive *e)
+{
+    if (!e) return 0;
+    for (int i = 0; i < MAX_SCRIPTS; i++) if (alis.live_scripts[i] == e) return 1;
+    return 0;
+}
+
+// Drop ownership of entities that no longer exist (vram addresses get reused), forget a dead
+// avatar, and (online) create player 2's entities whenever gameplay has a hero but P2 has none:
+// at the first gameplay frame, and again after a level change or a loaded save killed them.
+static int auto_start;
+void rrq_coop_set_auto(int on) { auto_start = on; }
+static void maintain(void)
+{
+    for (int i = 0; i < nowned; i++)
+    {
+        int live = 0;
+        for (int k = 0; k < MAX_SCRIPTS; k++) if (alis.live_scripts[k] && alis.live_scripts[k]->vram_org == owned_vram[i]) { live = 1; break; }
+        if (!live) { owned_vram[i] = owned_vram[nowned - 1]; owned_player[i] = owned_player[nowned - 1]; nowned--; i--; }
+    }
+    for (int i = 0; i < nrb; i++)
+    {
+        int live = 0;
+        for (int k = 0; k < MAX_SCRIPTS; k++) if (alis.live_scripts[k] && alis.live_scripts[k]->vram_org == rb_vram[i]) { live = 1; break; }
+        if (!live) { rb_vram[i] = rb_vram[nrb - 1]; nrb--; i--; }
+    }
+    if (avatar && !is_live(avatar)) avatar = NULL;
+    if (npcav && !is_live(npcav)) npcav = NULL;
+    if ((auto_start || rrq_net_active()) && hero_of(0) && !hero_of(1)) rrq_coop_start();
 }
 
 void rrq_coop_before_draw(void)
 {
     rrq_net_frame();
+    maintain();
     if (nowned && active != 0) rrq_coop_switch_quiet(0);
     rrq_input_select(0);
     avatar_update();

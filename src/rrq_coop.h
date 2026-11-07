@@ -22,3 +22,4 @@ void rrq_coop_start(void);
 void rrq_coop_request_start(void);
 void rrq_coop_request_setpos(int p, int x, int y, int a);
 void rrq_coop_fix_herolist(short *tab, int n);
+void rrq_coop_set_auto(int on);
