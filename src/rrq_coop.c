@@ -708,6 +708,38 @@ void rrq_coop_fix_herolist(s16 *tab, int n)
     }
 }
 
+// Host-only session actions: in player 2's computer screen (ordi.IO) the LOAD and NEW game buttons
+// would load / restart the game for both players, so player 2's clicks on them are dropped.
+// Depends only on game state and P2's input, so both PCs drop the same clicks.
+static const struct { s16 x0, y0, x1, y1; } host_only_btn[] = {
+    { 104,  8, 147, 29 },   // LOAD (floppy, arrow right)
+    { 109, 49, 147, 73 },   // NEW game
+};
+static int p2_computer_open(void)
+{
+    for (int i = 0; i < nui; i++)
+    {
+        if (ui_player[i] != 1) continue;
+        for (int k = 0; k < MAX_SCRIPTS; k++)
+        {
+            sAlisScriptLive *e = alis.live_scripts[k];
+            if (e && e->vram_org == ui_vram[i] && e->name && !strcasecmp(e->name, "ordi.IO")) return 1;
+        }
+    }
+    return 0;
+}
+static void block_p2_host_buttons(void)
+{
+    mouse_t *m = rrq_input_mouse();
+    if (!m || !(m->lb || m->lb_clicked) || !p2_computer_open()) return;
+    for (u32 i = 0; i < sizeof host_only_btn / sizeof host_only_btn[0]; i++)
+        if (m->x >= host_only_btn[i].x0 && m->x <= host_only_btn[i].x1 && m->y >= host_only_btn[i].y0 && m->y <= host_only_btn[i].y1)
+        {
+            m->lb = 0; m->lb_clicked = 0;
+            return;
+        }
+}
+
 // Called by alis_loop before an entity slice runs (VM thread).
 void rrq_coop_slice_begin(void)
 {
@@ -715,6 +747,7 @@ void rrq_coop_slice_begin(void)
     int p = context_for(alis.script->vram_org);
     if (p != active) rrq_coop_switch_quiet(p);
     rrq_input_select(p);
+    if (p == 1) block_p2_host_buttons();
     rb_begin();
     // palette: a player's own entities work on that player's palette, world entities on both
     if (is_player_entity(alis.script, 1)) rrq_pal_select(1);
